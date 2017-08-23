@@ -1,0 +1,17 @@
+{
+  "name": "rbucinell.com",
+  "version": "3.1.0",
+  "description": "Personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Bucinell",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-pug": "^3.3.0"
+  }
+}

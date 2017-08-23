@@ -1,0 +1,150 @@
+/*!
+ * rbucinell.css - Custom CSS for Ryan Bucinell's personal site (rbucinell.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+ /** Landing Page **/
+ 
+body.landingpage h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+}
+.overlaywrapper{    
+    padding-bottom: 20%;
+}
+#intro-canvas {
+    width: 576px;
+    height: 576px;
+    border:1px solid #404040;
+    position: relative;
+    background: url( http://rbucinell.com/img/me.jpg) no-repeat center center;
+    background-size: cover;
+    opacity: .5;
+    pointer-events: none;
+}
+.intro-header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(http://rbucinell.com/img/bg-body.png) no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message
+{
+    position: absolute;
+    top: 50%; left: 0; bottom: 0;right: 0;
+    background-color: transparent;
+    z-index: 10;
+}
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,1);
+    font-size: 5em;
+}
+
+.intro-message > h3 {
+    color: #9d9d9d;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.intro-message ul li a
+{
+    background-color: #8E0F0F;
+}
+.intro-message ul li *
+{
+    color: #EEE;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/**REST OF SITE**/
+
+.center
+{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.navbar-inverse {
+	background-color: #8E0F0F; /*crimson;*/
+}
+
+#wrapper {
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+.img-circle{
+	  border-radius: 50%;
+}
+
+.text-muted{
+	color: #521111; /* #8095a8;*/
+	font-size: 14px;
+}
+.item span{
+	float: right;
+	right: 0px;
+	bottom: 0px;
+	font-style: italic;
+}
+
+/**override bootstrap**/
+.breadcrumb
+{
+	border: black;
+	border-style: ridge;
+	border-width: thin;
+	background-color: #F2F2F2;
+}
+
+.codeitem {
+	-webkit-box-shadow: 4px 3px 1px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 4px 3px 1px 0px rgba(0,0,0,0.75);
+	box-shadow: 4px 3px 1px 0px rgba(0,0,0,0.75);
+	margin-bottom: 10px;
+}
+
+
+
+#injury {
+	display: block;
+	color: black;
+	background: green;
+	
+	position: absolute;
+	right: 0px;
+	top: 50%;
+	
+	padding: 2px;
+	margin-top: -40px;
+	
+	border-radius: 5px;
+	border: 1px solid white;
+	
+	text-transform: uppercase;
+	font-size: 12px;
+	
+}
+#injurydays
+{
+	background: white;
+	border-radius: 5px;
+	padding: 0px 2px 0px 2px;
+	margin: 0px 1px 0px 1px;
+}

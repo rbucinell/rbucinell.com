@@ -1,0 +1,49 @@
+//- Navigation item
+mixin navitem(title,faicon,link)
+    li: a(href=link)
+        i(class="fa fa-fw " + faicon)
+        |  #{title}
+
+//- Creates a li for the nav bar that will create a togglable sublist
+mixin navwithsub(title,faicon,listid)
+    li
+        a(href="#", data-toggle="collapse", data-target=`#${listid}`)
+            i(class='fa fa-fw ' + faicon)
+            |  #{title}
+            i.fa.fa-fw.fa-caret-down
+        ul( id=listid, class="collapse")
+            block
+
+//- Build the nav menu
+nav.navbar.navbar-inverse.navbar-fixed-top
+    .navbar-header
+        button( type="button", class="navbar-toggle", data-toggle="collapse", data-target=".navbar-ex1-collapse")
+            span( class="sr-only") Toggle navigation
+            span( class="icon-bar")
+            span( class="icon-bar")
+            span( class="icon-bar")
+        a(class="navbar-brand", style="padding:5px", href="index.html")
+            span
+                img( alt="Ryan Bucinell\'s Headshot", class="img-circle",src="img/rmb.png")
+            span Ryan Bucinell
+            span.text-muted.text-xs.block Software Engineer
+
+    .collapse.navbar-collapse.navbar-ex1-collapse
+        ul.nav.navbar-nav.side-nav
+            +navitem('Home','fa-home','index.html')
+            +navitem('Retro','fa-history','retro.html')
+
+            +navwithsub( 'Projects', 'fa-cogs', 'projects-sublist')
+                +navitem('Code','fa-code','code.html')
+                +navitem('Flash','fa-flash','flash.html')
+                +navitem('Websites','fa-globe','websites.html')
+                +navitem('Graphics','fa-image','graphics.html')
+
+            +navwithsub( 'Personal Info', 'fa-info', 'info-sublist')
+                +navitem('About Me','fa-male','about.html')
+                +navitem('Résumé','fa-laptop','resume.html')
+                +navitem('Blog','fa-file-text-o','blog.html')
+
+            +navwithsub( 'Charity', 'fa-heart', 'charity-sublist')
+                +navitem('Dodge the Police','fa-futbol-o','dodge.html')
+                +navitem('Hike for Heroes','fa-area-chart','h4h.html')

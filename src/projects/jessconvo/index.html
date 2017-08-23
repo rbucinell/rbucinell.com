@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Converstation with Jessica</title>
+        <style>
+            body {
+                background-color: lightgray;
+            }
+
+            #conversationDiv
+            {
+                background-color: white;
+                padding-left: 0;
+                padding-right: 0;
+                margin-left: auto;
+                margin-right: auto;
+                width: 600px;
+                border-right:  1px solid gray;
+                border-left:   1px solid gray;
+            }
+
+            #conversation
+            {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            .person1
+            {
+                background-color: rgba(256, 200, 234, 256);
+                float: right;
+            }
+
+            .person2
+            {
+                background-color: rgba(10, 200, 234, 256);
+                float:left;
+            }
+
+            li
+            {
+                padding: 5px;
+                width: 400px;
+                background-color: rgba(188, 186, 186, 1);
+                float:left;
+                margin-bottom: 5px;
+
+            }
+
+            .msg_date
+            {
+                font-size: 11px;
+                font-style: italic;
+                color: gray;
+                float:right;
+                padding-top: 20px;
+            }
+
+            img {
+                max-width:100%;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="conversationDiv">
+            <ul id="conversation"></ul>
+        </div>
+    </body>
+    <script type="text/javascript">
+
+        requestXMLFile();
+
+        String.prototype.splice = function( idx, rem, s ) {
+            return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
+        };
+
+        function CreateMediaElement( tag, content, className, id )
+        {
+            var element = document.createElement( tag );
+            element.innerHTML = content;
+            if( className !== "" )
+            {
+                element.className = className;
+            }
+            if( id !== "")
+            {
+                element.id = id;
+            }
+            return element;
+        }
+
+        function CreateHotLinks( text )
+        {
+            var http = "http://";
+            var https = "https://";
+            var start, stop;
+            if( text.indexOf( http ) !== -1 )
+            {
+                start = text.indexOf( http );
+                stop = text.indexOf( " ", start );
+                if( stop === -1 )
+                {
+                    stop = text.length;
+                }
+                var sub = text.substring( start, stop );
+                text = text.replace( sub, "<a href=\""+ sub + "\">"+ sub +"</a>" );
+            }
+            else if( text.indexOf( https) !== -1 )
+            {
+                start = text.indexOf( https );
+                stop = text.indexOf( " ", start );
+                if( stop === -1 )
+                {
+                    stop = text.length;
+                }
+                var sub = text.substring( start, stop );
+                text = text.replace( sub, "<a href=\""+ sub + "\">"+ sub +"</a>" );
+            }
+            return text;
+        }
+
+        function myFunction(xml)
+        {
+            var ulist = document.getElementById("conversation");
+            var xmlDoc = xml.responseXML;
+
+            var xmlList  = xmlDoc.getElementsByTagName("SMS");
+            for( var i = 0; i < xmlList.length; i++ )
+            {
+                var curNode = xmlList[i];
+
+                var txtMessage = curNode.getElementsByTagName("body")[0];
+                var txtDate = curNode.getElementsByTagName("date")[0];
+                var txtPerson  = curNode.getElementsByTagName("type")[0];
+
+                var text = txtMessage.innerHTML;
+
+                var mediaElement = null;
+
+                //Replace the imgur links with the images
+
+                var imgur = "http://imgur.com/";
+                var imStart = text.indexOf( imgur );
+                if( imStart !== -1 )
+                {
+                    var imEnd = text.indexOf( " ", imStart );
+                    if( imEnd === -1)
+                    {
+                        imEnd = text.length;
+                    }
+                    mediaElement =  CreateMediaElement("img", "", "", "" );
+                    mediaElement.src = text.substring( imStart, imEnd );
+                    text = text.replace( mediaElement.src, "" );
+                }
+
+                //Replace the kageurufu links with the images
+
+                var kageurufu = "http://kageurufu.net/imgur/?";
+                var kagIndex = text.indexOf( kageurufu );
+                var kagIndexEnd = text.indexOf(".jpg", kagIndex)+4;
+                if( kagIndex !== -1 )
+                {
+                    mediaElement = CreateMediaElement("img", "", "", "" );
+                    mediaElement.src = text.substring( kagIndex, kagIndexEnd );
+                    text = text.replace( mediaElement.src, "" );
+                }
+
+                text = CreateHotLinks( text );
+
+
+
+                var message = txtMessage.innerHTML;
+                var person = txtPerson.innerHTML;
+
+                var date = txtDate.innerHTML;
+                var d = new Date( Number(date) );
+
+                var li = document.createElement("li");
+                    li.className = "person" + person;
+                    li.innerHTML = text;
+                var dateDiv = document.createElement("div");
+                    dateDiv.className = "msg_date";
+                    dateDiv.innerHTML = d.toLocaleString();
+
+                if( mediaElement !== null )
+                {
+                    li.appendChild( mediaElement );
+                }
+                li.appendChild( dateDiv );
+                ulist.appendChild( li );
+            }
+
+        }
+
+        function requestXMLFile()
+        {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function()
+            {
+                if (xhttp.readyState == 4 && xhttp.status == 200)
+                {
+                    return myFunction(xhttp);
+                }
+            }
+            xhttp.open("GET", "5857326180.xml", true);
+            xhttp.send();
+            return xhttp;
+        }
+
+
+
+
+    </script>
+</html>

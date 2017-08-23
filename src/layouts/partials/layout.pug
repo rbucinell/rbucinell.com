@@ -1,0 +1,11 @@
+doctype
+html
+    block config
+    - var pagetitle = pageConfig.title;
+    include ./head.pug
+    include ./mixins.pug
+    body
+        +pageheader( pageConfig.pageh1.title, pageConfig.pageh1.small, pageConfig.breadcrumbs)
+            block content
+        include ./scripts-footer.pug
+        block scripts

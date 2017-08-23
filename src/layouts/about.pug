@@ -1,0 +1,44 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan Bucinell - About Me",
+            breadcrumbs: [
+                {fa:"fa-home", text:"Home", url:"index.html"},
+                {fa:"fa-info",text:"Personal Info"},
+                {fa:"fa-male",text:"About Me", url:"#"}
+            ],
+            pageh1: {
+                title: 'C\'est moi',
+                small: 'just a bit about yours truly'
+            }
+        }
+    //- https://lipis.github.io/bootstrap-social/
+    link( href='css/bootstrap-social.css' rel='stylesheet') 
+block content
+    mixin social( name, url)
+        if( url )    
+            a( class="btn btn-social-icon btn-"+name href=url)
+                span(class="fa fa-"+name)
+        else
+            a( class="btn btn-social-icon btn-"+name)
+                span(class="fa fa-"+name)
+    //- Content
+    .row
+        .col-lg-12
+            .center If you wish to know more, please visit these links:
+                br
+                a(href="https://www.facebook.com/ryan.bucinell", target="-") Facebook Page,
+                a(href="http://www.linkedin.com/in/ryanbucinell", target="-")   LinkedIn Page, &
+                a(href="resume.html")  My Resume
+
+    .row
+        .col-lg-12
+            span.thumbnail(style="float:right;"): img( style="max-height:300px",src="img/aboutme.png").
+            p I am a Software Engineer from Rochester, NY. Not native to the area, however after getting BS in Computer Science I decided to stick around for the warm winters and Garbage plates. I am currently employed by Mindex Techonologies who have contracted me to Harris RF Communications to work on military and police radios. Proefessionaly I focus on C# application development, mostly tools or back end systems, however I do have a fondness for GUI work, and so I have some experience in that as well in addition to teaching myself some web development. One of my hobbies is to play kickball, I play in  various leagues around town, and so I also enjoy moonlighting as a referee for one of the leagues as well. I also frequent the gym, not because I am a gym rat, but due to my love of doing mud-runs, and the perpetual fear that I will be too out of shape to complete one. I have completed a variety of them including the Warrior Dash (pictured to right), Spartan Sprint, Hero Rush and the Tough Mudder. Lastly I'm a huge movie buff and gamer, I'll happily discuss latest of either of these until long after the sun goes down.
+
+    .row
+        .col-lg-3
+            +social( 'github', 'https://github.com/rbucinell/')
+            +social( 'linkedin', 'http://www.linkedin.com/in/ryanbucinell')
+            +social( 'facebook', 'https://www.facebook.com/ryan.bucinell')

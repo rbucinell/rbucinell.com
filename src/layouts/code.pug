@@ -1,0 +1,25 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan Bucinell - Code",
+            breadcrumbs: [
+                {fa:"fa-home", text:"Home", url:"index.html"},
+                {fa:"fa-cogs", text:"Projects" },
+                {fa:"fa-code", text:"Code", url:"#"}
+            ],
+            pageh1: {
+                title: 'Code',
+                small: 'coding projects here and there'
+            }
+        }
+block content    
+    #contentDiv 
+    //- Content created dynamically 
+block scripts
+    include ./partials/xmltransform.pug
+    script.
+        var xml = "data/projects.xml";
+        var xmltransform = "data/transforms/projects_transform.xsl";
+        var divId = "contentDiv";
+        generateTransformData( xml, xmltransform, divId );

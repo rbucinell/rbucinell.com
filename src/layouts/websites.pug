@@ -1,0 +1,49 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan Bucinell - Website Development",
+            breadcrumbs: [
+                {fa:"fa-home", text:"Home", url:"index.html"},
+                {fa:"fa-cogs", text:"Projects" },
+                {fa:"fa-globe", text:"Websites", url:"#"}
+            ],
+            pageh1: {
+                title: 'Web Design',
+                small: 'Personal and professional projects'
+            }
+        }
+    style.
+        .media div a img{ width: 175px; height: 128px; }
+block content
+    mixin medialisting( link, thumbnail, alt, title)
+        .panel.panel-default
+            .media
+                .media-left.media-middle
+                    a( href=link)
+                        img.media-object(src=thumbnail, alt=alt)
+                .media-body
+                    h4.media-heading 
+                        | #{title} 
+                        small #{link}
+                    block
+    //- Content Here
+
+    +medialisting( "http://www.revivomedical.com/", "img/websites/revivo_medical.jpg", "ReVivo Medical", "ReVivo Medical" )
+        p Revivio Medical a startup of doctors with a leading edge spinal fusion procedure. Since they are so focused on medicine this site was fully developed in GoDaddy site builder in order to allow a non-technical employee to update it.
+
+    +medialisting( "http://www.nocoastsandc.fitness", "img/websites/nocoastsandc_preview.jpg", "No Coast Strength and Conditioning", "No Coast Strength and Conditioning" )
+        p No Coast Strength and Conditioning is a personal training site for Rob Saeva. If you are looking for a personal trainer in the Rochester, NY area I highly recommend his services. 
+    
+    +medialisting( "http://hike4heroesproject.us/", "img/websites/hike4heroesproject_preview.jpg", "Hike 4 Heroes", "Hike 4 Heroes")
+        p   My little brother created a charity event to raise money for the Wounded Warrior Project and Navy SEALs Foundation. I volunteered to build, and maintain the sites (as well as social media) as he hiked all 46 Adirondack High Peaks.	
+    
+    +medialisting( "http://rbb.union.edu", "img/websites/rbb.jpg", "Ronald Bucinell's Personal Site", "Multiple Sites for Ronald Bucinell" )
+        p A rework of his professional site to bring site up to standards and to make content easier to find and read. <a href="rbb.union.edu">rbb.union.edu</a> <br>
+        p Innotech International - Ronald Bucinell's Engineering consultant company <a href="http://innotech-international.com/">http://innotech-international.com/</a>
+
+    .panel.panel-default
+        .media
+            .media-body
+                h4.media-heading Personal Site(s)
+                p First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="retro.html">Retro</a> page.

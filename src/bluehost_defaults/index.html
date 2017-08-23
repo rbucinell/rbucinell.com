@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<!--<script type="text/javascript" src="fight.js"></script>-->
+		<style>
+			canvas {
+				padding-left: 0;
+				padding-right: 0;
+				margin-left: auto;
+				margin-right: auto;
+				display: block;
+				width: 650px;
+				height: 480px;
+				border: 1px solid #000000;
+				box-shadow: gray 1px 1px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="display">
+			<canvas id="canvas" > <!--width="770px" height="500px" -->
+				<p>Your browser doesn't support canvas.</p>
+			</canvas>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		ctx.font = "50px Arial";
+		ctx.fillText("soon",canvas.width/3,canvas.height/1.8);
+	</script>
+</html>

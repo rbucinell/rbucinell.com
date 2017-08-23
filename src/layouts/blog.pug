@@ -1,0 +1,47 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan Bucinell - Dodge the Police",
+            breadcrumbs: [
+                {fa:"fa-home",text:"Home", url:"index.html"},
+                {fa:"fa-heart",text:"Charity"},
+                {fa:"fa-file-text-o",text:"Blog", url:"#"}
+            ],
+            pageh1: {
+                title: 'Blog(s)',
+                small: 'a thought here or there'
+            }
+        }
+
+block content
+    //- Content Begin
+    .row
+        #notabug.col-lg-12
+            - var diclink = "http://www.dreamincode.net/forums/blog/rss/904-its-not-a-bug-but-an-unexpected-feature/";
+            p:h3
+                a(href=diclink)
+                    img(src="http://www.dreamincode.net/forums/style_images/dic2.1.6b/bf_new.gif", width="25", height="25")
+                |  Its Not a Bug, but an Unexpected Feature!
+            p LINK: 
+                a(href=diclink)  Dream.In.Code: It's Not A Bug But An Unexpected Feature
+            p RSS:
+                a(href="http://www.dreamincode.net/forums/blog/rss/904-its-not-a-bug-but-an-unexpected-feature/")  RSS Feed
+        
+        #goto.col-lg-12
+            p:h3
+                a(href="http://www.tumblr.com/blog/swiftstriker00")
+                    img( src="http://assets.tumblr.com/images/favicons/favicon.ico?1" width="25" height="25")
+                |  goto...label
+            p Most recent blog posts
+            script(type="text/javascript" src="http://swiftstriker00.tumblr.com/api/read/json")
+            script.
+                var posts = tumblr_api_read['posts'];
+                var getXPosts = 5;
+                for(var i=0; i < tumblr_api_read['posts'].length; i++  )
+                {
+                    if( i > getXPosts )
+                        break;
+                    document.write('[' + i + '] = <a href="' + posts[i]['url'] + '">' + posts[i]['regular-title'] + '</a> <i>posted on </i>' + posts[i]['date'] + '<br>');
+                }
+                $(".item").css("padding","2px");

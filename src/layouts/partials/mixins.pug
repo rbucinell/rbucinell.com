@@ -1,0 +1,23 @@
+//- Create Page Header
+mixin pageheader(headermain, headersmall, breadcrumbs)
+    #wrapper
+        include ./nav.pug
+
+        #page-wrapper
+            .container-fluid
+
+                //Page Header
+                .row
+                    .col-lg-12
+                        h1.page-header #{headermain}<small> #{headersmall} </small>
+
+                        ol.breadcrumb
+                            each crumb,i in breadcrumbs
+                                if( i != breadcrumbs.length - 1 )
+                                    if(  typeof crumb.url === 'undefined' )
+                                        li: i(class=`fa ${crumb.fa}`)  #{crumb.text}
+                                    else                                    
+                                        li: i( class=`fa ${crumb.fa}`): a(href=crumb.url)  #{crumb.text}
+                                else
+                                    li(class="active"): i(class=`fa ${crumb.fa}`)  #{crumb.text}
+                block

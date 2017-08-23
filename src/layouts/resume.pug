@@ -1,0 +1,86 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan Bucinell - Résumé",
+            breadcrumbs: [
+                {fa:"fa-home", text:"Home", url:"index.html"},
+                {fa:"fa-info",text:"Personal Info"},
+                {fa:"fa-file-text-o",text:"Resume", url:"#"}
+            ],
+            pageh1: {
+                title: 'Ryan Bucinell',
+                small: 'A Curriculum Vitae'
+            }
+        }
+
+block content
+    .row
+        .col-lg-12
+            .center
+                h4 This is a temporary resume page due to some much needed updates to css. You still can get a copy of my resume here:
+                h4
+                    a(href="/data/resume/Resume%20for%20Ryan%20Michael%20Bucinell.pdf") Download A PDF Version
+    .row
+        .col-lg-12
+            #languagesChart(style="height:400px")
+block scripts
+    //- High Charts - http://www.highcharts.com/
+    script( src="http://code.highcharts.com/highcharts.js")
+    script( src="http://code.highcharts.com/highcharts-3d.js")
+    script( src="http://code.highcharts.com/modules/exporting.js")
+    script.
+        $(function () {
+            $('#languagesChart').highcharts({
+                chart: {
+                    type: 'pie',
+                    backgroundColor:'rgba(255, 255, 255, 0.1)',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        beta: 0
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                title: {
+                    text: 'Percentage of Experience by Language'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        depth: 35,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Language Breakdown',
+                    data: [
+                        {
+                            name: 'C#/.NET',
+                            y: 54.0,
+                            sliced: true,
+                            selected: true
+                        },
+                        ['C++', 12],
+                        ['Java', 18],							
+                        ['SQL', 30],
+                        ['Powershell/Batch', 18],
+                        ['HTML/CSS/Javascript', 12],                
+                        ['Others',   12],
+                    ]
+                }]
+            });
+        });

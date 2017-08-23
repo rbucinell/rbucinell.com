@@ -1,0 +1,73 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan Bucinell - Graphics",
+            breadcrumbs: [
+                {fa:"fa-home", text:"Home", url:"index.html"},
+                {fa:"fa-cogs", text:"Projects" },
+                {fa:"fa-image", text:"Graphics"}
+            ],
+            pageh1: {
+                title: 'Computer Graphics',
+                small: 'some say its art'
+            }
+        }
+block content
+    //- Content Goes Here
+    .col-sm-12
+        p
+        | This is my humble attempt at the artistic side of my brain, through various digital media. Towards the latter half of my collegiate experience I delved into computer graphics and rendering at a computational level. However since highschool I have been working with Adobe Photoshop and <a href="flash.html">Flash</a>. I started out working on banners and touch-up work for my friend's company, Black Sheep Web Design, and continued to now, where I mostly do gag photoshop work and some graphics for sites.
+        
+        h3: u Advanced Rendering Course
+        h4 RenderMan Images
+    
+    .col-sm-6
+        .thumbnail
+            img(src="img/graphics/cg2/ryan.png")
+    .col-sm-6
+        .thumbnail
+            img(src="img/graphics/cg2/image.png")
+            
+    .row
+        .col-sm-12
+            h4 Custom Raytracer Work
+        
+        .col-xs-6.col-md-4.col-lg-2: .thumbnail: image(src="img/graphics/raytracer/assignment3_fun1.png")
+        .col-xs-6.col-md-4.col-lg-2: .thumbnail: image(src="img/graphics/raytracer/assignment-3-100-iterations.png")
+        .col-xs-6.col-md-4.col-lg-2: .thumbnail: image(src="img/graphics/raytracer/assignment0.png")
+        .col-xs-6.col-md-4.col-lg-2: .thumbnail: image(src="img/graphics/cg2/checkpoint5extra.jpg")
+        .col-xs-6.col-md-4.col-lg-2: .thumbnail: image(src="img/graphics/raytracer/assignment1-1.png")
+        .col-xs-6.col-md-4.col-lg-2: .thumbnail: image(src="img/graphics/raytracer/assignment4-ward.png")
+
+    .row
+        .col-xs-12
+            h3: u Photoshop Work
+            h4 Web Banners
+        .col-lg-12
+            div Tau Kappa Epsilong - Website Banner
+            .thumbnail#tke_banner
+                a(href="img/graphics/TKE_website_banner.png", width="700", height="140", border="0", alt="Xi-Upsilon Chapter of TKE banner")
+                    img(src="img/graphics/TKE_website_banner.png")
+        .col-lg-12
+            div Black Sheep Web Design - Website Banner
+            .thumbnail#bswd_banner
+                a(href="img/graphics/BSTechbannerprototype2.jpg", width="700", height="140", border="0", alt="Blacksheep Technology Banner")
+                    img(src="img/graphics/BSTechbannerprototype2.jpg")
+        .col-lg-12
+            div
+                a(href="http://www.dreamincode.net") Dream.In.Code
+                |  Forums Signature
+            .thumbnail
+                a(href="http://www.dreamincode.net/forums/user/145381-swiftstriker00/", target="_blank")
+                    img(src="img/graphics/DIC_Bookmark.jpg", border=0, alt="D.I.C. Bookmark")
+    
+    .row
+        .col-xs-12
+            h4 Eagle Scouts
+            p Since obtaining my Eagle scout rank, I have periodically helped my scout troop by touch up and create patriotic images for 
+                    their <strong>Eagle Scout Court of Honors</strong>. The following images are in chronological order.
+                    
+            .col-xs-12.col-sm-3: .thumbnail: img(src="img/graphics/flag/benflag.jpg")
+            .col-xs-12.col-sm-3: .thumbnail: img(src="img/graphics/flag/mathew.jpg")
+            .col-xs-12.col-sm-3: .thumbnail: img(src="img/graphics/flag/greg.jpg")

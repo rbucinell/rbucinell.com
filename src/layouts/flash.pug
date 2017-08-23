@@ -1,0 +1,48 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan Bucinell - Flash",
+            breadcrumbs: [
+                {fa:"fa-home", text:"Home", url:"index.html"},
+                {fa:"fa-cogs", text:"Projects" },
+                {fa:"fa-bolt", text:"Flash", url:"#"}
+            ],
+            pageh1: {
+                title: 'Flash Projects',
+                small: 'R.I.P. Flash'
+            }
+        }    
+block content
+    script( src="js/jquery.swfobject.1-1-1.min.js")
+    style.
+        .flash-wrapper { margin-top: 5px; }
+        #flashobj { width: 100%; max-width: 550px; height: 400px;}
+        #flash-warning { display: none; }
+        @media only screen and(max-width: 600px) {
+            #flash-warning {
+                display: block;
+            }
+        }
+    
+    // Content Begin
+    -
+        var flashobjs = [ 	
+            { id:'cylinderbtn', title:'Cylinder Tessellation'}, 
+            { id:'sambtn', title:'Adventures of S.A.M'}, 
+            { id:'ninjabtn', title:'Way of Ninja'}, 
+            { id:'virtualbtn', title:'Virtual Tour'}, 
+            { id:'loaderbtn', title:'Loader Tut'}
+            ]
+
+    .row
+        .col-lg-12
+            - for( var i = 0; i < flashobjs.length; i++ )
+                - var flash_class = i == 0 ? 'flashbutton btn btn-default active' : 'flashbutton btn btn-default'
+                button( id=flashobjs[i].id, class=flash_class, type="button") #{flashobjs[i].title}
+    .row
+        .col-lg-12
+            //- <object id="flashobj" type="application/x-shockwave-flash" data="data/flash/Cylinder.swf"></object>
+            .flash-wrapper
+                .flash-warning If the screen's resolution is less than 600px wide, you will have difficulty viewing this content
+                .flashobj

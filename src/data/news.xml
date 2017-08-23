@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="transforms/news-transform.xsl"?>
+<news>
+	
+	<item>
+		<icon type="fa">file-image-o</icon>
+		<head></head>
+		<body>It's about time to make my site mobile friendly</body>
+		<date>5/7/2015</date>
+	</item>
+
+	<item>
+		<icon type="fa">globe</icon>
+		<head>New Website</head>
+		<body><![CDATA[Beginning a new side business, tentatively named SwiftSoft LLC. Getting the first <a href="websites.html">website</a> on-line for <br><a href="http://www.nocoastsandc.fitness">No Coast Strength and Conditioning</a>
+		]]></body>
+		<date>1/7/2015</date>
+	</item>
+	
+	<item>
+		<icon type="fa">gamepad</icon>
+		<head></head>
+		<body><![CDATA[Expanding upon javascript, so I created <a href="life.html">Conway's Game of Life!</a>]]></body>
+		<date>10/18/2014</date>
+	</item>
+	
+	<item>
+		<icon type="fa">code</icon>
+		<head></head>
+		<body><![CDATA[ Started learning some javascript by creating a Grease Monkey  <a href="code.html">on my code page.</a>]]> Script.</body>
+		<date></date>
+	</item>
+	<item>
+		<icon type="fa">android</icon>
+		<head>NACKA Kickball App</head>
+		<body>Published my first android app for my kickball league.</body>
+		<date>4/8/2014</date>
+	</item>
+</news>
+
+<!-- <![CDATA[   ]]> -->
+<!--
+
+<item>
+	<icon></icon>
+	<head></head>
+	<body></body>
+	<date></date>
+</item>
+	
+-->

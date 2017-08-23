@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="css/tdstyles.css" rel="stylesheet"></style>
+			
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r76/three.min.js"></script>-->
+		<script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
+		<script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
+		<script src="js/TrackMap.js"></script>
+		<script src="js/Texture.js"></script>
+		<script src="js/Atlas.js"></script>
+		<script src="js/Button.js"></script>
+		<script src="js/TrackInterface.js"></script>
+		<script src="js/Enemy.js"></script>
+		<script src="js/Wave.js"></script>
+		<script src="js/Track.js"></script>
+		<script src="js/TDGame.js"></script>
+		<script src="/js/lib/jquery.js"></script>
+	</head>
+	<body>
+		<canvas id="gameCanvasTD" width="768" height="768"><!--width="635" height="478">-->
+			<p> Your browser doesn't support canvas, sorry </p>
+		</canvas>
+		<script>
+			$( document ).ready(function() {
+				var game = new TDGame( document.getElementById("gameCanvasTD") );
+				game.run();				
+			});
+		</script>
+	</body>
+</html>
