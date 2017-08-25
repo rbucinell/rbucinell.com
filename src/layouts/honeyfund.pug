@@ -1,0 +1,179 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan & Jess's Honeyfund",
+            breadcrumbs: [
+                {fa:"fa-home",text:"Home", url:"index.html"},
+                {fa:"fa-heart",text:"Wedding", url:"http://www.rbucinell.com/wedding"}
+            ],
+            pageh1: {
+                title: 'Ryan & Jessica\'s Wedding',
+                small: '#SheWantsTheB #BuciFoundHisCheerleader'
+            }
+        }
+
+        var gifts =[
+            {title:'Royal Carribean Cruise', desc:'This gift will go directly to help pay for the cruise itself', price:150, img:'http://cruiseweb.com/admin/Images/image-gallery/royal-caribbean-jewel-of-the-seas-exterior-gallery.jpg'},
+            {title:'Horseback Riding',desc:'Horseback ride on a greek beach, at sunset', price: 50, img:'http://www.worldfortravel.com/wp-content/uploads/2011/10/Horse-Riding-At-Noordhoek-Beach.jpg'},
+            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
+            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
+            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
+            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
+            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
+            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
+            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
+            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'}
+        ]
+
+
+
+    style.
+
+        .container-fluid
+        {
+            background: #3d187c url(img/wedding/purple_bg.jpg);
+        }
+
+        .jumbotron
+        {
+            background: #000 url(img/wedding/santorini.jpg) top right;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .jumbotron .container
+        {
+            color: white;
+            opacity: 1;
+            text-shadow:
+                -1px -1px 0 #5e5e5e,  
+                1px -1px 0 #5e5e5e,
+                -1px 1px 0 #5e5e5e,
+                1px 1px 0 #5e5e5e;
+        }
+
+block content
+
+    mixin createElement( index, title, desc, price, imgsrc )
+        .col-xs-12.col-sm-6.col-md-4.col-lg-3(id=`gift_${index}`)
+            input(type="hidden" name=`item_number_${index}`, value=index )
+            input(type="hidden" name=`item_name_${index}`, value=title )
+            input(type="hidden" name=`quantity_${index}`, value="1" )
+            input(type="hidden" name=`amount_${index}`, value=price )
+            .thumbnail
+                img.img-rounded(src=imgsrc,style="height:200px;width:300px;")
+                .caption
+                    h4 #{title}
+                    p.description #{desc}
+                    .input-group.col-xs
+                        span.input-group-addon $
+                        input.gift-amount.form-control(type="number" placeholder=price)
+                        span.input-group-btn 
+                            button.gift-btn.btn.btn-default(type="button") Select
+
+    .wedding
+        #jumbo.jumbotron
+            .container
+                h1 Our Dream Honeymoon
+                p We would like to thank you for helping us go on the trip of lifetime. We look forward to being able to experience as much as we can on this trip and explore all that the Mediteraian has to offer.
+
+        form#mainForm.form-inline(target="_self",action="https://www.paypal.com/yt/cgi-bing/webscr" method="post", name="weddingGift")
+            input(type="hidden",name="cmd", value="_cart")
+            input(type="hidden",name="upload", value="1")
+            input(type="hidden",name="image_url", value="http://rbucinell.com/img/rmb.png")
+            input(type="hidden",name="business", value="swiftstriker00@gmail.com")            
+            input(type="hidden",name="currency_code", value="USD")
+            input(type="hidden",name="shipping", value="0")
+            
+            input(type="hidden",name="return", value="http://rbucinell.com/wedding")
+            input(type="hidden",name="cancel_return", value="http://rbucinell.com/honeyfund.html")
+
+            input(type="hidden",name="item_number_100", value="100")
+            input(type="hidden",name="quantity_100", value="1")
+            input(type="hidden",name="item_name_100", value="PayPal 2.9% fee")
+            input(type="hidden",name="amount_100", value="1" )
+
+            .input-group.col-lg-offset-8(style="padding-bottom:10px;")
+                span.input-group-addon Total $
+                input#checkout-total.form-control(type="number", placeholder="100.00", min="0" readonly='true')
+                span.input-group-btn
+                    button#submitPaypal.btn.btn-primary(type="submit" disabled=true) Checkout with Paypal
+
+            #items.row
+                for gift,index in gifts
+                    +createElement( index+1,gift.title, gift.desc, gift.price, gift.img )
+
+block scripts
+    script.
+        function updateTotal()
+        {
+            
+            var total = 0;
+            $('.gift-amount').each(function(k,v)
+            {
+                total += Number($(this).val(),10);
+            });
+            $("#checkout-total").val(total);
+            $('#amount_100').val(total*0.029);
+            $('#submitPaypal').prop( 'disabled', $("#checkout-total").val() === 0);
+        }
+        
+        function toggle( aButton, selected)
+        {
+            if( selected )
+                $(aButton).addClass("active").removeClass('btn-default').addClass('btn-success');
+            else
+                $(aButton).removeClass('active').removeClass('btn-success').addClass('btn-default');
+        }
+
+        $(function(){
+
+            //delete my normal sites stucture
+            $('ol.breadcrumb').remove();
+            $('.page-header').css('color','#EEE')
+            $('.page-header small').css('color','#AAA')
+            $('#gift_1 input[name^=quantity').val(1)
+
+            //- Add custom functionality
+            $("input.gift-amount").on("change paste keyup",function()
+            {
+                toggle( this.nextElementSibling.children[0], $(this).val() !== '');
+                updateTotal();
+            });
+        
+            $(".gift-btn").click(function()
+            {
+                var inputField = this.parentElement.previousElementSibling;
+                if( $(this).is('.active'))
+                {
+                    toggle( this, false );
+                    inputField.value = '';
+                }
+                else
+                {
+                    toggle( this, true );
+                    if( inputField.value === '' )
+                        inputField.value = inputField.placeholder;
+                }
+                updateTotal();
+            });
+
+            $("#mainForm").submit(function()
+            {                
+
+                $('#items').children().each(function(i,value)
+                {
+                    var index = i+1;
+                    if( $("#gift_"+ index + ' .gift-btn')[0].className.indexOf('btn-success') === -1 )
+                    {
+                        $("#gift_"+index + ' input[type^=hidden').remove();
+                    }
+
+                });
+
+
+
+                return true;
+            })
+        });
