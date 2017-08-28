@@ -28,13 +28,15 @@ script.
             dataType: "xml",
             success: function( data ){
                 xml = data.documentElement;
+                console.log( xml );
                 $.ajax({
                     type: 'GET',
                     url:  transformSrc,
                     dataType: "xml",
                     success: function( data ){
                         xslt = data.documentElement;
-                        transform( xml, xslt, outputId );                            
+                        transform( xml, xslt, outputId );     
+                        return xml;                       
                     }
                 });
             }
