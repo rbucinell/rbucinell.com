@@ -20,10 +20,10 @@ AccentStyle = Object.freeze({
     BAR: 'bar'
 });
 
-var letters = {};
+var consonants = {};
 function addLetter( letter, letterStyle, accentStyle, accentCount)
 {
-    letters[letter] = { 
+    consonants[letter] = { 
         accent : {
             type: accentStyle,
             count: accentCount
@@ -59,7 +59,13 @@ addLetter( '&', LetterStyle.BISECT, AccentStyle.BAR, 3 );
 addLetter( '*', LetterStyle.BISECT, AccentStyle.BAR, 3 );
 addLetter( 'x', LetterStyle.BISECT, AccentStyle.BAR, 3 );
 
-console.log( letters);
+vowels = {
+    a: { height: -1, bar: 0},
+    e: { height: 0, bar: 0},
+    i: { height: 0, bar: 1},
+    o: { height: 1, bar: 0},
+    u: { height: 0, bar: -1}
+}
 
 
 
@@ -93,13 +99,9 @@ function generateClick( e )
         console.log( 'Error: Replace every C with K or an S');
         return;
     }
-    drawGallifreyan( words );
+    loop();
 }
 
-function drawGallifreyan( words )
-{
-
-}
 
 //single run function that kicks off draw() loop
 function setup()
@@ -137,16 +139,22 @@ function draw()
     ellipse( center.x, center.y, (innerCircle.r*2-wordRadius))
 
     stroke( 'gray' );
-    for( var i = 0; i < words.length; i++ )
+    words.forEach(function(word,i) 
     {
+        //Set the 
+        var curColor = colors.shift();
+        stroke(curColor);
+        colors.push(curColor);
+
+
         var newX = center.x + (innerCircle.r) * Math.cos(DegToRad(gallifreyan_offset + i*theta));
         var newY = center.y + (innerCircle.r) * Math.sin(DegToRad(gallifreyan_offset + i*theta));
         ellipse( newX, newY, 5);
         ellipse( newX, newY, wordRadius);
-        text( words[i], newX, newY);
-
-    }
-
+        text( word, newX, newY);
+    
+    });
+    noLoop();
 }
 
 function DegToRad( deg )
