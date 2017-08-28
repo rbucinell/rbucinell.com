@@ -113,15 +113,6 @@ body.landingpage h1, h2, h3, h4, h5, h6 {
 	background-color: #F2F2F2;
 }
 
-.codeitem {
-	-webkit-box-shadow: 4px 3px 1px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 4px 3px 1px 0px rgba(0,0,0,0.75);
-	box-shadow: 4px 3px 1px 0px rgba(0,0,0,0.75);
-	margin-bottom: 10px;
-}
-
-
-
 #injury {
 	display: block;
 	color: black;
@@ -147,4 +138,17 @@ body.landingpage h1, h2, h3, h4, h5, h6 {
 	border-radius: 5px;
 	padding: 0px 2px 0px 2px;
 	margin: 0px 1px 0px 1px;
+}
+
+.codeimg
+{
+	width: 50px;
+	height: 50px;
+	cursor: default;
+}
+.codeitem {
+	-webkit-box-shadow: 4px 3px 1px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 4px 3px 1px 0px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
+	border: 1px #e1e4e8 solid;
 }
