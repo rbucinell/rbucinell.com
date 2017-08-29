@@ -1,4 +1,6 @@
 @echo off
-color 0E
 cls
+echo moving to dist
+cd dist
+echo starting server
 python -m http.server 8000
