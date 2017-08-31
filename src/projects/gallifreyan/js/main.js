@@ -357,6 +357,8 @@ function draw()
 	//Goal
 	ellipse( I.x, I.y, I.r );
 	
+	return;
+
     words.forEach(function(word,i) 
     {
         //Rotate the color
