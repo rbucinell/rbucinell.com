@@ -6,7 +6,7 @@ var center = {
     x: canvasWidth/2,
     y: canvasHeight/2
 };
-var bourndyCircle ={ x: center.x, y: center.y, r: canvasHeight/2 * 0.7 };
+var bourndyCircle ={ x: center.x, y: center.y, r: canvasHeight/2 * 0.8 };
 var innerCircle = JSON.parse(JSON.stringify(bourndyCircle));
 innerCircle.r = bourndyCircle.r * .9;
 
@@ -295,7 +295,9 @@ function draw()
     clear();
     noFill();
     //draw outer ring
+	strokeWeight(2);
     stroke( 'black' );
+	strokeWeight(1);
     ellipse(bourndyCircle.x,bourndyCircle.y, bourndyCircle.r*2);
     //draw inner ring
     stroke( '#555' );
@@ -309,12 +311,14 @@ function draw()
 
 	
 	var A = { x: center.x, y: center.y },
-		B =cordsOnCircle( innerCircle, 0 ),
-		C = cordsOnCircle( innerCircle, theta);
+		B = cordsOnCircle( innerCircle, 0 ),
+		C = cordsOnCircle( innerCircle, theta),
+		P = cordsOnCircle( innerCircle, theta/2);
 	
 	ptLbl( A, 'A');
 	ptLbl( B, 'B');
 	ptLbl( C, 'C');
+	ptLbl( P, 'P');
 	
 	//Midpoints of the line opposite the vector given vector
 	var mA = midpoint( B, C );
@@ -334,11 +338,11 @@ function draw()
 	triangle( A.x, A.y, B.x, B.y, C.x, C.y );
 			
 	//Draw ΔTaTbTc
-	stroke('red');
-	triangle( mA.x, mA.y, mB.x, mB.y, mC.x, mC.y);
+	//stroke(colorAlpha('red', 0.5));
+	//triangle( mA.x, mA.y, mB.x, mB.y, mC.x, mC.y);
 	
 	//Draw bisect lines
-	stroke('#00DD00');
+	stroke(colorAlpha('green', 0.3));
 	line( A.x, A.y, mA.x, mA.y );
 	line( B.x, B.y, mB.x, mB.y );
 	line( C.x, C.y, mC.x, mC.y );
@@ -357,7 +361,42 @@ function draw()
 	//Goal
 	ellipse( I.x, I.y, I.r );
 	
-	return;
+	
+	//Lets find extensions
+	//Ratio of similar triangles can be used to deterimine new radius
+	var AEc = Math.pow( innerCircle.r, 2 ) / dist( A.x, A.y, mA.x, mA.y ); 
+	
+	//Define a circle with new radius AEc
+	var extentsionCircle = { x: center.x, y: center.y, r: AEc };
+	
+	stroke( 'brown');
+	fill('rgba(0,0,0,0)');
+		
+	var Ec = cordsOnCircle( extentsionCircle, theta );
+	var Eb = cordsOnCircle( extentsionCircle, 0);
+	
+	stroke( '#555' );
+	ptLbl( Ec, 'Ec');
+	ptLbl( Eb, 'Eb');
+	
+	
+	stroke('red');
+	triangle( A.x, A.y, Eb.x, Eb.y, Ec.x, Ec.y);
+	
+	
+	fill('rgba(255,0,0,.1)');	
+	var ea = ptDist( Eb, Ec );
+	var eb = ptDist( A, Ec );
+	var ec = ptDist( A, Ec );
+	
+	var Ei = {
+		x: (ea*A.x+eb*Eb.x+ec*Ec.x)/ (ea+eb+ec),
+		y: (ea*A.y+eb*Eb.y+ec*Ec.y)/ (ea+eb+ec),
+		r: inCircleRadius( A, Eb, Ec)	
+	};
+	ellipse( Ei.x, Ei.y, Ei.r );
+	
+	
 
     words.forEach(function(word,i) 
     {
@@ -367,41 +406,20 @@ function draw()
         colors.push(curColor);
         noFill();
 		
-		
+		//find the 
         var A = { x: center.x, y: center.y },
-		B =cordsOnCircle( innerCircle, i*theta ),
-		C = cordsOnCircle( innerCircle, (i+1)*theta);
-	
-		ptLbl( A, 'A');
-		ptLbl( B, 'B');
-		ptLbl( C, 'C');
-
+			B =cordsOnCircle( innerCircle, i*theta ),
+			C = cordsOnCircle( innerCircle, (i+1)*theta);
+		
 		//Midpoints of the line opposite the vector given vector
 		var mA = midpoint( B, C );
 		var mB = midpoint( A, C );
 		var mC = midpoint( A, B );
 
-		ptLbl( mA, 'a' );
-		ptLbl( mB, 'b' );
-		ptLbl( mC, 'c' );
-
+		//length of the sides opposite the so named vector
 		var a = ptDist( B, C );
 		var b = ptDist( A, C );
 		var c = ptDist( A, B );
-
-		//Draw ΔABC
-		stroke('black');
-		triangle( A.x, A.y, B.x, B.y, C.x, C.y );
-
-		//Draw ΔTaTbTc
-		stroke('red');
-		triangle( mA.x, mA.y, mB.x, mB.y, mC.x, mC.y);
-
-		//Draw bisect lines
-		stroke('#00DD00');
-		line( A.x, A.y, mA.x, mA.y );
-		line( B.x, B.y, mB.x, mB.y );
-		line( C.x, C.y, mC.x, mC.y );
 
 		//Draw the inircle and the incenter	
 		stroke('blue');
@@ -412,10 +430,9 @@ function draw()
 			y: (a*A.y+b*B.y+c*C.y)/ (a+b+c),
 			r: inCircleRadius( A, B, C)	
 		};
-		ptLbl( I, 'I');
 
 		//Goal
-		ellipse( B.x, B.r, I.r );
+		ellipse( I.x, I.y, I.r );
     });
     noLoop();
 }
