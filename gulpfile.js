@@ -1,3 +1,5 @@
+"use strict";
+
 var gulp = require('gulp'),
 	concat		= require('gulp-concat'),
 	uglify		= require('gulp-uglify'),
@@ -5,7 +7,8 @@ var gulp = require('gulp'),
 	debug		= require('gulp-debug'),
 	watch		= require('gulp-watch'),
 	del			= require('del'),
-	pug			= require('gulp-pug');
+	pug			= require('gulp-pug'),
+	fs			= require('fs');
 
 var src = 'src/';
 var dest = 'dist/';
@@ -50,6 +53,33 @@ gulp.task('copy',function(){
 	return gulp.src( paths.copy, { base: src })
 		.pipe( gulp.dest( dest ));
 });
+
+gulp.task('projectlist', function(done){
+	
+	var projects = {};
+	const path = src + "projects/";
+	fs.readdirSync(path).filter( function(file)
+	{
+		
+		let isDir = fs.statSync(path+file).isDirectory();
+		if( isDir )
+		{
+			var projPath = path+file+"/";
+			projects[file] =  { name: file, path: projPath, hasIndex: false };
+			try
+			{
+				var hasIndex = fs.statSync( projPath + 'index.html').isFile();
+				projects[file].hasIndex = hasIndex;
+			}
+			catch(e){};
+		}
+	});
+	fs.writeFile( path + 'projects.json', JSON.stringify(projects), (err)=>{
+		if( err ) throw err;
+		console.log( 'projects.json has been saved.');
+	});
+	done();
+})
 
 // Concats the libraries together
 gulp.task('css-lib', gulp.series(
