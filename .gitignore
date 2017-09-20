@@ -6,3 +6,5 @@ node_modules/*
 #file is compiled by the project's layout file (layouts/life.pug)
 src/projects/life/life.html
 src/projects/projects.json
+
+*.cache
