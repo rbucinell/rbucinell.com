@@ -115,10 +115,10 @@ gulp.task('cleanDest', cleanDest );
 
 
 // Build replaces html/css/js in dest folder, not modifying assets
-gulp.task( 'build-code',gulp.parallel('build-pug', 'minify-js', 'minify-css', 'css-lib'));
+gulp.task( 'build-code',gulp.parallel('build-pug', 'minify-js', 'minify-css', 'css-lib','projectlist'));
 
 // Complete rebuild of the destination folder
-gulp.task('rebuild',gulp.series( cleanDest, gulp.parallel('build-code', 'copy')));
+gulp.task('rebuild',gulp.series( cleanDest, gulp.parallel('build-code','copy')));
 
 
 //Default Task, will do a full clean and rebuild of Pug, JS, and CSS
