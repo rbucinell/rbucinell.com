@@ -9,9 +9,28 @@
   "author": "Ryan Bucinell",
   "license": "ISC",
   "devDependencies": {
+    "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^3.7.0",
-    "gulp-pug": "^3.3.0"
-  }
+    "gulp-concat": "^2.6.1",
+    "gulp-debug": "^3.1.0",
+    "gulp-pug": "^3.3.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^4.3.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbucinell/rbucinell.com.git"
+  },
+  "keywords": [
+    "Ryan",
+    "Bucinell",
+    "Personal",
+    "Website"
+  ],
+  "bugs": {
+    "url": "https://github.com/rbucinell/rbucinell.com/issues"
+  },
+  "homepage": "https://github.com/rbucinell/rbucinell.com#readme"
 }
