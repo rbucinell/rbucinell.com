@@ -65,7 +65,7 @@ gulp.task('projectlist', function(done){
 		if( isDir )
 		{
 			var projPath = path+file+"/";
-			projects[file] =  { name: file, path: projPath, hasIndex: false };
+			projects[file] =  { name: file, path: "projects/"+file+"/", hasIndex: false };
 			try
 			{
 				var hasIndex = fs.statSync( projPath + 'index.html').isFile();
