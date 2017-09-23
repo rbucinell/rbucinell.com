@@ -1,0 +1,46 @@
+extends partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Ryan Bucinell - Projects",
+            breadcrumbs: [
+                {fa:"fa-home", text:"Home", url:"index.html"},
+                {fa:"fa-cogs", text:"Projects", url:"#" },
+            ],
+            pageh1: {
+                title: 'Ryan Bucinell',
+                small: 'latest news and updates'
+            }
+        }
+block content
+    h4 Just some projects I'm working on, there is no guarantee that they are in a good working state 
+    table#projTable.table.table-condensed.table-hover.table-striped
+        thead
+            tr
+                th Project Name
+                th Project Index / Link
+        tbody
+
+block scripts
+    script.
+
+        function createProjectObject( proj )
+        {
+            var template = '<tr><td>'+  proj.name +'</td>';
+            template+= '<td>';
+            if( proj.hasIndex)
+                template += '<a href="'+ proj.path  +'index.html">'+ proj.path + '</a>'
+            else
+                template += proj.path;
+            template += '</td>';
+            template += '</tr>';
+            $('#projTable tbody').append(template);
+        }
+
+        $(function(){
+            $.getJSON('projects/projects.json',function(json){
+                temp1 = json;
+                for(var key in json)
+                    createProjectObject(json[key]);
+            });
+        });
