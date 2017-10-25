@@ -32,8 +32,8 @@ var paths = {
 		src + 'data/**/*',
 		src + 'bluehost_defaults/',
 		src + 'cgi-bin/',
-		src + 'media-share/',
-		src + 'misc-pages/',
+		src + 'media-share/**/*',
+		src + 'misc-pages/**/*',
 		src + 'projects/**/*',
 	]
 }
