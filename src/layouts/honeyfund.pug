@@ -14,16 +14,16 @@ block config
         }
 
         var gifts =[
-            {title:'Royal Carribean Cruise', desc:'This gift will go directly to help pay for the cruise itself', price:150, img:'http://cruiseweb.com/admin/Images/image-gallery/royal-caribbean-jewel-of-the-seas-exterior-gallery.jpg'},
-            {title:'Horseback Riding',desc:'Horseback ride on a greek beach, at sunset', price: 50, img:'http://www.worldfortravel.com/wp-content/uploads/2011/10/Horse-Riding-At-Noordhoek-Beach.jpg'},
+            {title:'Celebrity Cruise', desc:'This gift will go directly to help pay for the cruise itself', price:150, img:'https://cruiseweb.com/admin/Images/image-gallery/celebrity-cruise-line-celebrity-summit-exterior-01-gallery.jpg'},
+            {title:'Catamaran Excursion',desc:'Catamaran Cruise with Snorkeling, Paddleboarding and Kayaking', price: 75, img:'img/wedding/catamaran_cruise.jpg'},
+            {title:'Pink Sand Beach Tour',desc:'Here is a short description of the excursion for flavor', price:45, img:'img/wedding/bermuda-pink-sand.jpg'},
+            {title:'St. George\'s Historical Tour',desc:'Tour of Bermud\'s historical English settlement', price:60, img:'img/wedding/stgeorge.jpg'},
+            {title:'Spa Day',desc:'Elbow Beach\'s Spa get-away', price:200, img:'img/wedding/spa.jpg'},
             {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
             {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
             {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
             {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
-            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
-            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
-            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
-            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'}
+            {title:'Custom Amount',desc:'Here is a short description of the excursion for flavor', price:100, img:'https://assets1.bigthink.com/system/idea_thumbnails/61798/size_1024/bermuda-triangle.jpg?1477148489'}
         ]
 
 
@@ -37,8 +37,9 @@ block config
 
         .jumbotron
         {
-            background: #000 url(img/wedding/santorini.jpg) top right;
+            background: #000 url(https://media.gq.com/photos/59444590e8e94c21c8ef4d35/master/pass/bermuda-travel-guide-americas-cup.jpg) top right;
             background-size: cover;
+            background-position-y: 35%;
             width: 100%;
             height: 100%;
         }
@@ -76,7 +77,7 @@ block content
         #jumbo.jumbotron
             .container
                 h1 Our Dream Honeymoon
-                p We would like to thank you for helping us go on the trip of lifetime. We look forward to being able to experience as much as we can on this trip and explore all that the Mediteraian has to offer.
+                p We would like to thank you for helping us go on the trip of lifetime. After all the stress and planning for the wedding this will be the perfect way to relax and start our marrige.
 
         form#mainForm.form-inline(target="_self",action="https://www.paypal.com/yt/cgi-bing/webscr" method="post", name="weddingGift")
             input(type="hidden",name="cmd", value="_cart")
