@@ -19,10 +19,8 @@ block config
             {title:'Pink Sand Beach Tour',desc:'Here is a short description of the excursion for flavor', price:45, img:'img/wedding/bermuda-pink-sand.jpg'},
             {title:'St. George\'s Historical Tour',desc:'Tour of Bermud\'s historical English settlement', price:60, img:'img/wedding/stgeorge.jpg'},
             {title:'Spa Day',desc:'Elbow Beach\'s Spa get-away', price:200, img:'img/wedding/spa.jpg'},
-            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
-            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
-            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
-            {title:'Excursion Title',desc:'Here is a short description of the excursion for flavor', price:100, img:'http://placekitten.com/g/300/200'},
+            {title:'Discover Scuba and Dive',desc:'Discover the thrill of SCUBA diving on this half-day PADI course and dive. ', price:160, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMFANDISSBA-2.jpg'},
+            {title:'Twilight Bermuda Triangle Cruise',desc:'Take a trip to the Bermuda Triangle for a spectacular nighttime spectacle. 100% money back guarantee if you disappear!', price:70, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMTWILIGHT-2.jpg'},
             {title:'Custom Amount',desc:'Here is a short description of the excursion for flavor', price:100, img:'https://assets1.bigthink.com/system/idea_thumbnails/61798/size_1024/bermuda-triangle.jpg?1477148489'}
         ]
 
@@ -69,9 +67,13 @@ block content
                     p.description #{desc}
                     .input-group.col-xs
                         span.input-group-addon $
-                        input.gift-amount.form-control(type="number" placeholder=price)
+                        input.gift-amount.form-control(type="number" placeholder=`${price} /person`)
                         span.input-group-btn 
-                            button.gift-btn.btn.btn-default(type="button") Select
+                            button#oneperson.gift-btn.btn.btn-default(type="button")
+                                i.fa.fa-user
+                            button#twoperson.gift-btn.btn.btn-default(type="button")
+                                i.fa.fa-user
+                                i.fa.fa-user
 
     .wedding
         #jumbo.jumbotron
