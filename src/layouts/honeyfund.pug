@@ -105,7 +105,7 @@ block content
             input(type="hidden",name="cmd", value="_cart")
             input(type="hidden",name="upload", value="1")
             input(type="hidden",name="image_url", value="http://rbucinell.com/img/rmb.png")
-            input(type="hidden",name="business", value="jresnick35@yahoo.com")            
+            input(type="hidden",name="business", value="swiftstriker00@gmail.com")
             input(type="hidden",name="currency_code", value="USD")
             input(type="hidden",name="shipping", value="0")
             
@@ -154,14 +154,13 @@ block content
         
 
 block scripts
-    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    
     script.
         function updateTotal()
         {
             var total = 0;
             $('input[class*=gift-amount]').each(function(k,v)
             {
-                console.log(v)
                 var giftElement = $(v).closest('.giftElement');
                 var activeButton = giftElement.find( 'button.active');
                 if( activeButton.length >= 1 )
