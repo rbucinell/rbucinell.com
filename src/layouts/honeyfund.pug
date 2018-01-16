@@ -121,7 +121,7 @@ block content
                 span.input-group-addon Total $
                 input#checkout-total.form-control(type="number", placeholder="0.00", min="0" readonly)
                 span.input-group-btn
-                    button.btn.btn-primary(type="button" data-toggle="modal" data-target="#thanksModal" ) Checkout
+                    button#modalLoad.btn.btn-primary.disabled(type="button" data-toggle="modal" data-target="#thanksModal") Checkout
 
             #thanksModal.modal.fade(role="dialog")
                 .modal-dialog(role="document")
@@ -138,7 +138,7 @@ block content
                                         a#paypalme.btn.btn-primary.btn-lg(role="button" href="https://www.paypal.me/rbucinell/100") Paypal.me 
                                         p This will allow sending gifts to friends and family for free.
                                     .col-md-6.col-md-offest-6
-                                        button#submitPaypal.btn.btn-lg.btn-primary(type="submit" disabled=true) Checkout with Paypal
+                                        button#submitPaypal.btn.btn-lg.btn-primary(type="submit") Checkout with Paypal
                                         p This will generate a purchase order if you want an itemized receipt. Paypal will treat this as a sale and will apply their <u>2.9% + $0.30</u> fee
                         .modal-footer
                             button.btn.btn-default(type="button" data-dismiss="modal") Cancel   
@@ -185,7 +185,10 @@ block scripts
             $("#checkout-total").val(total);
             $("#paypalme").attr('href', `https://www.paypal.me/rbucinell/${total}`)
             $('#amount_100').val(total*0.029);
-            $('#submitPaypal').prop( 'disabled', $("#checkout-total").val() === 0);
+            if( total <= 0)
+                $("#modalLoad").addClass('disabled');
+            else
+                $("#modalLoad").removeClass('disabled');
         }
         
         function toggle( aButton, selected)
