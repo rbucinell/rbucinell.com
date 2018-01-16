@@ -20,15 +20,13 @@ block config
             {title:'St. George\'s Historical Tour',desc:'Tour of Bermud\'s historical English settlement', price:60, img:'img/wedding/stgeorge.jpg'},
             {title:'Spa Day',desc:'Elbow Beach\'s Spa get-away', price:200, img:'img/wedding/spa.jpg'},
             {title:'Discover Scuba and Dive',desc:'Discover the thrill of SCUBA diving on this half-day PADI course and dive. ', price:160, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMFANDISSBA-2.jpg'},
-            {title:'Twilight Bermuda Triangle Cruise',desc:'Take a trip to the Bermuda Triangle for a spectacular nighttime spectacle. 100% money back guarantee if you disappear!', price:70, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMTWILIGHT-2.jpg'},
-            {title:'Custom Amount',desc:'Here is a short description of the excursion for flavor', price:100, img:'https://assets1.bigthink.com/system/idea_thumbnails/61798/size_1024/bermuda-triangle.jpg?1477148489'}
+            {title:'Twilight Bermuda Triangle Cruise',desc:'A trip to the Bermuda Triangle for a nighttime spectacle. 100% money back guarantee if you disappear!', price:70, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMTWILIGHT-2.jpg'},
+            {title:'Custom Amount',desc:'If you wish to enter a custom amount, please enter it below', price:100, img:'https://assets1.bigthink.com/system/idea_thumbnails/61798/size_1024/bermuda-triangle.jpg?1477148489'}
         ]
-
-
 
     style.
 
-        .container-fluid
+        #page-wrapper > .container-fluid
         {
             background: #3d187c url(img/wedding/purple_bg.jpg);
         }
@@ -52,10 +50,14 @@ block config
                 1px 1px 0 #5e5e5e;
         }
 
+        .giftElement .thumbnail .caption {
+            min-height: 141px;
+        }
+
 block content
 
     mixin createElement( index, title, desc, price, imgsrc )
-        .col-xs-12.col-sm-6.col-md-4.col-lg-3(id=`gift_${index}`)
+        .giftElement.col-xs-12.col-sm-6.col-md-4.col-lg-3(id=`gift_${index}`)
             input(type="hidden" name=`item_number_${index}`, value=index )
             input(type="hidden" name=`item_name_${index}`, value=title )
             input(type="hidden" name=`quantity_${index}`, value="1" )
@@ -67,13 +69,31 @@ block content
                     p.description #{desc}
                     .input-group.col-xs
                         span.input-group-addon $
-                        input.gift-amount.form-control(type="number" placeholder=`${price} /person`)
+                        input.gift-amount.form-control(type="text" placeholder=`${price} /person` readonly)
+                        span.input-group-btn 
+                            button.gift-btn.btn.btn-default(type="button" id=`${index}_oneperson` )
+                                i.fa.fa-user
+                            button.gift-btn.btn.btn-default(type="button" id=`${index}_twoperson` )
+                                i.fa.fa-user
+                                i.fa.fa-user
+                                
+    mixin createCustomElement( index, title, desc, price, imgsrc )
+        .giftElement.col-xs-12.col-sm-6.col-md-4.col-lg-3(id=`gift_${index}`)
+            input(type="hidden" name=`item_number_${index}`, value=index )
+            input(type="hidden" name=`item_name_${index}`, value=title )
+            input(type="hidden" name=`quantity_${index}`, value="1" )
+            input(type="hidden" name=`amount_${index}`, value=price )
+            .thumbnail
+                img.img-rounded(src=imgsrc,style="height:200px;width:300px;")
+                .caption
+                    h4 #{title}
+                    p.description #{desc}
+                    .input-group.col-xs
+                        span.input-group-addon $
+                        input.custom-gift-amount.form-control(type="number" placeholder=`$${price}`)
                         span.input-group-btn 
                             button#oneperson.gift-btn.btn.btn-default(type="button")
-                                i.fa.fa-user
-                            button#twoperson.gift-btn.btn.btn-default(type="button")
-                                i.fa.fa-user
-                                i.fa.fa-user
+                                i.fa.fa-plus
 
     .wedding
         #jumbo.jumbotron
@@ -85,7 +105,7 @@ block content
             input(type="hidden",name="cmd", value="_cart")
             input(type="hidden",name="upload", value="1")
             input(type="hidden",name="image_url", value="http://rbucinell.com/img/rmb.png")
-            input(type="hidden",name="business", value="swiftstriker00@gmail.com")            
+            input(type="hidden",name="business", value="jresnick35@yahoo.com")            
             input(type="hidden",name="currency_code", value="USD")
             input(type="hidden",name="shipping", value="0")
             
@@ -99,25 +119,72 @@ block content
 
             .input-group.col-lg-offset-8(style="padding-bottom:10px;")
                 span.input-group-addon Total $
-                input#checkout-total.form-control(type="number", placeholder="100.00", min="0" readonly='true')
+                input#checkout-total.form-control(type="number", placeholder="0.00", min="0" readonly)
                 span.input-group-btn
-                    button#submitPaypal.btn.btn-primary(type="submit" disabled=true) Checkout with Paypal
+                    button.btn.btn-primary(type="button" data-toggle="modal" data-target="#thanksModal" ) Checkout
+
+            #thanksModal.modal.fade(role="dialog")
+                .modal-dialog(role="document")
+                    .modal-content
+                        .modal-header
+                            button.close(type="button" data-dismiss="modal"): span &times;
+                            h4#myModalLabel.modal-title Thank you!
+                        .modal-body
+                            p We truly appreciate your generosity and want to thank you for helping make our honeymoon as special as possible.
+                            p I wrote this page because other sites wanted large percentages of online gift giving. So I have created two options to keep the fees to a minimum. Please use whichever button you prefer.
+                            .container-fluid
+                                .row
+                                    .col-md-6
+                                        a#paypalme.btn.btn-primary.btn-lg(role="button" href="https://www.paypal.me/rbucinell/100") Paypal.me 
+                                        p This will allow sending gifts to friends and family for free.
+                                    .col-md-6.col-md-offest-6
+                                        button#submitPaypal.btn.btn-lg.btn-primary(type="submit" disabled=true) Checkout with Paypal
+                                        p This will generate a purchase order, if you want an itemized receipt. Paypall will treat this a goods purchase and will apply their 2.9% + $0.30 fee
+                        .modal-footer
+                            button.btn.btn-default(type="button" data-dismiss="modal") Cancel   
 
             #items.row
                 for gift,index in gifts
-                    +createElement( index+1,gift.title, gift.desc, gift.price, gift.img )
+                    if index != gifts.length -1
+                        +createElement( index+1,gift.title, gift.desc, gift.price, gift.img )
+                    else
+                        +createCustomElement( index+1,gift.title, gift.desc, gift.price, gift.img )
+
+
+        
 
 block scripts
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
     script.
         function updateTotal()
         {
-            
             var total = 0;
-            $('.gift-amount').each(function(k,v)
+            $('input[class*=gift-amount]').each(function(k,v)
             {
-                total += Number($(this).val(),10);
+                console.log(v)
+                var giftElement = $(v).closest('.giftElement');
+                var activeButton = giftElement.find( 'button.active');
+                if( activeButton.length >= 1 )
+                {
+                    var perperson = 0;
+                    if( ($(v).is('.custom-gift-amount')))
+                    {
+                        if( $(v).val() === '')
+                        {
+                            $(v).val( giftElement.children('input[name^=amount]').val() );
+                        }
+                        perperson = $(v).val()
+                    }
+                    else
+                    {
+                        perperson = giftElement.children('input[name^=amount]').val()
+                    }
+                    var modifier = activeButton.attr('id').indexOf('two') == -1 ? 1 : 2;
+                    total += Number(perperson,10) * modifier;
+                }
             });
             $("#checkout-total").val(total);
+            $("#paypalme").attr('href', `https://www.paypal.me/rbucinell/${total}`)
             $('#amount_100').val(total*0.029);
             $('#submitPaypal').prop( 'disabled', $("#checkout-total").val() === 0);
         }
@@ -130,16 +197,20 @@ block scripts
                 $(aButton).removeClass('active').removeClass('btn-success').addClass('btn-default');
         }
 
-        $(function(){
-
+        $(function()
+        {
             //delete my normal sites stucture
             $('ol.breadcrumb').remove();
             $('.page-header').css('color','#EEE')
             $('.page-header small').css('color','#AAA')
             $('#gift_1 input[name^=quantity').val(1)
 
+            //clear on page load
+            $("#checkout-total").val('');
+            $(".custom-gift-amount").val('');
+
             //- Add custom functionality
-            $("input.gift-amount").on("change paste keyup",function()
+            $("input[class*=gift-amount]").on("change paste keyup",function()
             {
                 toggle( this.nextElementSibling.children[0], $(this).val() !== '');
                 updateTotal();
@@ -156,15 +227,17 @@ block scripts
                 else
                 {
                     toggle( this, true );
+                    $(this).siblings(".gift-btn").each( function(){
+                        toggle( this, false);
+                    });
                     if( inputField.value === '' )
-                        inputField.value = inputField.placeholder;
+                        inputField.value = inputField.placeholder.replace('$', '');
                 }
                 updateTotal();
             });
 
             $("#mainForm").submit(function()
-            {                
-
+            {
                 $('#items').children().each(function(i,value)
                 {
                     var index = i+1;
@@ -172,11 +245,7 @@ block scripts
                     {
                         $("#gift_"+index + ' input[type^=hidden').remove();
                     }
-
                 });
-
-
-
                 return true;
             })
         });
