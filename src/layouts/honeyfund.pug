@@ -33,7 +33,7 @@ block config
 
         .jumbotron
         {
-            background: #000 url(https://media.gq.com/photos/59444590e8e94c21c8ef4d35/master/pass/bermuda-travel-guide-americas-cup.jpg) top right;
+            background: #000 url(img/wedding/bermuda_mod.jpg) top right;
             background-size: cover;
             background-position-y: 35%;
             width: 100%;
@@ -63,6 +63,21 @@ block config
             min-height: 141px;
         }
 
+        #backtoweddingbtn
+        {
+            background-color: #48183F;
+            border-color: #1c0919;
+        }
+        #backtoweddingbtn:hover
+        {
+            background-color: #2b0e25;
+            border-color: #160714;
+        }
+        #backtoweddingbtn:active
+        {
+            background-color: #2b0e25;
+            border-color: #160714;
+        }
         /*#checkoutbox
         {
             position: fixed;
@@ -117,6 +132,7 @@ block content
             .container
                 h1 Our Dream Honeymoon
                 p We would like to thank you for helping us go on the trip of lifetime. After all the stress and planning for the wedding this will be the perfect way to relax and start our marriage.
+                a#backtoweddingbtn.btn.btn-primary.btn-lg(href="http://rbucinell.com/wedding" role="button") Back to Wedding 💍
 
         form#mainForm.form-inline(target="_self",action="https://www.paypal.com/yt/cgi-bing/webscr" method="post", name="weddingGift")
             input(type="hidden",name="cmd", value="_cart")
