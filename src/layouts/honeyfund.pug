@@ -78,6 +78,15 @@ block config
             background-color: #2b0e25;
             border-color: #160714;
         }
+
+        .input-group-btn label {
+            display: inline !important;
+        }
+
+        .gift-btn
+        {
+            cursor: pointer;
+        }
         /*#checkoutbox
         {
             position: fixed;
@@ -103,11 +112,11 @@ block content
                         span.input-group-addon $
                         input.gift-amount.form-control(type="text" placeholder=`${price} /person` readonly disabled)
                         span.input-group-btn 
-                            button.gift-btn.btn.btn-default(type="button" id=`${index}_oneperson` )
-                                i.fa.fa-user
-                            button.gift-btn.btn.btn-default(type="button" id=`${index}_twoperson` )
-                                i.fa.fa-user
-                                i.fa.fa-user
+                            label(for=`giftbtn${index}`)
+                                button.gift-btn.btn.btn-default(onclick=`` data-toggle="button" href=`giftbtn${index}` name=`giftbtn${index}` type="button" id=`${index}_oneperson` value="🤵") 🤵
+                                button.gift-btn.btn.btn-default(onclick=`` data-toggle="button" href=`giftbtn${index}` name=`giftbtn${index}` type="button" id=`${index}_twoperson` value="🤵👰" ) 🤵👰
+                                    
+                                    //i.fa.fa-user
                                 
     mixin createCustomElement( index, title, desc, price, imgsrc )
         .giftElement.col-xs-12.col-sm-6.col-md-4.col-lg-3(id=`gift_${index}`)
@@ -250,9 +259,9 @@ block scripts
                 updateTotal();
             });
         
-            $(".gift-btn").on('click touchstart', function()
+            $(".gift-btn").on('tap click touchstart touchend data-api', function foo()
             {
-                var inputField = this.parentElement.previousElementSibling;
+                var inputField = this.parentElement.parentElement.previousElementSibling;
                 var isActive = $(this).is('.active');
                 toggle( this, !isActive);
                 if( this.id === 'customgiftbtn')
