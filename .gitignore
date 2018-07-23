@@ -8,3 +8,4 @@ src/projects/life/life.html
 src/projects/projects.json
 
 *.cache
+package-lock.json
