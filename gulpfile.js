@@ -40,7 +40,7 @@ var paths = {
 		src + 'misc-pages/**/*',
 		src + 'projects/**/*',
 	]
-}
+};
 
 // Compile main pug pages into HTML
 gulp.task('build-pug', function(){
@@ -60,8 +60,8 @@ gulp.task('copy',function(){
 
 gulp.task('projectlist', function(done){
 	
-	var projects = {};
-	const path = src + "projects/";
+	let projects = {};
+	let path = src + "projects/";
 	fs.readdirSync(path).filter( function(file)
 	{
 		
