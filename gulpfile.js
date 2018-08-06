@@ -14,9 +14,13 @@ var src = 'src/';
 var dest = 'dist/';
 
 var paths = {
+	scripts: [
+		src + 'js/**/*.js',
+		'node_modules/bootstrap/dist/js/bootstrap.min.js'
+	],
 	css : {
 		libraries : [
-			src + 'css/plugins/bootstrap.min.css', 
+			'node_modules/bootstrap/dist/css/bootstrap.min.css',
 			src + 'css/plugins/*.css'
 		],
 		custom : [
@@ -36,7 +40,7 @@ var paths = {
 		src + 'misc-pages/**/*',
 		src + 'projects/**/*',
 	]
-}
+};
 
 gulp.travis( 'travis' , ['default'])
 
@@ -58,8 +62,8 @@ gulp.task('copy',function(){
 
 gulp.task('projectlist', function(done){
 	
-	var projects = {};
-	const path = src + "projects/";
+	let projects = {};
+	let path = src + "projects/";
 	fs.readdirSync(path).filter( function(file)
 	{
 		
@@ -99,13 +103,20 @@ gulp.task('minify-css', gulp.series(
 		.pipe( gulp.dest( dest + 'css/'))
 ));
 
-gulp.task('minify-js', gulp.series( 
-	function(){ return del([dest+'/js/']) },
-	() => gulp.src(src + 'js/**/*.js')
+
+
+gulp.task('cleanjs', done => {
+	return del([dest+'js/']);
+});
+
+gulp.task('compile-js', done =>
+{
+	return gulp.src( paths.scripts )
 		.pipe( uglify() )
-		.pipe( gulp.dest( dest + 'js/'))
-	)
-);
+		.pipe( gulp.dest( dest + 'js/'));
+});
+
+gulp.task('minify-js', gulp.series( 'cleanjs','compile-js'));
 
 function cleanDest()
 {

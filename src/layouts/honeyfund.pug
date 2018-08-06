@@ -21,7 +21,7 @@ block config
             {title:'Spa Day',desc:'Elbow Beach\'s Spa get-away', price:200, img:'img/wedding/spa.jpg'},
             {title:'Discover Scuba and Dive',desc:'Discover the thrill of SCUBA diving on this half-day PADI course and dive. ', price:160, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMFANDISSBA-2.jpg'},
             {title:'Twilight Bermuda Triangle Cruise',desc:'A trip to the Bermuda Triangle for a nighttime spectacle. 100% money back guarantee if you disappear!', price:70, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMTWILIGHT-2.jpg'},
-            {title:'Custom Amount',desc:'If you wish to enter a custom amount, please enter it below', price:100, img:'https://assets1.bigthink.com/system/idea_thumbnails/61798/size_1024/bermuda-triangle.jpg?1477148489'}
+            {title:'Custom Amount',desc:'If you wish to enter a custom amount, please enter it below', price:100, img:'img/wedding/bermuda-triangle.jpg'}
         ]
 
     style.
@@ -33,7 +33,7 @@ block config
 
         .jumbotron
         {
-            background: #000 url(https://media.gq.com/photos/59444590e8e94c21c8ef4d35/master/pass/bermuda-travel-guide-americas-cup.jpg) top right;
+            background: #000 url(img/wedding/bermuda_mod.jpg) top right;
             background-size: cover;
             background-position-y: 35%;
             width: 100%;
@@ -50,9 +50,50 @@ block config
                 1px 1px 0 #5e5e5e;
         }
 
+        .unselectable {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         .giftElement .thumbnail .caption {
             min-height: 141px;
         }
+
+        #backtoweddingbtn
+        {
+            background-color: #48183F;
+            border-color: #1c0919;
+        }
+        #backtoweddingbtn:hover
+        {
+            background-color: #2b0e25;
+            border-color: #160714;
+        }
+        #backtoweddingbtn:active
+        {
+            background-color: #2b0e25;
+            border-color: #160714;
+        }
+
+        .input-group-btn label {
+            display: inline !important;
+        }
+
+        .gift-btn
+        {
+            cursor: pointer;
+        }
+        /*#checkoutbox
+        {
+            position: fixed;
+            top: 5px;
+            right: 5px;
+            z-index: 999;
+        }*/
 
 block content
 
@@ -69,13 +110,13 @@ block content
                     p.description #{desc}
                     .input-group.col-xs
                         span.input-group-addon $
-                        input.gift-amount.form-control(type="text" placeholder=`${price} /person` readonly)
+                        input.gift-amount.form-control(type="text" placeholder=`${price} /person` readonly disabled)
                         span.input-group-btn 
-                            button.gift-btn.btn.btn-default(type="button" id=`${index}_oneperson` )
-                                i.fa.fa-user
-                            button.gift-btn.btn.btn-default(type="button" id=`${index}_twoperson` )
-                                i.fa.fa-user
-                                i.fa.fa-user
+                            label(for=`giftbtn${index}`)
+                                button.gift-btn.btn.btn-default(onclick=`` data-toggle="button" href=`giftbtn${index}` name=`giftbtn${index}` type="button" id=`${index}_oneperson` value="🤵") 🤵
+                                button.gift-btn.btn.btn-default(onclick=`` data-toggle="button" href=`giftbtn${index}` name=`giftbtn${index}` type="button" id=`${index}_twoperson` value="🤵👰" ) 🤵👰
+                                    
+                                    //i.fa.fa-user
                                 
     mixin createCustomElement( index, title, desc, price, imgsrc )
         .giftElement.col-xs-12.col-sm-6.col-md-4.col-lg-3(id=`gift_${index}`)
@@ -92,14 +133,15 @@ block content
                         span.input-group-addon $
                         input.custom-gift-amount.form-control(type="number" placeholder=`$${price}`)
                         span.input-group-btn 
-                            button#oneperson.gift-btn.btn.btn-default(type="button")
+                            button#customgiftbtn.gift-btn.btn.btn-default(type="button")
                                 i.fa.fa-plus
 
     .wedding
         #jumbo.jumbotron
             .container
                 h1 Our Dream Honeymoon
-                p We would like to thank you for helping us go on the trip of lifetime. After all the stress and planning for the wedding this will be the perfect way to relax and start our marrige.
+                p We would like to thank you for helping us go on the trip of lifetime. After all the stress and planning for the wedding this will be the perfect way to relax and start our marriage.
+                a#backtoweddingbtn.btn.btn-primary.btn-lg(href="http://rbucinell.com/wedding" role="button") Back to Wedding 💍
 
         form#mainForm.form-inline(target="_self",action="https://www.paypal.com/yt/cgi-bing/webscr" method="post", name="weddingGift")
             input(type="hidden",name="cmd", value="_cart")
@@ -117,11 +159,17 @@ block content
             input(type="hidden",name="item_name_100", value="PayPal 2.9% fee")
             input(type="hidden",name="amount_100", value="1" )
 
-            .input-group.col-lg-offset-8(style="padding-bottom:10px;")
+            #checkoutbox.input-group.col-xs-12.col-sm-6.col-md-4.col-lg-3(style="padding-bottom:10px;")
                 span.input-group-addon Total $
                 input#checkout-total.form-control(type="number", placeholder="0.00", min="0" readonly)
                 span.input-group-btn
                     button#modalLoad.btn.btn-primary.disabled(type="button" data-toggle="modal" data-target="#thanksModal") Checkout
+            #items.row
+                for gift,index in gifts
+                    if index != gifts.length -1
+                        +createElement( index+1,gift.title, gift.desc, gift.price, gift.img )
+                    else
+                        +createCustomElement( index+1,gift.title, gift.desc, gift.price, gift.img )
 
             #thanksModal.modal.fade(role="dialog")
                 .modal-dialog(role="document")
@@ -142,13 +190,6 @@ block content
                                         p This will generate a purchase order if you want an itemized receipt. Paypal will treat this as a sale and will apply their <u>2.9% + $0.30</u> fee
                         .modal-footer
                             button.btn.btn-default(type="button" data-dismiss="modal") Cancel   
-
-            #items.row
-                for gift,index in gifts
-                    if index != gifts.length -1
-                        +createElement( index+1,gift.title, gift.desc, gift.price, gift.img )
-                    else
-                        +createCustomElement( index+1,gift.title, gift.desc, gift.price, gift.img )
 
 
         
@@ -218,24 +259,40 @@ block scripts
                 updateTotal();
             });
         
-            $(".gift-btn").click(function()
+            $(".gift-btn").on('tap click touchstart touchend data-api', function foo()
             {
-                var inputField = this.parentElement.previousElementSibling;
-                if( $(this).is('.active'))
+                var inputField = this.parentElement.parentElement.previousElementSibling;
+                var isActive = $(this).is('.active');
+                toggle( this, !isActive);
+                if( this.id === 'customgiftbtn')
                 {
-                    toggle( this, false );
-                    inputField.value = '';
+                    if( isActive )
+                    {
+                        inputField.value = '';
+                    }
+                    else
+                    {
+                        inputField.value = inputField.placeholder.replace('$', '');
+                    }
                 }
                 else
                 {
-                    toggle( this, true );
-                    $(this).siblings(".gift-btn").each( function(){
-                        toggle( this, false);
-                    });
-                    if( inputField.value === '' )
-                        inputField.value = inputField.placeholder.replace('$', '');
+                    var modifier = this.id.indexOf('two') == -1 ? 1 : 2;                    
+                    inputField.value = '';
+
+                    if( !isActive)
+                    {
+                        $(this).siblings(".gift-btn").each( function(){
+                            toggle( this, false);
+                        });
+                        inputField.value = `(${modifier} x $${ inputField.placeholder.substr(0,3)}) added to total`;
+                    }
                 }
+
+                
                 updateTotal();
+
+
             });
 
             $("#mainForm").submit(function()
