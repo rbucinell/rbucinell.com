@@ -38,6 +38,8 @@ var paths = {
 	]
 }
 
+gulp.travis( 'travis' , ['default'])
+
 // Compile main pug pages into HTML
 gulp.task('build-pug', function(){
 	return gulp.src(src + 'layouts/*.pug')
