@@ -42,7 +42,9 @@ var paths = {
 	]
 };
 
-gulp.travis( 'travis' , ['default'])
+gulp.task( 'travis' , ['default'], function(){
+	process.exit(0);
+});
 
 // Compile main pug pages into HTML
 gulp.task('build-pug', function(){
