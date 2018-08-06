@@ -42,9 +42,17 @@ var paths = {
 	]
 };
 
-gulp.task( 'travis' , ['default'], function(){
-	process.exit(0);
-});
+gulp.task( 'travis' , gulp.series('default'), ()=>	process.exit(0) );
+
+// Concats the libraries together
+gulp.task('css-lib', gulp.series(
+	function(){ return del([paths.css.libmin]) },
+	() => gulp.src( paths.css.libraries )
+			.pipe( concat('lib.min.css'))
+			.pipe( gulp.dest( dest + 'css/'))
+));
+
+export const travis = gulp.series( 'default' )
 
 // Compile main pug pages into HTML
 gulp.task('build-pug', function(){
