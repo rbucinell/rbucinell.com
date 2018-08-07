@@ -1,6 +1,0 @@
-c:\users\rbucinel\documents\visual studio 2010\Projects\ChristmasPuzzle\ChristmasPuzzle\bin\Debug\data.txt
-c:\users\rbucinel\documents\visual studio 2010\Projects\ChristmasPuzzle\ChristmasPuzzle\bin\Debug\ChristmasPuzzle.exe
-c:\users\rbucinel\documents\visual studio 2010\Projects\ChristmasPuzzle\ChristmasPuzzle\bin\Debug\ChristmasPuzzle.pdb
-c:\users\rbucinel\documents\visual studio 2010\Projects\ChristmasPuzzle\ChristmasPuzzle\obj\x86\Debug\ChristmasPuzzle.exe
-c:\users\rbucinel\documents\visual studio 2010\Projects\ChristmasPuzzle\ChristmasPuzzle\obj\x86\Debug\ChristmasPuzzle.pdb
-C:\Users\rbucinel\Documents\Visual Studio 2010\Projects\ChristmasPuzzle\ChristmasPuzzle\obj\x86\Debug\ChristmasPuzzle.csprojResolveAssemblyReference.cache
