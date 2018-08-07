@@ -42,8 +42,6 @@ var paths = {
 	]
 };
 
-gulp.task( 'travis' , gulp.series('default'), ()=>	process.exit(0) );
-
 // Concats the libraries together
 gulp.task('css-lib', gulp.series(
 	function(){ return del([paths.css.libmin]) },
@@ -51,8 +49,6 @@ gulp.task('css-lib', gulp.series(
 			.pipe( concat('lib.min.css'))
 			.pipe( gulp.dest( dest + 'css/'))
 ));
-
-export const travis = gulp.series( 'default' )
 
 // Compile main pug pages into HTML
 gulp.task('build-pug', function(){
@@ -69,7 +65,7 @@ gulp.task('copy',function(){
 	return gulp.src( paths.copy, { base: src })
 		.pipe( gulp.dest( dest ));
 });
-
+  
 gulp.task('projectlist', function(done){
 	
 	let projects = {};
@@ -164,3 +160,8 @@ gulp.task( 'watch:pug' , function(){
 });
 
 gulp.task('watch', gulp.parallel('watch:css', 'watch:js', 'watch:pug'));
+
+/**
+ * Automated bulids
+ */
+gulp.task( 'travis' , gulp.series('build-code'), ()=>	process.exit(0) );

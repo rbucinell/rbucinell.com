@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "del": "^3.0.0",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0.0",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/rbucinell/rbucinell.com#readme",
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "npm": "^6.2.0"
   }
 }
