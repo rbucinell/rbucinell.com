@@ -1,109 +1,53 @@
-function Grid(x, y,width, height, xSize, ySize)
-{	
-	this.rows = xSize;
-	this.cols = ySize;
-	
-	//private methods
-	this.buildGrid = function( ) 
+class Grid
+{
+	constructor( x, y, width, height, rows, cols, config="")
 	{
-		this.squares = new Array( this.cols );
-		for( var i = 0; i < this.squares.length; i++ )
-		{
-			this.squares[ i ] = new Array ( this.rows );
-		}
-		
-		var sqrW = ( width / this.cols );
-		var sqrH = ( height / this.rows );
-		
-		for( var i = 0; i < this.cols; i++ )
-		{
-			for( var j = 0; j < this.rows; j++ )
-			{
-				var loc = {r: i, c: j};
-				var sqr = new GridSquare( sqrW, sqrH, (x + i*sqrW), (y + j*sqrH), this.squares, loc );
-				sqr.text = i + ', ' + j;				
-				this.squares[ i ][ j ] = sqr;
-			}
-		}
-		return this.squares;
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.rows = rows;
+		this.cols = cols;
+		this.squares = [];
+		if( config !== "" )
+			this.load( config )
 	}
-	this.squares = this.buildGrid();
-	
-	//public method
-	
-	this.hitTest = function( mX, mY)
+
+	load( file )
 	{
-		for( var j = 0; j < this.rows; j++ )
-		{
-			for( var i = 0; i < this.cols; i++ )
+		fetch(file)
+		.then( response => response.json() )
+		.then( json =>{
+			this.rows = json.rows;
+			this.cols = json.cols;
+			this.width = SQUARE_SIZE * this.cols;
+			this.height = SQUARE_SIZE * this.rows;
+
+			this.squares = [];
+			for( let r = 0; r < this.rows; r++ )
 			{
-				this.squares[ i ][ j ].hitTest(mX, mY);
-			}
-		}
-	}
-	
-	this.reconfig = function( r, c, data )
-	{
-		this.rows = r;
-		this.cols = c;
-		this.squares = this.buildGrid();
-		for( var i = 0; i < data.length; i++ )
-		{
-			var arr = data[i].split(',');
-			data[i] = arr;
-		}
-		for( var j = 0; j < this.rows; j++ )
-		{
-			var currentRow = j;
-			for( var i = 0; i < this.cols; i++ )
-			{
-				var livingData = (data[ currentRow ][ i ] === "1" ? true : false);
-				this.squares[ i ][ j ].living = livingData;
-				
-			}
-		}
-	}
-	
-	/**
-	* Public update method. Any logic updates will take place here
-	* If an update was made, return true, otherwise false
-	**/
-	this.update = function()
-	{
-		for( var j = 0; j < this.rows; j++ )
-		{
-			for( var i = 0; i < this.cols; i++ )
-			{
-				this.squares[ i ][ j ].update();
-			}
-		}
-		for( var j = 0; j < this.rows; j++ )
-		{
-			for( var i = 0; i < this.cols; i++ )
-			{
-				this.squares[ i ][ j ].setNextGen();
-			}
-		}
-	}
-		
-	/**
-	*	Draws object onto the canvas
-	**/
-	this.draw = function( g )
-	{	
-		if( this.squares )
-		{
-			for( var j = 0; j < this.rows; j++ )
-			{
-				for( var i = 0; i < this.cols; i++ )
+				let row = [];
+				for( let c = 0; c < this.cols; c++ )
 				{
-					if( this.squares[i] )
-						this.squares[ i ][ j ].draw( g );
+					let alive = json.values[r][c] === 1;
+					row.push( new Square(  this.x + SQUARE_SIZE * c, this.y + SQUARE_SIZE * r, alive ));
 				}
+				this.squares.push( row );
 			}
-		}
+			this.isloaded = true;
+		});
+	}
+
+	hitTest( point )
+	{
+		return point.x >= this.x && point.x < this.x + this.width && point.y >= this.y && point.y < this.y + this.height;
+	}
+
+	draw()
+	{
+		stroke('#000000');		
+		this.squares.forEach( r => r.forEach( s =>  s.draw()));
+		noFill();
+		rect( this.x, this.y, this.width, this.height);
 	}
 }
-
-
-
