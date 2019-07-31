@@ -15,7 +15,15 @@ function mouseDragged()
     {
         previousSqDragged = grid.click( pt,previousSqDragged );
     }
-    //try to 
+}
+
+function mouseClicked()
+{
+    const pt = { x: mouseX, y: mouseY };
+    if( grid.hitTest( pt ) )
+    {
+        grid.click( pt );
+    }
 }
 
 function draw()
