@@ -34,11 +34,7 @@ function mouseClicked()
     const pt = { x: mouseX, y: mouseY };
     if( grid.hitTest( pt ) )
     {
-        const apprxSqX = parseInt((pt.x- grid.x) / SQUARE_SIZE);
-        const apprxSqY = parseInt((pt.y- grid.y) / SQUARE_SIZE );
-        const sqr = grid.squares[apprxSqY][apprxSqX];
-        if( sqr.hitTest( pt ) )
-            sqr.isLiving = !sqr.isLiving;
+        grid.click( pt );
     }
     //try to 
 }

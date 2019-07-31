@@ -24,6 +24,11 @@ class Square
         return point.x >= this.x && point.x < this.x + SQUARE_SIZE && point.y >= this.y && point.y < this.y + SQUARE_SIZE;
     }
 
+    toggleState()
+    {
+        this.isLiving = !this.isLiving;
+    }
+
     draw()
     {
         fill( this.fillColor() );

@@ -43,6 +43,16 @@ class Grid
 		return point.x >= this.x && point.x < this.x + this.width && point.y >= this.y && point.y < this.y + this.height;
 	}
 
+	click( point )
+	{		
+		//This is a quick and dirty way to grab what square was clicked on. May need to consider checking more squares if this fails
+        const   apprxSqX = parseInt((point.x- this.x) / SQUARE_SIZE), 
+                apprxSqY = parseInt((point.y- this.y) / SQUARE_SIZE );
+        const sqr = grid.squares[apprxSqY][apprxSqX];
+        if( sqr.hitTest( point ) )
+			sqr.toggleState();
+	}
+
 	draw()
 	{
 		stroke('#000000');		
