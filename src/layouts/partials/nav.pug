@@ -1,6 +1,6 @@
 //- Navigation item
 mixin navitem(title,faicon,link)
-    li: a(href="/" + link)
+    li: a(href=link)
         i(class="fa fa-fw " + faicon)
         |  #{title}
 
