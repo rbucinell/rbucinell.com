@@ -11,7 +11,7 @@ var gulp = require('gulp'),
 	fs			= require('fs');
 
 var src = 'src/';
-var dest = 'dist/';
+var dest = 'docs/';
 
 var paths = {
 	scripts: [
