@@ -1,0 +1,9 @@
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\bin\Debug\SDEToolKit.exe
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\bin\Debug\SDEToolKit.pdb
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\obj\x86\Debug\SDEToolKit.CardHero.resources
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\obj\x86\Debug\SDEToolKit.Properties.Resources.resources
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\obj\x86\Debug\SDEToolKit.csproj.GenerateResource.Cache
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\obj\x86\Debug\SDEToolKit.exe
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\obj\x86\Debug\SDEToolKit.pdb
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\obj\x86\Debug\SDEToolKit.HeroViewerForm.resources
+C:\Users\rbucinel\Documents\Personal\My Apps\SDE\SDEToolKit\SDEToolKit\obj\x86\Debug\SDEToolKit.Resources.resources

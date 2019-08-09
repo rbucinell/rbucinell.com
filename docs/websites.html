@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .media div a img{ width: 175px; height: 128px; }
+    .portfolio-item {
+        margin-bottom: 25px;
+    }
+    .img-responsive{
+        min-height: 400px;
+    }
+  </style>
+  <head>
+    <title>Ryan Bucinell - Website Development</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Ryan Bucinell">
+    <link href="/css/lib.min.css" rel="stylesheet">
+    <link href="/css/style.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" type="text/css">
+    <!--
+    HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    WARNING: Respond.js doesn't work if you view the page via file://
+    --><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-16330943-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+          var ga = document.createElement( 'script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.src = ( 'https:' == document.location.protocol ? 'https://ssl' : 'http://www' ) + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga,s);
+      })();
+    </script>
+  </head>
+  <body>
+      <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" style="padding:5px" href="index.html"><span><img class="img-circle" alt="Ryan Bucinell's Headshot" src="/img/rmb.png"></span><span>Ryan Bucinell</span><span class="text-muted text-xs block">Software Engineer</span></a>
+          </div>
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                  <li><a href="/index.html"><i class="fa fa-fw fa-home"></i> Home</a></li>
+                  <li><a href="/retro.html"><i class="fa fa-fw fa-history"></i> Retro</a></li>
+                  <li><a href="#" data-toggle="collapse" data-target="#projects-sublist"><i class="fa fa-fw fa-cogs"></i> Projects<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul class="collapse" id="projects-sublist">
+                          <li><a href="/projects.html"><i class="fa fa-fw fa-file-code-o"></i> Active Projects</a></li>
+                          <li><a href="/code.html"><i class="fa fa-fw fa-code"></i> Code</a></li>
+                          <li><a href="/flash.html"><i class="fa fa-fw fa-flash"></i> Flash</a></li>
+                          <li><a href="/websites.html"><i class="fa fa-fw fa-globe"></i> Websites</a></li>
+                          <li><a href="/graphics.html"><i class="fa fa-fw fa-image"></i> Graphics</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#" data-toggle="collapse" data-target="#info-sublist"><i class="fa fa-fw fa-info"></i> Personal Info<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul class="collapse" id="info-sublist">
+                          <li><a href="/about.html"><i class="fa fa-fw fa-male"></i> About Me</a></li>
+                          <li><a href="/resume.html"><i class="fa fa-fw fa-laptop"></i> Résumé</a></li>
+                          <li><a href="/blog.html"><i class="fa fa-fw fa-file-text-o"></i> Blog</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#" data-toggle="collapse" data-target="#charity-sublist"><i class="fa fa-fw fa-heart"></i> Charity<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul class="collapse" id="charity-sublist">
+                          <li><a href="/dodge.html"><i class="fa fa-fw fa-futbol-o"></i> Dodge the Police</a></li>
+                          <li><a href="/h4h.html"><i class="fa fa-fw fa-area-chart"></i> Hike for Heroes</a></li>
+                    </ul>
+                  </li>
+            </ul>
+          </div>
+        </nav>
+        <div id="page-wrapper">
+          <div class="container-fluid">
+            <!--Page Header-->
+            <div class="row">
+              <div class="col-lg-12">
+                <h1 class="page-header">Web Design<small> Personal and professional projects </small></h1>
+                <ol class="breadcrumb">
+                  <li><i class="fa fa-home"><a href="index.html"> Home</a></i></li>
+                  <li><i class="fa fa-cogs"> Projects</i></li>
+                  <li class="active"><i class="fa fa-globe"> Websites</i></li>
+                </ol>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 portfolio-item"><a href="http://www.revivomedical.com/"><img class="img-responsive" src="img/websites/revivo_medical.jpg"></a>
+                <h3><a href="http://www.revivomedical.com/" alt="ReVivo Medical">ReVivo Medical</a></h3>
+                <p>Revivio Medical a startup of doctors with a leading edge spinal fusion procedure. Since they are so focused on medicine this site was fully developed in GoDaddy site builder in order to allow a non-technical employee to update it.</p>
+              </div>
+              <div class="col-md-4 portfolio-item"><a href="http://www.nocoastsandc.fitness"><img class="img-responsive" src="img/websites/nocoastsandc_preview.jpg"></a>
+                <h3><a href="http://www.nocoastsandc.fitness" alt="No Coast Strength and Conditioning">No Coast Strength and Conditioning</a></h3>
+                <p>No Coast Strength and Conditioning is a personal training site for Rob Saeva. If you are looking for a personal trainer in the Rochester, NY area I highly recommend his services. </p>
+              </div>
+              <div class="col-md-4 portfolio-item"><a href="http://hike4heroesproject.us/"><img class="img-responsive" src="img/websites/hike4heroesproject_preview.jpg"></a>
+                <h3><a href="http://hike4heroesproject.us/" alt="Hike 4 Heroes">Hike 4 Heroes</a></h3>
+                <p>  My little brother created a charity event to raise money for the Wounded Warrior Project and Navy SEALs Foundation. I volunteered to build, and maintain the sites (as well as social media) as he hiked all 46 Adirondack High Peaks.	</p>
+              </div>
+              <div class="col-md-4 portfolio-item"><a href="http://rbb.union.edu"><img class="img-responsive" src="img/websites/rbb.jpg"></a>
+                <h3><a href="http://rbb.union.edu" alt="Ronald Bucinell's Personal Site">Multiple Sites for Ronald Bucinell</a></h3>
+                <p>A rework of his professional site to bring site up to standards and to make content easier to find and read. <a href="rbb.union.edu">rbb.union.edu</a> <br></p>
+                <p>Innotech International - Ronald Bucinell's Engineering consultant company <a href="http://innotech-international.com/">http://innotech-international.com/</a></p>
+              </div>
+              <div class="col-md-4 portfolio-item"><a href="http://rbucinell.com"><img class="img-responsive" src="img/websites/rbucinell.png"></a>
+                <h3><a href="http://rbucinell.com" alt="rbucinell.com personal site image">My Personal Site(s)</a></h3>
+                <p>First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="retro.html">Retro</a> page.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="/js/lib/bootstrap.min.js"></script>
+  </body>
+</html>

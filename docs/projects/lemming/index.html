@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Ryan Bucinell - Game</title>
+	</head>
+
+	<body>
+
+		<div id="wrapper">
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<canvas id="canvas" width="770px" height="500px" style="border:1px solid #000000;margin: 5px;">
+						<p>Your browser doesn't support canvas.</p>
+					</canvas>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript" src="js/game/Game.js"></script>
+		<script type="text/javascript" src="js/util/Circle.js"></script>
+		<script type="text/javascript" src="js/util/Shape.js"></script>
+		<script type="text/javascript" src="js/util/Rect.js"></script>
+		<script type="text/javascript" src="js/util/Sprite.js"></script>
+		<script type="text/javascript" src="js/game/Lemming.js"></script>
+		<script type="text/javascript" src="js/util/BoundingBox.js"></script>
+		<script>
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			var game = new Game(canvas.width, canvas.height, canvas);
+			
+			canvas.oncontextmenu = function (e) {
+				e.preventDefault();
+			};
+
+			var level1_map = new Image();
+			var level1_background = new Image();
+			level1_map.onload = function()
+			{
+				level1_background.onload = function()
+				{
+					game.loadLevel( "Level 1", level1_background, level1_map, [	
+						/*new Circle( 100,100,50),	
+						new Circle( 80,100,50),	
+						new Circle( 70,100,50),	
+						new Circle( 60,100,50),	
+						new Circle( 50,100,50),	
+						new Circle( 40,100,50),*/
+						new Lemming( 110, 300 ),
+						new Lemming( 80, 200 ),
+						new Lemming( 0, 100 )]
+					);	
+					game.run();
+				
+				};
+				level1_background.src = "js/game/background.jpg";
+			};
+			level1_map.src = "js/game/map.png";
+
+			
+		</script>
+	</body>
+</html>

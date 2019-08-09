@@ -1,0 +1,9 @@
+
+* {
+
+}
+
+#gameCanvasTD {
+	/*background-image : url('../img/track1.png');*/
+	border: 1px solid black;
+}

@@ -1,0 +1,4 @@
+C:\Users\rbucinel\Documents\Project Euler\ProjectEuler\ProjectEuler\bin\Debug\ProjectEuler.exe
+C:\Users\rbucinel\Documents\Project Euler\ProjectEuler\ProjectEuler\bin\Debug\ProjectEuler.pdb
+C:\Users\rbucinel\Documents\Project Euler\ProjectEuler\ProjectEuler\obj\x86\Debug\ProjectEuler.exe
+C:\Users\rbucinel\Documents\Project Euler\ProjectEuler\ProjectEuler\obj\x86\Debug\ProjectEuler.pdb
