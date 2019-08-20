@@ -1,0 +1,218 @@
+
+@font-face {
+    font-family: 'AvenirNext';
+    src: url('../fonts/AvenirNextLTPro-Regular.eot');
+    src: url('../fonts/AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/AvenirNextLTPro-Regular.woff2') format('woff2'),
+    url('../fonts/AvenirNextLTPro-Regular.woff') format('woff'),
+    url('../fonts/AvenirNextLTPro-Regular.ttf') format('truetype'),
+    url('../fonts/AvenirNextLTPro-Regular.svg#AvenirNextLTPro-Regular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvenirNext';
+    src: url('../fonts/AvenirNextLTPro-Bold.eot');
+    src: url('../fonts/AvenirNextLTPro-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/AvenirNextLTPro-Bold.woff2') format('woff2'),
+    url('../fonts/AvenirNextLTPro-Bold.woff') format('woff'),
+    url('../fonts/AvenirNextLTPro-Bold.ttf') format('truetype'),
+    url('../fonts/AvenirNextLTPro-Bold.svg#AvenirNextLTPro-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvenirNext';
+    src: url('../fonts/AvenirNextLTPro-It.eot');
+    src: url('../fonts/AvenirNextLTPro-It.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/AvenirNextLTPro-It.woff2') format('woff2'),
+    url('../fonts/AvenirNextLTPro-It.woff') format('woff'),
+    url('../fonts/AvenirNextLTPro-It.ttf') format('truetype'),
+    url('../fonts/AvenirNextLTPro-It.svg#AvenirNextLTPro-It') format('svg');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Base CSS */
+.alignleft {
+    float: left;
+    margin-right: 15px;
+}
+.alignright {
+    float: right;
+    margin-left: 15px;
+}
+.aligncenter {
+    display: block;
+    margin: 0 auto 15px;
+}
+a:focus { outline: 0 solid }
+img {
+    max-width: 100%;
+    height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #fff;
+    margin: 0 0 15px;
+    font-weight: 700;
+    font-family: 'AvenirNext', sans-serif;
+}
+html, body{
+    height: 100%;
+}
+body {
+    font-family: 'AvenirNext', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 500;
+}
+a:hover { text-decoration: none }
+.breadcrumb-section{
+background-image: url('../images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    position: relative;
+    padding: 30px;
+    overflow-x: hidden;
+}
+.header{
+    position: relative;
+    z-index: 999;
+}
+.logo a {
+    display: inline-block;
+}
+
+.logo img {
+    width: 180px;
+}
+
+.search-box-wrap {
+    text-align: right;
+}
+
+.search-box {
+    display: inline-block;
+    background: #fff;
+}
+
+.search-box input[type="text"] {
+    border: none;
+    background: transparent;
+    padding: 4px 10px;
+    width: 232px;
+    font-size: 14px;
+}
+
+.search-box button {
+    background: transparent;
+    border: none;
+    padding: 2px 12px 2px 0;
+    color: #d53b37;
+    cursor: pointer;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.search-box input:focus, .search-box button:focus {
+    outline: 0 none;
+}
+
+.search-box button:hover {
+    color: #000;
+}
+.menu-wrap-table {
+    height: 100%;
+    width: calc(100% - 60px);
+    display: table;
+    position: absolute;
+    top: 0;
+    padding: 100px 0;
+    z-index: 2;
+}
+
+.menu-tablecell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.main-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-menu li a {
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    -webkit-transition: .3s;
+    transition: .3s;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.banner-text-wrap {
+    position: absolute;
+    bottom: 35px;
+    right: 8px;
+    text-align: right;
+    z-index: 9;
+}
+
+.banner-text {
+    margin: 0;
+    font-size: 42px;
+    line-height: 60px;
+}
+
+.banner-text span {
+    display: block;
+    background-color: #d53b37;
+    margin-bottom: 6px;
+    padding: 0 12px;
+}
+
+.goto-next {
+    height: 50px;
+    width: 50px;
+    background: #fff;
+    color: #d53b37;
+    font-size: 35px;
+    text-align: center;
+    line-height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.main-menu ul li {
+    display: block;
+}
+
+
+.main-menu li a:hover {
+    color: #d53b37;
+}
+
+.goto-next:hover {
+    color: #fff;
+    background: #d53b37;
+}
+.mission_table {
+	align: right;
+}
+.mission_td {
+	font-weight: bold; 
+	align: right; 
+	text-align: center;
+}
