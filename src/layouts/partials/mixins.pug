@@ -24,7 +24,7 @@ mixin pageheader(headermain, headersmall, breadcrumbs)
 
 mixin galleryitem( id, rootdir, count, title, date, description )
     .col-xs-12.col-sm-6.col-lg-4.mb-4
-        .card
+        .card.bg-light.border-secondary
             .gallery(id=id)
                 a( href=`${rootdir}${id}/gallery/${1}.png`, data-caption=`${title} - 1 of ${count}`)
                     img.card-img-top(src=`${rootdir}${id}/thumb.png`, alt=`Screenshot of ${title}`)
@@ -34,6 +34,7 @@ mixin galleryitem( id, rootdir, count, title, date, description )
             .card-body
                 h5.card-title #{title}
                 p.card-text #{description}
+                block
                 .d-flex.justify-content-end
                     small.text-muted #{date}
     script.
