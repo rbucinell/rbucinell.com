@@ -16,17 +16,19 @@ mixin navwithsub(title,faicon,listid)
 
 //- Build the nav menu
 nav.navbar.navbar-inverse.navbar-fixed-top
+    .nav-brand
+        a(class="navbar-brand", style="padding:5px", href="index.html")
+            span
+                img( alt="Ryan Bucinell\'s Headshot", class="img-circle", src="img/rmb.png")
+            span.text-dark.font-weight-bold Ryan Bucinell&nbsp;
+            span#mytitle.text-white.text-xs.block Software Engineer
     .navbar-header
         button( type="button", class="navbar-toggle", data-toggle="collapse", data-target=".navbar-ex1-collapse")
             span( class="sr-only") Toggle navigation
             span( class="icon-bar")
             span( class="icon-bar")
             span( class="icon-bar")
-        a(class="navbar-brand", style="padding:5px", href="index.html")
-            span
-                img( alt="Ryan Bucinell\'s Headshot", class="img-circle",src="img/rmb.png")
-            span Ryan Bucinell
-            span.text-muted.text-xs.block Software Engineer
+        
 
     .collapse.navbar-collapse.navbar-ex1-collapse
         ul.nav.navbar-nav.side-nav
