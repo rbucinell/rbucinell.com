@@ -33,8 +33,6 @@ nav.navbar.navbar-inverse.navbar-fixed-top
     .collapse.navbar-collapse.navbar-ex1-collapse
         ul.nav.navbar-nav.side-nav
             +navitem('Home','fa-home','index.html')
-            +navitem('Retro','fa-history','retro.html')
-
             +navwithsub( 'Projects', 'fa-cogs', 'projects-sublist')
                 +navitem('Active Projects','fa-file-code-o','projects.html')
                 +navitem('Code','fa-code','code.html')
@@ -47,6 +45,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                 +navitem('Résumé','fa-laptop','resume.html')
                 +navitem('Blog','fa-file-text-o','blog.html')
 
-            +navwithsub( 'Charity', 'fa-heart', 'charity-sublist')
+            // +navwithsub( 'Charity', 'fa-heart', 'charity-sublist')
                 +navitem('Dodge the Police','fa-futbol-o','dodge.html')
                 +navitem('Hike for Heroes','fa-area-chart','h4h.html')
+            +navitem('Retro','fa-history','retro.html')
