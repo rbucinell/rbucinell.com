@@ -22,27 +22,24 @@ block config
             min-height: 400px;
         }
 block content
-    mixin medialisting( link, thumbnail, alt, title)
-        .col-md-4.portfolio-item
-            a(href=link)
-                img.img-responsive(src=thumbnail)
-            h3: a(href=link, alt=alt) #{title}
-            block
-    //- Content Here
 
-    .row
-        +medialisting( "http://www.revivomedical.com/", "img/websites/revivo_medical.jpg", "ReVivo Medical", "ReVivo Medical" )
-            p Revivio Medical a startup of doctors with a leading edge spinal fusion procedure. Since they are so focused on medicine this site was fully developed in GoDaddy site builder in order to allow a non-technical employee to update it.
+    .container-fluid
+        .row
+            +galleryitem("whyilift", "img/websites/", 6, "Why I Lift", 2019,
+                "A site deisgned to look up other competetive lifter's profiles and records. I was contracted to convert their front-end code to be more movbile friendly")
+                a.btn.btn-sm.btn-outline-dark(href="http://www.whyilift.com/", role="button" target="_blank") Visit
+            +galleryitem( "revivomedical","img/websites/", 1, "ReVivo Medical", 2016,
+                "Revivio Medical a startup of doctors with a leading edge spinal fusion procedure. Since doctors were maintaining the site, I needed to build the site with tools that they wouldn't need any technilogical skills to update")
+                a.btn.btn-sm.btn-outline-dark(href="http://www.revivomedical.com/", role="button" target="_blank") Visit
+            +galleryitem( "nocoast","img/websites/", 5, "No Coast Strength and Conditioning", 2014,
+                "No Coast Strength and Conditioning is a personal training site for Rob Saeva in Rochester, NY")
+            +galleryitem( "hike4heroes","img/websites/", 4, "Hike 4 Heroes", 2013,
+                "My little brother created a charity event to raise money for the Wounded Warrior Project and Navy SEALs Foundation. I volunteered to build, and maintain the sites (as well as social media) as he hiked all 46 Adirondack High Peaks.")
+            +galleryitem( "rbb","img/websites/", 3, "Ronald Bucinell's Personal Site", "2010-2018","")
+                p.card-text A rework of his professional site to bring site up to standards and to make content easier to find and read.
+                a.btn.btn-sm.btn-outline-dark(href="http://rbb.union.edu/", role="button" target="_blank") rbb.union.edu
+                p.card-text Innotech International - Ronald Bucinell's Engineering consultant company <a href="http://innotech-international.com/">http://innotech-international.com/</a>
+                a.btn.btn-sm.btn-outline-dark(href="http://innotech-international.com", role="button" target="_blank") innotech
 
-        +medialisting( "http://www.nocoastsandc.fitness", "img/websites/nocoastsandc_preview.jpg", "No Coast Strength and Conditioning", "No Coast Strength and Conditioning" )
-            p No Coast Strength and Conditioning is a personal training site for Rob Saeva. If you are looking for a personal trainer in the Rochester, NY area I highly recommend his services. 
-        
-        +medialisting( "http://hike4heroesproject.us/", "img/websites/hike4heroesproject_preview.jpg", "Hike 4 Heroes", "Hike 4 Heroes")
-            p   My little brother created a charity event to raise money for the Wounded Warrior Project and Navy SEALs Foundation. I volunteered to build, and maintain the sites (as well as social media) as he hiked all 46 Adirondack High Peaks.	
-
-        +medialisting( "http://rbb.union.edu", "img/websites/rbb.jpg", "Ronald Bucinell's Personal Site", "Multiple Sites for Ronald Bucinell" )
-            p A rework of his professional site to bring site up to standards and to make content easier to find and read. <a href="rbb.union.edu">rbb.union.edu</a> <br>
-            p Innotech International - Ronald Bucinell's Engineering consultant company <a href="http://innotech-international.com/">http://innotech-international.com/</a>
-
-        +medialisting("http://rbucinell.com", "img/websites/rbucinell.png", "rbucinell.com personal site image", "My Personal Site(s)")
-            p First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="retro.html">Retro</a> page.
+            +galleryitem( "personal","img/websites/", 3, "My Personal Site", "2006-Current", "")
+                p.card-text First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="retro.html">Retro</a> page.
