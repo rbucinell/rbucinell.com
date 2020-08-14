@@ -14,15 +14,9 @@ var src = 'src/';
 var dest = 'docs/';
 
 var paths = {
-	scripts: [
-		src + 'js/**/*.js',
-		'node_modules/bootstrap/dist/js/bootstrap.min.js'
-	],
+	scripts: [src + 'js/**/*.js'],
 	css : {
-		libraries : [
-			'node_modules/bootstrap/dist/css/bootstrap.min.css',
-			src + 'css/plugins/*.css'
-		],
+		libraries : [src + 'css/plugins/*.css' ],
 		custom : [
 			src + '/css/sb-admin.css', 
 			src + '/css/rbucinell.css'
