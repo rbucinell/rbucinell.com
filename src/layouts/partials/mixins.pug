@@ -21,3 +21,20 @@ mixin pageheader(headermain, headersmall, breadcrumbs)
                                 else
                                     li(class="active"): i(class=`fa ${crumb.fa}`)  #{crumb.text}
                 block
+
+mixin galleryitem( id, rootdir, count, title, date, description )
+    .col-xs-12.col-sm-6.col-lg-4.mb-4
+        .card
+            .gallery(id=id)
+                a( href=`${rootdir}${id}/gallery/${1}.png`, data-caption=`${title} - 1 of ${count}`)
+                    img.card-img-top(src=`${rootdir}${id}/thumb.png`, alt=`Screenshot of ${title}`)
+                div(hidden)
+                    - for( var i = 2; i <= count; i++ )
+                        a( href=`${rootdir}${id}/gallery/${i}.png`, data-caption=`${title} - ${i} of ${count}`)
+            .card-body
+                h5.card-title #{title}
+                p.card-text #{description}
+                .d-flex.justify-content-end
+                    small.text-muted #{date}
+    script.
+        baguetteBox.run(`##{id}`)
