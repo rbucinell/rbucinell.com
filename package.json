@@ -12,7 +12,7 @@
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^4.0.0",
-    "gulp-clean": "^0.3.2",
+    "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
     "gulp-debug": "^3.1.0",
@@ -33,9 +33,8 @@
   "bugs": {
     "url": "https://github.com/rbucinell/rbucinell.com/issues"
   },
-  "homepage": "https://github.com/rbucinell/rbucinell.com#readme",
+  "homepage": "https://rbucinell.com",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "npm": "^6.2.0"
+    "bootstrap": "^4.4.1"
   }
 }
