@@ -68,9 +68,9 @@ function Game(w,h,g)
 		
 		addConfigButtons( 0, (startButton.y + buttonHeight + padding),
 			[
-				{ name:"Clear",   file: 'scripts_and_styles/td/config/clear.txt',  width: 50 },
-				{ name:"Stills",  file: 'scripts_and_styles/td/config/stills.txt', width: 50 },
-				{ name:"Gosper", file: 'scripts_and_styles/td/config/gosper.txt',  width: 70 }			
+				{ name:"Clear",   file: 'config/clear.txt',  width: 50 },
+				{ name:"Stills",  file: 'config/stills.txt', width: 50 },
+				{ name:"Gosper", file: 'config/gosper.txt',  width: 70 }			
 			]
 		);		
 	}
