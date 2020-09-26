@@ -4,18 +4,19 @@ block config
         var pageConfig = {
             title: "Ryan Bucinell - Projects",
             breadcrumbs: [
-                {fa:"fa-home", text:"Home", url:"index.html"},
-                {fa:"fa-cogs", text:"Projects", url:"#" },
+                {fa:"home", text:"Home", url:"index.html"},
+                {fa:"settings", text:"Projects", url:"#" },
+                {fa:"alert-triangle", text:"Active", url:"#"}
             ],
             pageh1: {
-                title: 'Ryan Bucinell',
-                small: 'latest news and updates'
+                title: 'Active Projects',
+                small: 'Work In Progress...'
             }
         }
 block content
-    h4 Just some projects I'm working on, there is no guarantee that they are in a good working state 
+    p.lead Just some projects I'm working on, there is no guarantee that they are in a good working state 
     table#projTable.table.table-condensed.table-hover.table-striped
-        thead
+        thead.thead-dark
             tr
                 th Project Name
                 th Project Index / Link
@@ -23,18 +24,15 @@ block content
 
 block scripts
     script.
-
         function createProjectObject( proj )
         {
-            var template = '<tr><td>'+  proj.name +'</td>';
-            template+= '<td>';
+            var template = `<tr><td>${proj.name}</td><td>`;
             if( proj.hasIndex)
-                template += '<a href="'+ proj.path  +'index.html">'+ proj.path + '</a>'
+                template += `<a href="${proj.path}index.html" >${proj.path}</a>`;
             else
                 template += proj.path;
-            template += '</td>';
-            template += '</tr>';
-            $('#projTable tbody').append(template);
+            template += `</td></tr>`;
+            $(`#projTable tbody`).append(template);
         }
 
         $(function(){

@@ -4,35 +4,33 @@ block config
         var pageConfig = {
             title: "Ryan Bucinell - Homepage",
             breadcrumbs: [
-                {fa:"fa-home", text:"Home", url:"index.html"},
-                {fa:"fa-newspaper-o", text:"News", url:"#"}
+                {fa:"home", text:"Home", url:"index.html"},
+                {fa:"layout", text:"News", url:"#"}
             ],
             pageh1: {
-                title: 'Ryan Bucinell',
+                title: 'News',
                 small: 'latest news and updates'
             }
         }
 block content
-    -
-        newsitems = [
-            { icon: "fa-file-code-o",   date: "8/22/2017",  message: "Myriad of projects that have gone unlinked but will soon be ready. For now, site is now built with pug!"},
-            { icon: "fa-file-image-o",  date: "7/13/2015",  message: "Website revamp v4! It's about time to make my site mobile friendly" },
-            { icon: "fa-globe",         date: "1/7/2015",   message:'Beginning a new side business, tentatively named SwiftSoft LLC. Getting the first <a href="websites.html">website</a> on-line for <a href="http://www.nocoastsandc.fitness">No Coast Strength and Conditioning</a>'},
-            { icon: "fa-gamepad",       date: "10/18/2104", message: 'Expanding upon javascript, so I created <a href="projects/life/life.html">Conway\'s Game of Life!</a>' },
-            { icon: "fa-code",          date: "6/19/2014",  message: 'Started learning some javascript by creating a Grease Monkey  <a href="code.html">on my code page.</a>'},
-            { icon: "fa-android",       date: "4/8/2014",   message: 'Published my first android app for my kickball league.<a href="https://play.google.com/store/apps/details?id=com.nacka_kickball"> <img src="https://cdn4.iconfinder.com/data/icons/free-colorful-icons/128/google_play.png" height="14px" /> NACKA Kickball App</a>' },
-            { icon: "fa-file-image-o",  date: "2/20/2013",  message: "Brand new site redesign! v3!"}
-        ];
 
-    for item in newsitems
-        .row
+    mixin newsitem( icon, date, message)
+        .row.mt-2
             .col-lg-12
-                .panel
-                    .panel-default
-                        .panel-body.item
-                            .media
-                                .media-left
-                                    - iclass = "media-object fa fa-lg item.icon " + item.icon
-                                    i(class=iclass)
-                                .media-body !{item.message}
-                                    span #{item.date}
+                .card
+                    .card-body
+                        .card-text 
+                            i( data-feather=`${icon}`)
+                            
+                            span &nbsp;!{message}
+                            span.badge.badge-secondary.float-right #{date}
+    +newsitem("users",      "2019-12-05", `I am now the proud father of b/g twins, Brandon and Baiely`)
+    +newsitem("home",       "2018-11-03", `New house! Moving is less and less fun the more stuff you have.`)
+    +newsitem("user-plus",  "2018-05-12", `Married my beautiful wife, Jess. You're stuck with me now babe.`)
+    +newsitem("code",       "2017-08-22", `Myriad of projects that have gone unlinked but will soon be ready. For now, site is now built with pug!`)
+    +newsitem("image",      "2015-07-13", `Website revamp v4! It's about time to make my site mobile friendly`)
+    +newsitem("globe",      "2015-01-07", `Beginning a new side business, tentatively named SwiftSoft LLC. Getting the first <a href="websites.html">website</a> on-line for <a href="http://www.nocoastsandc.fitness">No Coast Strength and Conditioning</a>`)
+    +newsitem("code",       "2104-10-18", `Expanding upon javascript, so I created <a href="projects/life/life.html">Conway\'s Game of Life!</a>`)
+    +newsitem("code",       "2014-06-19", `Started learning some javascript by creating a Grease Monkey  <a href="code.html">on my code page.</a>`)
+    +newsitem("play",       "2014-04-08", `Published my first android app for my kickball league.<a href="https://play.google.com/store/apps/details?id=com.nacka_kickball"> <img src="https://cdn4.iconfinder.com/data/icons/free-colorful-icons/128/google_play.png" height="14px" /> NACKA Kickball App</a>`)
+    +newsitem("image",      "2013-02-20", `Brand new site redesign! v3!`)

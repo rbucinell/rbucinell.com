@@ -4,45 +4,29 @@ block config
         var pageConfig = {
             title: "Ryan Bucinell - Flash",
             breadcrumbs: [
-                {fa:"fa-home", text:"Home", url:"index.html"},
-                {fa:"fa-cogs", text:"Projects" },
-                {fa:"fa-bolt", text:"Flash", url:"#"}
+                {fa:"home", text:"Home", url:"index.html"},
+                {fa:"settings", text:"Projects" },
+                {fa:"zap", text:"Flash", url:"#"}
             ],
             pageh1: {
                 title: 'Flash Projects',
                 small: 'R.I.P. Flash'
             }
-        }    
-block content
-    script( src="js/lib/jquery.swfobject.1-1-1.min.js")
-    style.
-        .flash-wrapper { margin-top: 5px; }
-        #flashobj { width: 100%; max-width: 550px; height: 400px;}
-        #flash-warning { display: none; }
-        @media only screen and(max-width: 600px) {
-            #flash-warning {
-                display: block;
-            }
         }
-    
-    // Content Begin
-    -
-        var flashobjs = [ 	
-            { id:'cylinderbtn', title:'Cylinder Tessellation'}, 
-            { id:'sambtn', title:'Adventures of S.A.M'}, 
-            { id:'ninjabtn', title:'Way of Ninja'}, 
-            { id:'virtualbtn', title:'Virtual Tour'}, 
-            { id:'loaderbtn', title:'Loader Tut'}
-            ]
 
-    .row
-        .col-lg-12
-            - for( var i = 0; i < flashobjs.length; i++ )
-                - var flash_class = i == 0 ? 'flashbutton btn btn-default active' : 'flashbutton btn btn-default'
-                button( id=flashobjs[i].id, class=flash_class, type="button") #{flashobjs[i].title}
-    .row
-        .col-lg-12
-            //- <object id="flashobj" type="application/x-shockwave-flash" data="data/flash/Cylinder.swf"></object>
-            .flash-wrapper
-                .flash-warning If the screen's resolution is less than 600px wide, you will have difficulty viewing this content
-                .flashobj
+block content
+    .container-fluid
+        p.col-12.lead With the death of flash, you can no longer interact with these projects, however I have included image galleries below
+        .row
+            +galleryitem("SAM", "img/flash/", 6, "The Adventures of S.A.M.", 2011,
+                "This was the final group project in my Game Design and Development II course, I was the Design lead and did some programming")
+            +galleryitem( "CylinderTessellation","img/flash/", 1, "Cylinder Tessellation", 2009,
+                "This was a 3D point to 2D projection (no 3d libraries) demonstartion of tessellation. You could modify the triangle coutns with the different buttons")
+            +galleryitem( "WayOfNinja","img/flash/", 5, "Way of Ninja", 2008,
+                "My final project in Interactive Media course was a platform game that included art, music, and sprite animations")
+            +galleryitem( "VirtualTour2","img/flash/", 4, "Virtual Tour 2.0", 2008,
+                "I was rehired to add more features including a search field, more images and external loading to allow for updates without me needing to re-compile")
+            +galleryitem( "VirtualTour","img/flash/", 3, "Virtual Tour", 2007,
+                "A project that allows users to look at different locations of the ME Dept at Union College in Schenectady, NY")
+            +galleryitem( "PreloaderTutorial","img/flash/", 3, "Preloader Tutuorial", "2005",
+                "My first flash 'game' was a tutorial on how to create pre-loaders. It was more akin to a slideshow")

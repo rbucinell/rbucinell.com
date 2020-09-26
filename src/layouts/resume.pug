@@ -16,11 +16,20 @@ block config
 
 block content
     .row
+        //- .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
+            .flex-grow-1
+                h3.mb-0 Web Developer
+                .subheading.mb-3 Intelitec Solutions
+                p
+                | Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.
+            .flex-shrink-0
+                span.text-primary December 2011 - March 2013
+
         .col-lg-12
             .center
-                h4 This is a temporary resume page due to some much needed updates to css. You still can get a copy of my resume here:
+                p.lead This is a temporary resume page due to some much needed updates to css. You still can get a copy of my resume here:
                 h4
-                    a(href="/data/resume/Resume%20for%20Ryan%20Michael%20Bucinell.pdf") Download A PDF Version
+                    a(href="data/resume/Resume%20for%20Ryan%20Michael%20Bucinell.pdf") Download A PDF Version
     .row
         .col-lg-12
             #languagesChart(style="height:400px")
@@ -29,7 +38,7 @@ block scripts
     script( src="https://code.highcharts.com/highcharts.js")
     script( src="https://code.highcharts.com/highcharts-3d.js")
     script( src="https://code.highcharts.com/modules/exporting.js")
-    script.
+    //- script.
         $(function () {
             $('#languagesChart').highcharts({
                 chart: {

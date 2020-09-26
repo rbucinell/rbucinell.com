@@ -4,8 +4,6 @@ var gulp = require('gulp'),
 	concat		= require('gulp-concat'),
 	uglify		= require('gulp-uglify'),
 	cleanCSS	= require('gulp-clean-css'),
-	debug		= require('gulp-debug'),
-	watch		= require('gulp-watch'),
 	del			= require('del'),
 	pug			= require('gulp-pug'),
 	fs			= require('fs');
@@ -14,15 +12,9 @@ var src = 'src/';
 var dest = 'docs/';
 
 var paths = {
-	scripts: [
-		src + 'js/**/*.js',
-		'node_modules/bootstrap/dist/js/bootstrap.min.js'
-	],
+	scripts: [src + 'js/**/*.js'],
 	css : {
-		libraries : [
-			'node_modules/bootstrap/dist/css/bootstrap.min.css',
-			src + 'css/plugins/*.css'
-		],
+		libraries : [src + 'css/plugins/*.css' ],
 		custom : [
 			src + '/css/sb-admin.css', 
 			src + '/css/rbucinell.css'
