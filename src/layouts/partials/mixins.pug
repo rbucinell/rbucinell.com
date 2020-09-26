@@ -9,7 +9,8 @@ mixin pageheader(headermain, headersmall, breadcrumbs)
                 //Page Header
                 .row
                     .col-lg-12
-                        h1.page-header #{headermain}<small class="font-weight-lighter"> #{headersmall} </small>
+                        h1.page-header #{headermain}&nbsp;
+                            small.text-muted #{headersmall}
 
                         ol.breadcrumb
                             each crumb,i in breadcrumbs
@@ -18,10 +19,11 @@ mixin pageheader(headermain, headersmall, breadcrumbs)
                                         li
                                             i(data-feather=`${crumb.fa}`)
                                             span #{crumb.text}
+                                            span &nbsp;/&nbsp;
                                     else
                                         li
                                             i(data-feather=`${crumb.fa}`)
-                                            span: a(href=crumb.url) &nbsp;&nbsp;#{crumb.text}
+                                            span: a(href=crumb.url) #{crumb.text}
                                             span &nbsp;/&nbsp;
                                 else
                                     li(class="font-weight-bold")
