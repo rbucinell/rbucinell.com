@@ -19,8 +19,12 @@
 	--white: #FFFFFF;
 	--black: #333333;
  }
+
+body {
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
 body.landingpage h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 700;
 }
 .overlaywrapper{    
@@ -117,12 +121,6 @@ body.landingpage h1, h2, h3, h4, h5, h6 {
 }
 .dropdown-menu > li > a {
 	color: var(--black)
-}
-
-
-
-#wrapper {
-	font-family: 'Roboto Condensed', sans-serif;
 }
 
 .img-circle{
