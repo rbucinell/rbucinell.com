@@ -4,17 +4,17 @@ block config
         var pageConfig = {
             title: "Ryan Bucinell - Code",
             breadcrumbs: [
-                {fa:"fa-home", text:"Home", url:"index.html"},
-                {fa:"fa-cogs", text:"Projects" },
-                {fa:"fa-code", text:"Code", url:"#"}
+                {fa:"home", text:"Home", url:"index.html"},
+                {fa:"settings", text:"Projects" },
+                {fa:"code", text:"Code", url:"#"}
             ],
             pageh1: {
                 title: 'Code',
                 small: 'coding projects here and there'
             }
         }
-block content    
-    #contentDiv 
+block content
+    #contentDiv
     //- Content created dynamically 
 block scripts
     include ./partials/xmltransform.pug
