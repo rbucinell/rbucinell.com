@@ -13,83 +13,75 @@ block config
                 small: 'A Curriculum Vitae'
             }
         }
+mixin techicon( icon, word )
+    i.display-3.lead.colored(class=`devicon-${icon}-plain${word? '-wordmark': ''}`)
+
+mixin experience(title, company, daterange, ...descriptions)
+    .col-12
+        .d-flex.flex-column.flex-md-row.justify-content-between.mb-3
+            .flex-grow-1
+                h4.mb-0 #{title}
+                .lead.text-secondary.mb-3 #{company}
+                ul
+                    each desc in descriptions
+                        li= desc
+            .flex-shrink-0: span.text-muted #{daterange}
 
 block content
-    .row
-        //- .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
-            .flex-grow-1
-                h3.mb-0 Web Developer
-                .subheading.mb-3 Intelitec Solutions
-                p
-                | Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.
-            .flex-shrink-0
-                span.text-primary December 2011 - March 2013
+    h4.center: a(href="data/resume/Resume%20for%20Ryan%20Michael%20Bucinell.pdf") Download A PDF Version
 
-        .col-lg-12
-            .center
-                p.lead This is a temporary resume page due to some much needed updates to css. You still can get a copy of my resume here:
-                h4
-                    a(href="data/resume/Resume%20for%20Ryan%20Michael%20Bucinell.pdf") Download A PDF Version
-    .row
-        .col-lg-12
-            #languagesChart(style="height:400px")
+    h2.collapse-icon: a( data-toggle="collapse" data-target="#experienceSection" aria-expanded="true") Experience 
+    #experienceSection.collapse.show.border-left
+        +experience("Developer II - Unified Communications", "Paychex", "November 2016 - June 2019 - CURRENT",
+            'November 2016 - June 2019 contract devloper, highered as a FTE in June 2019',
+            'De-compile, analyze, document, and re-engineer projects with missing GIT source control',
+            'Developed features for ASP.NET / AngularJS website for automation of LTM operations',
+            'Automation scripts to support Cisco VXML Java applications & BMC Orchestrator in ServiceNow ticket manager',
+            'Taught and guided team through agile processes and during training and onboarding.')
+        +experience("Software Engineer", "Harris via Mindex Technologies", "May 2014 - November 2016",
+            'Application development for Windows and mobile platforms',
+            'Rewritten legacy applications to support new technologies while maintaining and expanding functionality',
+            'Utilized Technologies: Version control systems, visual studio, SQL, C#, XML, & XSLT')
+        +experience("Software Engineer", "Xerox Corporation via Mindex Technologies", "January 2013 - May 2014", 
+            'Worked on scrum team development utilizing TFS for team code management',
+            'Update and maintain large-scale enterprise software for multiple projects',
+            'Created backend services to migrate data, and generate reports as well as manage other services')
+        +experience("Performance Engineer", "Xerox Corporation via Mindex Technologies", "November 2011 - January 2013", 
+            'Design, build, and deployed international multi-stage metrics gathering system with automated reporting',
+            'Retrofit and optimize tools to generate large amounts of big data utilized in server stress simulation',
+            'Analyze, Debug, and Report code performance, utilizing PAL, ANTS Profiler, and other performance tools')
+    
+    h2.collapse-icon: a( data-toggle="collapse" data-target="#educationSection" aria-expanded="true") Education 
+    #educationSection.collapse.show.border-left
+        +experience("Bachelors of Science, Computer Science", "Rochester Institute of Technology", "2006 - 2011",
+            'Minor in Game Design & Development, Concentration in Advanced Computer Graphics')
+
+    h2.collapse-icon: a( data-toggle="collapse" data-target="#langSection" aria-expanded="true") Languages
+    #langSection.collapse.show.border-left.container(style="display:grid;grid-template-columns: repeat( 4, 1fr")
+        +techicon('python')
+        +techicon('csharp')
+        +techicon('cplusplus')
+        +techicon('java')
+        +techicon('html5')
+        +techicon('css3')
+        +techicon('javascript')
+        +techicon('typescript')
+    h2.collapse-icon: a( data-toggle="collapse" data-target="#techSection" aria-expanded="true") Technologies
+    #techSection.collapse.show.border-left.container(style="display:grid;grid-template-columns: repeat( 5, 1fr")
+        +techicon('dot-net', true)
+        +techicon('angularjs')
+        +techicon('bootstrap',true)
+        +techicon('visualstudio')
+        +techicon('oracle')
+        +techicon('git')
+        +techicon('nodejs')
+        +techicon('gulp')
+        +techicon('intellij')
+        +techicon('mongodb')
+        +techicon('npm')
+
 block scripts
     //- High Charts - http://www.highcharts.com/
     script( src="https://code.highcharts.com/highcharts.js")
     script( src="https://code.highcharts.com/highcharts-3d.js")
     script( src="https://code.highcharts.com/modules/exporting.js")
-    //- script.
-        $(function () {
-            $('#languagesChart').highcharts({
-                chart: {
-                    type: 'pie',
-                    backgroundColor:'rgba(255, 255, 255, 0.1)',
-                    options3d: {
-                        enabled: true,
-                        alpha: 45,
-                        beta: 0
-                    }
-                },
-                credits: {
-                    enabled: false
-                },
-                exporting: {
-                    enabled: false
-                },
-                title: {
-                    text: 'Percentage of Experience by Language'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        depth: 35,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.name}'
-                        }
-                    }
-                },
-                series: [{
-                    type: 'pie',
-                    name: 'Language Breakdown',
-                    data: [
-                        {
-                            name: 'C#/.NET',
-                            y: 54.0,
-                            sliced: true,
-                            selected: true
-                        },
-                        ['C++', 12],
-                        ['Java', 18],							
-                        ['SQL', 30],
-                        ['Powershell/Batch', 18],
-                        ['HTML/CSS/Javascript', 12],                
-                        ['Others',   12],
-                    ]
-                }]
-            });
-        });
