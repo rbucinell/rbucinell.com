@@ -1,12 +1,10 @@
-"use strict";
-
-var gulp = require('gulp'),
-	concat		= require('gulp-concat'),
-	uglify		= require('gulp-uglify'),
-	cleanCSS	= require('gulp-clean-css'),
-	del			= require('del'),
-	pug			= require('gulp-pug'),
-	fs			= require('fs');
+const gulp 		= require('gulp');
+const concat	= require('gulp-concat');
+const uglify	= require('gulp-uglify');
+const cleanCSS	= require('gulp-clean-css');
+const del		= require('del');
+const pug		= require('gulp-pug');
+const fs		= require('fs');
 
 var src = 'src/';
 var dest = 'docs/';
@@ -29,7 +27,7 @@ var paths = {
 		src + 'bluehost_defaults/',
 		src + 'cgi-bin/',
 		src + 'media-share/**/*',
-		src + 'misc-pages/**/*',
+		src + 'misc/**/*',
 		src + 'projects/**/*',
 	]
 };
@@ -44,12 +42,8 @@ gulp.task('css-lib', gulp.series(
 
 // Compile main pug pages into HTML
 gulp.task('build-pug', function(){
-	return gulp.src(src + 'layouts/*.pug')
-		.pipe(pug(
-			{
-				pretty: true
-			}
-		))
+	return gulp.src([`${src}layouts/**/*.pug`,`!${src}layouts/partials/*.pug`])
+		.pipe(pug( { pretty: true } ))
 		.pipe( gulp.dest( dest ));
 });
 
@@ -101,8 +95,6 @@ gulp.task('minify-css', gulp.series(
 		.pipe( gulp.dest( dest + 'css/'))
 ));
 
-
-
 gulp.task('cleanjs', done => {
 	return del([dest+'js/']);
 });
@@ -121,16 +113,15 @@ function cleanDest()
 	return del([dest +'/*']);
 }
 exports.cleanDest = cleanDest;
+
 // Deletes destination fold for complete rebuild
 gulp.task('cleanDest', cleanDest );
-
 
 // Build replaces html/css/js in dest folder, not modifying assets
 gulp.task( 'build-code',gulp.parallel('build-pug', 'minify-js', 'minify-css', 'css-lib','projectlist'));
 
 // Complete rebuild of the destination folder
 gulp.task('rebuild',gulp.series( cleanDest, gulp.parallel('build-code','copy')));
-
 
 //Default Task, will do a full clean and rebuild of Pug, JS, and CSS
 gulp.task( 'default', gulp.parallel('build-code'));
