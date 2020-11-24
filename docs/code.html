@@ -12,8 +12,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
     <link rel="stylesheet" type="text/css" href="css/lib.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" type="text/css">
-    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
     <script>
       var _gaq = _gaq || [];
@@ -61,14 +61,22 @@
                 </ol>
               </div>
             </div>
-            <div id="contentDiv"></div>
+            <template id="litemplate">
+              <li class="media"><img width="64" height="64">
+                <div class="media-body mx-2">
+                  <h5 class="m-1"><a></a></h5>
+                  <p></p>
+                </div>
+              </li>
+            </template>
+            <ul id="projectList"></ul>
           </div>
         </div>
       </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>feather.replace( {style: 'height:1.1rem;'})</script>
+    <script>(()=>feather.replace( {style: 'height:1.1rem;'}))</script>
     <script>
       function transform( xml, xsl, outputId )
       {
@@ -114,10 +122,26 @@
       }
     </script>
     <script>
-      var xml = "data/projects.xml";
-      var xmltransform = "data/transforms/projects_transform.xsl";
-      var divId = "contentDiv";
-      generateTransformData( xml, xmltransform, divId );
+      (()=>{
+          fetch("data/code/projects.json")
+              .then( response => response.json() )
+              .then( json =>{
+                  console.dir( json );
+                  let list = document.querySelector('#projectList');
+                  let template = document.querySelector('#litemplate');
+                  for( project of json)
+                  {
+                      let clone = template.content.cloneNode(true);
+                      clone.querySelector('li').id = project["@id"];
+                      clone.querySelector('img').src = project.icon;
+                      let anchor = clone.querySelector('h5 > a');
+                      anchor.href = project.hostedUrl;
+                      anchor.innerText = project.name;
+                      clone.querySelector('p').innerText = project.description;
+                      list.appendChild( clone );
+                  }
+              })
+      })();
     </script>
   </body>
 </html>
