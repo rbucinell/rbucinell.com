@@ -3,7 +3,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top.navbar-expand-sm.navbar-light
     .nav-brand
         a(class="navbar-brand", href="index.html")
             span
-                img( alt="Ryan Bucinell\'s Headshot", class="img-circle", src="img/me/rmb.png")
+                img( alt="Ryan Bucinell\'s Headshot", class="img-circle", src="/img/me/rmb.png")
             span.text-dark.font-weight-bold Ryan Bucinell&nbsp;
             span#mytitle.text-white.text-xs.block.d-none.d-xs-block Software Engineer
     .button.navbar-toggler( type="button", data-toggle="collapse", data-target="#mainNavigation")
@@ -11,22 +11,22 @@ nav.navbar.navbar-inverse.navbar-fixed-top.navbar-expand-sm.navbar-light
 
     #mainNavigation.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
-            li.nav-item: a.nav-link(href='index.html') Home
+            li.nav-item: a.nav-link(href='/index.html') Home
             li.nav-item.dropdown
                 a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown') Projects
                 .dropdown-menu
-                    a.dropdown-item(href='projects.html') Active Projects
-                    a.dropdown-item(href='code.html') Code
-                    a.dropdown-item(href='flash.html') Flash
-                    a.dropdown-item(href='websites.html') Websites
-                    a.dropdown-item(href='graphics.html') Graphics
+                    a.dropdown-item(href='/projects.html') Active Projects
+                    a.dropdown-item(href='/code.html') Code
+                    a.dropdown-item(href='/flash.html') Flash
+                    a.dropdown-item(href='/websites.html') Websites
+                    a.dropdown-item(href='/graphics.html') Graphics
             li.nav-item.dropdown
                 a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown') Personal Info
                 .dropdown-menu
-                    a.dropdown-item(href='about.html') About Me
-                    a.dropdown-item(href='resume.html') Résumé
+                    a.dropdown-item(href='/about.html') About Me
+                    a.dropdown-item(href='/resume.html') Résumé
                     //- a.dropdown-item(href='blog.html') Blog
-            li.nav-item: a.nav-link(href='retro.html') History
+            li.nav-item: a.nav-link(href='/retro.html') History
             
             //- +navwithsub( 'Charity', 'fa-heart', 'charity-sublist')
                 +navitem('Dodge the Police','fa-futbol-o','dodge.html')
