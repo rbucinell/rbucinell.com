@@ -2,7 +2,8 @@ doctype html
 html(lang='en')
     block config
     - const pagetitle = pageConfig.title;
-    include ./head.pug
+    include ./head.pug 
+    block head
     include ./mixins.pug
     body
         +pageheader( pageConfig.pageh1.title, pageConfig.pageh1.small, pageConfig.breadcrumbs)
