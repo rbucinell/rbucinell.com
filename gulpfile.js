@@ -29,6 +29,7 @@ var paths = {
 		src + 'media-share/**/*',
 		src + 'misc/**/*',
 		src + 'projects/**/*',
+		src + 'CNAME',
 	]
 };
 
