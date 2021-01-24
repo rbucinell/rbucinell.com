@@ -1,4 +1,4 @@
-extends partials/layout.pug
+extends ../partials/layout.pug
 block config
     -
         var pageConfig = {
@@ -15,6 +15,22 @@ block config
 block head
     link(rel="stylesheet", href="https://bootstrap-extension.com/css/4.6.1/bootstrap-extension.min.css", type="text/css")
 block content
+
+    p For COVID-19 safety precautions we are not going to hold a traditional baby sprinkle or a large Super Bowl party. However that isn't going to stop the fun. We are going to host a Super Bowl squares where the proceeds will go to the only thing on our registry: The <a href="https://www.wonderfoldwagon.com/products/w4s2?variant=37683222151352" target="_blank">WonderFold Wagon W4S 2.0</a> so that we can push the entire clan around at the same time. Thank you so much for all who play and help us with this goal. Good Luck.
+    p.lead Rules
+    ul
+        li Squares are $20
+        li The Pot 
+        li The numbers will be randomized. They will be selected at 6pm on the 7th.
+        li Payouts willl ramp up each quarter. Here are the pertentage payouts for each quarter:
+        li(style="list-style:none"): ul.list-group.list-group-horizontal-sm
+                li.list-group-item End of 1st: <strong>10%</strong>
+                li.list-group-item End of 2nd: <strong>20%</strong>
+                li.list-group-item End of 3rd: <strong>30%</strong>
+                li.list-group-item End of 4th: <strong>40%</strong>
+        li I reserve the right to remove unpaid square request.
+        li If you have any problems picking squares, please text Jess or I. If you don't specify a square, or the square requested is taken we will pick the next sequentially availiable
+
     .center
         a.btn.btn-primary.btn-large.text-white.text-uppercase(href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform" target="_blank")
             img(src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" style="max-height:30px;")
@@ -38,11 +54,11 @@ block content
                             th.center(scope="col", id=`nfc${i}`) #
                 tbody
                     tr
-                        td.col-1.bg-danger.text-white.border.border-danger(rowspan="11",style="vertical-align : middle;text-align:center;"): div.rotate-sm-l-90.display-9 AFC TEAM
+                        td.col-1.bg-danger.text-white.border.border-danger(rowspan="11",style="vertical-align:middle;text-align:center;width:10px;"): div.rotate-sm-l-90.display-9 AFC TEAM
                     each a,i in alphabet
                         tr
                             // #{i}
-                            th.center.border.border-secondary.bg-secondary(scope="row" style="width: 20px", id=`afc${i}`) #
+                            th.center.border.border-secondary.bg-secondary(scope="row" style="width: 20px;", id=`afc${i}`) #
                             each n,j in nums
                                 td.p-0.border.border-dark(style="width:50px")
                                     div.center.text-secondary(id=`${a}${n}`) #{alphabet[i]}#{nums[j]}
@@ -105,6 +121,7 @@ block scripts
                                 helmetClone.dataset.toggle = 'tooltip';
                                 helmetClone.dataset.placement = 'right';
                                 helmetClone.dataset.title = `[${id}] ${name}`;
+                                console.log( helmetClone, helmetClone );
                                 helmetClone.querySelector( "g > g> g> path:nth-child(11)" ).style.fill = sheetsDict[name].color;
                                 boughtSquare.appendChild( helmetClone );
                                 sheetsDict[name].squares.push(id);
@@ -156,7 +173,7 @@ block scripts
             }
 
             document.addEventListener('DOMContentLoaded', async ()=> {
-                fetch('img/helmet.svg')
+                fetch('../img/helmet.svg')
                     .then( response=>response.text() )
                     .then( t => {
                         helmet = document.createElement('div');
