@@ -30,8 +30,52 @@
       })();
     </script>
     <link rel="stylesheet" href="https://bootstrap-extension.com/css/4.6.1/bootstrap-extension.min.css" type="text/css">
+    <style>
+      #nfcChampions {
+          height: 70px;
+          background-color: #A71930;
+          background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
+      }
+      
+      #afcChampions {
+          vertical-align:middle;
+          text-align:center;
+          width:50px;
+          background-color: #E31836;
+          background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/KC);
+      }
+      
+      .bg-single-center {
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+      }
+      
+    </style>
   </head>
   <link rel="stylesheet" href="https://bootstrap-extension.com/css/4.6.1/bootstrap-extension.min.css" type="text/css">
+  <style>
+    #nfcChampions {
+        height: 70px;
+        background-color: #A71930;
+        background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
+    }
+    
+    #afcChampions {
+        vertical-align:middle;
+        text-align:center;
+        width:50px;
+        background-color: #E31836;
+        background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/KC);
+    }
+    
+    .bg-single-center {
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+  </style>
   <body>
       <nav class="navbar navbar-inverse navbar-fixed-top navbar-expand-sm navbar-light">
         <div class="nav-brand"><a class="navbar-brand" href="/index.html"><span><img class="img-circle" alt="Ryan Bucinell's Headshot" src="/img/me/rmb.png"></span><span class="text-dark font-weight-bold">Ryan Bucinell&nbsp;</span><span class="text-white text-xs block d-none d-xs-block" id="mytitle">Software Engineer</span></a></div>
@@ -74,20 +118,21 @@
                   <li class="list-group-item">End of 1st: <strong>10%</strong></li>
                   <li class="list-group-item">End of 2nd: <strong>20%</strong></li>
                   <li class="list-group-item">End of 3rd: <strong>30%</strong></li>
-                  <li class="list-group-item">End of 4th: <strong>40%</strong></li>
+                  <li class="list-group-item">Final Score: <strong>40%</strong></li>
                 </ul>
               </li>
               <li>I reserve the right to remove unpaid square request.</li>
               <li>If you have any problems picking squares, please text Jess or I. If you don't specify a square, or the square requested is taken we will pick the next sequentially availiable</li>
             </ul>
-            <div class="center"><a class="btn btn-primary btn-large text-white text-uppercase" href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform" target="_blank"><img src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" style="max-height:30px;">Submit your squares here!</a>
+            <div class="center">
+              <div class="d-flex justify-content-center align-items-end flex-wrap"><a class="btn btn-primary btn-large text-white text-uppercase" id="submitSquaresButton" href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform" target="_blank"><img src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" style="max-height:30px;">Submit your squares here!</a><span class="badge badge-light" id="squaresleft">100 Squares left!</span></div>
               <div class="p-2"></div>
               <div class="container-fluid" id="squares">
-                <table class="table border border-dark bg-white">
+                <table class="table border border-dark bg-white" style="height:100%">
                   <thead>
                     <tr>
-                      <td class="border border-white" colspan="2" rowspan="2"><img class="center" style="display:block;height:100px;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.duetsblog.com%2Ffiles%2F2014%2F10%2FNFLShieldLogo.jpeg&amp;f=1&amp;nofb=1"></td>
-                      <td class="text-white border border-primary" colspan="10" style="background-color:var(--primary-lighter);">NFC TEAM</td>
+                      <td colspan="2" rowspan="2"><img class="center" style="display:block;height:80px;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.duetsblog.com%2Ffiles%2F2014%2F10%2FNFLShieldLogo.jpeg&amp;f=1&amp;nofb=1"></td>
+                      <td class="text-white border border-primary bg-single-center" id="nfcChampions" colspan="10"></td>
                     </tr>
                     <tr class="bg-secondary border border-secondary">
                       <!-- #{n}-->
@@ -114,8 +159,8 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="col-1 bg-danger text-white border border-danger" rowspan="11" style="vertical-align:middle;text-align:center;width:10px;">
-                        <div class="rotate-sm-l-90 display-9">AFC TEAM</div>
+                      <td class="col-1 bg-danger text-white border border-danger bg-single-center" id="afcChampions" rowspan="11">
+                        <div class="rotate-sm-l-90 display-9"></div>
                       </td>
                     </tr>
                     <tr>
@@ -475,7 +520,7 @@
     <script src="https://bootstrap-extension.com/js/4.6.1/bootstrap-extension.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script>
-      let CSS_COLOR_NAMES = [ "AliceBlue", "AntiqueWhite", "Aqua", "Aquamarine", "Azure", "Beige", "Bisque", "Black", "BlanchedAlmond", "Blue", "BlueViolet", "Brown", "BurlyWood", "CadetBlue", "Chartreuse", "Chocolate", "Coral", "CornflowerBlue", "Cornsilk", "Crimson", "Cyan", "DarkBlue", "DarkCyan", "DarkGoldenRod", "DarkGray", "DarkGrey", "DarkGreen", "DarkKhaki", "DarkMagenta", "DarkOliveGreen", "DarkOrange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSeaGreen", "DarkSlateBlue", "DarkSlateGray", "DarkSlateGrey", "DarkTurquoise", "DarkViolet", "DeepPink", "DeepSkyBlue", "DimGray", "DimGrey", "DodgerBlue", "FireBrick", "FloralWhite", "ForestGreen", "Fuchsia", "Gainsboro", "GhostWhite", "Gold", "GoldenRod", "Gray", "Grey", "Green", "GreenYellow", "HoneyDew", "HotPink", "IndianRed", "Indigo", "Ivory", "Khaki", "Lavender", "LavenderBlush", "LawnGreen", "LemonChiffon", "LightBlue", "LightCoral", "LightCyan", "LightGoldenRodYellow", "LightGray", "LightGrey", "LightGreen", "LightPink", "LightSalmon", "LightSeaGreen", "LightSkyBlue", "LightSlateGray", "LightSlateGrey", "LightSteelBlue", "LightYellow", "Lime", "LimeGreen", "Linen", "Magenta", "Maroon", "MediumAquaMarine", "MediumBlue", "MediumOrchid", "MediumPurple", "MediumSeaGreen", "MediumSlateBlue", "MediumSpringGreen", "MediumTurquoise", "MediumVioletRed", "MidnightBlue", "MintCream", "MistyRose", "Moccasin", "NavajoWhite", "Navy", "OldLace", "Olive", "OliveDrab", "Orange", "OrangeRed", "Orchid", "PaleGoldenRod", "PaleGreen", "PaleTurquoise", "PaleVioletRed", "PapayaWhip", "PeachPuff", "Peru", "Pink", "Plum", "PowderBlue", "Purple", "RebeccaPurple", "Red", "RosyBrown", "RoyalBlue", "SaddleBrown", "Salmon", "SandyBrown", "SeaGreen", "SeaShell", "Sienna", "Silver", "SkyBlue", "SlateBlue", "SlateGray", "SlateGrey", "Snow", "SpringGreen", "SteelBlue", "Tan", "Teal", "Thistle", "Tomato", "Turquoise", "Violet", "Wheat", "White", "WhiteSmoke", "Yellow", "YellowGreen" ];
+      let CSS_COLOR_NAMES = ["Indigo", "DarkOrange", "AntiqueWhite", "Ivory", "#007FFF", "Aqua", "RoyalBlue", "DarkSalmon", "SaddleBrown", "LawnGreen", "Salmon", "MidnightBlue", "Black", "LightBlue", "SeaGreen", "DeepPink", "Silver", "DodgerBlue", "Olive", "FireBrick", "Orange", "OrangeRed", "Tan", "Crimson", "GhostWhite", "Gold", "Tomato", "DarkBlue", "Magenta", "Maroon", "MediumAquaMarine", "PeachPuff", "Wheat", "WhiteSmoke", "DarkKhaki", "Yellow", "PowderBlue", "MediumBlue", "PapayaWhip", "Gainsboro", "Lime", "Gray", "PaleVioletRed", "Teal", "Coral", "White", "Blue", "MistyRose", "Black"];
       let n = 10
       let nums = [...Array(n).keys()]
       let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').map( c => c.toUpperCase() ).slice(0, n);
@@ -485,11 +530,27 @@
       let kickoff = new Date('February 7, 2021 18:00:00');
       let sheetsDict = {};
       
-      //Shuffle the colors
-      CSS_COLOR_NAMES = CSS_COLOR_NAMES
-          .map((a) => ({sort: Math.random(), value: a}))
-          .sort((a, b) => a.sort - b.sort)
-          .map((a) => a.value);
+      //  Shuffle the colors
+      //- CSS_COLOR_NAMES = CSS_COLOR_NAMES
+      //-     .map((a) => ({sort: Math.random(), value: a}))
+      //-     .sort((a, b) => a.sort - b.sort)
+      //-     .map((a) => a.value);
+      
+      function updateRemainingSquares()
+      {
+          let count = Object.entries(sheetsDict).reduce( (sum, e) => sum + e[1].squares.length, 0 );
+          let msg = "";
+          if( count === 0 )
+          {
+              msg = "Board's full. Good Luck";
+              document.querySelector("#submitSquaresButton").classList.add('disabled');
+          }
+          else
+          {
+              msg = `${100-count} squares left.`;
+          }
+          document.querySelector("#squaresleft").innerText = msg;
+      }
       
       function getColorFromList()
       {
@@ -503,6 +564,7 @@
           let parser = new DOMParser();
           let doc = parser.parseFromString( html, "text/html");
           let trs = [...doc.querySelectorAll("table tr")];
+          let uniqueIDs = [];
           sheetsDict = {};
           for( let i = (trs.findIndex( t => t.children[0].innerText === "Timestamp" )+1); i < trs.length; i++ )
           {
@@ -526,24 +588,25 @@
                           helmetClone.dataset.toggle = 'tooltip';
                           helmetClone.dataset.placement = 'right';
                           helmetClone.dataset.title = `[${id}] ${name}`;
-                          console.log( helmetClone, helmetClone );
                           helmetClone.querySelector( "g > g> g> path:nth-child(11)" ).style.fill = sheetsDict[name].color;
                           boughtSquare.appendChild( helmetClone );
                           sheetsDict[name].squares.push(id);
                           if( !sheetsDict[name].purchased )
                           {
                               boughtSquare.classList.add('alert-danger');
-                              //- let ele = document.createElement('i');
-                              //- ele.dataset.feather = 'dollar-sign';
-                              //- ele.classList = "text-muted";
-                              //- ele.style="position:float;height:0.8rem;";
-                              //- boughtSquare.appendChild( ele );
                           }
+      
+                          if( uniqueIDs.includes(id))
+                          {
+                              console.error( `${name} requested square ${id} that was already taken`);
+                          }
+                          uniqueIDs.push(id)
                       });
                   }
               }
           }
           console.log( sheetsDict );
+          updateRemainingSquares();
           feather.replace();
           $('[data-toggle="tooltip"]').tooltip();
       }

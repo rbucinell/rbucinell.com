@@ -14,6 +14,28 @@ block config
         }
 block head
     link(rel="stylesheet", href="https://bootstrap-extension.com/css/4.6.1/bootstrap-extension.min.css", type="text/css")
+    style.
+
+        #nfcChampions {
+            height: 70px;
+            background-color: #A71930;
+            background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
+        }
+
+        #afcChampions {
+            vertical-align:middle;
+            text-align:center;
+            width:50px;
+            background-color: #E31836;
+            background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/KC);
+        }
+
+        .bg-single-center {
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
 block content
 
     p For COVID-19 safety precautions we are not going to hold a traditional baby sprinkle or a large Super Bowl party. However that isn't going to stop the fun. We are going to host a Super Bowl squares where the proceeds will go to the only thing on our registry: The <a href="https://www.wonderfoldwagon.com/products/w4s2?variant=37683222151352" target="_blank">WonderFold Wagon W4S 2.0</a> so that we can push the entire clan around at the same time. Thank you so much for all who play and help us with this goal. Good Luck.
@@ -27,14 +49,16 @@ block content
                 li.list-group-item End of 1st: <strong>10%</strong>
                 li.list-group-item End of 2nd: <strong>20%</strong>
                 li.list-group-item End of 3rd: <strong>30%</strong>
-                li.list-group-item End of 4th: <strong>40%</strong>
+                li.list-group-item Final Score: <strong>40%</strong>
         li I reserve the right to remove unpaid square request.
         li If you have any problems picking squares, please text Jess or I. If you don't specify a square, or the square requested is taken we will pick the next sequentially availiable
 
     .center
-        a.btn.btn-primary.btn-large.text-white.text-uppercase(href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform" target="_blank")
-            img(src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" style="max-height:30px;")
-            | Submit your squares here!
+        div.d-flex.justify-content-center.align-items-end.flex-wrap
+            a#submitSquaresButton.btn.btn-primary.btn-large.text-white.text-uppercase(href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform" target="_blank")
+                img(src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" style="max-height:30px;")
+                | Submit your squares here!
+            span#squaresleft.badge.badge-light 100 Squares left!
         //- https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform?usp=pp_url&entry.162182405=YOUR_NAME
         //- https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform?usp=pp_url&entry.129532414=0&entry.129532414=1&entry.129532414=2&entry.129532414=3&entry.129532414=4&entry.129532414=5&entry.129532414=6&entry.129532414=7&entry.129532414=8&entry.129532414=9&entry.965582730=0&entry.965582730=1&entry.965582730=2&entry.965582730=3&entry.965582730=4&entry.965582730=5&entry.965582730=6&entry.965582730=7&entry.965582730=8&entry.965582730=9&entry.255358047=0&entry.255358047=1&entry.255358047=2&entry.255358047=3&entry.255358047=4&entry.255358047=5&entry.255358047=6&entry.255358047=7&entry.255358047=8&entry.255358047=9&entry.1445828233=0&entry.1445828233=1&entry.1445828233=2&entry.1445828233=3&entry.1445828233=4&entry.1445828233=5&entry.1445828233=6&entry.1445828233=7&entry.1445828233=8&entry.1445828233=9&entry.1483535175=0&entry.1483535175=1&entry.1483535175=2&entry.1483535175=3&entry.1483535175=4&entry.1483535175=5&entry.1483535175=6&entry.1483535175=7&entry.1483535175=8&entry.1483535175=9&entry.1462965448=0&entry.1462965448=1&entry.1462965448=2&entry.1462965448=3&entry.1462965448=4&entry.1462965448=5&entry.1462965448=6&entry.1462965448=7&entry.1462965448=8&entry.1462965448=9&entry.2020935596=0&entry.2020935596=1&entry.2020935596=2&entry.2020935596=3&entry.2020935596=4&entry.2020935596=5&entry.2020935596=6&entry.2020935596=7&entry.2020935596=8&entry.2020935596=9&entry.1923048447=0&entry.1923048447=1&entry.1923048447=2&entry.1923048447=3&entry.1923048447=4&entry.1923048447=5&entry.1923048447=6&entry.1923048447=7&entry.1923048447=8&entry.1923048447=9&entry.2051356615=0&entry.2051356615=1&entry.2051356615=2&entry.2051356615=3&entry.2051356615=4&entry.2051356615=5&entry.2051356615=6&entry.2051356615=7&entry.2051356615=8&entry.2051356615=9&entry.180197898=0&entry.180197898=1&entry.180197898=2&entry.180197898=3&entry.180197898=4&entry.180197898=5&entry.180197898=6&entry.180197898=7&entry.180197898=8&entry.180197898=9
         div.p-2
@@ -43,18 +67,18 @@ block content
             - let nums = [...Array(n).keys()]
             - let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').map( c => c.toUpperCase() ).slice(0, n);
             
-            table.table.border.border-dark.bg-white
+            table.table.border.border-dark.bg-white(style="height:100%")
                 thead
                     tr
-                        td(colspan="2", rowspan="2").border.border-white: img.center( style="display:block;height:100px;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.duetsblog.com%2Ffiles%2F2014%2F10%2FNFLShieldLogo.jpeg&f=1&nofb=1")
-                        td.text-white.border.border-primary(colspan="10", style="background-color:var(--primary-lighter);") NFC TEAM
+                        td(colspan="2", rowspan="2"): img.center( style="display:block;height:80px;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.duetsblog.com%2Ffiles%2F2014%2F10%2FNFLShieldLogo.jpeg&f=1&nofb=1") 
+                        td#nfcChampions.text-white.border.border-primary.bg-single-center(colspan="10")
                     tr.bg-secondary.border.border-secondary(style="")
                         each n,i in nums
                             // #{n}
                             th.center(scope="col", id=`nfc${i}`) #
                 tbody
                     tr
-                        td.col-1.bg-danger.text-white.border.border-danger(rowspan="11",style="vertical-align:middle;text-align:center;width:10px;"): div.rotate-sm-l-90.display-9 AFC TEAM
+                        td#afcChampions.col-1.bg-danger.text-white.border.border-danger.bg-single-center(rowspan="11"): div.rotate-sm-l-90.display-9
                     each a,i in alphabet
                         tr
                             // #{i}
@@ -70,7 +94,7 @@ block scripts
     script(src="https://bootstrap-extension.com/js/4.6.1/bootstrap-extension.min.js")
     script(src="https://apis.google.com/js/api.js")
     script.
-            let CSS_COLOR_NAMES = [ "AliceBlue", "AntiqueWhite", "Aqua", "Aquamarine", "Azure", "Beige", "Bisque", "Black", "BlanchedAlmond", "Blue", "BlueViolet", "Brown", "BurlyWood", "CadetBlue", "Chartreuse", "Chocolate", "Coral", "CornflowerBlue", "Cornsilk", "Crimson", "Cyan", "DarkBlue", "DarkCyan", "DarkGoldenRod", "DarkGray", "DarkGrey", "DarkGreen", "DarkKhaki", "DarkMagenta", "DarkOliveGreen", "DarkOrange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSeaGreen", "DarkSlateBlue", "DarkSlateGray", "DarkSlateGrey", "DarkTurquoise", "DarkViolet", "DeepPink", "DeepSkyBlue", "DimGray", "DimGrey", "DodgerBlue", "FireBrick", "FloralWhite", "ForestGreen", "Fuchsia", "Gainsboro", "GhostWhite", "Gold", "GoldenRod", "Gray", "Grey", "Green", "GreenYellow", "HoneyDew", "HotPink", "IndianRed", "Indigo", "Ivory", "Khaki", "Lavender", "LavenderBlush", "LawnGreen", "LemonChiffon", "LightBlue", "LightCoral", "LightCyan", "LightGoldenRodYellow", "LightGray", "LightGrey", "LightGreen", "LightPink", "LightSalmon", "LightSeaGreen", "LightSkyBlue", "LightSlateGray", "LightSlateGrey", "LightSteelBlue", "LightYellow", "Lime", "LimeGreen", "Linen", "Magenta", "Maroon", "MediumAquaMarine", "MediumBlue", "MediumOrchid", "MediumPurple", "MediumSeaGreen", "MediumSlateBlue", "MediumSpringGreen", "MediumTurquoise", "MediumVioletRed", "MidnightBlue", "MintCream", "MistyRose", "Moccasin", "NavajoWhite", "Navy", "OldLace", "Olive", "OliveDrab", "Orange", "OrangeRed", "Orchid", "PaleGoldenRod", "PaleGreen", "PaleTurquoise", "PaleVioletRed", "PapayaWhip", "PeachPuff", "Peru", "Pink", "Plum", "PowderBlue", "Purple", "RebeccaPurple", "Red", "RosyBrown", "RoyalBlue", "SaddleBrown", "Salmon", "SandyBrown", "SeaGreen", "SeaShell", "Sienna", "Silver", "SkyBlue", "SlateBlue", "SlateGray", "SlateGrey", "Snow", "SpringGreen", "SteelBlue", "Tan", "Teal", "Thistle", "Tomato", "Turquoise", "Violet", "Wheat", "White", "WhiteSmoke", "Yellow", "YellowGreen" ];
+            let CSS_COLOR_NAMES = ["Indigo", "DarkOrange", "AntiqueWhite", "Ivory", "#007FFF", "Aqua", "RoyalBlue", "DarkSalmon", "SaddleBrown", "LawnGreen", "Salmon", "MidnightBlue", "Black", "LightBlue", "SeaGreen", "DeepPink", "Silver", "DodgerBlue", "Olive", "FireBrick", "Orange", "OrangeRed", "Tan", "Crimson", "GhostWhite", "Gold", "Tomato", "DarkBlue", "Magenta", "Maroon", "MediumAquaMarine", "PeachPuff", "Wheat", "WhiteSmoke", "DarkKhaki", "Yellow", "PowderBlue", "MediumBlue", "PapayaWhip", "Gainsboro", "Lime", "Gray", "PaleVioletRed", "Teal", "Coral", "White", "Blue", "MistyRose", "Black"];
             let n = 10
             let nums = [...Array(n).keys()]
             let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').map( c => c.toUpperCase() ).slice(0, n);
@@ -80,11 +104,27 @@ block scripts
             let kickoff = new Date('February 7, 2021 18:00:00');
             let sheetsDict = {};
             
-            //Shuffle the colors
-            CSS_COLOR_NAMES = CSS_COLOR_NAMES
-                .map((a) => ({sort: Math.random(), value: a}))
-                .sort((a, b) => a.sort - b.sort)
-                .map((a) => a.value);
+            //  Shuffle the colors
+            //- CSS_COLOR_NAMES = CSS_COLOR_NAMES
+            //-     .map((a) => ({sort: Math.random(), value: a}))
+            //-     .sort((a, b) => a.sort - b.sort)
+            //-     .map((a) => a.value);
+
+            function updateRemainingSquares()
+            {
+                let count = Object.entries(sheetsDict).reduce( (sum, e) => sum + e[1].squares.length, 0 );
+                let msg = "";
+                if( count === 0 )
+                {
+                    msg = "Board's full. Good Luck";
+                    document.querySelector("#submitSquaresButton").classList.add('disabled');
+                }
+                else
+                {
+                    msg = `${100-count} squares left.`;
+                }
+                document.querySelector("#squaresleft").innerText = msg;
+            }
             
             function getColorFromList()
             {
@@ -98,6 +138,7 @@ block scripts
                 let parser = new DOMParser();
                 let doc = parser.parseFromString( html, "text/html");
                 let trs = [...doc.querySelectorAll("table tr")];
+                let uniqueIDs = [];
                 sheetsDict = {};
                 for( let i = (trs.findIndex( t => t.children[0].innerText === "Timestamp" )+1); i < trs.length; i++ )
                 {
@@ -121,24 +162,25 @@ block scripts
                                 helmetClone.dataset.toggle = 'tooltip';
                                 helmetClone.dataset.placement = 'right';
                                 helmetClone.dataset.title = `[${id}] ${name}`;
-                                console.log( helmetClone, helmetClone );
                                 helmetClone.querySelector( "g > g> g> path:nth-child(11)" ).style.fill = sheetsDict[name].color;
                                 boughtSquare.appendChild( helmetClone );
                                 sheetsDict[name].squares.push(id);
                                 if( !sheetsDict[name].purchased )
                                 {
                                     boughtSquare.classList.add('alert-danger');
-                                    //- let ele = document.createElement('i');
-                                    //- ele.dataset.feather = 'dollar-sign';
-                                    //- ele.classList = "text-muted";
-                                    //- ele.style="position:float;height:0.8rem;";
-                                    //- boughtSquare.appendChild( ele );
                                 }
+
+                                if( uniqueIDs.includes(id))
+                                {
+                                    console.error( `${name} requested square ${id} that was already taken`);
+                                }
+                                uniqueIDs.push(id)
                             });
                         }
                     }
                 }
                 console.log( sheetsDict );
+                updateRemainingSquares();
                 feather.replace();
                 $('[data-toggle="tooltip"]').tooltip();
             }
