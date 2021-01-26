@@ -34,6 +34,7 @@
       #nfcChampions {
           height: 70px;
           background-color: #A71930;
+          border: 1px solid #A71930;
           background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
       }
       
@@ -42,6 +43,7 @@
           text-align:center;
           width:50px;
           background-color: #E31836;
+          border: 1px solid #E31836;
           background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/KC);
       }
       
@@ -58,6 +60,7 @@
     #nfcChampions {
         height: 70px;
         background-color: #A71930;
+        border: 1px solid #A71930;
         background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
     }
     
@@ -66,6 +69,7 @@
         text-align:center;
         width:50px;
         background-color: #E31836;
+        border: 1px solid #E31836;
         background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/KC);
     }
     
@@ -132,7 +136,7 @@
                   <thead>
                     <tr>
                       <td colspan="2" rowspan="2"><img class="center" style="display:block;height:80px;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.duetsblog.com%2Ffiles%2F2014%2F10%2FNFLShieldLogo.jpeg&amp;f=1&amp;nofb=1"></td>
-                      <td class="text-white border border-primary bg-single-center" id="nfcChampions" colspan="10"></td>
+                      <td class="text-white bg-single-center" id="nfcChampions" colspan="10"></td>
                     </tr>
                     <tr class="bg-secondary border border-secondary">
                       <!-- #{n}-->
@@ -159,7 +163,7 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="col-1 bg-danger text-white border border-danger bg-single-center" id="afcChampions" rowspan="11">
+                      <td class="col-1 bg-danger text-white bg-single-center" id="afcChampions" rowspan="11">
                         <div class="rotate-sm-l-90 display-9"></div>
                       </td>
                     </tr>
@@ -520,7 +524,7 @@
     <script src="https://bootstrap-extension.com/js/4.6.1/bootstrap-extension.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script>
-      let CSS_COLOR_NAMES = ["Indigo", "DarkOrange", "AntiqueWhite", "Ivory", "#007FFF", "Aqua", "RoyalBlue", "DarkSalmon", "SaddleBrown", "LawnGreen", "Salmon", "MidnightBlue", "Black", "LightBlue", "SeaGreen", "DeepPink", "Silver", "DodgerBlue", "Olive", "FireBrick", "Orange", "OrangeRed", "Tan", "Crimson", "GhostWhite", "Gold", "Tomato", "DarkBlue", "Magenta", "Maroon", "MediumAquaMarine", "PeachPuff", "Wheat", "WhiteSmoke", "DarkKhaki", "Yellow", "PowderBlue", "MediumBlue", "PapayaWhip", "Gainsboro", "Lime", "Gray", "PaleVioletRed", "Teal", "Coral", "White", "Blue", "MistyRose", "Black"];
+      let CSS_COLOR_NAMES = ["Indigo", "DarkOrange", "AntiqueWhite", "Ivory", "DarkRed", "Aqua", "RoyalBlue", "DarkSalmon", "SaddleBrown", "LawnGreen", "Salmon", "MidnightBlue", "Black", "LightBlue", "SeaGreen", "DeepPink", "Silver", "DodgerBlue", "Olive", "FireBrick", "Orange", "OrangeRed", "Tan", "Crimson", "GhostWhite", "Gold", "Tomato", "DarkBlue", "Magenta", "Maroon", "MediumAquaMarine", "PeachPuff", "Wheat", "WhiteSmoke", "DarkKhaki", "Yellow", "PowderBlue", "MediumBlue", "PapayaWhip", "Gainsboro", "Lime", "Gray", "PaleVioletRed", "Teal", "Coral", "White", "Blue", "MistyRose", "Black"];
       let n = 10
       let nums = [...Array(n).keys()]
       let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').map( c => c.toUpperCase() ).slice(0, n);
@@ -574,6 +578,8 @@
                   'purchased': (trs[i].children[13].innerText.trim() === '✔'),
                   'color' : getColorFromList()
               };
+              if( name === "Ryan Bucinell" )
+                  sheetsDict[name].color = "#007FFF";
               for( let alpha = 0; alpha <= 10; alpha++ )
               {
                   let content = trs[i].children[2+alpha].innerText.trim();
@@ -606,7 +612,6 @@
               }
           }
           console.log( sheetsDict );
-          updateRemainingSquares();
           feather.replace();
           $('[data-toggle="tooltip"]').tooltip();
       }
@@ -614,7 +619,8 @@
       function getSpreadsheetData(){
           fetch('https://docs.google.com/spreadsheets/u/0/d/1bafC30PCbiUhXolvacKnws0jh676hyytj8Y1lkpT8Us/gviz/tq?tqx=out:html&tq=select+*')
               .then( response => response.text() )
-              .then( html => updateSquares( html ) );
+              .then( html => updateSquares( html ) )
+              .then( ()=> updateRemainingSquares() );
       }
       
       async function sequence( key )
