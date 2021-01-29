@@ -34,7 +34,7 @@
       #nfcChampions {
           height: 70px;
           background-color: #A71930;
-          border: 1px solid #A71930;
+          border-bottom: 1px solid #A71930;
           background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
       }
       
@@ -60,7 +60,7 @@
     #nfcChampions {
         height: 70px;
         background-color: #A71930;
-        border: 1px solid #A71930;
+        border-bottom: 1px solid #A71930;
         background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
     }
     
@@ -129,13 +129,15 @@
               <li>If you have any problems picking squares, please text Jess or I. If you don't specify a square, or the square requested is taken we will pick the next sequentially availiable</li>
             </ul>
             <div class="center">
-              <div class="d-flex justify-content-center align-items-end flex-wrap"><a class="btn btn-primary btn-large text-white text-uppercase" id="submitSquaresButton" href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform" target="_blank"><img src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" style="max-height:30px;">Submit your squares here!</a><span class="badge badge-light" id="squaresleft">100 Squares left!</span></div>
+              <div class="d-flex justify-content-center align-items-end flex-wrap"><a class="btn btn-primary btn-large text-white text-uppercase" id="submitSquaresButton" href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform" target="_blank"><img src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" style="max-height:30px;">Submit your squares here!</a></div>
               <div class="p-2"></div>
               <div class="container-fluid" id="squares">
                 <table class="table border border-dark bg-white" style="height:100%">
                   <thead>
                     <tr>
-                      <td colspan="2" rowspan="2"><img class="center" style="display:block;height:80px;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.duetsblog.com%2Ffiles%2F2014%2F10%2FNFLShieldLogo.jpeg&amp;f=1&amp;nofb=1"></td>
+                      <td colspan="2" rowspan="2">
+                        <div class="d-flex flex-column border border-white"><img class="center" style="display:block;height:80px;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.duetsblog.com%2Ffiles%2F2014%2F10%2FNFLShieldLogo.jpeg&amp;f=1&amp;nofb=1"><span id="squaresleft" style="font-size:small">100 Squares left!</span></div>
+                      </td>
                       <td class="text-white bg-single-center" id="nfcChampions" colspan="10"></td>
                     </tr>
                     <tr class="bg-secondary border border-secondary">
@@ -170,341 +172,341 @@
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc0">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A0">A0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A0">A0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A1">A1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A1">A1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A2">A2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A2">A2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A3">A3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A3">A3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A4">A4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A4">A4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A5">A5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A5">A5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A6">A6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A6">A6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A7">A7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A7">A7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A8">A8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A8">A8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="A9">A9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="A9">A9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc1">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B0">B0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B0">B0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B1">B1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B1">B1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B2">B2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B2">B2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B3">B3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B3">B3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B4">B4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B4">B4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B5">B5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B5">B5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B6">B6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B6">B6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B7">B7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B7">B7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B8">B8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B8">B8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="B9">B9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="B9">B9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc2">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C0">C0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C0">C0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C1">C1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C1">C1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C2">C2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C2">C2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C3">C3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C3">C3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C4">C4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C4">C4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C5">C5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C5">C5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C6">C6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C6">C6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C7">C7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C7">C7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C8">C8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C8">C8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="C9">C9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="C9">C9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc3">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D0">D0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D0">D0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D1">D1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D1">D1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D2">D2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D2">D2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D3">D3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D3">D3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D4">D4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D4">D4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D5">D5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D5">D5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D6">D6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D6">D6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D7">D7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D7">D7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D8">D8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D8">D8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="D9">D9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="D9">D9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc4">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E0">E0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E0">E0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E1">E1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E1">E1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E2">E2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E2">E2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E3">E3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E3">E3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E4">E4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E4">E4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E5">E5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E5">E5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E6">E6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E6">E6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E7">E7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E7">E7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E8">E8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E8">E8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="E9">E9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="E9">E9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc5">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F0">F0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F0">F0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F1">F1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F1">F1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F2">F2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F2">F2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F3">F3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F3">F3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F4">F4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F4">F4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F5">F5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F5">F5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F6">F6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F6">F6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F7">F7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F7">F7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F8">F8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F8">F8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="F9">F9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="F9">F9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc6">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G0">G0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G0">G0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G1">G1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G1">G1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G2">G2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G2">G2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G3">G3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G3">G3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G4">G4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G4">G4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G5">G5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G5">G5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G6">G6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G6">G6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G7">G7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G7">G7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G8">G8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G8">G8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="G9">G9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="G9">G9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc7">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H0">H0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H0">H0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H1">H1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H1">H1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H2">H2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H2">H2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H3">H3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H3">H3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H4">H4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H4">H4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H5">H5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H5">H5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H6">H6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H6">H6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H7">H7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H7">H7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H8">H8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H8">H8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="H9">H9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="H9">H9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc8">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I0">I0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I0">I0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I1">I1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I1">I1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I2">I2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I2">I2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I3">I3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I3">I3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I4">I4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I4">I4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I5">I5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I5">I5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I6">I6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I6">I6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I7">I7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I7">I7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I8">I8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I8">I8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="I9">I9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="I9">I9</div>
                       </td>
                     </tr>
                     <tr>
                       <!-- #{i}-->
                       <th class="center border border-secondary bg-secondary" scope="row" style="width: 20px;" id="afc9">#</th>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J0">J0</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J0">J0</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J1">J1</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J1">J1</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J2">J2</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J2">J2</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J3">J3</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J3">J3</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J4">J4</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J4">J4</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J5">J5</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J5">J5</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J6">J6</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J6">J6</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J7">J7</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J7">J7</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J8">J8</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J8">J8</div>
                       </td>
-                      <td class="p-0 border border-dark" style="width:50px">
-                        <div class="center text-secondary" id="J9">J9</div>
+                      <td class="p-0 border border-dark bg-light" style="width:50px">
+                        <div class="center" id="J9">J9</div>
                       </td>
                     </tr>
                   </tbody>
@@ -542,18 +544,21 @@
       
       function updateRemainingSquares()
       {
-          let count = Object.entries(sheetsDict).reduce( (sum, e) => sum + e[1].squares.length, 0 );
-          let msg = "";
-          if( count === 0 )
+          if (Object.entries(sheetsDict) !== 0)
           {
-              msg = "Board's full. Good Luck";
-              document.querySelector("#submitSquaresButton").classList.add('disabled');
+              let count = Object.entries(sheetsDict).reduce( (sum, e) => sum + e[1].squares.length, 0 );
+              let msg = "";
+              if( count === 0 )
+              {
+                  msg = "Board's full. Good Luck";
+                  document.querySelector("#submitSquaresButton").classList.add('disabled');
+              }
+              else
+              {
+                  msg = `${100-count} squares left.`;
+              }
+              document.querySelector("#squaresleft").innerText = msg;
           }
-          else
-          {
-              msg = `${100-count} squares left.`;
-          }
-          document.querySelector("#squaresleft").innerText = msg;
       }
       
       function getColorFromList()
@@ -579,7 +584,7 @@
                   'color' : getColorFromList()
               };
               if( name === "Ryan Bucinell" )
-                  sheetsDict[name].color = "#007FFF";
+                  sheetsDict[name].color = "#004C54";
               for( let alpha = 0; alpha <= 10; alpha++ )
               {
                   let content = trs[i].children[2+alpha].innerText.trim();
@@ -601,6 +606,10 @@
                           {
                               boughtSquare.classList.add('alert-danger');
                           }
+                          else
+                          {
+                              boughtSquare.parentNode.classList.remove('bg-light');
+                          }
       
                           if( uniqueIDs.includes(id))
                           {
@@ -620,7 +629,8 @@
           fetch('https://docs.google.com/spreadsheets/u/0/d/1bafC30PCbiUhXolvacKnws0jh676hyytj8Y1lkpT8Us/gviz/tq?tqx=out:html&tq=select+*')
               .then( response => response.text() )
               .then( html => updateSquares( html ) )
-              .then( ()=> updateRemainingSquares() );
+              .then( ()=> updateRemainingSquares() )
+              .catch( err => document.querySelector("#squaresleft").innerText = "Error loading squares" );
       }
       
       async function sequence( key )
