@@ -18,9 +18,9 @@ block content
 
     mixin prolink( name, url="", disable=false )
         if( url )
-            a( class=`text-dark flex-fill list-group-action ${(disable ?" disabled":"")}` href=url target="_blank"): i(class=`devicon-${name} display-4`)
+            a( rel="noopener" class=`text-dark flex-fill list-group-action ${(disable ?" disabled":"")}` href=url target="_blank"): i(class=`devicon-${name} display-4`)
         else
-            a( class=`text-dark flex-fill list-group-action ${(disable ?" disabled":"")}` href="#" ): i(class=`devicon-${name} display-4`)
+            a( rel="noopener" class=`text-dark flex-fill list-group-action ${(disable ?" disabled":"")}` href="#" ): i(class=`devicon-${name} display-4`)
     
     //- Content
     .row
