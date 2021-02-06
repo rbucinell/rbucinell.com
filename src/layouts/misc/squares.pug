@@ -50,7 +50,8 @@ block content
     ul
         li Squares are <strong>$20</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a>
         li The Pot will consist of the sum of the paid squres minus the MSRP of the wagon
-        li The numbers will be randomized. They will be selected at 6pm on the 7th.
+        li The numbers will be randomized. <strike>They will be selected at 6pm on the 7th.</strike> 
+        li Board filled and paid up, numbers rolled on <a href="https://www.random.org/">RANDOM.ORG</a>
         li Payouts willl ramp up each quarter. Here are the pertentage payouts for each quarter:
         li(style="list-style:none"): ul.list-group.list-group-horizontal-sm
                 li.list-group-item End of 1st: <strong>10%</strong>
@@ -98,36 +99,44 @@ block content
             .card-deck
                 .card
                     .card-body
-                        .card-title.lead End of First
+                        .card-title.lead.d-flex.justify-content-between
+                            span End of First
+                            span.badge.badge-primary $120
                         .card-text
                             ul.list-group.list-group-horizontal.w-100
                                 li#q1afc.list-group-item.w-50.afcChampions.scorecard --
                                 li#q1nfc.list-group-item.w-50.nfcChampions.scorecard --
                 .card
                     .card-body
-                        .card-title.lead End of Half
+                        .card-title.lead.d-flex.justify-content-between
+                            span Halftime
+                            span.badge.badge-primary $240
                         .card-text
                             ul.list-group.list-group-horizontal.w-100
                                 li#q2afc.list-group-item.w-50.afcChampions.scorecard --
                                 li#q2nfc.list-group-item.w-50.nfcChampions.scorecard --
                 .card
                     .card-body
-                        .card-title.lead End of Third
+                        .card-title.lead.d-flex.justify-content-between
+                            span End of Third
+                            span.badge.badge-primary $360
                         .card-text
                             ul.list-group.list-group-horizontal.w-100
                                 li#q3afc.list-group-item.w-50.afcChampions.scorecard --
                                 li#q3nfc.list-group-item.w-50.nfcChampions.scorecard --
                 .card
                     .card-body
-                        .card-title.lead End of Fourth
+                        .card-title.lead.d-flex.justify-content-between
+                            span End of Game
+                            span.badge.badge-primary $480
                         .card-text
                             ul.list-group.list-group-horizontal.w-100
                                 li#q4afc.list-group-item.w-50.afcChampions.scorecard --
                                 li#q4nfc.list-group-item.w-50.nfcChampions.scorecard --
-            .alert.alert-danger(role="alert")
-                span Boxes with red backgrounds have not paid (or I haven't marked them paid yet).
-                button.close(type="button", data-dismiss="alert" aria-label="Close")
-                    span(aria-hidden="true") &times;
+            //- .alert.alert-danger(role="alert")
+            //-     span Boxes with red backgrounds have not paid (or I haven't marked them paid yet).
+            //-     button.close(type="button", data-dismiss="alert" aria-label="Close")
+            //-         span(aria-hidden="true") &times;
 block scripts
     script(src="https://apis.google.com/js/api.js")
     script.
@@ -138,7 +147,7 @@ block scripts
             let helmet = null;
             let nfcList = null;
             let afcList = null;
-            let kickoff = new Date('February 7, 2021 18:00:00');
+            let kickoff = new Date('February 6, 2021 12:00:00');
             let sheetsDict = {};
             
             //  Shuffle the colors
@@ -146,7 +155,7 @@ block scripts
             //-     .map((a) => ({sort: Math.random(), value: a}))
             //-     .sort((a, b) => a.sort - b.sort)
             //-     .map((a) => a.value);
-            
+
             function updateScores( html )
             {
                 let parser = new DOMParser();
@@ -213,6 +222,12 @@ block scripts
                                 helmetClone.querySelector( "g > g> g> path:nth-child(11)" ).style.fill = sheetsDict[name].color;
                                 boughtSquare.appendChild( helmetClone );
                                 sheetsDict[name].squares.push(id);
+                                /*
+                                let nameplate = document.createElement( 'span');
+                                nameplate.innerText = name;
+                                nameplate.style.fontSize = 'smaller';
+                                boughtSquare.appendChild(nameplate);
+                                */
                                 if( !sheetsDict[name].purchased )
                                 {
                                     boughtSquare.classList.add('alert-danger');

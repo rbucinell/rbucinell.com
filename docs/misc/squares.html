@@ -125,7 +125,8 @@
             <ul>
               <li>Squares are <strong>$20</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a></li>
               <li>The Pot will consist of the sum of the paid squres minus the MSRP of the wagon</li>
-              <li>The numbers will be randomized. They will be selected at 6pm on the 7th.</li>
+              <li>The numbers will be randomized. <strike>They will be selected at 6pm on the 7th.</strike> </li>
+              <li>Board filled and paid up, numbers rolled on <a href="https://www.random.org/">RANDOM.ORG</a></li>
               <li>Payouts willl ramp up each quarter. Here are the pertentage payouts for each quarter:</li>
               <li style="list-style:none">
                 <ul class="list-group list-group-horizontal-sm">
@@ -524,7 +525,7 @@
                 <div class="card-deck">
                   <div class="card">
                     <div class="card-body">
-                      <div class="card-title lead">End of First</div>
+                      <div class="card-title lead d-flex justify-content-between"><span>End of First</span><span class="badge badge-primary">$120</span></div>
                       <div class="card-text">
                         <ul class="list-group list-group-horizontal w-100">
                           <li class="list-group-item w-50 afcChampions scorecard" id="q1afc">--</li>
@@ -535,7 +536,7 @@
                   </div>
                   <div class="card">
                     <div class="card-body">
-                      <div class="card-title lead">End of Half</div>
+                      <div class="card-title lead d-flex justify-content-between"><span>Halftime</span><span class="badge badge-primary">$240</span></div>
                       <div class="card-text">
                         <ul class="list-group list-group-horizontal w-100">
                           <li class="list-group-item w-50 afcChampions scorecard" id="q2afc">--</li>
@@ -546,7 +547,7 @@
                   </div>
                   <div class="card">
                     <div class="card-body">
-                      <div class="card-title lead">End of Third</div>
+                      <div class="card-title lead d-flex justify-content-between"><span>End of Third</span><span class="badge badge-primary">$360</span></div>
                       <div class="card-text">
                         <ul class="list-group list-group-horizontal w-100">
                           <li class="list-group-item w-50 afcChampions scorecard" id="q3afc">--</li>
@@ -557,7 +558,7 @@
                   </div>
                   <div class="card">
                     <div class="card-body">
-                      <div class="card-title lead">End of Fourth</div>
+                      <div class="card-title lead d-flex justify-content-between"><span>End of Game</span><span class="badge badge-primary">$480</span></div>
                       <div class="card-text">
                         <ul class="list-group list-group-horizontal w-100">
                           <li class="list-group-item w-50 afcChampions scorecard" id="q4afc">--</li>
@@ -566,9 +567,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="alert alert-danger" role="alert"><span>Boxes with red backgrounds have not paid (or I haven't marked them paid yet).</span>
-                  <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
               </div>
             </div>
@@ -588,7 +586,7 @@
       let helmet = null;
       let nfcList = null;
       let afcList = null;
-      let kickoff = new Date('February 7, 2021 18:00:00');
+      let kickoff = new Date('February 6, 2021 12:00:00');
       let sheetsDict = {};
       
       //  Shuffle the colors
@@ -663,6 +661,12 @@
                           helmetClone.querySelector( "g > g> g> path:nth-child(11)" ).style.fill = sheetsDict[name].color;
                           boughtSquare.appendChild( helmetClone );
                           sheetsDict[name].squares.push(id);
+                          /*
+                          let nameplate = document.createElement( 'span');
+                          nameplate.innerText = name;
+                          nameplate.style.fontSize = 'smaller';
+                          boughtSquare.appendChild(nameplate);
+                          */
                           if( !sheetsDict[name].purchased )
                           {
                               boughtSquare.classList.add('alert-danger');
