@@ -29,16 +29,15 @@
           s.parentNode.insertBefore(ga,s);
       })();
     </script>
-    <link rel="stylesheet" crossorigin="anonymous" href="https://bootstrap-extension.com/css/4.6.1/bootstrap-extension.min.css" type="text/css">
     <style>
-      #nfcChampions {
+      .nfcChampions {
           height: 70px;
           background-color: #A71930;
           border-bottom: 1px solid #A71930;
           background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
       }
       
-      #afcChampions {
+      .afcChampions {
           vertical-align:middle;
           text-align:center;
           width:50px;
@@ -53,18 +52,23 @@
           background-repeat: no-repeat;
       }
       
+      .scorecard {
+          height: 3rem;
+          color: white;
+          font-weight: bold;
+      }
+      
     </style>
   </head>
-  <link rel="stylesheet" crossorigin="anonymous" href="https://bootstrap-extension.com/css/4.6.1/bootstrap-extension.min.css" type="text/css">
   <style>
-    #nfcChampions {
+    .nfcChampions {
         height: 70px;
         background-color: #A71930;
         border-bottom: 1px solid #A71930;
         background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/TB);
     }
     
-    #afcChampions {
+    .afcChampions {
         vertical-align:middle;
         text-align:center;
         width:50px;
@@ -77,6 +81,12 @@
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+    }
+    
+    .scorecard {
+        height: 3rem;
+        color: white;
+        font-weight: bold;
     }
     
   </style>
@@ -138,7 +148,7 @@
                       <td colspan="2" rowspan="2">
                         <div class="d-flex flex-column border border-white"><img class="center" style="display:block;height:80px;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.duetsblog.com%2Ffiles%2F2014%2F10%2FNFLShieldLogo.jpeg&amp;f=1&amp;nofb=1"><span id="squaresleft" style="font-size:small">100 Squares left!</span></div>
                       </td>
-                      <td class="text-white bg-single-center" id="nfcChampions" colspan="10"></td>
+                      <td class="nfcChampions text-white bg-single-center" colspan="10"></td>
                     </tr>
                     <tr class="bg-secondary border border-secondary">
                       <!-- #{n}-->
@@ -165,7 +175,7 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="col-1 bg-danger text-white bg-single-center" id="afcChampions" rowspan="11">
+                      <td class="afcChampions col-1 bg-danger text-white bg-single-center" rowspan="11">
                         <div class="rotate-sm-l-90 display-9"></div>
                       </td>
                     </tr>
@@ -511,6 +521,52 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="card-deck">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-title lead">End of First</div>
+                      <div class="card-text">
+                        <ul class="list-group list-group-horizontal w-100">
+                          <li class="list-group-item w-50 afcChampions scorecard" id="q1afc">--</li>
+                          <li class="list-group-item w-50 nfcChampions scorecard" id="q1nfc">--</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-title lead">End of Half</div>
+                      <div class="card-text">
+                        <ul class="list-group list-group-horizontal w-100">
+                          <li class="list-group-item w-50 afcChampions scorecard" id="q2afc">--</li>
+                          <li class="list-group-item w-50 nfcChampions scorecard" id="q2nfc">--</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-title lead">End of Third</div>
+                      <div class="card-text">
+                        <ul class="list-group list-group-horizontal w-100">
+                          <li class="list-group-item w-50 afcChampions scorecard" id="q3afc">--</li>
+                          <li class="list-group-item w-50 nfcChampions scorecard" id="q3nfc">--</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-title lead">End of Fourth</div>
+                      <div class="card-text">
+                        <ul class="list-group list-group-horizontal w-100">
+                          <li class="list-group-item w-50 afcChampions scorecard" id="q4afc">--</li>
+                          <li class="list-group-item w-50 nfcChampions scorecard" id="q4nfc">--</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="alert alert-danger" role="alert"><span>Boxes with red backgrounds have not paid (or I haven't marked them paid yet).</span>
                   <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
@@ -523,8 +579,7 @@
     <script crossorigin="anonymous" rel="noopener" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script crossorigin="anonymous" rel="noopener" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>feather.replace( {style: 'height:1.1rem;'})</script>
-    <script rel="noopener" src="https://bootstrap-extension.com/js/4.6.1/bootstrap-extension.min.js"></script>
-    <script rel="noopener" src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
     <script>
       let CSS_COLOR_NAMES = ["Indigo", "DarkOrange", "AntiqueWhite", "Ivory", "DarkRed", "Aqua", "RoyalBlue", "DarkSalmon", "SaddleBrown", "LawnGreen", "Salmon", "MidnightBlue", "Black", "LightBlue", "SeaGreen", "DeepPink", "Silver", "DodgerBlue", "Olive", "FireBrick", "Orange", "OrangeRed", "Tan", "Crimson", "GhostWhite", "Gold", "Tomato", "DarkBlue", "Magenta", "Maroon", "MediumAquaMarine", "PeachPuff", "Wheat", "WhiteSmoke", "DarkKhaki", "Yellow", "PowderBlue", "MediumBlue", "PapayaWhip", "Gainsboro", "Lime", "Gray", "PaleVioletRed", "Teal", "Coral", "White", "Blue", "MistyRose", "Black"];
       let n = 10
@@ -542,9 +597,27 @@
       //-     .sort((a, b) => a.sort - b.sort)
       //-     .map((a) => a.value);
       
+      function updateScores( html )
+      {
+          let parser = new DOMParser();
+          let doc = parser.parseFromString( html, "text/html");
+          
+          document.querySelector("#q1afc").innerText = doc.querySelector("table tr:nth-child(4) td:nth-child(16)").innerText;
+          document.querySelector("#q1nfc").innerText = doc.querySelector("table tr:nth-child(4) td:nth-child(17)").innerText;
+      
+          document.querySelector("#q2afc").innerText = doc.querySelector("table tr:nth-child(5) td:nth-child(16)").innerText;
+          document.querySelector("#q2nfc").innerText = doc.querySelector("table tr:nth-child(5) td:nth-child(17)").innerText;
+      
+          document.querySelector("#q3afc").innerText = doc.querySelector("table tr:nth-child(6) td:nth-child(16)").innerText;
+          document.querySelector("#q3nfc").innerText = doc.querySelector("table tr:nth-child(6) td:nth-child(17)").innerText;
+      
+          document.querySelector("#q4afc").innerText = doc.querySelector("table tr:nth-child(7) td:nth-child(16)").innerText;
+          document.querySelector("#q4nfc").innerText = doc.querySelector("table tr:nth-child(7) td:nth-child(17)").innerText;
+      }
+      
       function updateRemainingSquares()
       {
-          let count = [...document.querySelectorAll("#squares tbody td:not(#afcChampions)")].reduce( (acc,td)=> acc+= td.innerText === "" ? 1:0,0);
+          let count = [...document.querySelectorAll("#squares tbody td:not(.afcChampions)")].reduce( (acc,td)=> acc+= td.innerText === "" ? 1:0,0);
           msg = count === 0 ? "Board's full. Good Luck" : `${100-count} squares left.`;
           document.querySelector("#squaresleft").innerText = msg;
       }
@@ -603,7 +676,7 @@
                           {
                               console.error( `${name} requested square ${id} that was already taken`);
                           }
-                          uniqueIDs.push(id)
+                          uniqueIDs.push(id);
                       });
                   }
               }
@@ -616,7 +689,7 @@
       function getSpreadsheetData(){
           fetch('https://docs.google.com/spreadsheets/u/0/d/1bafC30PCbiUhXolvacKnws0jh676hyytj8Y1lkpT8Us/gviz/tq?tqx=out:html&tq=select+*')
               .then( response => response.text() )
-              .then( html => updateSquares( html ) )
+              .then( html => {updateSquares( html );updateScores(html);} )
               .then( ()=> updateRemainingSquares() )
               .catch( err => document.querySelector("#squaresleft").innerText = "Error loading squares" );
       }
