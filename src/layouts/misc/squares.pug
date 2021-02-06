@@ -88,7 +88,7 @@ block content
                             // #{i}
                             th.center.border.border-secondary.bg-secondary(scope="row" style="width: 20px;", id=`afc${i}`) #
                             each n,j in nums
-                                td.p-0.border.border-dark.bg-light(style="width:50px")
+                                td.p-0.border.border-dark.bg-light.font-weight-bold(style="width:50px")
                                     div.center(id=`${a}${n}`) #{alphabet[i]}#{nums[j]}
             .alert.alert-danger(role="alert")
                 span Boxes with red backgrounds have not paid (or I haven't marked them paid yet).
@@ -116,21 +116,9 @@ block scripts
 
             function updateRemainingSquares()
             {
-                if (Object.entries(sheetsDict) !== 0)
-                {
-                    let count = Object.entries(sheetsDict).reduce( (sum, e) => sum + e[1].squares.length, 0 );
-                    let msg = "";
-                    if( count === 0 )
-                    {
-                        msg = "Board's full. Good Luck";
-                        document.querySelector("#submitSquaresButton").classList.add('disabled');
-                    }
-                    else
-                    {
-                        msg = `${100-count} squares left.`;
-                    }
-                    document.querySelector("#squaresleft").innerText = msg;
-                }
+                let count = [...document.querySelectorAll("#squares tbody td:not(#afcChampions)")].reduce( (acc,td)=> acc+= td.innerText === "" ? 1:0,0);
+                msg = count === 0 ? "Board's full. Good Luck" : `${100-count} squares left.`;
+                document.querySelector("#squaresleft").innerText = msg;
             }
             
             function getColorFromList()
