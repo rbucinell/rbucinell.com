@@ -1,0 +1,79 @@
+extends ../partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Bucinell Sprinkle - A Christmas Puzzle",
+            breadcrumbs: [
+                {fa:"home", text:"Home", url:"index.html"},
+                {fa:"grid", text:"Christmas Puzzle", url:"christmas.html"}
+            ],
+            pageh1: {
+                title: 'A Nonogram Christmas Puzzle',
+                small: ''
+            }
+        }
+block head
+    style.
+        rect {
+            stroke: #000;
+        }
+        
+        .hover {
+            fill: dimgray;
+            fill-opacity: .75;
+        }
+
+        .path
+        {
+            fill: yellow;
+            stroke: yellow;
+            stroke-opacity: 1;
+        }
+
+        .tile {
+            fill: white;
+        }
+        .wall {
+            fill: black;
+            stroke-opacity: 1;
+        }
+        .start {
+            fill: #00FF00;
+        }
+        .exit {
+            fill: #0000FF;
+        }
+        .closed {
+            fill: #42A5F5;
+        }
+        .open {
+            fill: #90CAF9;
+        }
+
+        #svgcontainer{
+            padding-right: 0;
+            padding-left: 313px;
+            padding-top: 213px;
+            width: 100%;
+            height: 800px;
+            border:1px solid black;
+            background-color:white;
+            background-image:url(https://www.gchq.gov.uk/sites/default/files/grid-shading-puzzle.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position-x: 50%;
+        }
+        #gameDiv {				
+            display: block;
+            border:1px solid #000000;
+            background-color: white;
+            display: flex;
+        }
+
+block content
+    .container
+        .row: .col-lg-12
+            p: a(href=`https://www.gchq.gov.uk/news-article/christmas-card-cryptographic-twist-charity`) A Christmas card with a cryptographic twist for charity
+        .row: .col-lg-12
+            img#hero.center.img-fluid(src="https://www.gchq.gov.uk/images/grid-shading-puzzle_768x714.jpg")
+                //- http://stackoverflow.com/questions/17786618/how-to-use-z-index-in-svg-elements
