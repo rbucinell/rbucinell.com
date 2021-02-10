@@ -24,38 +24,25 @@ block content
                     input.form-control(name="ceaserin", type="text", onkeyup="updateCeaserCipher()")
                 .form-group
                     label Shift
-                    input.form-control(name="ceasershift", type="number", value="1", maxlength="2", min="0", max="26", onkeyup="updateCeaserCipher()")
+                    input.form-control(name="ceasershift", type="number", value="1", maxlength="2", min="0", max="26", onchange="updateCeaserCipher()")
                 .form-group    
                     label Output
                     input.form-control(name="ceaserout", type="text", readonly)
 block scripts
     script.
-        let alphabet = 'abcdefghijklmnopqrstuvwxyz';
-        function rotShift( num, amount )
+
+        function rotShift( input, amount )
         {
-            console.log( num, amount);
-            var retVal = num + amount;
-            return retVal;
+            const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+            return input
+                .split('')
+                .map( e => alphabet[ (alphabet.indexOf(e) + amount) % alphabet.length])
+                .join('');
         }
         
         function updateCeaserCipher()
         {
-            var shift = document.getElementsByName("ceasershift")[0].value;
-            var input = document.getElementsByName("ceaserin")[0].value;
-            var output = document.getElementsByName("ceaserout")[0];
-            
-            output.value = "";
-            
-            for( i in input)
-            {
-                if( input[i] === " ")
-                {
-                    output.value = output.value + " ";
-                }
-                else
-                {
-                    var shiftChar = rotShift( input.charCodeAt(i), shift );
-                    output.value = output.value + String.fromCharCode( shiftChar );
-                }
-            }
+            let input = document.getElementsByName("ceaserin")[0].value;
+            let shift = parseInt(document.getElementsByName("ceasershift")[0].value);
+            document.getElementsByName("ceaserout")[0].value = rotShift(input,shift);
         }
