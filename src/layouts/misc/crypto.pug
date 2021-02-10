@@ -1,0 +1,61 @@
+extends ../partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Bucinell Sprinkle - Crypto Tools",
+            breadcrumbs: [
+                {fa:"home", text:"Home", url:"index.html"},
+                {fa:"key", text:"Crypto Tools", url:"crypto.html"}
+            ],
+            pageh1: {
+                title: 'Crypto Tools',
+                small: ''
+            }
+        }
+block head
+block content
+    .container
+        .row: .col-lg-12
+            h3 The Ceaser Cipher (rot13)
+            p Simple encryption where the value of the input is shifted by a number to create the output. Common example is Rot13, where the shift number is 13. A -> M, B -> N, etc...
+            form
+                .form-group
+                    label Clear Text
+                    input.form-control(name="ceaserin", type="text", onkeyup="updateCeaserCipher()")
+                .form-group
+                    label Shift
+                    input.form-control(name="ceasershift", type="number", value="1", maxlength="2", min="0", max="26", onkeyup="updateCeaserCipher()")
+                .form-group    
+                    label Output
+                    input.form-control(name="ceaserout", type="text", readonly)
+block scripts
+    script.
+        let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+        function rotShift( num, amount )
+        {
+            console.log( num, amount);
+            var retVal = num + amount;
+            return retVal;
+        }
+        
+        function updateCeaserCipher()
+        {
+            var shift = document.getElementsByName("ceasershift")[0].value;
+            var input = document.getElementsByName("ceaserin")[0].value;
+            var output = document.getElementsByName("ceaserout")[0];
+            
+            output.value = "";
+            
+            for( i in input)
+            {
+                if( input[i] === " ")
+                {
+                    output.value = output.value + " ";
+                }
+                else
+                {
+                    var shiftChar = rotShift( input.charCodeAt(i), shift );
+                    output.value = output.value + String.fromCharCode( shiftChar );
+                }
+            }
+        }
