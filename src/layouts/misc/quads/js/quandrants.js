@@ -109,9 +109,6 @@ class Quadrants
 	**/
 	update()
 	{
-		let index =  -1;
-		let largestError = 0;
-
 		this.error = this.averageErrorOfQuad( this.drawNode, this.errorSum );
 
 		if( this.previousError == -1 || this.previousError - this.error > ERROR_RATE )
@@ -169,7 +166,6 @@ class Quadrants
 		{
 			this.drawNode.children[i].draw(this.ctx);
 		}
-		return;
 	}
 
 	/**
@@ -182,10 +178,10 @@ class Quadrants
 		let R = 0, G = 0, B = 0;
 
 		//Manipulate the current section
-		for( var i = 0; i < total; i+= 4 )
+		for( let i = 0; i < total; i+= 4 )
 		{
 			//Index of RGBA
-			var r = i + 0,
+			let r = i + 0,
 				g = i + 1,
 				b = i + 2,
 				a = i + 3;
