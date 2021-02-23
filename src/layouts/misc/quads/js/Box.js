@@ -10,7 +10,6 @@ const DrawMode = {
 	HATCHSHADE:	"HatchShaded"
 };
 
-
 class Box {
 
 	/**
@@ -58,6 +57,7 @@ class Box {
 	
 	getAllLeafNodes( currentlist, maxdepth )
 	{
+
 		if( this.depth >= maxdepth )
 		{
 
@@ -68,7 +68,7 @@ class Box {
 		}
 		else
 		{
-			for( var i = 0; i < this.children.length; i++ )
+			for( let i = 0; i < this.children.length; i++ )
 			{
 				currentlist = this.children[i].getAllLeafNodes( currentlist, maxdepth );
 			}
@@ -147,7 +147,6 @@ class Box {
 					//Horizontal hatches
 					ctx.moveTo(this.x, this.y+ i*hHatches);
 					ctx.lineTo(this.x + this.w, this.y+ i*hHatches);
-
 				}
 				ctx.stroke();
 

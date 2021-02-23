@@ -1,9 +1,3 @@
-
-Histogram.COLOR_RANGE = 256;
-Histogram.RED_ERROR_WEIGHT   = 0.2989;
-Histogram.GREEN_ERROR_WEIGHT = 0.5870;
-Histogram.BLUE_ERROR_WEIGHT  = 0.1140;
-
 class Histogram
 {
 	constructor( image, x, y, w, h)
@@ -38,9 +32,9 @@ class Histogram
 	buildHist()
 	{
 		//first initialize r, g, and b
-		this.r = this.newFilledArray( Histogram.COLOR_RANGE, 0 );
-		this.g = this.newFilledArray( Histogram.COLOR_RANGE, 0 );
-		this.b = this.newFilledArray( Histogram.COLOR_RANGE, 0 );
+		this.r = new Array(Histogram.COLOR_RANGE).fill(0);
+		this.g = new Array(Histogram.COLOR_RANGE).fill(0);
+		this.b = new Array(Histogram.COLOR_RANGE).fill(0);
 
 		////Fill buffer, and get image data from it
 		this.buffer.drawImage( this.image, this.x, this.y, this.w, this.h, this.x, this.y, this.w, this.h);
@@ -63,42 +57,25 @@ class Histogram
 		}
 	}
 
-	newFilledArray(length, val)
-	{
-		let array = [];
-		let i = 0;
-
-		while (i < length)
-		{
-			array[i++] = val;
-		}
-		return array;
-	}
-
 	/**
 	* Returns the weighted average of a set of data of a color channel histogram
 	*/
 	weightedAverage( data )
 	{
-		let total = 0, 
-			value = 0, 
-			error = 0, 
-			i = 0,
-			l = data.length;
+		let total = 0, value = 0, error = 0;
 
-		for( i = 0, l = data.length; i < l; i++ )
+		for( let i = 0; i < data.length; i++ )
 		{
 			total += data[i];
 			value += data[i] * i;
 		}
 		value = value / total;
 
-		for( i = 0, l = data.length; i < l; i++ )
+		for( let i = 0; i < data.length; i++ )
 		{
 			error += ( data[i] * Math.pow(( value - i ),2));
 		}
 		error = Math.sqrt( error / total );
-
 		return { value: value, error: error };
 	}
 
@@ -115,7 +92,7 @@ class Histogram
 		let error = rColor.error * Histogram.RED_ERROR_WEIGHT +
 					gColor.error * Histogram.GREEN_ERROR_WEIGHT +
 					bColor.error * Histogram.BLUE_ERROR_WEIGHT;
-					
+
 		return {
 			r: rColor.value,
 			g: gColor.value,
@@ -124,3 +101,8 @@ class Histogram
 		};
 	}
 }
+
+Histogram.COLOR_RANGE = 256;
+Histogram.RED_ERROR_WEIGHT   = 0.2989;
+Histogram.GREEN_ERROR_WEIGHT = 0.5870;
+Histogram.BLUE_ERROR_WEIGHT  = 0.1140;
