@@ -55,11 +55,10 @@ gulp.task('copy',function(){
   
 gulp.task('projectlist', function(done){
 	
-	let projects = {};
+	let projects = { "_comments": "DO NOT Modify, this file is dynamically generated"};
 	let path = src + "projects/";
 	fs.readdirSync(path).filter( function(file)
 	{
-		
 		let isDir = fs.statSync(path+file).isDirectory();
 		if( isDir )
 		{
@@ -73,7 +72,7 @@ gulp.task('projectlist', function(done){
 			catch(e){};
 		}
 	});
-	fs.writeFile( path + 'projects.json', JSON.stringify(projects), (err)=>{
+	fs.writeFile( path + 'projects.json', JSON.stringify(projects,null,4), (err)=>{
 		if( err ) throw err;
 		console.log( 'projects.json has been saved.');
 	});
