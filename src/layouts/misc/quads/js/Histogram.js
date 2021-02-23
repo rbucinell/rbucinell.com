@@ -1,4 +1,9 @@
 
+Histogram.COLOR_RANGE = 256;
+Histogram.RED_ERROR_WEIGHT   = 0.2989;
+Histogram.GREEN_ERROR_WEIGHT = 0.5870;
+Histogram.BLUE_ERROR_WEIGHT  = 0.1140;
+
 class Histogram
 {
 	constructor( image, x, y, w, h)
@@ -119,8 +124,3 @@ class Histogram
 		};
 	}
 }
-
-Histogram.COLOR_RANGE = 256;
-Histogram.RED_ERROR_WEIGHT   = 0.2989;
-Histogram.GREEN_ERROR_WEIGHT = 0.5870;
-Histogram.BLUE_ERROR_WEIGHT  = 0.1140;
