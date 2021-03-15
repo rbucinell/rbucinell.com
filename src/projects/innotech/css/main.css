@@ -2,7 +2,10 @@
 light blue: color: #337ab7;
 dark blue: color: rgb(17,39,94);
 */
-
+:root {
+  --brand-blue: rgb(17,39,94);
+  --brand-blue-darker: #11275E;
+}
 * { margin: 0; padding: 0; }
 
 body
@@ -10,8 +13,7 @@ body
   background-color: #999;
   background-image: url( ../img/wood.png);
   padding: 5px;
-
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .navbar {
@@ -55,36 +57,41 @@ body
     max-height: 60px;
 }
 
-.navbar .nav > li
+.main-nav-item
 {
-  background-color: lightgray;
+  color: white;
+  font-family: 'Arvo', serif;
+  font-weight: bold;
+  /*
+  background-color: whitesmoke;
   border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
   border: 2px solid black;
   padding: 2px;
-  margin: 10px 2px 10px 0px;
+  margin: 10px 2px 10px 0px;*/
 }
 
-.navbar .nav > li > a
+.main-nav-item > a
 {
-    color: rgb(17,39,94);
+    /*
+    color: var(--brand-blue) !important;
     padding: 5px;
     font-size: 1.2em;
-    font-family: 'Emblema One';
+    */
+    
 }
 .container-main
 {
-  color: #11275E;
+  color: var(--brand-blue-darker);
   background-color: #999;
   background: url(../img/content-bg.gif ) repeat-y;
   background-size: 100% 1000px;
   padding: 20px 15px 10px 20px;
-
-
+  /*
   -webkit-box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.75);
-  box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.75);*/
 
   min-height: 1000px;
   max-width: 850px;
@@ -93,6 +100,16 @@ body
 .well {
   background-image: url(../img/textured-paper.png );
   background-color: lightgray;
-
   border: 1px solid #999;
+}
+
+.lifted{ 
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14), 
+              0px 1px 3px 0px rgba(0,0,0,.12);
+}
+
+.pattern {
+  background-color: #eff3f6;
+background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20L0 20z' fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
