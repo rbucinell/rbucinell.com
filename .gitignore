@@ -9,3 +9,5 @@ src/projects/projects.json
 *.cache
 package-lock.json
 node_modules
+
+.vscode
