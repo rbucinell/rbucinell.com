@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Skull Billard's Table</title>
+    </head>
+    <body>
+        <div id="poolTable" style="width:1017px; height:785px;background-image: url(table.svg);">
+            <img id="message" src="message.png" style="left:20%;top:30%;position:absolute;visibility:hidden;"></img>
+        </div>
+        <p>Dungeons and Dragons</p>
+        <p>Campaign: Into the Planar Nexus</p>
+        </p>Puzzle: Ortus's Manor Billards</p>
+        <script>
+            let skulls = [
+                { left: 90 ,  top: 100, neighbors: [7,1], skull: {} },
+                { left: 480,  top: 100, neighbors: [0,2], skull: {} },
+                { left: 875,  top: 100, neighbors: [1,3], skull: {} },
+                { left: 875,  top: 400, neighbors: [2,4], skull: {} },
+                { left: 875,  top: 625, neighbors: [3,5], skull: {} },
+                { left: 480 , top: 625, neighbors: [4,6], skull: {} },
+                { left: 90 ,  top: 625, neighbors: [5,7], skull: {} },
+                { left: 90 ,  top: 400, neighbors: [6,0], skull: {} },
+            ]
+            
+            function clickSkull(event)
+            {
+                let curSkull = event.target.closest('.skull');
+                console.log( curSkull );
+                toggleSkull( curSkull, true );
+                console.log(skulls.every( s => s.skull.children[0].getAttribute('data-lit')));
+                if( skulls.every( s => s.skull.children[0].getAttribute('data-lit') === 'true' ) )
+                {
+                    document.querySelector('#message').style.visibility = 'visible';
+                }
+            }
+
+            function toggleSkull( skull, primary=false )
+            {
+                let newState = !(skull.getAttribute('data-lit') === 'true');
+                skull.setAttribute('data-lit', newState);
+                skull.querySelectorAll('.flameEye').forEach(eye => 
+                {
+                    eye.style.visibility = newState ? 'visible':'hidden';
+                });
+
+                if( primary )
+                {
+                    let index = skulls.findIndex( s => s.skull.children[0].id === skull.id );
+                    toggleSkull( skulls[skulls[index].neighbors[0]].skull.children[0]);
+                    toggleSkull( skulls[skulls[index].neighbors[1]].skull.children[0]);
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', async ()=> 
+            {
+                let skullFile = await fetch( 'skull.svg' );
+                let skullIcon = await skullFile.text();
+
+                for( let i = 0; i < skulls.length; i++ )
+                {
+                    let skull = document.createElement('div');
+                    
+                    skull.innerHTML = skullIcon;
+                    let svg = skull.querySelector('svg');
+                    svg.setAttribute('data-lit', true);
+                    svg.id=`skull${i}`;
+                    svg.classList += 'skull';
+                    Object.assign( skull.style, {
+                        width: '75px',
+                        position: 'absolute',
+                        left: `${skulls[i].left}px`,
+                        top: `${skulls[i].top}px`
+                    });
+                    skull.addEventListener( 'click', clickSkull, false );
+                    toggleSkull(skull.children[0]);
+                    skulls[i]['skull'] = skull;
+                    document.querySelector('#poolTable').appendChild( skull );
+                }
+                toggleSkull(skulls[5].skull.children[0]);
+            });
+        </script>
+    </body>
+</html>
