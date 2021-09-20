@@ -65,6 +65,11 @@
         "path": "projects/SDE/",
         "hasIndex": false
     },
+    "skull_puzzle": {
+        "name": "skull_puzzle",
+        "path": "projects/skull_puzzle/",
+        "hasIndex": true
+    },
     "subs": {
         "name": "subs",
         "path": "projects/subs/",
