@@ -1,7 +1,7 @@
 {
   "name": "rbucinell.com",
   "version": "3.1.0",
-  "description": "Personal website",
+  "description": "My Personal website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
