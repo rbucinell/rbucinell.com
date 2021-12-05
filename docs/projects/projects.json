@@ -90,6 +90,11 @@
         "path": "projects/way-of-ninja/",
         "hasIndex": false
     },
+    "whyilift": {
+        "name": "whyilift",
+        "path": "projects/whyilift/",
+        "hasIndex": true
+    },
     "yt": {
         "name": "yt",
         "path": "projects/yt/",
