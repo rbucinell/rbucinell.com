@@ -182,7 +182,7 @@ block content
     p It's that time of year again. Superbowl, baby! Last year we ran squares for Ryder's shower, but this year all money is on the table. There are new rules this year, and a new table. Good Luck.
     p.lead Rules
     ul
-        li Squares are <strong>$20</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a>
+        li Squares are <strong>$10</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a>
         li The Pot will consist of the sum of the paid squres
         li The numbers will be randomized 30mins prior to the game start.
         li Board filled and paid up, numbers rolled by <a href="https://www.random.org/">RANDOM.ORG</a>
@@ -194,7 +194,12 @@ block content
                 li.list-group-item Final Score: <strong>40%</strong>
         li The winning square will be determined by the sum of the digits of the teams' score. (e.g. NFC Champion has 17 at the end of the first, the winning number will be 8 [1+7] )
         li I reserve the right to remove unpaid square request.
-            ul: li unclaimed/unpaid squares that win, will splash the payout to the cardinal 4 directions in an equal payout (recursively until all money has been distributed)
+        li 
+            .media 
+                .media-body Unclaimed/unpaid squares that win, will 
+                    a(data-toggle="collapse" href="#collapseSplash" role="button" aria-expanded="false" aria-controls="collapseSplash") splash the payout 
+                    | to the cardinal 4 directions in an equal payout (recursively until all money has been distributed)
+                img#collapseSplash.collapse.ml-3.img-thumbnail(src="../img/squares/splash_diagram.jpg")
         li If you have any problems picking squares, please text Jess or I. If you don't specify a square, or the square requested is taken we will pick the next sequentially availiable
     
     .center
@@ -207,7 +212,7 @@ block content
     .board-grid.center  
         #logo
             img.mw-100.mh-100.center(src="https://static.www.nfl.com/image/upload/v1554321393/league/nvfr7ogywskqrfaiu38m.svg")
-            span#squaresleft(style="font-size:small") 98 squares left.
+            span#squaresleft(style="font-size:small") X squares left.
         #chq1.qFont.q1.header.cornerheader Q1
         #chq2.qFont.q2.header.cornerheader Q2
         #chq3.qFont.q3.header.cornerheader Q3
@@ -258,13 +263,14 @@ block content
                                 each n,j in nums
                                     td.p-0.border.border-dark.bg-light.font-weight-bold
                                         div.square.center(id=`${a}${n}`) #{alphabet[i]}#{nums[j]}
+    br
     .container
         .card-deck
             .card
                 .card-body
                     .card-title.lead.d-flex.justify-content-between
                         span End of First
-                        span.qpayout.badge $200
+                        span.qpayout.badge $100
                     .card-text
                         ul.list-group.list-group-horizontal.w-100
                             li#q1afc.list-group-item.w-50.afcChampions.scorecard --
@@ -273,7 +279,7 @@ block content
                 .card-body
                     .card-title.lead.d-flex.justify-content-between
                         span Halftime
-                        span.badge.qpayout $400
+                        span.badge.qpayout $200
                     .card-text
                         ul.list-group.list-group-horizontal.w-100
                             li#q2afc.list-group-item.w-50.afcChampions.scorecard --
@@ -282,7 +288,7 @@ block content
                 .card-body
                     .card-title.lead.d-flex.justify-content-between
                         span End of Third
-                        span.badge.qpayout $600
+                        span.badge.qpayout $300
                     .card-text
                         ul.list-group.list-group-horizontal.w-100
                             li#q3afc.list-group-item.w-50.afcChampions.scorecard --
@@ -291,7 +297,7 @@ block content
                 .card-body
                     .card-title.lead.d-flex.justify-content-between
                         span End of Game
-                        span.badge.qpayout $800
+                        span.badge.qpayout $400
                     .card-text
                         ul.list-group.list-group-horizontal.w-100
                             li#q4afc.list-group-item.w-50.afcChampions.scorecard --
@@ -452,7 +458,7 @@ block scripts
             }
 
             document.addEventListener('DOMContentLoaded', async ()=> {
-                fetch('../img/helmet.svg')
+                fetch('../img/squares/helmet.svg')
                     .then( response=>response.text() )
                     .then( t => {
                         helmet = document.createElement('div');
