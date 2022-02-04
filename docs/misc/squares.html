@@ -1031,54 +1031,62 @@
               </div>
             </div><br>
             <div class="container">
-              <div class="card-deck">
-                <div class="card" id="q1scoreCard">
-                  <div class="card-body">
-                    <div class="card-title lead d-flex justify-content-between"><span>End of Q1</span><span class="qpayout badge" id="q1payout">$ --</span></div>
-                    <div class="card-text">
-                      <ul class="list-group list-group-horizontal w-100">
-                        <li class="list-group-item w-50 afcChampions scorecard" id="q1afc">--</li>
-                        <li class="list-group-item w-50 nfcChampions scorecard" id="q1nfc">--</li>
-                      </ul>
+              <div class="row">
+                <div class="col">
+                  <div class="card" id="q1scoreCard">
+                    <div class="card-body">
+                      <div class="card-title lead d-flex justify-content-between"><span>End of Q1</span><span class="qpayout badge" id="q1payout">$ --</span></div>
+                      <div class="card-text">
+                        <ul class="list-group list-group-horizontal w-100">
+                          <li class="list-group-item w-50 afcChampions scorecard" id="q1afc">--</li>
+                          <li class="list-group-item w-50 nfcChampions scorecard" id="q1nfc">--</li>
+                        </ul>
+                      </div>
                     </div>
+                    <div class="card-footer invisible"></div>
                   </div>
-                  <div class="card-footer invisible"></div>
                 </div>
-                <div class="card" id="q2scoreCard">
-                  <div class="card-body">
-                    <div class="card-title lead d-flex justify-content-between"><span>Halftime</span><span class="badge qpayout" id="q2payout">$ --</span></div>
-                    <div class="card-text">
-                      <ul class="list-group list-group-horizontal w-100">
-                        <li class="list-group-item w-50 afcChampions scorecard" id="q2afc">--</li>
-                        <li class="list-group-item w-50 nfcChampions scorecard" id="q2nfc">--</li>
-                      </ul>
+                <div class="col">
+                  <div class="card" id="q2scoreCard">
+                    <div class="card-body">
+                      <div class="card-title lead d-flex justify-content-between"><span>Halftime</span><span class="badge qpayout" id="q2payout">$ --</span></div>
+                      <div class="card-text">
+                        <ul class="list-group list-group-horizontal w-100">
+                          <li class="list-group-item w-50 afcChampions scorecard" id="q2afc">--</li>
+                          <li class="list-group-item w-50 nfcChampions scorecard" id="q2nfc">--</li>
+                        </ul>
+                      </div>
                     </div>
+                    <div class="card-footer invisible"></div>
                   </div>
-                  <div class="card-footer invisible"></div>
                 </div>
-                <div class="card" id="q3scoreCard">
-                  <div class="card-body">
-                    <div class="card-title lead d-flex justify-content-between"><span>End of Q3</span><span class="badge qpayout" id="q3payout">$ --</span></div>
-                    <div class="card-text">
-                      <ul class="list-group list-group-horizontal w-100">
-                        <li class="list-group-item w-50 afcChampions scorecard" id="q3afc">--</li>
-                        <li class="list-group-item w-50 nfcChampions scorecard" id="q3nfc">--</li>
-                      </ul>
+                <div class="col">
+                  <div class="card" id="q3scoreCard">
+                    <div class="card-body">
+                      <div class="card-title lead d-flex justify-content-between"><span>End of Q3</span><span class="badge qpayout" id="q3payout">$ --</span></div>
+                      <div class="card-text">
+                        <ul class="list-group list-group-horizontal w-100">
+                          <li class="list-group-item w-50 afcChampions scorecard" id="q3afc">--</li>
+                          <li class="list-group-item w-50 nfcChampions scorecard" id="q3nfc">--</li>
+                        </ul>
+                      </div>
                     </div>
+                    <div class="card-footer invisible"></div>
                   </div>
-                  <div class="card-footer invisible"></div>
                 </div>
-                <div class="card" id="q4scoreCard">
-                  <div class="card-body">
-                    <div class="card-title lead d-flex justify-content-between"><span>Final</span><span class="badge qpayout" id="q4payout">$ --</span></div>
-                    <div class="card-text">
-                      <ul class="list-group list-group-horizontal w-100">
-                        <li class="list-group-item w-50 afcChampions scorecard" id="q4afc">--</li>
-                        <li class="list-group-item w-50 nfcChampions scorecard" id="q4nfc">--</li>
-                      </ul>
+                <div class="col">
+                  <div class="card" id="q4scoreCard">
+                    <div class="card-body">
+                      <div class="card-title lead d-flex justify-content-between"><span>Final</span><span class="badge qpayout" id="q4payout">$ --</span></div>
+                      <div class="card-text">
+                        <ul class="list-group list-group-horizontal w-100">
+                          <li class="list-group-item w-50 afcChampions scorecard" id="q4afc">--</li>
+                          <li class="list-group-item w-50 nfcChampions scorecard" id="q4nfc">--</li>
+                        </ul>
+                      </div>
                     </div>
+                    <div class="card-footer invisible"></div>
                   </div>
-                  <div class="card-footer invisible"></div>
                 </div>
               </div>
             </div>
@@ -1281,8 +1289,8 @@
       
       function updateWinners() 
       {
-          let afcWinValues = scores.afc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> p+c) );
-          let nfcWinValues = scores.nfc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> p+c) );
+          let afcWinValues = scores.afc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> (p+c)%10 ) );
+          let nfcWinValues = scores.nfc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> (p+c)%10 ) );
           console.log( afcWinValues );
           console.log( nfcWinValues );
       
@@ -1385,8 +1393,8 @@
           }
       
           scores = {
-              afc:['7','13','21','-'],
-              nfc:['0','3','9','-']
+              afc:['7','13','21','77'],
+              nfc:['0','3','9','99']
           }
           updateScores();
           updateWinners();
