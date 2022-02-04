@@ -297,47 +297,51 @@ block content
                                         div.square.center(id=`${a}${n}`) #{alphabet[i]}#{nums[j]}
     br
     .container
-        .card-deck
-            #q1scoreCard.card
-                .card-body
-                    .card-title.lead.d-flex.justify-content-between
-                        span End of Q1
-                        span#q1payout.qpayout.badge $ --
-                    .card-text
-                        ul.list-group.list-group-horizontal.w-100
-                            li#q1afc.list-group-item.w-50.afcChampions.scorecard --
-                            li#q1nfc.list-group-item.w-50.nfcChampions.scorecard --
-                .card-footer.invisible
-            #q2scoreCard.card
-                .card-body
-                    .card-title.lead.d-flex.justify-content-between
-                        span Halftime
-                        span#q2payout.badge.qpayout $ --
-                    .card-text
-                        ul.list-group.list-group-horizontal.w-100
-                            li#q2afc.list-group-item.w-50.afcChampions.scorecard --
-                            li#q2nfc.list-group-item.w-50.nfcChampions.scorecard --
-                .card-footer.invisible
-            #q3scoreCard.card
-                .card-body
-                    .card-title.lead.d-flex.justify-content-between
-                        span End of Q3
-                        span#q3payout.badge.qpayout $ --
-                    .card-text
-                        ul.list-group.list-group-horizontal.w-100
-                            li#q3afc.list-group-item.w-50.afcChampions.scorecard --
-                            li#q3nfc.list-group-item.w-50.nfcChampions.scorecard --
-                .card-footer.invisible
-            #q4scoreCard.card
-                .card-body
-                    .card-title.lead.d-flex.justify-content-between
-                        span Final
-                        span#q4payout.badge.qpayout $ --
-                    .card-text
-                        ul.list-group.list-group-horizontal.w-100
-                            li#q4afc.list-group-item.w-50.afcChampions.scorecard --
-                            li#q4nfc.list-group-item.w-50.nfcChampions.scorecard --
-                .card-footer.invisible
+        .row
+            .col
+                #q1scoreCard.card
+                    .card-body
+                        .card-title.lead.d-flex.justify-content-between
+                            span End of Q1
+                            span#q1payout.qpayout.badge $ --
+                        .card-text
+                            ul.list-group.list-group-horizontal.w-100
+                                li#q1afc.list-group-item.w-50.afcChampions.scorecard --
+                                li#q1nfc.list-group-item.w-50.nfcChampions.scorecard --
+                    .card-footer.invisible
+            .col
+                #q2scoreCard.card
+                    .card-body
+                        .card-title.lead.d-flex.justify-content-between
+                            span Halftime
+                            span#q2payout.badge.qpayout $ --
+                        .card-text
+                            ul.list-group.list-group-horizontal.w-100
+                                li#q2afc.list-group-item.w-50.afcChampions.scorecard --
+                                li#q2nfc.list-group-item.w-50.nfcChampions.scorecard --
+                    .card-footer.invisible
+            .col
+                #q3scoreCard.card
+                    .card-body
+                        .card-title.lead.d-flex.justify-content-between
+                            span End of Q3
+                            span#q3payout.badge.qpayout $ --
+                        .card-text
+                            ul.list-group.list-group-horizontal.w-100
+                                li#q3afc.list-group-item.w-50.afcChampions.scorecard --
+                                li#q3nfc.list-group-item.w-50.nfcChampions.scorecard --
+                    .card-footer.invisible
+            .col
+                #q4scoreCard.card
+                    .card-body
+                        .card-title.lead.d-flex.justify-content-between
+                            span Final
+                            span#q4payout.badge.qpayout $ --
+                        .card-text
+                            ul.list-group.list-group-horizontal.w-100
+                                li#q4afc.list-group-item.w-50.afcChampions.scorecard --
+                                li#q4nfc.list-group-item.w-50.nfcChampions.scorecard --
+                    .card-footer.invisible
 
 block scripts
     script(src="https://apis.google.com/js/api.js")
@@ -532,8 +536,8 @@ block scripts
 
             function updateWinners() 
             {
-                let afcWinValues = scores.afc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> p+c) );
-                let nfcWinValues = scores.nfc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> p+c) );
+                let afcWinValues = scores.afc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> (p+c)%10 ) );
+                let nfcWinValues = scores.nfc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> (p+c)%10 ) );
                 console.log( afcWinValues );
                 console.log( nfcWinValues );
 
@@ -636,8 +640,8 @@ block scripts
                 }
 
                 scores = {
-                    afc:['7','13','21','-'],
-                    nfc:['0','3','9','-']
+                    afc:['7','13','21','77'],
+                    nfc:['0','3','9','99']
                 }
                 updateScores();
                 updateWinners();
