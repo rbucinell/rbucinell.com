@@ -1178,6 +1178,7 @@
       {
           scores = parseScores( html );
           updateScores();
+          
       }
       
       function updateRemainingSquares()
@@ -1272,10 +1273,11 @@
                   updateSquares( html );
                   processScores( html );
               })
-              .then( ()=> {
+              .then(async ()=> {
                   updateRemainingSquares();
                   updatePayouts();
-                  pickNumbers();
+                  await pickNumbers();
+                  updateWinners();
                   //debug();
               })
               .catch( err => document.querySelector("#squaresleft").innerText = "Error loading squares" );
