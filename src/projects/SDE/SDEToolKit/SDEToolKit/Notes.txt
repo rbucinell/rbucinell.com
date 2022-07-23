@@ -1,1 +1,0 @@
-﻿Install Android for C#: https://www.xamarin.com/platform
