@@ -1,0 +1,29 @@
+extends ../partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Mexico 2022 Photos",
+            breadcrumbs: [
+                {fa:"home", text:"Home", url:"index.html"},
+                {fa:"sun", text:"Mexico photos", url:"mexico.html"}
+            ],
+            pageh1: {
+                title: 'Mexico 2022 Photos',
+                small: 'via Ocean Tours'
+            }
+        }
+block content
+    .alert.alert-success Download the entire albumn (1125 pics)
+        a.alert-link(href="https://drive.google.com/file/d/1epxRiDddmfkmGldrGgeUTkcNXu0yp9zp/view?usp=sharing") &nbsp;here.
+    #slidshow.carousel.slide.carousel-fade(data-ride='carousel')
+        .carousel-inner
+            .carousel-item.active
+                img.d-block.w-100(src=`/img/mexico/mexico10000.jpg` alt='picture 0 from mexico`')
+            - for( let i = 10001; i <= 11124; i++ )
+                .carousel-item
+                    img.d-block.w-100(loading="lazy", src=`/img/mexico/mexico${i}.jpg`,  alt=`picture #${i} from mexico`)
+        a.carousel-control-prev(href='#slidshow' role='button' data-slide='prev')
+            span.carousel-control-prev-icon(aria-hidden='true'): span.sr-only Previous
+        a.carousel-control-next(href='#slidshow' role='button' data-slide='next')
+            span.carousel-control-next-icon(aria-hidden='true'): span.sr-only Next
+        
