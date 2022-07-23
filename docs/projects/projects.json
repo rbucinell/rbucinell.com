@@ -20,11 +20,6 @@
         "path": "projects/innotech/",
         "hasIndex": true
     },
-    "JavascirptQuads": {
-        "name": "JavascirptQuads",
-        "path": "projects/JavascirptQuads/",
-        "hasIndex": false
-    },
     "jessconvo": {
         "name": "jessconvo",
         "path": "projects/jessconvo/",
@@ -54,11 +49,6 @@
         "name": "NACKA",
         "path": "projects/NACKA/",
         "hasIndex": true
-    },
-    "Project Euler": {
-        "name": "Project Euler",
-        "path": "projects/Project Euler/",
-        "hasIndex": false
     },
     "SDE": {
         "name": "SDE",
