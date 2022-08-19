@@ -35,7 +35,10 @@ block content
 
     h2.collapse-icon: a( data-toggle="collapse" data-target="#experienceSection" aria-expanded="true") Experience 
     #experienceSection.collapse.show.border-left
-        +experience("Software Developer", "Day Automation", "November 2021 - CURRENT", "img/resume/day.png" )
+        +experience("Software Developer", "Day Automation", "November 2021 - CURRENT", "img/resume/day.png",
+            'Full-stack development of internal site with ruby-on-rails backend and pure JavaScript front-end utilizing REST calls.',
+            'Maintained and developed AutoCAD extension, implementing authentication and PDF generation',
+            'Automated ticket tracking system integrating Redmine and Trello services.' )
         +experience("Software Engineer", "Paychex", "November 2016 - June 2019 - November 2021", "img/resume/paychex.png",
             '[Nov-2016] Contractor; [Jun-2019] Unified Communications; [Oct-2020] Unified Service Development',
             'Designed and developed a ExpressJS/Mongo DB REST service to execute GUI automation of system changes ',
