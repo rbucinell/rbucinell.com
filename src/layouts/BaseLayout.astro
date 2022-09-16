@@ -1,0 +1,31 @@
+---
+import NavComponent from "../components/NavComponent.astro";
+import HeadComponent from "../components/HeadComponent.astro";
+import ScriptsComponent from "../components/ScriptsComponent.astro";
+
+const {title = 'Ryan Bucinell\'s Personal Site'} = Astro.props;
+---
+<html lang="en">
+  <HeadComponent title={title}></HeadComponent>
+  <body>
+    <NavComponent></NavComponent>
+    <article>
+      <slot /> <!-- your content is injected here -->
+    </article>
+    <ScriptsComponent></ScriptsComponent>
+  </body>
+</html>
+
+
+<!-- doctype html
+html(lang='en')
+    block config
+    - const pagetitle = pageConfig.title;
+    include ./head.pug 
+    block head
+    include ./mixins.pug
+    body
+        +pageheader( pageConfig.pageh1.title, pageConfig.pageh1.small, pageConfig.breadcrumbs)
+            block content
+        include ./scripts-footer.pug
+        block scripts -->
