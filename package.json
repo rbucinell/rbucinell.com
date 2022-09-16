@@ -4,14 +4,14 @@
   "description": "My Personal website",
   "main": "index.js",
   "scripts": {
-    "test":    "echo \"Error: no test specified\" && exit 1",
-    "gulp":    "gulp build-code",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp build-code",
     "webhint": "hint http://localhost:8000/",
-    "dev":     "astro dev",
-    "start":   "astro dev",
-    "build":   "astro build",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
     "preview": "astro preview",
-    "astro":   "astro"
+    "astro": "astro"
   },
   "author": "Ryan Bucinell",
   "license": "ISC",
@@ -35,6 +35,7 @@
   },
   "homepage": "https://rbucinell.com",
   "dependencies": {
-    "bootstrap": "^4.4.1"
+    "bootstrap": "^4.4.1",
+    "feather-icons": "^4.29.0"
   }
 }

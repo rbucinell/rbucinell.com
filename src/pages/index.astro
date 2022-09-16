@@ -1,11 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NewsItemComponent from '../components/NewsItemComponent.astro';
+
+const config = {
+    title: "Ryan Bucinell - Homepage",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"layout", text:"News", url:"#"}
+    ],
+    page: {
+        title: 'News',
+        small: 'latest news and updates'
+    }
+};
 ---
-<BaseLayout title="Ryan Bucinell - Homepage">
-	<h3 class="underline decoration-sky-500">Astro</h1>
-    <NewsItemComponent icon="sun"          date="2022-07-21">A few photos from my trip to Canún where we <a class="underline decoration-sky-500" href="misc/mexico.html">toured Tulum, swam with sea turtles, and dove in a closed cenote.</a></NewsItemComponent>
-    <NewsItemComponent icon="check-square" date="2022-02-01">We are doing Super Bowl squares again! New rules, more money, fancier grid! See <a href="misc/squares.html">the board here.</a></NewsItemComponent>
+<BaseLayout title="Ryan Bucinell - Homepage" config={config}>
+    <NewsItemComponent icon="sun"          date="2022-07-21">A few photos from my trip to Canún where we <a class="underline font-bold" href="misc/mexico.html">toured Tulum, swam with sea turtles, and dove in a closed cenote.</a></NewsItemComponent>
+    <NewsItemComponent icon="check-square" date="2022-02-01">We are doing Super Bowl squares again! New rules, more money, fancier grid! See <a class="underline font-bold" href="misc/squares.html">the board here.</a></NewsItemComponent>
     <NewsItemComponent icon="user-plus"    date="2021-04-17">Ryder Jack arrived healthy, and more importantly didn't make mom miss the cheerleading performance</NewsItemComponent>
     <NewsItemComponent icon="check-square" date="2021-01-23">For Ryder's <i>baby sprinkle</i> we are doing Super Bowl squares. See <a href="misc/sprinkle.html">the board here.</a></NewsItemComponent>
     <NewsItemComponent icon="users"        date="2019-12-05">I am now the proud father of b/g twins, Brandon and Baiely</NewsItemComponent>

@@ -1,18 +1,15 @@
 ---
-import NavComponent from "../components/NavComponent.astro";
 import HeadComponent from "../components/HeadComponent.astro";
-import ScriptsComponent from "../components/ScriptsComponent.astro";
+import WrapperComponent from "../components/WrapperComponent.astro";
 
-const {title = 'Ryan Bucinell\'s Personal Site'} = Astro.props;
+const {title = 'Ryan Bucinell\'s Personal Site', config } = Astro.props;
 ---
 <html lang="en">
   <HeadComponent title={title}></HeadComponent>
   <body>
-    <NavComponent></NavComponent>
-    <article>
-      <slot /> <!-- your content is injected here -->
-    </article>
-    <ScriptsComponent></ScriptsComponent>
+    <WrapperComponent config={config}>
+      <slot />
+    </WrapperComponent>
   </body>
 </html>
 

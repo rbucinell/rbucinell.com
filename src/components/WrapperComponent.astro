@@ -1,0 +1,13 @@
+---
+import PageHeaderComponent from "./PageHeaderComponent.astro";
+import NavComponent from "./NavComponent.astro";
+import ScriptsComponent from "./ScriptsComponent.astro";
+---
+<NavComponent />
+<div id="page-wrapper" class="container">
+    <PageHeaderComponent config={Astro.props.config} />
+        <article>
+            <slot />
+        </article>
+    <ScriptsComponent />
+</div>
