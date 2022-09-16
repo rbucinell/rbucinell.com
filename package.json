@@ -4,23 +4,21 @@
   "description": "My Personal website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "gulp build-code",
-    "webhint": "hint http://localhost:8000/"
+    "test":    "echo \"Error: no test specified\" && exit 1",
+    "gulp":    "gulp build-code",
+    "webhint": "hint http://localhost:8000/",
+    "dev":     "astro dev",
+    "start":   "astro dev",
+    "build":   "astro build",
+    "preview": "astro preview",
+    "astro":   "astro"
   },
   "author": "Ryan Bucinell",
   "license": "ISC",
   "devDependencies": {
-    "del": "^3.0.0",
-    "gulp": "^4.0.0",
-    "gulp-clean": "^0.4.0",
-    "gulp-clean-css": "^3.7.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-debug": "^3.1.0",
-    "gulp-pug": "^3.3.0",
-    "gulp-uglify": "^3.0.0",
-    "gulp-watch": "^4.3.11",
-    "hint": "^6.1.1"
+    "@astrojs/tailwind": "^2.0.1",
+    "astro": "latest",
+    "tailwindcss": "^3.1.8"
   },
   "repository": {
     "type": "git",
