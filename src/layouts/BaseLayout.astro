@@ -2,7 +2,8 @@
 import HeadComponent from "../components/HeadComponent.astro";
 import WrapperComponent from "../components/WrapperComponent.astro";
 
-const {title = 'Ryan Bucinell\'s Personal Site', config } = Astro.props;
+const { config } = Astro.props;
+let title = config.title || 'Ryan Bucinell\'s Personal Site';
 ---
 <html lang="en">
   <HeadComponent title={title}></HeadComponent>
@@ -12,17 +13,3 @@ const {title = 'Ryan Bucinell\'s Personal Site', config } = Astro.props;
     </WrapperComponent>
   </body>
 </html>
-
-
-<!-- doctype html
-html(lang='en')
-    block config
-    - const pagetitle = pageConfig.title;
-    include ./head.pug 
-    block head
-    include ./mixins.pug
-    body
-        +pageheader( pageConfig.pageh1.title, pageConfig.pageh1.small, pageConfig.breadcrumbs)
-            block content
-        include ./scripts-footer.pug
-        block scripts -->
