@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const config = {
+    title: "Ryan Bucinell - About Me",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"info",text:"Personal Info"},
+        {fa:"user",text:"About Me", url:"#"}
+    ],
+    page: {
+        title: 'C\'est moi',
+        small: 'just a bit about yours truly'
+    }
+};
+---
+<BaseLayout config={config}>
+
+    <div class="row">
+        <div class="col-12">
+            <p>I am a Software Engineer and a father of twins. Currently living in Rochester, NY however I'm native to the area, however after getting my bachelors in Computer Science I decided to stick around for the for the Garbage Plates. I am currently employed by Paychex working on business automation, web services, and full-stack development. Most of my tools are internal or back end systems. Outside of my 9-5 I occasionally contract website development or script work.</p>
+            <p>For recreation I enjoy plyaing in local sports leagues such as kickball, and softball even moonlighting as a referee for one of the leagues as well. I love doing mud-runs such as Tough Mudder, Warrior Dash (pictured to right), Spartan Sprint, and Hero Rush and the perpetual fear that I will be too out of shape to complete one keeps me going. Lastly I'm a huge movie buff and gamer, I'll happily discuss latest of either of these until long after the sun goes down.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="center text-uppercase display-4">Find me around the web</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 center list-group list-group-horizontal">
+
+            <a class="text-dark flex-fill list-group-action" href="http://github.com/rbucinell/" target="_blank" rel="noopener">
+                <i class="devicon-github-original display-4"/>
+            </a>
+
+            <a class="text-dark flex-fill list-group-action" href="https://codepen.io/SwiftStriker00" target="_blank" rel="noopener">
+                <i class="devicon-codepen-plain display-4"/>
+            </a>
+
+            <a class="text-dark flex-fill list-group-action" href="https://play.google.com/store/apps/dev?id=7417114351448733904" target="_blank" rel="noopener">
+                <i class="devicon-google-plain display-4"/>
+            </a>
+
+            <a class="text-dark flex-fill list-group-action" href="http://www.linkedin.com/in/ryanbucinell" target="_blank" rel="noopener">
+                <i class="devicon-linkedin-plain display-4"/>
+            </a>
+
+            <a class="text-dark flex-fill list-group-action" href="https://www.facebook.com/ryan.bucinell" target="_blank" rel="noopener">
+                <i class="devicon-facebook-plain display-4"/>
+            </a>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row mr-auto">
+        <div class="col span thumbnail"><img style="max-height:300px" src="img/me/aboutme.png"></div>
+        <div class="col span thumbnail"><img style="max-height:300px" src="img/me/crop.jpg"></div>
+        <div class="col span thumbnail"><img style="max-height:300px" src="img/me/mykids.jpg"></div>
+    </div>
+
+    <hr />
+
+</BaseLayout>
