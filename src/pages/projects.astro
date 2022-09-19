@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+// import {recurse,readdir} from 'file-system';
 import { Debug } from 'astro/components';
 
 const config = {
@@ -14,16 +15,26 @@ const config = {
         small: 'Work In Progress...'
     }
 };
+
 const response = await Astro.glob('../../public/projects/projects.json');
 const json = JSON.parse(JSON.stringify(response[0]));
+
+// let files = readdir('public/projects/', {withFileTypes: false}, (error,fileDirent) =>{ 
+//     console.log( fileDirent );
+// });
+
+// let files = recurse('public/projects/', (filepath, readFile, filename) =>{
+//     console.log(filepath,readFile,filename);
+// });
+
+
+
 //TODO: rewrite projects.json to use list instead of a bunch of keys, lot easier to parse.
 
 ---
 <BaseLayout config={config}>
     <p class="lead">Just some projects I'm working on or technical tests.</p>
     <p>This page is dynamically generated at the websites build time depending on the content that is in my projects directory. If there is an index.html in the project's root then you can click on it to see the project</p>
-    
-    <Debug {json}/>
     
     <table id="projTable" class="table table-condensed table-hover table-striped">
         <thead class="thead-dark">

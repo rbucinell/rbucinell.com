@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const config = {
+    title: "Ryan Bucinell - Code",
+        breadcrumbs: [
+            {fa:"home", text:"Home", url:"index.html"},
+            {fa:"settings", text:"Projects" },
+            {fa:"code", text:"Code", url:"#"}
+        ],
+        page: {
+            title: 'Code',
+            small: 'coding projects here and there'
+    }
+};
+const response = await Astro.glob('../../public/data/code/code.json');
+const json = JSON.parse(JSON.stringify(response[0])).default;
+---
+<BaseLayout config={config}>
+    <ul id="codeList">
+        {json.map( obj =>{
+            return(
+            <li id={obj['@id']} class="media">
+                <img src={obj.icon} width="64" height="64">
+                <div class="media-body mx-2">
+                    <h5 class="m-1"><a href={obj.hostedUrl}>{obj.name}</a></h5>
+                    <p>{obj.description}</p>
+                </div>
+            </li>
+
+            );
+        })}
+    </ul>
+</BaseLayout>
