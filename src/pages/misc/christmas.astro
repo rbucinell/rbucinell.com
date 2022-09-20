@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const config = {
+    title: "Christmas puzzle",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"/"},
+        {fa:"square", text:"Puzzle Game", url:"misc/christmas.html"}
+    ],
+    page: {
+        title: 'Christmas Puzzle Game',
+        small: 'A nonogram'
+    }
+};
+
+---
+<style>
+            rect {
+            stroke: #000;
+        }
+        
+        .hover {
+            fill: dimgray;
+            fill-opacity: .75;
+        }
+
+        .path
+        {
+            fill: yellow;
+            stroke: yellow;
+            stroke-opacity: 1;
+        }
+
+        .tile {
+            fill: white;
+        }
+        .wall {
+            fill: black;
+            stroke-opacity: 1;
+        }
+        .start {
+            fill: #00FF00;
+        }
+        .exit {
+            fill: #0000FF;
+        }
+        .closed {
+            fill: #42A5F5;
+        }
+        .open {
+            fill: #90CAF9;
+        }
+
+        #svgcontainer{
+            padding-right: 0;
+            padding-left: 313px;
+            padding-top: 213px;
+            width: 100%;
+            height: 800px;
+            border:1px solid black;
+            background-color:white;
+            background-image:url(https://www.gchq.gov.uk/sites/default/files/grid-shading-puzzle.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position-x: 50%;
+        }
+        #gameDiv {				
+            display: block;
+            border:1px solid #000000;
+            background-color: white;
+            display: flex;
+        }
+</style>
+<BaseLayout config={config}>
+    <div class="container">
+        <div class="row col">
+            <p><a href="https://www.gchq.gov.uk/news-article/christmas-card-cryptographic-twist-charity">A Christmas card with a cryptographic twist for charity</a></p>
+        </div>
+        <div class="row col">
+            <img id="hero" class="center img-fluid" src="https://www.gchq.gov.uk/images/grid-shading-puzzle_768x714.jpg"/>
+            <!--http://stackoverflow.com/questions/17786618/how-to-use-z-index-in-svg-elements -->
+        </div>
+    </div>
+</BaseLayout>

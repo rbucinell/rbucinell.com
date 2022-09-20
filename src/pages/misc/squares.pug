@@ -1,0 +1,651 @@
+extends ../partials/layout.pug
+block config
+    -
+        var pageConfig = {
+            title: "Bucinell Superbowl Squares - Super Bowl 56 (2022) Squares",
+            breadcrumbs: [
+                {fa:"home", text:"Home", url:"index.html"},
+                {fa:"check-square", text:"Super Bowl Squares", url:"squares.html"}
+            ],
+            pageh1: {
+                title: 'Bucinell Superbowl Squares',
+                small: 'Super Bowl LVI (2022)'
+            }
+        }
+block head
+    meta(property="og:image" content="../img/squares/board.jpg")
+    style.
+        :root{
+            --bengals-orange: #FB4F14;
+            --bengals-black: #000000;
+            --rams-blue: #003594;
+            --rams-gold: #ffa300;
+            --rams-gold-dark: #ff8200;
+            --rams-yellow: #ffd100;
+            --rams-white: #FFFFFF;
+            --nfl-red: #D50A0A;
+            --nfl-blue: #013369;
+        }
+
+        #submitSquaresButton{
+            background-color: var(--nfl-blue);
+        }
+
+        #submitSquaresButton:hover{
+            border: solid var(--nfl-red) 2px;
+        }
+
+        .nfcChampions {
+            background-color: var(--rams-blue);
+            border-bottom: 1px solid var(--rams-blue);;
+            background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/LA);
+        }
+
+        .afcChampions {
+            vertical-align:middle;
+            text-align:center;
+            background-color: var(--bengals-orange);
+            border: 1px solid var(--bengals-orange);
+            background-image: url(https://static.www.nfl.com/t_q-best/league/api/clubs/logos/CIN);
+        }
+
+        .bg-single-center {
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .scorecard {
+            height: 3rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .board-grid {
+            background-color: white;
+            border: 1px solid gray;
+            display: grid;
+            grid-template-columns: 60px repeat(4,2em) repeat(10, 1fr);
+            grid-template-rows: 60px repeat(4,2em) repeat(10, 1fr);
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+            max-width:900px;
+        }
+
+        #champNFC { grid-area: 1 / 6 / 2 / 16; }
+        #nfchq1   { grid-area: 2 / 6 / 3 / 16; }
+        #nfchq2   { grid-area: 3 / 6 / 4 / 16; }
+        #nfchq3   { grid-area: 4 / 6 / 5 / 16; }
+        #nfchq4   { grid-area: 5 / 6 / 6 / 16; }
+        #champAFC { grid-area: 6 / 1 / 16 / 2; }
+        #afchq1   { grid-area: 6 / 2 / 16 / 3; }
+        #afchq2   { grid-area: 6 / 3 / 16 / 4; }
+        #afchq3   { grid-area: 6 / 4 / 16 / 5; }
+        #afchq4   { grid-area: 6 / 5 / 16 / 6; }
+        #gridsquares { grid-area: 6 / 6 / 16 / 16; }
+        #logo { grid-area: 1 / 1 / 2 / 2; }
+        #chq1 { grid-area: 2 / 2 / 6 / 6; }
+        #chq2 { grid-area: 3 / 3 / 6 / 6; }
+        #chq3 { grid-area: 4 / 4 / 6 / 6; }
+        #chq4 { grid-area: 5 / 5 / 6 / 6; }
+
+        #champNFC {
+            background-image: url(https://static.www.nfl.com/image/private/f_auto/league/eo223qd5mlxrna3bbdiv);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #champNFC img {
+            height: 100%;
+        }
+
+        #champAFC {
+            background-image: url(https://res.cloudinary.com/nflleague/image/private/f_auto/league/maacoshfmktzddy1ob56);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #champAFC img {
+            width: 100%;
+        }
+
+        .board-grid > div {
+            background-color: white;
+            border: 2px solid gray;
+            text-align: center;
+        }
+
+        .header {
+            line-height: 22px;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        .cornerheader{
+            padding: 5px 0 0 4px;
+            text-align: left !important;
+        }
+
+        #logo {
+            background-color: white;
+            border: none;
+        }
+
+        #logo img {
+            height: 100%;
+        }
+
+        .q1 {
+            background-color: #444444 !important;
+            text-shadow: 1px 1px 2px #AAAAAA;
+        }
+        .q1win {
+            border: 2px double orange; 
+        }
+        .q2 {
+            background-color: #666666 !important;
+            text-shadow: 1px 1px 2px #AAAAAA;
+        }
+        .q2win { 
+            border: 2px double red; 
+        }
+
+        .q3 {
+            background-color: #888888 !important;
+            text-shadow: 1px 1px 2px #AAAAAA;
+        }
+        .q3win { 
+            border: 2px double blue; 
+        }
+
+        .q4 {
+            background-color: #AAAAAA !important;
+            text-shadow: 1px 1px 2px white;
+        }
+        .q4win { 
+            border: 2px double green; 
+        }
+
+        table {
+            width: 100%;
+            height: 100%;
+        }
+
+        .square {
+            /*content: url('../img/helmet.svg');*/
+            height: 50px;
+        }
+
+        .qpayout {
+            background-color: var(--nfl-blue);
+            color: white;
+        }
+        
+        @media (max-width: 575.98px) { 
+            #logo{
+                grid-area: 1 / 1 / 2 / 6;
+            }
+            .board-grid {
+                grid-template-columns: 20px repeat(4,1.5em) repeat(10, 1fr);
+                grid-template-rows: 20px repeat(4,1.5em) repeat(10, 1fr);
+            }
+
+            .square{
+                height: 30px;
+            }
+
+            #gridsquares {
+                font-size: 14px;
+                font-weight: 500px;
+            }
+        }
+
+block content
+
+    p It's that time of year again. Superbowl, baby! Last year we ran squares for Ryder's shower, but this year all money is on the table. There are new rules this year, and a new table. Good Luck.
+    p.lead Rules
+    ul
+        li Squares are 
+            strong#squareCost $10
+            |. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a>
+        li The Pot will consist of the sum of the paid squres
+        li The numbers will be randomized 30mins prior to the game start.
+        li The quarter numbers will be rolled by <a href="https://www.random.org/">RANDOM.ORG</a>
+        li Payouts willl ramp up each quarter. Here are the pertentage payouts for each quarter:
+        li(style="list-style:none"): ul.list-group.list-group-horizontal-sm
+                li.list-group-item End of Q1: <strong>10%</strong>
+                li.list-group-item Halftime: <strong>20%</strong>
+                li.list-group-item End of Q3: <strong>30%</strong>
+                li.list-group-item Final: <strong>40%</strong>
+        li The winning square for a given quarter will be determined by the last digit of the sum of the digits of the teams' score.
+            ul
+                li exmaple: NFC Champion has 17 at the end of the first, the winning number will be <code>1+7=8</code> <i data-feather="arrow-right"></i> 8)
+                li exmaple: AFC Champion has 56 at the end of the game, the winning number will be <code>5+6=11</code> <i data-feather="arrow-right"></i> 1)
+        li I reserve the right to remove unpaid square requests at any point before numbers are picked.
+        li 
+            .media 
+                .media-body Unclaimed/unpaid squares that win, will 
+                    a(data-toggle="collapse" href="#collapseSplash" role="button" aria-expanded="false" aria-controls="collapseSplash") splash the payout 
+                    | to the cardinal 4 directions in an equal payout (recursively until all money has been distributed)
+                img#collapseSplash.collapse.ml-3.img-thumbnail(src="../img/squares/splash_diagram.jpg")
+        li If you have any problems picking squares, please text Jess or I. If you don't specify a square, or the square requested is taken we will pick the next sequentially availiable
+    
+    .center
+        div.d-flex.justify-content-center.align-items-end.flex-wrap
+            a#submitSquaresButton.btn.btn-large.text-white.text-uppercase( href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform", rel="noopener", target="_blank")
+                img(src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" alt="Google Forms Icon" style="max-height:30px;")
+                | Purchase squares here!
+    br
+    
+    .board-grid.center  
+        #logo
+            img.mw-100.mh-100.center(src="https://static.www.nfl.com/image/upload/v1554321393/league/nvfr7ogywskqrfaiu38m.svg")
+            span#squaresleft(style="font-size:small") X squares left.
+        #chq1.qFont.q1.header.cornerheader Q1
+        #chq2.qFont.q2.header.cornerheader Q2
+        #chq3.qFont.q3.header.cornerheader Q3
+        #chq4.qFont.q4.header.cornerheader Q4
+
+        #champNFC: img.mw-100.mh-100( src=`https://static.www.nfl.com/t_q-best/league/api/clubs/logos/LA`)
+        #nfchq1.header.q1: table: tbody: tr
+            - for( let i = 0; i < 10; i++ )
+                td #
+        #nfchq2.header.q2: table: tbody: tr
+            - for( let i = 0; i < 10; i++ )
+                td #
+        #nfchq3.header.q3: table: tbody: tr
+            - for( let i = 0; i < 10; i++ )
+                td #
+        #nfchq4.header.q4: table: tbody: tr
+            - for( let i = 0; i < 10; i++ )
+                    td #
+
+        #champAFC.header
+            #afcBanner
+                img( src=`https://static.www.nfl.com/t_q-best/league/api/clubs/logos/CIN`)
+        #afchq1.column.header.q1
+            table: tbody
+                - for( let i = 0; i < 10; i++ )
+                    tr: td #
+        #afchq2.column.header.q2
+            table: tbody
+                - for( let i = 0; i < 10; i++ )
+                    tr: td #
+        #afchq3.column.header.q3
+            table: tbody
+                - for( let i = 0; i < 10; i++ )
+                    tr: td #
+        #afchq4.column.header.q4
+            table: tbody
+                - for( let i = 0; i < 10; i++ )
+                    tr: td #
+
+        #gridsquares
+                - let n = 10;
+                - let nums = [...Array(n).keys()];
+                - let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').map( c => c.toUpperCase() ).slice(0, n);
+                table
+                    tbody
+                        each a,i in alphabet
+                            tr
+                                each n,j in nums
+                                    td.p-0.border.border-dark.bg-light.font-weight-bold
+                                        div.square.center(id=`${a}${n}`) #{alphabet[i]}#{nums[j]}
+    br
+    .container
+        .row
+            .col
+                #q1scoreCard.card
+                    .card-body
+                        .card-title.lead.d-flex.justify-content-between
+                            span End of Q1
+                            span#q1payout.qpayout.badge $ --
+                        .card-text
+                            ul.list-group.list-group-horizontal.w-100
+                                li#q1afc.list-group-item.w-50.afcChampions.scorecard --
+                                li#q1nfc.list-group-item.w-50.nfcChampions.scorecard --
+                    .card-footer.invisible
+            .col
+                #q2scoreCard.card
+                    .card-body
+                        .card-title.lead.d-flex.justify-content-between
+                            span Halftime
+                            span#q2payout.badge.qpayout $ --
+                        .card-text
+                            ul.list-group.list-group-horizontal.w-100
+                                li#q2afc.list-group-item.w-50.afcChampions.scorecard --
+                                li#q2nfc.list-group-item.w-50.nfcChampions.scorecard --
+                    .card-footer.invisible
+            .col
+                #q3scoreCard.card
+                    .card-body
+                        .card-title.lead.d-flex.justify-content-between
+                            span End of Q3
+                            span#q3payout.badge.qpayout $ --
+                        .card-text
+                            ul.list-group.list-group-horizontal.w-100
+                                li#q3afc.list-group-item.w-50.afcChampions.scorecard --
+                                li#q3nfc.list-group-item.w-50.nfcChampions.scorecard --
+                    .card-footer.invisible
+            .col
+                #q4scoreCard.card
+                    .card-body
+                        .card-title.lead.d-flex.justify-content-between
+                            span Final
+                            span#q4payout.badge.qpayout $ --
+                        .card-text
+                            ul.list-group.list-group-horizontal.w-100
+                                li#q4afc.list-group-item.w-50.afcChampions.scorecard --
+                                li#q4nfc.list-group-item.w-50.nfcChampions.scorecard --
+                    .card-footer.invisible
+
+block scripts
+    script(src="https://apis.google.com/js/api.js")
+    script.
+            let CSS_COLOR_NAMES = ["Indigo", "DarkOrange", "AntiqueWhite", "Ivory", "DarkRed", "Aqua", "RoyalBlue", "DarkSalmon", "SaddleBrown", "LawnGreen", "Salmon", "MidnightBlue", "Black", "LightBlue", "SeaGreen", "DeepPink", "Silver", "DodgerBlue", "Olive", "FireBrick", "Orange", "OrangeRed", "Tan", "Crimson", "GhostWhite", "Gold", "Tomato", "DarkBlue", "Magenta", "Maroon", "MediumAquaMarine", "PeachPuff", "Wheat", "WhiteSmoke", "DarkKhaki", "Yellow", "PowderBlue", "MediumBlue", "PapayaWhip", "Gainsboro", "Lime", "Gray", "PaleVioletRed", "Teal", "Coral", "White", "Blue", "MistyRose", "Black"];
+            const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+            
+            const cost = 10; //dollars
+            const payouts = [ 0.1, 0.2, 0.3, 0.4]; //percentages
+            let purchaseCount = 0;
+            let pot = 0;
+            
+            let helmet = null;
+            let nfcList = null;
+            let afcList = null;
+            let kickoff = new Date('February 13, 2022 18:00:00');
+            let sheetsDict = {};
+            let sequences = {
+                afc: {
+                    q1: [],
+                    q2: [],
+                    q3: [],
+                    q4: [],
+                },
+                nfc: {
+                    q1: [],
+                    q2: [],
+                    q3: [],
+                    q4: [],
+                }
+            };
+
+            let scores = {
+                afc: [],
+                nfc: []
+            }
+
+            /**
+            * Parses scores from the google sheets response html
+            * @returns an object containing an afc and nfc array of scores for each quarter
+            **/
+            function parseScores( html )
+            {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString( html, "text/html");
+
+                return {
+                    afc:[
+                        doc.querySelector("table tr:nth-child(4) td:nth-child(16)").innerText,
+                        doc.querySelector("table tr:nth-child(5) td:nth-child(16)").innerText,
+                        doc.querySelector("table tr:nth-child(6) td:nth-child(16)").innerText,
+                        doc.querySelector("table tr:nth-child(7) td:nth-child(16)").innerText,
+                    ],
+                    nfc:[
+                        doc.querySelector("table tr:nth-child(4) td:nth-child(17)").innerText,
+                        doc.querySelector("table tr:nth-child(5) td:nth-child(17)").innerText,
+                        doc.querySelector("table tr:nth-child(6) td:nth-child(17)").innerText,
+                        doc.querySelector("table tr:nth-child(7) td:nth-child(17)").innerText
+                    ]
+                }
+            }
+
+            /**
+            * Updates the DOM with the current scores
+            **/
+            function updateScores()
+            {
+                for( let q = 1; q <= 4; q++ )
+                {
+                    document.querySelector(`#q${q}afc`).innerText = scores.afc[q-1];
+                    document.querySelector(`#q${q}nfc`).innerText = scores.nfc[q-1];
+                }
+            }
+
+            /**
+            * Parse html response and update the DOM of scores
+            **/
+            function processScores( html )
+            {
+                scores = parseScores( html );
+                updateScores();
+                
+            }
+
+            function updateRemainingSquares()
+            {
+                let count = [...document.querySelectorAll("#gridsquares tbody td")].reduce( (acc,td)=> acc+= td.innerText !== "" ? 1:0,0);
+                msg = count === 0 ? "Board's full. Good Luck" : `${count} squares left.`;
+                document.querySelector("#squaresleft").innerText = msg;
+            }
+
+            function updatePayouts()
+            {
+                purchaseCount = [...document.querySelectorAll("#gridsquares tbody td")].reduce( (acc,td)=> acc+= td.innerText !== "" ? 0:1,0);
+                pot = purchaseCount * cost;
+                for( let i = 0; i < 4; i++ )
+                {
+                    let p = Math.round(100*(pot * payouts[i]))/100;
+                    let formatted = p.toFixed(p % 1 != 0 ? 2: 0);
+                    document.querySelector(`#q${i+1}payout`).innerText = `$${formatted}`;
+                }
+            }
+            
+            function getColorFromList()
+            {
+                let first = CSS_COLOR_NAMES.shift();
+                CSS_COLOR_NAMES.push(first);
+                return first;
+            }
+            
+            function updateSquares( html )
+            {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString( html, "text/html");
+                let trs = [...doc.querySelectorAll("table tr")];
+                let uniqueIDs = [];
+                sheetsDict = {};
+                for( let i = (trs.findIndex( t => t.children[0].innerText === "Timestamp" )+1); i < trs.length; i++ )
+                {
+                    let name = trs[i].children[1].innerText;
+                    sheetsDict[name] = { 
+                        'squares' : [],
+                        'purchased': (trs[i].children[13].innerText.trim() === '✔'),
+                        'color' : getColorFromList()
+                    };
+                    if( name === "Ryan Bucinell" )
+                        sheetsDict[name].color = "#004C54";
+                    for( let alpha = 0; alpha <= 10; alpha++ )
+                    {
+                        let content = trs[i].children[2+alpha].innerText.trim();
+                        if( content !== "" )
+                        {
+                            let boxes = content.split(",").forEach( b => {
+                                let id = `${alphabet[alpha]}${b.trim()}`;
+                                let boughtSquare = document.querySelector(`#${id}`);
+                                boughtSquare.innerHTML = "";
+                                boughtSquare.classList = "center text-dark";
+                                let helmetClone = helmet.cloneNode(true);
+                                helmetClone.dataset.toggle = 'tooltip';
+                                helmetClone.dataset.placement = 'right';
+                                helmetClone.dataset.title = `[${id}] ${name}`;
+                                helmetClone.querySelector( "g > g> g> path:nth-child(11)" ).style.fill = sheetsDict[name].color;
+                                boughtSquare.appendChild( helmetClone );
+                                sheetsDict[name].squares.push(id);
+                                if( !sheetsDict[name].purchased )
+                                {
+                                    boughtSquare.classList.add('alert-danger');
+                                }
+                                else
+                                {
+                                    boughtSquare.parentNode.classList.remove('bg-light');
+                                }
+
+                                if( uniqueIDs.includes(id))
+                                {
+                                    console.error( `${name} requested square ${id} that was already taken`);
+                                    helmetClone.style.border = `1px solid red`;
+
+                                }
+                                uniqueIDs.push(id);
+                            });
+                        }
+                    }
+                }
+                console.log( sheetsDict );
+                feather.replace();
+                $('[data-toggle="tooltip"]').tooltip();
+            }
+
+            function getSpreadsheetData(){
+                return fetch('https://docs.google.com/spreadsheets/u/0/d/1bafC30PCbiUhXolvacKnws0jh676hyytj8Y1lkpT8Us/gviz/tq?tqx=out:html&tq=select+*')
+                    .then( response => response.text() )
+                    .then( html => {
+                        updateSquares( html );
+                        processScores( html );
+                    })
+                    .then(async ()=> {
+                        updateRemainingSquares();
+                        updatePayouts();
+                        await pickNumbers();
+                        updateWinners();
+                        //debug();
+                    })
+                    .catch( err => document.querySelector("#squaresleft").innerText = "Error loading squares" );
+            }
+
+            async function sequence( key )
+            {
+                let response = await fetch(`https://www.random.org/sequences/?min=0&max=9&col=10&format=plain&rnd=id.${key}`);
+                let data = await response.text();
+                console.log( `https://www.random.org/sequences/?min=0&max=9&col=10&format=plain&rnd=id.${key}` );
+                return data.trim().split('\t');
+            }
+
+            function updateWinners() 
+            {
+                let afcWinValues = scores.afc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> (p+c)%10 ) );
+                let nfcWinValues = scores.nfc.map( s => s.split('').map( c => parseInt(c)).reduce( (p,c)=> (p+c)%10 ) );
+                console.log( afcWinValues );
+                console.log( nfcWinValues );
+
+                for( let q = 1; q <= 4; q++ )
+                {
+                    let afcVal = afcWinValues[q-1];
+                    let nfcVal = nfcWinValues[q-1];
+                    
+                    if( isNaN(afcVal) || isNaN(nfcVal) )
+                        continue;
+                    
+                    //index of row of winning number for nfc
+                    let afcRow = [...document.querySelectorAll(`#afchq${q} > table > tbody > tr > td`)].findIndex( t => t.innerText === `${afcVal}`);
+                    let afcRowChar = String.fromCharCode(65+afcRow);
+                    //index of column of winning number for nfc
+                    let nfcCol = [...document.querySelectorAll(`#nfchq${q} > table > tbody > tr > td`)].findIndex( t => t.innerText === `${nfcVal}`);
+
+                    //Highlight the winning box
+                    let winningID = `#${afcRowChar}${nfcCol}`;
+                    document.querySelector(winningID).classList.add(`q${q}`);
+                    document.querySelector(winningID).classList.add(`q${q}win`);
+
+                    //update score card border
+                    document.querySelector(`#q${q}scoreCard`).classList.add(`q${q}win`);
+                    //update score card winning name, if there is one
+                    let winningSquare = document.querySelector(`${winningID} > div`);
+                    if( winningSquare !== null)
+                    {
+                        let winningName = winningSquare.dataset.title.split(']')[1].trim();
+                        document.querySelector(`#q${q}scoreCard .card-footer`).classList.remove('invisible');
+                        document.querySelector(`#q${q}scoreCard .card-footer`).innerText = `Congrats ${winningName}!`;
+                    }
+                }
+
+            }
+
+            /**
+            * fetch all sequences from RANDOM.ORG and update DOM with results
+            **/
+            async function pickNumbers()
+            {
+                if( Date.now() >= kickoff )
+                {
+                    for( let q = 1; q <= 4; q++ )
+                    {
+                        sequences.afc[`q${q}`] = await sequence(`superbowl56afcq${q}`);
+                        sequences.nfc[`q${q}`] = await sequence(`superbowl56nfcq${q}`);
+                    }
+                    console.dir(sequences);
+                    for( let q = 1; q <= 4; q++)
+                    {
+                        for( let i = 0; i < 10; i++)
+                        {
+                            document.querySelector(`#nfchq${q} > table > tbody > tr > td:nth-child(${i+1})`).innerText = sequences.nfc[`q${q}`][i];
+                            document.querySelector(`#afchq${q} > table > tbody > tr:nth-child(${i+1}) > td`).innerText = sequences.afc[`q${q}`][i];
+                        }
+                    }
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', async ()=> {
+                //Set the ticket price
+                document.querySelector('#squareCost').innerText = `$${cost}`;
+                
+                //preload-svg
+                fetch('../img/squares/helmet.svg')
+                    .then( response=>response.text() )
+                    .then( t => {
+                        helmet = document.createElement('div');
+                        helmet.innerHTML = t;
+                        helmet.classList = "center";
+                        //Get spreadsheet data and update grid with squares
+                        getSpreadsheetData();
+                    });
+            });
+
+            function debug(){
+                sequences = {
+                    afc: {
+                        q1:[0,1,2,4,5,6,7,3,8,9],
+                        q2:[9,0,1,3,4,5,6,2,7,8],
+                        q3:[8,9,0,4,5,6,7,8,9,3],
+                        q4:[5,6,7,8,9,0,1,2,3,4],
+                    },
+                    nfc: {
+                        q1:[0,1,2,4,5,6,7,3,8,9],
+                        q2:[9,0,1,3,4,5,6,2,7,8],
+                        q3:[8,9,0,4,5,6,7,8,9,0],
+                        q4:[5,6,7,8,9,0,1,2,3,4],
+                    }
+                };
+                console.dir( sequences);
+                for( let q = 1; q <= 4; q++)
+                {
+                    for( let i = 0; i < 10; i++)
+                    {
+                        document.querySelector(`#nfchq${q} > table > tbody > tr > td:nth-child(${i+1})`).innerText = sequences.nfc[`q${q}`][i];
+                        document.querySelector(`#afchq${q} > table > tbody > tr:nth-child(${i+1}) > td`).innerText = sequences.afc[`q${q}`][i];
+                    }
+                }
+
+                scores = {
+                    afc:['7','13','21','77'],
+                    nfc:['0','3','9','99']
+                }
+                updateScores();
+                updateWinners();
+            }

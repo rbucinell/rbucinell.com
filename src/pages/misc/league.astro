@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const config = {
+    title: 'League Chest Tracker',
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"/"},
+        {fa:"smile", text:"League Chest Tracker"}
+    ],
+    page: {
+        title: 'League Chest Tracker',
+        small: ''
+    }
+};
+const ddragon = 'http://ddragon.leagueoflegends.com/cdn/12.17.1'
+const championDataURL = `${ddragon}/data/en_US/champion.json`;
+const imgURLRoot	  = `${ddragon}/img/champion`;
+
+const championDataResponse = await fetch(championDataURL);
+const championJSON = await championDataResponse.json();
+
+
+const apiKey = 'RGAPI-0585b4a1-9c50-4cb6-b53d-9210ad265d37';
+const summonerName = 'SwiftStriker00'
+const lolAPI = 'https://na1.api.riotgames.com/lol';
+const getSummonerURL = `${lolAPI}/summoner/v4/summoners/by-name/${summonerName}?api_key=${apiKey}`;
+const getSummonerResponse = await fetch(getSummonerURL);
+const summoner = await getSummonerResponse.json();//const summonerId = summoner.id;
+const summonerID = 'K5KEcoz-LYC90tIsfifz4xB3C5Vk2yehF6dshJScs_60';
+
+const getChampionMasteryURL = `${lolAPI}/champion-mastery/v4/champion-masteries/by-summoner/${summonerID}?api_key=${apiKey}`
+const getChampionMasteryResposne = await fetch(getChampionMasteryURL);
+const championmastery = await getChampionMasteryResposne.json();
+
+
+
+---
+<style>
+	.progress{
+		background-color: var(--primary-darkest);
+		overflow: visible;
+	}
+</style>
+<BaseLayout config={config}>
+	<div class="container">
+		<ul class="list-unstyled">
+			{Object.entries(championJSON.data).map( index =>{ 
+				const champ = index[1];
+				return (
+				<li id={`champ_id_${champ['key']}`} class="media">
+					<img class="mr-3" src={`${imgURLRoot}/${champ['image']['full']}`} alt="" />
+					<div class="media-body">
+						<h5 class="mt-0 mb-1">{champ['name']}<small>&nbsp;{champ['title']}</small></h5>
+						<p class="blurb">{champ['blurb']}</p>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: 10%"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+					</div>
+					
+
+				</li>
+				);})}
+		</ul>
+	</div>
+</BaseLayout>
+<script is:inline define:vars={{championmastery}}>
+	async function loadMasteries(){
+		championmastery.forEach( mastery => {
+			let champNode = document.querySelector(`#champ_id_${mastery.championId}`);
+			if( mastery.chestGranted === true )
+			{
+				champNode.querySelector('img').style.opacity = .5;
+				champNode.querySelector('.media-body').classList.add('text-secondary');
+			}
+			let progressBar = champNode.querySelector('.progress-bar');
+			const pointsInLevel = mastery['championPointsSinceLastLevel'] + mastery['championPointsUntilNextLevel'];
+			const progressPercent = parseInt((mastery['championPointsSinceLastLevel'] / pointsInLevel )*100)
+			progressBar.innerHTML = `(${mastery['championPointsSinceLastLevel']}/${pointsInLevel}) ${progressPercent}%`;
+			progressBar.style.width = `${progressPercent}%`;
+			progressBar.setAttribute('aria-valuenow', mastery['championPointsSinceLastLevel']);
+			progressBar.setAttribute('aria-valuemax', pointsInLevel);
+		});
+	}
+	loadMasteries();
+</script>
