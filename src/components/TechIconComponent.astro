@@ -1,0 +1,6 @@
+---
+const {icon,word, colored} = Astro.props
+const color = colored && colored !== 'false' ? 'colored': '';
+const wordmark = word && word !== 'false' ? '-wordmark': ''
+---
+<i class={`display-3 lead ${color} devicon-${icon}-plain${wordmark}`}></i>

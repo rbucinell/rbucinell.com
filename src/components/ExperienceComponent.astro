@@ -1,0 +1,27 @@
+---
+const {title, company, daterange, img, ...etc} = Astro.props;
+const descriptions = etc.descriptions;
+---
+<style>
+    .companylogo {
+        width: 200px;
+        height:100px;
+        background-position: right;
+        background-repeat:no-repeat;
+        opacity:0.5;
+        min-height:100px;
+    }
+</style>
+<div class="col-12">
+    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+        <div class="flex-grow-1">
+            <h4 class="mb-0">{title}</h4>
+            <div class="lead text-secondary mb-3">{company}</div>
+            <ul>{descriptions.map( d => <li>{d}</li>)}</ul>
+        </div>
+        <div class="flex-shrink-0">
+            <span class="text-muted">{daterange}</span>
+            <div class="companylogo" style={`background-image:url(${img})`}></div>
+        </div>
+    </div>
+</div>
