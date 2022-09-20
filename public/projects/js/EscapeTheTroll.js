@@ -32,7 +32,6 @@ function EscapeTheTroll(w,h)
         return arr;
     }
     this.map = createMap( this.width, this.height);
-    
 	
 	var tileClick = function( element )
 	{
@@ -136,7 +135,6 @@ function EscapeTheTroll(w,h)
         }
         return array;
     }
-
 	
     var buildMaze = function( game )
     {
@@ -199,7 +197,6 @@ function EscapeTheTroll(w,h)
             }
         }
     }
-
 	
 	var toggleWall = function( game, tile )
 	{
@@ -251,13 +248,11 @@ function EscapeTheTroll(w,h)
 		//third, slove it (A*)
         this.solveMze();
     };
-
 	
 	var costF = function( tile, game )
 	{
 		var G = tile.gCost;
-		var H = tile.hCost;
-		
+		var H = tile.hCost;		
 		return G + H;
 	}
 	
