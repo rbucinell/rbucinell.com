@@ -1,0 +1,25 @@
+---
+const {index, title, desc, price, imgsrc} = Astro.props;
+---
+<div class="giftElement col-xs-12 col-sm-6 col-md-4 col-lg-3" id={`gift_${index}`}>
+    <input type="hidden" name={`item_number_${index}`}/>
+    <input type="hidden" name={`item_name_${index}`}/>
+    <input type="hidden" name={`quantity_${index}`} value="1"/>
+    <input type="hidden" name={`amount_${index}`}/>
+    <div class="thumbnail">
+        <img class="img-rounded" src={imgsrc} style="height:200px;width:300px"/>
+        <div class="caption">
+            <h4>{title}</h4>
+            <p class="description">{desc}</p>
+            <div class="input-group col-xs">
+                <span class="input-group-addon">$</span>
+                <input class="gift-amount form-control" type="text" placeholder={`${price} /person`} readonly="readonly" disabled="disabled"/><span class="input-group-btn"> 
+                <label for={`giftbtn${index}`}>
+                <button class="gift-btn btn btn-default" onclick="" data-toggle="button" name={`giftbtn${index}`} type="button" id={`${index}_oneperson`}  value="🤵">🤵</button>
+                <button class="gift-btn btn btn-default" onclick="" data-toggle="button" name={`giftbtn${index}`} type="button" id={`${index}_twoperson`}  value="🤵👰">🤵👰</button>
+                </label>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
