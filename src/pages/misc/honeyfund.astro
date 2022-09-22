@@ -1,0 +1,266 @@
+---
+import CustomGiftComponent from "../../components/wedding/CustomGiftComponent.astro";
+import GiftComponent from "../../components/wedding/GiftComponent.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const config = {
+    title: "Ryan & Jess's Honeyfund",
+    breadcrumbs: [
+        {fa:"home",text:"Home", url:"/"},
+        {fa:"heart",text:"Wedding", url:"/misc/wedding.html"},
+        {fa:"heart",text:"HoneyFund"}
+    ],
+    page: {
+        title: 'Ryan & Jessica\'s Wedding',
+        small: '#SheWantsTheB #BuciFoundHisCheerleader'
+    }
+}
+const gifts =[
+    {title:'Celebrity Cruise', desc:'This gift will go directly to help pay for the cruise itself', price:150, img:'https://cruiseweb.com/admin/Images/image-gallery/celebrity-cruise-line-celebrity-summit-exterior-01-gallery.jpg'},
+    {title:'Catamaran Excursion',desc:'Catamaran Cruise with Snorkeling, Paddleboarding and Kayaking', price: 75, img:'/img/wedding/catamaran_cruise.jpg'},
+    {title:'Pink Sand Beach Tour',desc:'Here is a short description of the excursion for flavor', price:45, img:'/img/wedding/bermuda-pink-sand.jpg'},
+    {title:'St. George\'s Historical Tour',desc:'Tour of Bermud\'s historical English settlement', price:60, img:'/img/wedding/stgeorge.jpg'},
+    {title:'Spa Day',desc:'Elbow Beach\'s Spa get-away', price:200, img:'/img/wedding/spa.jpg'},
+    {title:'Discover Scuba and Dive',desc:'Discover the thrill of SCUBA diving on this half-day PADI course and dive. ', price:160, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMFANDISSBA-2.jpg'},
+    {title:'Twilight Bermuda Triangle Cruise',desc:'A trip to the Bermuda Triangle for a nighttime spectacle. 100% money back guarantee if you disappear!', price:70, img:'https://www.shoreexcursionsgroup.com/img/tour/BMBMTWILIGHT-2.jpg'},
+    {title:'Custom Amount',desc:'If you wish to enter a custom amount, please enter it below', price:100, img:'/img/wedding/bermuda-triangle.jpg'}
+];
+---
+<style>
+    #page-wrapper > .container-fluid
+    {
+        background: #3d187c url(/img/wedding/purple_bg.jpg);
+    }
+
+    .jumbotron
+    {
+        background: #000 url(/img/wedding/bermuda_mod.jpg) top right;
+        background-size: cover;
+        background-position-y: 35%;
+        width: 100%;
+        height: 100%;
+    }
+    .jumbotron .container
+    {
+        color: white;
+        opacity: 1;
+        text-shadow:
+            -1px -1px 0 #5e5e5e,  
+            1px -1px 0 #5e5e5e,
+            -1px 1px 0 #5e5e5e,
+            1px 1px 0 #5e5e5e;
+    }
+
+    .unselectable {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .giftElement .thumbnail .caption {
+        min-height: 141px;
+    }
+
+    #backtoweddingbtn
+    {
+        background-color: #48183F;
+        border-color: #1c0919;
+    }
+    #backtoweddingbtn:hover
+    {
+        background-color: #2b0e25;
+        border-color: #160714;
+    }
+    #backtoweddingbtn:active
+    {
+        background-color: #2b0e25;
+        border-color: #160714;
+    }
+
+    .input-group-btn label {
+        display: inline !important;
+    }
+
+    .gift-btn
+    {
+        cursor: pointer;
+    }
+</style>
+<BaseLayout config={config}>
+    <div class="wedding">
+        <div class="jumbotron" id="jumbo">
+          <div class="container">
+            <h1>Our Dream Honeymoon</h1>
+            <p>We would like to thank you for helping us go on the trip of lifetime. After all the stress and planning for the wedding this will be the perfect way to relax and start our marriage.</p><a class="btn btn-primary btn-lg" id="backtoweddingbtn" href="http://rbucinell.com/wedding" role="button">Back to Wedding 💍</a>
+          </div>
+        </div>
+        <form class="form-inline" id="mainForm" target="_self" action="https://www.paypal.com/yt/cgi-bing/webscr" method="post" name="weddingGift">
+            <input type="hidden" name="cmd" value="_cart"/>
+            <input type="hidden" name="upload" value="1"/>
+            <input type="hidden" name="image_url" value="http://rbucinell.com/img/rmb.png"/>
+            <input type="hidden" name="business" value="swiftstriker00@gmail.com"/>
+            <input type="hidden" name="currency_code" value="USD"/>
+            <input type="hidden" name="shipping" value="0"/>
+            <input type="hidden" name="return" value="http://rbucinell.com/wedding"/>
+            <input type="hidden" name="cancel_return" value="http://rbucinell.com/honeyfund.html"/>
+            <input type="hidden" name="item_number_100" value="100"/>
+            <input type="hidden" name="quantity_100" value="1"/>
+            <input type="hidden" name="item_name_100" value="PayPal 2.9% fee"/>
+            <input type="hidden" name="amount_100" value="1"/>
+            <div class="input-group col-xs-12 col-sm-6 col-md-4 col-lg-3" id="checkoutbox" style="padding-bottom:10px"><span class="input-group-addon">Total $</span>
+                <input class="form-control" id="checkout-total" type="number" placeholder="0.00" min="0" readonly="readonly"/><span class="input-group-btn">
+                <button class="btn btn-primary disabled" id="modalLoad" type="button" data-toggle="modal" data-target="#thanksModal">Checkout</button></span>
+            </div>
+            <div class="row" id="items">{gifts.map((gift,index)=>{
+                return index !== gifts.length -1 ? 
+                    (<GiftComponent index={index+1} title={gift.title} desc={gift.desc} price={gift.price} imgsrc={gift.img} />): 
+                    (<CustomGiftComponent index={index+1} title={gift.title} desc={gift.desc} price={gift.price} imgsrc={gift.img}/>)
+                })}
+            </div>
+            <div class="modal fade" id="thanksModal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal"><span>&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Thank you!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>We truly appreciate your generosity and want to thank you for helping make our honeymoon as special as possible.</p>
+                            <p>I wrote this page because other sites wanted large percentages of online gift giving. So I have created two options to keep the fees to a minimum. Please use whichever button you prefer.</p>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6"><a class="btn btn-primary btn-lg" id="paypalme" role="button" href="https://www.paypal.me/rbucinell/100">Paypal.me </a>
+                                        <p>This will allow sending gifts to friends and family for free.</p>
+                                    </div>
+                                    <div class="col-md-6 col-md-offest-6">
+                                        <button class="btn btn-lg btn-primary" id="submitPaypal" type="submit">Checkout with Paypal</button>
+                                        <p>This will generate a purchase order if you want an itemized receipt. Paypal will treat this as a sale and will apply their <u>2.9% + $0.30</u> fee</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</BaseLayout>
+<script is:inline>
+    function updateTotal()
+        {
+            var total = 0;
+            $('input[class*=gift-amount]').each(function(k,v)
+            {
+                var giftElement = $(v).closest('.giftElement');
+                var activeButton = giftElement.find( 'button.active');
+                if( activeButton.length >= 1 )
+                {
+                    var perperson = 0;
+                    if( ($(v).is('.custom-gift-amount')))
+                    {
+                        if( $(v).val() === '')
+                        {
+                            $(v).val( giftElement.children('input[name^=amount]').val() );
+                        }
+                        perperson = $(v).val()
+                    }
+                    else
+                    {
+                        perperson = giftElement.children('input[name^=amount]').val()
+                    }
+                    var modifier = activeButton.attr('id').indexOf('two') == -1 ? 1 : 2;
+                    total += Number(perperson,10) * modifier;
+                }
+            });
+            $("#checkout-total").val(total);
+            $("#paypalme").attr('href', `https://www.paypal.me/rbucinell/${total}`)
+            $('#amount_100').val(total*0.029);
+            if( total <= 0)
+                $("#modalLoad").addClass('disabled');
+            else
+                $("#modalLoad").removeClass('disabled');
+        }
+        
+        function toggle( aButton, selected)
+        {
+            if( selected )
+                $(aButton).addClass("active").removeClass('btn-default').addClass('btn-success');
+            else
+                $(aButton).removeClass('active').removeClass('btn-success').addClass('btn-default');
+        }
+
+        $(function()
+        {
+            //delete my normal sites stucture
+            $('ol.breadcrumb').remove();
+            $('.page-header').css('color','#EEE')
+            $('.page-header small').css('color','#AAA')
+            $('#gift_1 input[name^=quantity').val(1)
+
+            //clear on page load
+            $("#checkout-total").val('');
+            $(".custom-gift-amount").val('');
+
+            //- Add custom functionality
+            $("input[class*=gift-amount]").on("change paste keyup",function()
+            {
+                toggle( this.nextElementSibling.children[0], $(this).val() !== '');
+                updateTotal();
+            });
+        
+            $(".gift-btn").on('tap click touchstart touchend data-api', function foo()
+            {
+                var inputField = this.parentElement.parentElement.previousElementSibling;
+                var isActive = $(this).is('.active');
+                toggle( this, !isActive);
+                if( this.id === 'customgiftbtn')
+                {
+                    if( isActive )
+                    {
+                        inputField.value = '';
+                    }
+                    else
+                    {
+                        inputField.value = inputField.placeholder.replace('$', '');
+                    }
+                }
+                else
+                {
+                    var modifier = this.id.indexOf('two') == -1 ? 1 : 2;                    
+                    inputField.value = '';
+
+                    if( !isActive)
+                    {
+                        $(this).siblings(".gift-btn").each( function(){
+                            toggle( this, false);
+                        });
+                        inputField.value = `(${modifier} x $${ inputField.placeholder.substr(0,3)}) added to total`;
+                    }
+                }
+
+                
+                updateTotal();
+
+
+            });
+
+            $("#mainForm").submit(function()
+            {
+                $('#items').children().each(function(i,value)
+                {
+                    var index = i+1;
+                    if( $("#gift_"+ index + ' .gift-btn')[0].className.indexOf('btn-success') === -1 )
+                    {
+                        $("#gift_"+index + ' input[type^=hidden').remove();
+                    }
+                });
+                return true;
+            })
+        });
+</script>

@@ -1,0 +1,15 @@
+---
+import HeadComponent from "../components/HeadComponent.astro";
+import WrapperComponent from "../components/WrapperComponent.astro";
+
+const { config } = Astro.props;
+let title = config.title || 'Ryan Bucinell\'s Personal Site';
+---
+<html lang="en">
+  <HeadComponent title={title}></HeadComponent>
+  <body>
+    <WrapperComponent config={config}>
+      <slot />
+    </WrapperComponent>
+  </body>
+</html>

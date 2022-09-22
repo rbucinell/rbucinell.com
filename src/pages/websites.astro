@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GalleryItemComponent from '../components/GalleryItemComponent.astro';
+
+const config = {
+    title: "Ryan Bucinell - Website Development",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"settings", text:"Projects" },
+        {fa:"globe", text:"Websites", url:"#"}
+    ],
+    page: {
+        title: 'Web Design',
+        small: 'Personal and professional projects'
+    }
+};
+const fdir = "img/websites/";
+---
+<style>
+    .media div a img {
+        width: 175px;
+        height: 128px;
+    }
+    .portfolio-item {
+        margin-bottom: 25px;
+    }
+    .img-responsive{
+        min-height: 400px;
+    }
+</style>
+<BaseLayout config={config}>
+    <div class="container-fluid">
+        <div class="row">
+            <GalleryItemComponent id="whyilift" rootdir={fdir} count="4" title="Why I Lift" date="2019">
+                A site deisgned to look up other competetive lifter's profiles and records. I was contracted to convert their front-end code to be more movbile friendly
+                <a class="btn btn-sm btn-outline-dark" href="http://www.whyilift.com/" role="button" target="_blank">Visit</a>
+            </GalleryItemComponent>
+
+            <GalleryItemComponent id="revivomedical" rootdir={fdir} count="5" title="ReVivo Medical" date="2016">
+                Revivio Medical a startup of doctors with a leading edge spinal fusion procedure. Since doctors were maintaining the site, I needed to build the site with tools that they wouldn't need any technilogical skills to update
+                <a class="btn btn-sm btn-outline-dark" href="http://www.revivomedical.com/" role="button" target="_blank"> Visit </a>
+            </GalleryItemComponent>
+            
+            <GalleryItemComponent id="nocoast" rootdir={fdir} count="5" title="No Coast Strength and Conditioning" date="2014">
+                No Coast Strength and Conditioning is a personal training site for Rob Saeva in Rochester, NY
+            </GalleryItemComponent>
+            
+            <GalleryItemComponent id="hike4heroes" rootdir={fdir} count="4" title="Way of Ninja" date="2013">
+                My little brother created a charity event to raise money for the Wounded Warrior Project and Navy SEALs Foundation. I volunteered to build, and maintain the sites (as well as social media) as he hiked all 46 Adirondack High Peaks.
+            </GalleryItemComponent>
+            
+            <GalleryItemComponent id="rbb" rootdir={fdir} count="3" title="Ronald Bucinell's Personal Site" date="2010-2018">
+                <p class="card-text">A rework of his professional site to bring site up to standards and to make content easier to find and read.</p>
+                <a class="btn btn-sm btn-outline-dark" href="http://rbb.union.edu/" role="button" target="_blank">rbb.union.edu</a>
+                <p class="card-text">
+                    Innotech International - Ronald Bucinell's Engineering consultant company <a href="http://innotech-international.com/">http://innotech-international.com/</a>
+                </p>
+                <a class="btn btn-sm btn-outline-dark" href="http://innotech-international.com" role="button" target="_blank">innotech</a>
+            </GalleryItemComponent>
+            
+            <GalleryItemComponent id="personal" rootdir={fdir} count="1" title="My Personal Site" date="2006-Current">
+                <p class="card-text">First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="retro.html">Retro</a> page.</p>
+            </GalleryItemComponent>
+        </div>
+    </div>
+</BaseLayout>
+

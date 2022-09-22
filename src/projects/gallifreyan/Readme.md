@@ -1,1 +1,0 @@
-The project is based on Sherman's Circular Gallifreyan, for more information about the language visit http://www.shermansplanet.com/gallifreyan

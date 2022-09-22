@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GalleryItemComponent from '../components/GalleryItemComponent.astro';
+
+const config = {
+    title: "Ryan Bucinell - Flash",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"settings", text:"Projects" },
+        {fa:"zap", text:"Flash", url:"#"}
+    ],
+    page: {
+        title: 'Flash Projects',
+        small: 'R.I.P. Flash'
+    }
+};
+const fdir = "img/flash/";
+---
+<BaseLayout config={config}>
+    <div class="container-fluid">
+        <p class="col-12 lead">
+            With the death of flash, you can no longer interact with these projects, however I have included image galleries below
+        </p>
+        <div class="row">
+            <GalleryItemComponent id="SAM" rootdir={fdir} count="5" title="Way of Ninja" date="2008">This was the final group project in my Game Design and Development II course, I was the Design lead and did some programming</GalleryItemComponent>
+            <GalleryItemComponent id="CylinderTessellation" rootdir={fdir} count="1" title="Cylinder Tessellation" date="2009">This was a 3D point to 2D projection (no 3d libraries) demonstartion of tessellation. You could modify the triangle coutns with the different buttons</GalleryItemComponent>
+            <GalleryItemComponent id="WayOfNinja" rootdir={fdir} count="6" title="The Adventures of S.A.M." date="2011">My final project in Interactive Media course was a platform game that included art, music, and sprite animations. Collect items quickly to beat each level</GalleryItemComponent>
+            <GalleryItemComponent id="VirtualTour2" rootdir={fdir} count="4" title="Virtual Tour 2.0" date="2008">I was rehired to add more features including a search field, more images and loading dynamic content from config files</GalleryItemComponent>
+            <GalleryItemComponent id="VirtualTour" rootdir={fdir} count="3" title="Virtual Tour" date="2007">A project that allows users to look at different locations of the ME Dept at Union College in Schenectady, NY</GalleryItemComponent>
+            <GalleryItemComponent id="PreloaderTutorial" rootdir={fdir} count="3" title="Preloader Tutorial" date="2005">My first flash 'game' was a tutorial on how to create pre-loaders. It was more akin to a slideshow</GalleryItemComponent>
+        </div>
+    </div>
+</BaseLayout>

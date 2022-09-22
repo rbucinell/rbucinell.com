@@ -1,0 +1,28 @@
+---
+let {page,breadcrumbs} = Astro.props.config;
+let smalltitle = page.small || '';
+let hasURL = (url: String) => (typeof url === 'undefined');
+---
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            {page.title}&nbsp;<small class="text-muted">{smalltitle}</small>
+        </h1>
+        <ol class="breadcrumb">
+            {breadcrumbs.map((crumb: { fa?: any; text: any; url?: any; },i: number)=>{
+                if( i != breadcrumbs.length - 1 ){
+                    let {text,url} = crumb;
+                    return <li>
+                        <i class="d-inline" data-feather={crumb.fa}></i>
+                        <span>{ hasURL(url) ? text : <a href={url}>{text}</a> }</span>
+                        <span>&nbsp;/&nbsp;</span>
+                    </li>
+                }else
+                    return <li class="font-weight-bold">
+                        <i class="d-inline" data-feather={crumb.fa}></i>
+                        <span>{crumb.text}</span>
+                    </li>
+            })}
+        </ol>
+    </div>
+</div>

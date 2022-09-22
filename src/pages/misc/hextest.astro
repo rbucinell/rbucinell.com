@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const config = {
+    title: 'Hex Test',
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"/"},
+        {fa:"key", text:"Hex Test"}
+    ],
+    page: {
+        title: 'Hex Test',
+        small: ''
+    }
+};
+
+---
+<BaseLayout	config={config}>
+	<div class="row">
+		<div class="col-lg-12">
+			<canvas id="canvas" width="770px" height="500px" style="border:1px solid #000000;margin: 5px;">
+				<p>Your browser doesn't support canvas.</p>
+			</canvas>
+		</div>
+	</div>
+</BaseLayout>
+<script is:inline type="text/javascript" src="/projects/js/hex/Hex.js"></script>
+<script is:inline type="text/javascript" src="/projects/js/hex/HexGrid.js"></script>
+<script is:inline type="text/javascript" src="/projects/js/hex/HexClient.js"></script>
+<script is:inline>
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	var client = new HexClient(canvas.width, canvas.height, canvas);
+	client.run();
+	canvas.oncontextmenu = function (e) {
+		e.preventDefault();
+	};
+</script>

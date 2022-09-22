@@ -1,6 +1,0 @@
-function HexGrid()
-{
-    var grid = [[]];
-
-    
-}

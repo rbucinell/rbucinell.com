@@ -1,0 +1,601 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const config = {
+    title: "Ryan Bucinell - Javascript Quads",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"settings", text:"Projects", url:"#" },
+        {fa:"code", text:"Javascript Quads"}
+    ],
+    page: {
+        title: 'Javascript Quads',
+        small: 'Digitize!'
+    }
+}
+---
+<BaseLayout config={config}>
+	<div class="alert alert-warning"><a class="p-3" href="/misc/quad.html">Quad Page</a> works better, introduced bug in conversion. TODO</div>
+	<div class="container-fluid">
+		<div class="row" id="buttons">
+			<button class="m-1 btn btn-primary" id="playButton" onclick="play()">Play</button>
+			<div class="mx-1">
+				<div class="custom-file">
+					<input class="custom-file-input" type="file" accept="image/*" onchange="loadAll()">
+					<label class="custom-file-label">Choose File</label>
+				</div>
+			</div>
+			<button class="m-1 btn btn-secondary" id="pauseButton" onclick="step()">Step</button>
+			<button class="m-1 btn btn-secondary" id="stopButton" onclick="stop()">Stop</button>
+			<button class="m-1 btn btn-secondary" id="createButton" onclick="create()">Convert to Picture</button>
+			<p class="lead" id="saveMe" style="display:none;">Right click to save me! </p>
+		</div>
+		<div class="row custom-control custom-radio" id="cellStyleButtons">
+			<div class="custom-control custom-radio custom-control-inline">
+				<input class="custom-control-input" id="defaultInline1" type="radio" name="shadingRadios" checked="checked">
+				<label class="custom-control-label" for="defaultInline1">Box Shade</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+				<input class="custom-control-input" id="defaultInline2" type="radio" name="shadingRadios">
+				<label class="custom-control-label" for="defaultInline2">Box Bodrder</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+				<input class="custom-control-input" id="defaultInline3" type="radio" name="shadingRadios">
+				<label class="custom-control-label" for="defaultInline3">Hatch</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+				<input class="custom-control-input" id="defaultInline4" type="radio" name="shadingRadios">
+				<label class="custom-control-label" for="defaultInline4">HatchShaded</label>
+			</div>
+		</div>
+		<div class="row"><img class="col" id="refpix" style="border:1px solid #000000;margin: 5px;" src="">
+			<canvas class="col" id="canvas" style="border:1px solid #000000;margin: 5px;">
+				<p>Your browser doesn&apos;t support canvas.</p>
+			</canvas>
+		</div>
+	</div>
+</BaseLayout>
+<script is:inline>
+	//GLOBAL VARIABLES
+	const AREA_POWER = 0.25;
+	const MAX_DIVISIONS = 10;
+	const MAX_LINE_WIDTH = 4;
+
+	const DrawMode = {
+	BOX:		"Box",
+	BOXBORDER: 	"BoxBorder",
+	HATCH:		"Hatch",
+	HATCHSHADE:	"HatchShaded"
+	};
+
+	class Box {
+
+	/**
+	 * Default constructor
+	 * 
+	 * @param {Image} image The html image element to copy data from
+	 * @param {*} parent 
+	 * @param {*} x 
+	 * @param {*} y 
+	 * @param {*} w 
+	 * @param {*} h 
+	 * @param {*} depth 
+	 * @param {*} MAX_DEPTH 
+	 */
+	constructor(image,parent,x,y,w,h,depth,MAX_DEPTH)
+	{
+		this.parent = parent;
+		this.image = image;
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		this.depth = depth;
+		this.MAX_DEPTH = MAX_DEPTH;
+		this.hatchWidth =  Math.tan( Math.atan( MAX_LINE_WIDTH / MAX_DEPTH ) )* ( MAX_DEPTH - this.depth);
+		this.children = [];
+		this.hist = new Histogram( this.image, x, y, w, h );
+		this.setColor( this.hist.averageColor() );
+		this.score = -this.error * Math.pow( this.area(), AREA_POWER );
+		this.mode = DrawMode.BOX;
+	}
+
+	/**
+	* Determines if there are no children to this node
+	**/
+	isLeaf()
+	{
+		return this.children.length === 0;
+	};
+
+	getLeafNodes()
+	{
+		return this.children === [] ? [this] : this.children;
+	};
+
+	getAllLeafNodes( currentlist, maxdepth )
+	{
+
+		if( this.depth >= maxdepth )
+		{
+
+		}
+		else if( this.isLeaf() )
+		{
+			currentlist.push( this );
+		}
+		else
+		{
+			for( let i = 0; i < this.children.length; i++ )
+			{
+				currentlist = this.children[i].getAllLeafNodes( currentlist, maxdepth );
+			}
+		}
+		return currentlist;
+	}
+
+	getLeafNodes( depth )
+	{
+		if( this.depth >= depth )
+		{
+			return [ this ];
+		}
+		else if( this.children === [])
+		{
+			return [ this ];
+		}
+		else
+		{
+			return this.children;
+		}
+	};
+
+	divide()
+	{
+		let w2 = this.w / 2;
+		let h2 = this.h / 2;
+
+		let q1 = new Box(this.image, this, this.x,		this.y,		 w2, h2, this.depth+1, this.MAX_DEPTH );
+		let q2 = new Box(this.image, this, this.x + w2,	this.y, 	 w2, h2, this.depth+1, this.MAX_DEPTH );
+		let q3 = new Box(this.image, this, this.x, 		this.y + h2, w2, h2, this.depth+1, this.MAX_DEPTH );
+		let q4 = new Box(this.image, this, this.x + w2,	this.y + h2, w2, h2, this.depth+1, this.MAX_DEPTH );
+
+		this.children = [ q1, q2, q3, q4 ];
+	};
+
+	draw( ctx )
+	{
+		ctx.fillStyle = this.color;
+
+		switch( this.mode )
+		{
+			case DrawMode.BOXBORDER:
+				ctx.beginPath();
+				ctx.lineWidth="0.1";
+				ctx.strokeStyle= "black";//this.color;
+				ctx.rect( this.x, this.y, this.w, this.h );
+				ctx.stroke();
+			/* falls through */
+			case DrawMode.BOX:
+				ctx.fillRect( this.x, this.y, this.w, this.h );
+				break;
+			case DrawMode.HATCHSHADE:
+				ctx.globalAlpha = 0.2;
+				ctx.fillRect( this.x, this.y, this.w, this.h );
+				ctx.globalAlpha = 1;
+			/* falls through */
+			case DrawMode.HATCH:
+				//determine the number of hatches in a square
+				let divisions = MAX_DIVISIONS / (this.depth + 1);
+				let vHatches = this.w / divisions;
+				let hHatches = this.h / divisions;
+
+				//The deeper we go, the finer our hatches become
+				ctx.lineWidth = this.hatchWidth;
+				ctx.strokeStyle = this.color;
+
+				ctx.beginPath();
+
+				for( let i = 0; i < divisions; i++ )
+				{
+					//Verticle hatches
+					ctx.moveTo(this.x+ i*vHatches, this.y);
+					ctx.lineTo(this.x+ i*vHatches, this.y+ this.h);
+
+					//Horizontal hatches
+					ctx.moveTo(this.x, this.y+ i*hHatches);
+					ctx.lineTo(this.x + this.w, this.y+ i*hHatches);
+				}
+				ctx.stroke();
+
+				for( let i = 0; i < divisions; i++ )
+				{
+					ctx.beginPath();
+					ctx.stroke();
+				}
+				break;
+		}
+	};
+
+	setColor( c )
+	{
+		this.color = `rgb(${Math.floor(c.r)},${Math.floor(c.g)},${Math.floor(c.b)})`;
+		this.error = c.e;
+	};
+
+	area()
+	{
+		return this.w * this.h;
+	};
+}
+
+class Histogram
+{
+	constructor( image, x, y, w, h)
+	{
+		this.image = image;
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+
+		this.r_offset = 0;
+		this.g_offset = 1;
+		this.b_offset = 2;
+		this.a_offset = 3;
+
+		this.bufferCanvas = document.createElement('canvas');
+		this.buffer = this.bufferCanvas.getContext('2d');
+
+		this.imageDAta;
+
+		//Histogram Channels
+		this.r = [];
+		this.g = [];
+		this.b = [];
+
+		this.buildHist();
+	}
+
+	/**
+	* Builds the Histogram from the given image data
+	**/
+	buildHist()
+	{
+		//first initialize r, g, and b
+		this.r = new Array(Histogram.COLOR_RANGE).fill(0);
+		this.g = new Array(Histogram.COLOR_RANGE).fill(0);
+		this.b = new Array(Histogram.COLOR_RANGE).fill(0);
+
+		////Fill buffer, and get image data from it
+		this.buffer.drawImage( this.image, this.x, this.y, this.w, this.h, this.x, this.y, this.w, this.h);
+		this.imgData = this.buffer.getImageData( this.x, this.y, this.w, this.h );
+
+		//fill them with data
+		for( let i = 0, l = this.imgData.data.length; i < l; i+=4 )
+		{
+			//add a red color
+			let rVal = this.imgData.data[ i + this.r_offset ];
+			this.r[rVal] = this.r[rVal] + 1;
+
+			//add a green color
+			let gVal = this.imgData.data[ i + this.g_offset ];
+			this.g[gVal] = this.g[gVal] + 1;
+
+			//add a blue color
+			let bVal = this.imgData.data[ i + this.b_offset ];
+			this.b[bVal] = this.b[bVal] + 1;
+		}
+	}
+
+	/**
+	* Returns the weighted average of a set of data of a color channel histogram
+	*/
+	weightedAverage( data )
+	{
+		let total = 0, value = 0, error = 0;
+
+		for( let i = 0; i < data.length; i++ )
+		{
+			total += data[i];
+			value += data[i] * i;
+		}
+		value = value / total;
+
+		for( let i = 0; i < data.length; i++ )
+		{
+			error += ( data[i] * Math.pow(( value - i ),2));
+		}
+		error = Math.sqrt( error / total );
+		return { value: value, error: error };
+	}
+
+	/**
+	* The weighted average of colors
+	**/
+	averageColor()
+	{
+		let rColor = this.weightedAverage( this.r );
+		let gColor = this.weightedAverage( this.g );
+		let bColor = this.weightedAverage( this.b );
+
+		//standard NTSC conversion formula
+		let error = rColor.error * Histogram.RED_ERROR_WEIGHT +
+					gColor.error * Histogram.GREEN_ERROR_WEIGHT +
+					bColor.error * Histogram.BLUE_ERROR_WEIGHT;
+
+		return {
+			r: rColor.value,
+			g: gColor.value,
+			b: bColor.value,
+			e: error
+		};
+	}
+}
+
+Histogram.COLOR_RANGE = 256;
+Histogram.RED_ERROR_WEIGHT   = 0.2989;
+Histogram.GREEN_ERROR_WEIGHT = 0.5870;
+Histogram.BLUE_ERROR_WEIGHT  = 0.1140;//GLOBAL VARIABLES
+
+
+//Class public vars
+const ERROR_RATE = 0.5;
+const DEBUG_MODE = false;
+
+class Quadrants
+{
+	constructor( canvas )
+	{
+		this.canvas = canvas;
+		this.ctx = this.canvas.getContext('2d');
+		this.bufferCanvas = document.createElement('canvas');
+		this.buffer = this.bufferCanvas.getContext('2d');
+
+		// Member variables
+		this.intervalID	= -1;
+		this.framerate 	= 20; //60
+		this.isRunning 	= false;
+		this.boxes = [];
+		this.root;
+		this.drawNode;
+		this.hist;
+		this.previousError = -1;
+		this.error = 0;
+		this.errorSum;
+
+		this.ITERATIONS = 1024;
+		this.MAX_DEPTH = 8;
+	}
+
+	initialize( img )
+	{
+		//Draw original image to get image data
+		this.ctx.drawImage( img, 0, 0, img.naturalWidth, img.natualHeight, 0, 0, this.canvas.width, this.canvas.height);
+		//g_imageData = this.ctx.getImageData(0,0, this.canvas.width, this.canvas.height);
+		this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height);
+
+		//Create the starting root node
+		this.root = new Box( img, {},  0, 0, this.canvas.width, this.canvas.height, 0, this.MAX_DEPTH );
+		this.errorSum = this.root.error * this.root.area();
+
+		//Initial Draw
+		this.drawNode = this.root;
+		this.boxes.push( this.root );
+		this.draw();
+	}
+
+	get IsRunning()
+	{
+		return this.isRunning;
+	}
+
+	set IsRunning( val )
+	{
+		this.isRunning = val;
+	}
+
+	play()
+	{
+		this.isRunning = true;
+		this.intervalID = setInterval( this.running.bind(this), 1000/ this.framerate );
+	}
+
+	step()
+	{
+		this.isRunning = true;
+		if ( this.ITERATIONS <= 0  )
+		{
+			this.ITERATIONS = 1;
+		}
+		this.running();
+	}
+
+	stop()
+	{
+		clearInterval(this.intervalID);
+		this.isRunning = false;
+	}
+
+	running()
+	{
+		if( this.IsRunning && this.ITERATIONS > 0 )
+		{
+			this.update();
+			this.draw();
+		}
+	}
+
+	/**
+	*	A compareTo function to sort Box's by their error
+	**/
+	errorCompareTo( a, b )
+	{
+		if( a.score < b.score )
+		{
+			return -1;
+		}
+		if( a.score > b.score)
+		{
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
+	*	Game loop update function
+	**/
+	update()
+	{
+		this.error = this.averageErrorOfQuad( this.drawNode, this.errorSum );
+
+		if( this.previousError == -1 || this.previousError - this.error > ERROR_RATE )
+			this.previousError = this.error;
+
+		let leaves = this.root.getAllLeafNodes( [], this.MAX_DEPTH );
+		leaves.sort( this.errorCompareTo );
+		let last = leaves[0];// leaves[leaves.length-1];
+		if( last.error > 0 )
+		{
+			last.divide();
+			this.errorSum -= last.error * last.area();
+			let kids = last.getLeafNodes();
+			for( let child = 0; child < kids.length; child++ )
+			{
+				this.errorSum += kids[child].error + kids[child].area();
+			}
+		}
+
+		this.drawNode = last;
+		this.boxes = leaves;
+		this.ITERATIONS -= 1;
+	}
+
+	averageErrorOfQuad( quad, errorsum )
+	{
+		return errorsum / quad.area();
+	}
+
+	/**
+	*
+	**/
+	getBoxWithLargestError( box )
+	{
+		if( box.isLeaf() || box.depth >= this.MAX_DEPTH )
+		{
+			return box;
+		}
+		else
+		{
+			let children = box.getLeafNodes();
+			children.sort( Box.errorCompareT );
+			let largestChild = children[children.length-1];
+			return this.getBoxWithLargestError( largestChild );
+		}
+	}
+
+	/**
+	*	Game loop draw function
+	**/
+	draw()
+	{
+		this.drawNode.draw( this.ctx);
+		for( let i = 0; i < this.drawNode.children.length; i++ )
+		{
+			this.drawNode.children[i].draw(this.ctx);
+		}
+	}
+
+	/**
+	*	Gets the average color of a area
+	**/
+	averageColorOfRegion( x, y, w, h )
+	{
+		let imgData = this.buffer.getImageData( x, y, w, h );
+		let total = imgData.data.length;
+		let R = 0, G = 0, B = 0;
+
+		//Manipulate the current section
+		for( let i = 0; i < total; i+= 4 )
+		{
+			//Index of RGBA
+			let r = i + 0,
+				g = i + 1,
+				b = i + 2,
+				a = i + 3;
+
+			R = R + imgData.data[r];
+			G = G + imgData.data[g];
+			B = B + imgData.data[b];
+		}
+		return {
+			r:Math.floor(R/total),
+			g:Math.floor(G/total),
+			b:Math.floor(B/total)
+		};
+	}
+}
+</script>
+<script is:inline type="text/javascript">
+const canvas = document.getElementById("canvas");
+const refpix = document.querySelector('#refpix');
+refpix.addEventListener('load', refpixLoaded );
+canvas.oncontextmenu = (e) => e.preventDefault();
+let halfwidth = canvas.getBoundingClientRect().width;
+let quads = new Quadrants( canvas );
+
+function loadAll()
+{
+	if( quads )
+		quads.stop();
+	const filePicker = document.querySelector('input[type=file]');
+	const reader = new FileReader();
+	const file = filePicker.files[0];
+	reader.addEventListener('load', ( e )=> refpix.src= e.target.result );
+	if (file) {
+		reader.readAsDataURL(file);
+	}
+}
+
+function refpixLoaded()
+{
+	console.log( 'refpixLoaded');
+	console.log( `canvas (${canvas.getBoundingClientRect().width}, ${canvas.getBoundingClientRect().height})`);
+	console.log( `refpix (${refpix.naturalWidth}, ${refpix.naturalHeight})`);
+	quads.initialize( refpix );
+}
+
+function play()
+{
+	console.log( "Program Started");
+	if( quads.ITERATIONS == 0 )
+	{
+		quds.ITERATIONS += 1000;
+	}
+	quads.play();
+};
+function stop()
+{
+	quads.stop();
+	console.log( "Program Halted");
+};
+function step()
+{
+	quads.step();
+	console.log( "Program Stepped");
+};
+function create()
+{
+	quads.stop();
+	playButton.style.display   = 'none';
+	stopButton.style.display   = 'none';
+	pauseButton.style.display  = 'none';
+	createButton.style.display = 'none';
+	var dataUrl = canvas.toDataURL();
+	var img = document.getElementById('refpix');
+	img.src = dataUrl;
+	canvas.style.display = 'none';
+	saveMe.style.display = "block";
+	img.style.display = "block";
+};
+</script>

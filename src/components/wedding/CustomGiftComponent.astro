@@ -1,0 +1,20 @@
+---
+const {index, title, desc, price, imgsrc} = Astro.props;
+---
+<div class="giftElement col-xs-12 col-sm-6 col-md-4 col-lg-3" id={`gift_${index}`}>
+    <input type="hidden" name={`item_number_${index}`}/>
+    <input type="hidden" name={`item_name_${index}`}/>
+    <input type="hidden" name={`quantity_${index}`} value="1"/>
+    <input type="hidden" name={`amount_${index}`}/>
+    <div class="thumbnail">
+        <img class="img-rounded" src={imgsrc} style="height:200px;width:300px"/>
+        <div class="caption">
+            <h4>{title}</h4>
+            <p class="description">{desc}</p>
+            <div class="input-group col-xs"><span class="input-group-addon">$</span>
+            <input class="custom-gift-amount form-control" type="number" placeholder={price}/><span class="input-group-btn"> 
+                <button class="gift-btn btn btn-default" id="customgiftbtn" type="button"><i class="fa fa-plus"></i></button></span>
+            </div>
+        </div>
+    </div>
+</div>

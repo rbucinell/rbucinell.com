@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsItemComponent from '../components/NewsItemComponent.astro';
+
+const config = {
+    title: "Ryan Bucinell - Homepage",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"layout", text:"News", url:"#"}
+    ],
+    page: {
+        title: 'News',
+        small: 'latest news and updates'
+    }
+};
+---
+<BaseLayout config={config}>
+    <NewsItemComponent icon="sun"          date="2022-07-21">A few photos from my trip to Canún where we <a class="underline font-bold" href="misc/mexico.html">toured Tulum, swam with sea turtles, and dove in a closed cenote.</a></NewsItemComponent>
+    <NewsItemComponent icon="check-square" date="2022-02-01">We are doing Super Bowl squares again! New rules, more money, fancier grid! See <a class="underline font-bold" href="misc/squares.html">the board here.</a></NewsItemComponent>
+    <NewsItemComponent icon="user-plus"    date="2021-04-17">Ryder Jack arrived healthy, and more importantly didn't make mom miss the cheerleading performance</NewsItemComponent>
+    <NewsItemComponent icon="check-square" date="2021-01-23">For Ryder's <i>baby sprinkle</i> we are doing Super Bowl squares. See <a href="misc/sprinkle.html">the board here.</a></NewsItemComponent>
+    <NewsItemComponent icon="users"        date="2019-12-05">I am now the proud father of b/g twins, Brandon and Baiely</NewsItemComponent>
+    <NewsItemComponent icon="home"         date="2018-11-03">New house! Moving is less and less fun the more stuff you have.</NewsItemComponent>
+    <NewsItemComponent icon="user-plus"    date="2018-05-12">Married my beautiful wife, Jess. You're stuck with me now, babe.</NewsItemComponent>
+    <NewsItemComponent icon="code"         date="2017-08-22">Myriad of projects that have gone unlinked but will soon be ready. For now, site is now built with pug!</NewsItemComponent>
+    <NewsItemComponent icon="image"        date="2015-07-13">Website revamp v4! It's about time to make my site mobile friendly</NewsItemComponent>
+    <NewsItemComponent icon="globe"        date="2015-01-07">Beginning a new side business, tentatively named SwiftSoft LLC. Getting the first <a href="websites.html">website</a> on-line for <a href="http://www.nocoastsandc.fitness">No Coast Strength and Conditioning</a></NewsItemComponent>
+    <NewsItemComponent icon="code"         date="2104-10-18">Expanding upon javascript, so I created <a href="projects/life/life.html">Conway\'s Game of Life!</a></NewsItemComponent>
+    <NewsItemComponent icon="code"         date="2014-06-19">Started learning some javascript by creating a Grease Monkey  <a href="code.html">on my code page.</a></NewsItemComponent>
+    <NewsItemComponent icon="code"         date="2014-04-08">Published my first android app for my kickball league.<a href="https://play.google.com/store/apps/details?id=com.nacka_kickball"> <img src="https://img.icons8.com/color/48/000000/google-play.png" alt="Google Play Icon" height="20px" /> NACKA Kickball App</a></NewsItemComponent>
+    <NewsItemComponent icon="image"        date="2013-02-20">Brand new site redesign! v3!</NewsItemComponent>
+</BaseLayout>
