@@ -4,16 +4,18 @@ let {id, rootdir, count, title, date} = Astro.props;
 <div class="col-x12 col-sm-6 col-lg-4 mb-4">
     <div class="card bg-light border-secondary">
         <div id={id} class="gallery">
-            <a href={`${rootdir}${id}/gallery/1.png`} data-caption={`${title} - 1/${count}`}>
+            <a href={`${rootdir}${id}/thumb.png`} data-caption={`${title} - Preview`}>
                 <img class="card-img-top" src={`${rootdir}${id}/thumb.png`} alt={`Screenshot of ${title}`}>
             </a>
             <div class="hidden">
-                { Array.from({length: count}).map( (u,i) => (<a href={`${rootdir}${id}/gallery/${i}.png`} data-caption={`${title} - ${i} of ${count}`}></a>) ) }
+                { Array.from({length: count}).map( (u,i) => (<a href={`${rootdir}${id}/gallery/${i+1}.png`} data-caption={`${title} - ${i+1} of ${count}`}></a>) ) }
             </div>
         </div>
         <div class="card-body">
             <h5 class="card-title">{title}</h5>
-            <p class="card-text"><slot/></p>
+            <p class="card-text">
+                <slot/>
+            </p>
             <div class="d-flex justify-content-end">
                 <small class="text-muted">{date}</small>
             </div>
