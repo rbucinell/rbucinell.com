@@ -12,7 +12,21 @@ const descriptions = etc.descriptions;
         min-height:100px;
     }
 </style>
-<div class="col-12">
+<div class="card mb-3 bg-transparent border-0">
+    <h5 class="card-header card-title p-2">{company}<small class="mx-2 text-info">{title}</small></h5>
+    <div class="row g-0">
+        <div class="col-12 col-md-8">
+            <div class="card-body p-1">
+                <p class="card-text"><small class="text-muted">{daterange}</small></p>
+                <ul>{descriptions.map( d => <li>{d}</li>)}</ul>
+            </div>
+        </div>
+        <div class="col-md-4 d-none d-md-block">
+            <img src={img} class="img-fluid rounded-start pull-right m-3" alt="...">
+        </div>
+    </div>
+</div>
+<!-- <div class="col-12 my-2">
     <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
         <div class="flex-grow-1">
             <h4 class="mb-0">{title}</h4>
@@ -20,8 +34,8 @@ const descriptions = etc.descriptions;
             <ul>{descriptions.map( d => <li>{d}</li>)}</ul>
         </div>
         <div class="flex-shrink-0">
-            <span class="text-muted">{daterange}</span>
+            
             <div class="companylogo" style={`background-image:url(${img})`}></div>
         </div>
     </div>
-</div>
+</div> -->
