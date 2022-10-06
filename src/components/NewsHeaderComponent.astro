@@ -1,0 +1,13 @@
+---
+
+---
+<div class="col">
+    <a href={Astro.props.url}>
+        <div class="card h-100 bg-light text-dark btn btn-outline-primary">
+            <img src={Astro.props.img} class="img-fluid card-img" style="opacity:0.33;">
+            <div class="card-img-overlay">
+                <h3><strong><slot/></strong></h3>
+            </div>
+        </div>
+    </a>
+</div>
