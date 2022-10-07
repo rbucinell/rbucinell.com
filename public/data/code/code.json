@@ -10,7 +10,7 @@
       "@id": "javascript_quads",
       "name": "Javascript Quads",
       "icon": "img/icons/js.png",
-      "hostedUrl": "quad.html",
+      "hostedUrl": "misc/quad.html",
       "description": "A Javacscript program that takes an image and segments it into 4 quadrants and then draws the average color for that segment. Then it determines the average error of color for each of the segments and then segments that quadrant again. This will ultimately leave the less detailed areas with larger squares while it continues to refine more detailed areas."
    },
    {
