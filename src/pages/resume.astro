@@ -17,11 +17,25 @@ const config = {
 };
 const fdir = "img/websites/";
 ---
+<style>
+    #langSection {
+        display:grid;
+        grid-template-columns: repeat( 4, 1fr);
+    }
+    #techSection {
+        display:grid; 
+        grid-template-columns: repeat(5,1fr);
+    }
+</style>
 <BaseLayout config={config}>
 
-    <h4 class="center"><a href="data/resume/Resume%20for%20Ryan%20Michael%20Bucinell.pdf">Download A PDF Version</a></h4>
-    <h2 class="collapse-icon"> <a data-toggle="collapse" data-target="#experienceSection" aria-expanded="true">Experience</a> </h2>
+    <div class="alert alert-info" role="alert">
+        <h5 class="center">
+            <strong><i class="font-weight-bold d-inline" data-feather="file-text"/>&nbsp;</strong>Download a <a href="#" class="alert-link">PDF version</a> here.
+        </h5>
+    </div>
 
+    <h2 class="collapse-icon"> <a data-toggle="collapse" data-target="#experienceSection" aria-expanded="true">Experience</a> </h2>
     <div id="experienceSection" class="collapse show border-left">
         <ExperienceComponent title="Senior Software Engineer" company="Draft Kings" daterange="September 2022 - Current" img="img/resume/draftkings.png"
             descriptions={['Fullstack development in their Casino division', 'More TBD']}/>
@@ -65,12 +79,6 @@ const fdir = "img/websites/";
     </div>
 
     <h2 class="collapse-icon"><a data-toggle="collapse" data-target="#langSection" aria-expanded="true">Languages</a></h2>
-    <style>
-        #langSection {
-            display:grid;
-            grid-template-columns: repeat( 4, 1fr);
-        }
-    </style>
     <div class="collapse show border-left container" id="langSection">
         {['python', 'csharp', 'cplusplus', 'java', 'html5', 'css3', 'javascript', 'typesecript']
             .map( i => <TechIconComponent icon={i} word="false" colored="true"/>) }
@@ -80,12 +88,6 @@ const fdir = "img/websites/";
     <h2 class="collapse-icon">
         <a data-toggle="collapse" data-target="#techSection" aria-expanded="true">Technologies</a>
     </h2>
-    <style>
-        #techSection {
-            display:grid; 
-            grid-template-columns: repeat(5,1fr);
-        }
-    </style>
     <div id="techSection" class="collapse show border-left container">
         {['dot-net', 'angularjs', 'bootstrap', 'visualstudio', 'oracle','git','nodejs', 'gulp','intellij', 'mongodb', 'npm']
             .map( i => <TechIconComponent icon={i} word="false" colored="true"/>) }
