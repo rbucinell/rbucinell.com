@@ -1,0 +1,8 @@
+---
+const id = Astro.props.id;
+---
+<div class="input-group p-1" aria-label={`#${id} in queue`}>
+    <strong><span class="input-group-text text-dark" id="basic-addon1">{id}</span></strong>
+    <input type="text" disabled class="form-control text-dark" value="Team Name Here" >
+    <button type="button" class="btn btn-sm btn-danger"><i data-feather="x"/></button>
+</div>

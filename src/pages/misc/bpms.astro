@@ -1,0 +1,184 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import QueuedTeam from "../../components/bpms/QueuedTeam.astro";
+
+const config = {
+    title: "Ryan Bucinell - BPMS",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"settings", text:"Projects", url:"#" },
+        {fa:"circle", text:"BPMS"}
+    ],
+    page: {
+        title: 'Beer Pong Managment System',
+        small: ''
+    }
+}
+---
+<style>
+    #bpms_app {  
+        display: grid;
+        grid-template-columns: 1.9fr 1.1fr;
+        grid-template-rows: 50px 1.9fr 1.9fr 2.3fr 2fr;
+        grid-auto-columns: 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        justify-items: center;
+        grid-template-areas:
+            "menu menu"
+            "new_comp in_line"
+            "returning_comp in_line"
+            "display in_line"
+            "now_playing now_playing";
+        width: 750px;
+        height: 650px;
+        background-color: whitesmoke;
+        border: 2px solid gray;
+    }
+
+    .now_playing {
+        grid-area: now_playing;
+        width: 100%;
+        height: 100%;
+        background-color: tan;
+    }
+
+    .in_line {
+        grid-area: in_line;
+        width: 100%;
+        height: 100%;
+        background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fbeer-texture-869371.jpg&f=1&nofb=1&ipt=831d028b6d4e9613ccb351d0a2233f715f3e8a3c9ceea1bc5ace02c45d45be7d&ipo=images);
+        background-size: cover;
+    }
+
+    .new_comp {
+        grid-area: new_comp;
+        width: 100%;
+        height: 100%;
+        background-color: lightsalmon;
+    }
+    
+
+    .returning_comp {
+        grid-area: returning_comp;
+        width: 100%;
+        height: 100%;
+        background-color: cornsilk;
+    }
+
+    .display {  
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1.3fr 0.7fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+            "logo logo donate"
+            "logo logo donate"
+            "longest_streak longest_streak longest_streak";
+        grid-area: display;
+        width: 100%;
+        height: 100%;
+    }
+
+    .longest_streak {
+         grid-area: longest_streak;
+         background-color: lavender;
+    }
+
+    .logo { 
+        grid-area: logo;
+        background-color: aquamarine;
+    }
+
+    .donate { 
+        grid-area: donate;
+        background-color:azure;
+     }
+
+    .menu {
+        grid-area: menu;
+        width: 100%;
+        background-color: gainsboro;
+    }
+</style>
+<BaseLayout config={config}>
+    <div class="dropdown">
+        <button id="dLabel" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown trigger
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dLabel">
+          ...
+        </ul>
+      </div>
+      
+    <div class="col center">
+        <div id="bpms_app" class="center">
+            <div class="now_playing"></div>
+            <div class="in_line d-flex flex-column align-items-between">
+                <div>
+                    <strong class="fs-2">In Line</strong>
+                    <br>
+                    <small>(up to 8 displayed)</small>
+                </div>
+                <div class="mt-auto">
+                    <style is:inline>
+                        #queue div:nth-child(n+9){
+                            display:none;
+                        }
+                    </style>
+                    <div id="queue" class="list-group flex-column-reverse">
+                        <QueuedTeam id="1"/>
+                        <QueuedTeam id="2"/>
+                        <QueuedTeam id="3"/>
+                        <QueuedTeam id="4"/>
+                        <QueuedTeam id="5"/>
+                        <QueuedTeam id="6"/>
+                        <QueuedTeam id="7"/>
+                        <QueuedTeam id="8"/>
+                        <QueuedTeam id="9"/>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="menu btn-group" role="group">
+                <div  aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn b-0">File</button>
+                    <button type="button" class="btn b-0">Edit</button>
+                    <button type="button" class="btn b-0">Themes</button>
+                    <button type="button" class="btn b-0">Mode</button>
+                    <button type="button" class="btn b-0">Help</button>
+                  
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="new_comp"></div>
+            <div class="returning_comp"></div>
+            <div class="display">
+              <div class="longest_streak"></div>
+              <div class="logo"></div>
+              <div class="donate"></div>
+            </div>
+            
+          </div>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+        var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+            return new bootstrap.Dropdown(dropdownToggleEl)
+        });
+    });
+
+</script>
