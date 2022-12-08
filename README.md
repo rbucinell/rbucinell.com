@@ -1,18 +1,13 @@
 # My Personal Webpage (rbucinell.com)
-This repo is the source code for my personal website [rbucinell.com](http://rbucinell.com), which is hosted by github.io under the `/docs` directory.
+This repo is the source code for my personal website [rbucinell.com](http://rbucinell.com), which is hosted by github pages. Deployed with github workflows.
 
 ## Building from source
 
-This is a static site that is compiled by pug-js before uploading.
+This is a static site that is compiled by Astro.
 Run the following commands to get started.
 
-1. git pull
 2. npm install
-3. gulp
-    * defualt task is to build 
-4. gulp watch
-    * This will watch .pug, .js, and .css files and trigger a refresh
-5. start a simple http server (I prefer VSCode Live Sever addon).
+3. npm run dev
 
 ## Notes on pages
 #### /projects.html
