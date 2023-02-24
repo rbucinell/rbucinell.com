@@ -1,0 +1,11 @@
+---
+
+---
+<li id={`user-${Astro.props.id}`} class="list-unstyled my-1 d-none">
+    <div class="media p-1">
+        <img id="avatar" src={Astro.props.img || "/img/icons/drinking_avatar.webp" } width="64" height="64" class="mr-3 img-circle" alt="user avatar">
+        <div class="media-body">
+            <h5 id="name" class="mt-0 mb-1">{Astro.props.name || ""}</h5>
+        </div>
+    </div>
+</li>
