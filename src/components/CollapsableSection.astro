@@ -1,0 +1,12 @@
+---
+const {id,title} = Astro.props;
+const dataTarget = `${id}Section`
+---
+<div class="my-1">
+  <h3 class="collapse-icon">
+    <a data-toggle="collapse" data-target={"#"+dataTarget} aria-expanded="true">{title}</a>
+  </h3>
+  <div id={dataTarget} class="collapse show border-left">
+    <slot/>
+  </div>
+</div>
