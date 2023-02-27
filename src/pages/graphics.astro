@@ -1,79 +1,118 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import CollapsibleSection from "../components/CollapsibleSection.astro";
+import NewsItemComponent from "../components/NewsItemComponent.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const config = {
-    title: "Ryan Bucinell - Graphics",
-    breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"settings", text:"Projects" },
-        {fa:"image", text:"Graphics"}
-    ],
-    page: {
-        title: 'Computer Graphics',
-        small: 'some say its art'
-    }
+  title: "Ryan Bucinell - Graphics",
+  breadcrumbs: [
+    { fa: "home", text: "Home", url: "index.html" },
+    { fa: "settings", text: "Projects" },
+    { fa: "image", text: "Graphics" },
+  ],
+  page: {
+    title: "Computer Graphics",
+    small: "some say its art",
+  },
 };
 const fdir = "img/websites/";
 ---
+
 <BaseLayout config={config}>
-    <div class="container-fluid">
-        <div class="row">
-          <p>This is my humble attempt at the artistic side of my brain, through various digital media. Towards the latter half of my collegiate experience I delved into computer graphics and rendering at a computational level. However since highschool I have been working with Adobe Photoshop and <a href="flash.html">Flash</a>. I started out working on banners and touch-up work for my friend's company, Black Sheep Web Design, and continued to now, where I mostly do gag photoshop work and some graphics for sites.</p>
+  <div class="container">
+    <NewsItemComponent>
+      This is my humble attempt at the artistic side of my brain, through various digital media. Towards the latter half of my collegiate experience I delved into computer graphics and rendering at a computational level. However since highschool I have been working with Adobe Photoshop and <a href="flash.html">Flash</a>. I started out working on banners and touch-up work for my friend's company, Black Sheep Web Design, and continued to now, where I mostly do gag photoshop work and some graphics for sites.
+    </NewsItemComponent>
+
+    <h2><u>Advanced Rendering Course</u></h2>
+
+    <CollapsibleSection id="renderman" title="RenderMan Images">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <img class="img-fluid" src="img/graphics/cg2/ryan.png" />
         </div>
-        <div class="row">
-          <h3>
-            <u>Advanced Rendering Course</u>
-          </h3>
+        <div class="col-12 col-md-6">
+          <img class="img-fluid" src="img/graphics/cg2/image.png" />
         </div>
-        <div class="row">
-          <h4>RenderMan Images</h4>
+      </div>
+    </CollapsibleSection>
+    
+    <CollapsibleSection id="customraytracer" title="Custom Raytracer Work">
+      <div class="row">
+        <div class="col-6 col-md-4 col-lg-2">
+          <img
+            class="img-fluid"
+            src="img/graphics/raytracer/assignment3_fun1.png"
+          />
         </div>
-        <div class="row">
-          <div class="col-12 col-md-6"><img class="img-fluid" src="img/graphics/cg2/ryan.png"/></div>
-          <div class="col-12 col-md-6"><img class="img-fluid" src="img/graphics/cg2/image.png"/></div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <img
+            class="img-fluid"
+            src="img/graphics/raytracer/assignment-3-100-iterations.png"
+          />
         </div>
-        <div class="row">
-          <h4>Custom Raytracer Work</h4>
+        <div class="col-6 col-md-4 col-lg-2">
+          <img class="img-fluid" src="img/graphics/raytracer/assignment0.png" />
         </div>
-        <div class="row">
-          <div class="col-6 col-md-4 col-lg-2"><img class="img-fluid" src="img/graphics/raytracer/assignment3_fun1.png"/></div>
-          <div class="col-6 col-md-4 col-lg-2"><img class="img-fluid" src="img/graphics/raytracer/assignment-3-100-iterations.png"/></div>
-          <div class="col-6 col-md-4 col-lg-2"><img class="img-fluid" src="img/graphics/raytracer/assignment0.png"/></div>
-          <div class="col-6 col-md-4 col-lg-2"><img class="img-fluid" src="img/graphics/cg2/checkpoint5extra.jpg"/></div>
-          <div class="col-6 col-md-4 col-lg-2"><img class="img-fluid" src="img/graphics/raytracer/assignment1-1.png"/></div>
-          <div class="col-6 col-md-4 col-lg-2"><img class="img-fluid" src="img/graphics/raytracer/assignment4-ward.png"/></div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <img class="img-fluid" src="img/graphics/cg2/checkpoint5extra.jpg" />
         </div>
-        <div class="row">
-          <h3>
-            <u>Photoshop Work</u>
-          </h3>
+        <div class="col-6 col-md-4 col-lg-2">
+          <img class="img-fluid" src="img/graphics/raytracer/assignment1-1.png" />
         </div>
-        <div class="row">
-          <h4>Web Banners</h4>
+        <div class="col-6 col-md-4 col-lg-2">
+          <img
+            class="img-fluid"
+            src="img/graphics/raytracer/assignment4-ward.png"
+          />
         </div>
-        <div class="row">
-          <div class="col-12"><img class="img-fluid" src="img/graphics/TKE_website_banner.png" alt="Xi-Upsilon Chapter of TKE banner"/>
-            <p>Tau Kappa Epsilong - Website Banner</p>
+      </div>
+    </CollapsibleSection>
+    
+    <h2><u>Photoshop Work</u></h2>
+
+    <CollapsibleSection id="webbanner" title="Web Banners">
+      <div class="row">
+        <div class="col-12">
+          <img class="img-fluid" src="img/graphics/TKE_website_banner.png" alt="Xi-Upsilon Chapter of TKE banner" />
+          <p>Tau Kappa Epsilong - Website Banner</p>
+        </div>
+        <div class="col-12">
+          <img class="img-fluid" src="img/graphics/BSTechbannerprototype2.jpg" alt="Blacksheep Technology Banner" />
+          <p>Black Sheep Web Design - Website Banner</p>
+        </div>
+        <div class="col-lg-12">
+          <a href="http://www.dreamincode.net/forums/user/145381-swiftstriker00/" target="_blank">
+            <img class="img-fluid" src="img/graphics/DIC_Bookmark.jpg" alt="D.I.C. Bookmark"/>
+          </a>
+          <p><a href="http://www.dreamincode.net">Dream.In.Code: Forums Signature</a></p>
+        </div>
+      </div>
+    </CollapsibleSection>
+
+    <CollapsibleSection id="scouts" title="Eagle Scouts">
+      <p>
+      Since obtaining my Eagle scout rank, I have periodically helped my scout
+      troop by touch up and create patriotic images for their <strong
+        >Eagle Scout Court of Honors</strong
+      >. The following images are in chronological order.
+      </p>
+      <div class="row">
+        <div class="card-columns">
+          <div class="card border-secondary">
+            <img class="card-img-top" src="img/graphics/flag/ryan.png" />
           </div>
-          <div class="col-12"><img class="img-fluid" src="img/graphics/BSTechbannerprototype2.jpg" alt="Blacksheep Technology Banner"/>
-            <p>Black Sheep Web Design - Website Banner</p>
+          <div class="card border-secondary">
+            <img class="card-img-top" src="img/graphics/flag/benflag.jpg" />
           </div>
-          <div class="col-lg-12">
-            <p><a href="http://www.dreamincode.net">Dream.In.Code: Forums Signature</a></p><a href="http://www.dreamincode.net/forums/user/145381-swiftstriker00/" target="_blank"><img class="img-fluid" src="img/graphics/DIC_Bookmark.jpg" alt="D.I.C. Bookmark"/></a>
+          <div class="card border-secondary">
+            <img class="card-img-top" src="img/graphics/flag/mathew.jpg" />
           </div>
-        </div>
-        <div class="row">
-          <h4>Eagle Scouts</h4>
-          <p>Since obtaining my Eagle scout rank, I have periodically helped my scout troop by touch up and create patriotic images for their <strong>Eagle Scout Court of Honors</strong>. The following images are in chronological order.</p>
-        </div>
-        <div class="row">
-          <div class="card-columns">
-            <div class="card border-secondary"><img class="card-img-top" src="img/graphics/flag/ryan.png"/></div>
-            <div class="card border-secondary"><img class="card-img-top" src="img/graphics/flag/benflag.jpg"/></div>
-            <div class="card border-secondary"><img class="card-img-top" src="img/graphics/flag/mathew.jpg"/></div>
-            <div class="card border-secondary"><img class="card-img-top" src="img/graphics/flag/greg.jpg"/></div>
+          <div class="card border-secondary">
+            <img class="card-img-top" src="img/graphics/flag/greg.jpg" />
           </div>
         </div>
       </div>
+    </CollapsibleSection>
+  </div>
 </BaseLayout>
-

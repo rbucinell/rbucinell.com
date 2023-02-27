@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TechIconComponent from '../components/TechIconComponent.astro';
 import ExperienceComponent from '../components/ExperienceComponent.astro';
+import CollapsibleSection from  '../components/CollapsibleSection.astro';
 
 const config = {
     title: "Ryan Bucinell - Résumé",
@@ -35,8 +36,7 @@ const fdir = "img/websites/";
         </h5>
     </div>
 
-    <h2 class="collapse-icon"> <a data-toggle="collapse" data-target="#experienceSection" aria-expanded="true">Experience</a> </h2>
-    <div id="experienceSection" class="collapse show border-left">
+    <CollapsibleSection id="experience" title="Experience">
         <ExperienceComponent title="Senior Software Engineer" company="Draft Kings" daterange="September 2022 - Current" img="img/resume/draftkings.png"
             descriptions={['Fullstack development in their Casino division', 'More TBD']}/>
 
@@ -70,28 +70,34 @@ const fdir = "img/websites/";
             'Design, build, and deployed international multi-stage metrics gathering system with automated reporting',
             'Retrofit and optimize tools to generate large amounts of big data utilized in server stress simulation',
             'Analyze, Debug, and Report code performance, utilizing PAL, ANTS Profiler, and other performance tools']} />
-    </div>
+    </CollapsibleSection>
 
-    <h2 class="collapse-icon"> <a data-toggle="collapse" data-target="#educationSection" aria-expanded="true">Education</a> </h2>
-    <div id="educationSection" class="collapse show border-left">
+    <CollapsibleSection id="education" title="Education">
         <ExperienceComponent title="Bachelors of Science, Computer Science" company="Rochester Institute of Technology" daterange="Sept. 2006 - May 2011" img="img/resume/rit.png"
-            descriptions={['Minor in Game Design & Development, Concentration in Advanced Computer Graphics']}/>
-    </div>
+        descriptions={['Minor in Game Design & Development, Concentration in Advanced Computer Graphics']}/>
+    </CollapsibleSection>
+    
 
-    <h2 class="collapse-icon"><a data-toggle="collapse" data-target="#langSection" aria-expanded="true">Languages</a></h2>
-    <div class="collapse show border-left container" id="langSection">
-        {['python', 'csharp', 'cplusplus', 'java', 'html5', 'css3', 'javascript', 'typesecript']
-            .map( i => <TechIconComponent icon={i} word="false" colored="true"/>) }
-    </div>
+    <CollapsibleSection id="languages" title="Languages">
+        <div class="collapse show border-left container" id="langSection">
+            {
+                ['python', 'csharp', 'cplusplus', 'java', 'scala', 'html5', 'microsoftsqlserver', 'mysql','css3', 'javascript', 'typesecript']
+                    .map( i => <TechIconComponent icon={i} word="false" colored="false"/>) 
+            }
+        </div>
+    </CollapsibleSection>
 
-
-    <h2 class="collapse-icon">
-        <a data-toggle="collapse" data-target="#techSection" aria-expanded="true">Technologies</a>
-    </h2>
-    <div id="techSection" class="collapse show border-left container">
-        {['dot-net', 'angularjs', 'bootstrap', 'visualstudio', 'oracle','git','nodejs', 'gulp','intellij', 'mongodb', 'npm']
-            .map( i => <TechIconComponent icon={i} word="false" colored="true"/>) }
-    </div>
+    <CollapsibleSection id="technologies" title="Technologies">
+        <div class="collapse show border-left container" id="langSection">
+            {
+                ['vscode', 'visualstudio', 'intellij', 
+                'dot-net', 'dotnetcore', 'docker', 'kubernetes',
+                'npm', 'nodejs', 'angularjs', 'vuejs', 'react', 'bootstrap', 'oracle','git', 'gulp', 'webpack','mongodb',
+                'flask', 'selenium','express' ]
+                    .map( i => <TechIconComponent icon={i} word="false" colored="false"/>)
+            }
+        </div>
+    </CollapsibleSection>
 </BaseLayout>
 <script src="https://code.highcharts.com/highcharts.js" />
 <script src="https://code.highcharts.com/highcharts-3d.js" />
