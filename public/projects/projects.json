@@ -1,5 +1,10 @@
 {
     "_comments": "DO NOT Modify, this file is dynamically generated",
+    "pong": {
+        "name": "3js",
+        "path": "misc/pong/",
+        "hasIndex": true
+    },
     "3js": {
         "name": "3js",
         "path": "projects/3js/",
