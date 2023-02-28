@@ -27,7 +27,7 @@ function Pong( w, h, canvas )
 		canvas.addEventListener('mousemove', function(evt) 
 		{
 			var rect = canvas.getBoundingClientRect();
-			var pt     =
+			var pt =
 			{
 				x: evt.clientX - rect.left,
 				y: evt.clientY - rect.top
@@ -103,14 +103,14 @@ function Pong( w, h, canvas )
 		if( boxCollision(leftPaddle,bb))
 		{
 			pongBall.Vx = (pongBall.Vx - speed_increase )  * -1;
-			(new Audio('audio/bounce.mp3')).play();
+			(new Audio('/projects/pong/audio/bounce.mp3')).play();
 			pongBall.x++;
 			alterAngle( leftPaddle, pongBall );
 		}
 		else if(boxCollision(rightPaddle, bb))
 		{
 			pongBall.Vx = (pongBall.Vx + speed_increase) * -1;
-			(new Audio('audio/bounce.mp3')).play();
+			(new Audio('/projects/pong/audio/bounce.mp3')).play();
 			pongBall.x--;
 			alterAngle( rightPaddle, pongBall );
 		}
@@ -206,7 +206,6 @@ function Pong( w, h, canvas )
 		{
 			pongBall.Vy = Math.abs( pongBall.Vy );
 		}
-		console.log( pongBall.y, pongBall.getBoundingBox().h);
 		if( (pongBall.y + pongBall.getBoundingBox().h) >= h)
 		{
 			console.log( "bottoming out");

@@ -34,7 +34,7 @@ function Circle(x,y,r)
 		if( drawBB )
 		{
 			g.strokeStyle = red;
-			bb.draw( ctx );
+			bb.draw( g );
 		}
 	};
 	

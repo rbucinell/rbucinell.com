@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const config = {
     title: "Ryan Bucinell - Projects",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"home", text:"Home", url:"/index.html"},
         {fa:"settings", text:"Projects", url:"#" },
         {fa:"smile", text:"Active"}
     ],
@@ -23,18 +23,13 @@ const config = {
 	<script is:inline type="text/javascript" src="/projects/js/util/Shape.js"></script>
 	<script is:inline type="text/javascript" src="/projects/js/util/Circle.js"></script>
 	<script is:inline type="text/javascript" src="/projects/js/util/Rect.js"></script>
-	<script is:inline type="text/javascript" src="/projects/js/game/Pong.js"></script>
+	<script is:inline type="text/javascript" src="/projects/pong/js/Pong.js"></script>
 	<script is:inline>
-		var canvas = document.getElementById("canvas");
-		var ctx = canvas.getContext("2d");
-		var game = new Pong(canvas.width, canvas.height, canvas);
-		
+		let canvas = document.getElementById("canvas");
+		let game = new Pong(canvas.width, canvas.height, canvas);
 		canvas.oncontextmenu = function (e) {
 			e.preventDefault();
 		};
-		
 		game.run();
-
-		
 	</script>
 </BaseLayout>
