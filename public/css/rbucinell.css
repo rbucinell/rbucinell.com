@@ -15,7 +15,7 @@
 	--highlight: #FFAB1F;
 	--highlight-dark: #B37000;
 	--gray: #f0f0f0;
-	--gary-light: #dddddd;
+	--gray-light: #dddddd;
 	--white: #FFFFFF;
 	--black: #333333;
  }
@@ -117,7 +117,7 @@ body.landingpage h1, h2, h3, h4, h5, h6 {
 	background-color: var(--primary);
 }
 .dropdown-menu > li > a:hover {
-	color: var(--gary-light)
+	color: var(--gray-light)
 }
 .dropdown-menu > li > a {
 	color: var(--black)

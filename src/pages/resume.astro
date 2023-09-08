@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TechIconComponent from '../components/TechIconComponent.astro';
 import ExperienceComponent from '../components/ExperienceComponent.astro';
 import CollapsibleSection from  '../components/CollapsibleSection.astro';
+import BannerComponent from '../components/BannerComponent.astro';
 
 const config = {
     title: "Ryan Bucinell - Résumé",
@@ -30,11 +31,11 @@ const fdir = "img/websites/";
 </style>
 <BaseLayout config={config}>
 
-    <div class="alert alert-info" role="alert">
-        <h5 class="center">
-            <strong><i class="font-weight-bold d-inline" data-feather="file-text"/>&nbsp;</strong>Download a <a href="data/resume/Resume for Ryan Michael Bucinell.pdf" class="alert-link">PDF version</a> here.
-        </h5>
-    </div>
+    <BannerComponent id="downloadpdf">
+        <strong>&nbsp;</strong>Download PDF versions:
+        <a href="data/resume/Resume for Ryan Michael Bucinell.pdf" class="alert-link btn btn-outline-primary mx-3"><i class="font-weight-bold d-inline text-primary" data-feather="file-text"/>Standard PDF version</a>
+        <a href="data/resume/Resume for Ryan Michael Bucinell - Open Resume.pdf" class="alert-link btn btn-outline-secondary"><i class="font-weight-bold d-inline text-secondary" data-feather="file-text"/>&nbsp;Open Resume</a>
+    </BannerComponent>
 
     <CollapsibleSection id="experience" title="Experience">
         <ExperienceComponent title="Senior Software Engineer" company="Draft Kings" daterange="September 2022 - September 2023" img="img/resume/draftkings.png"

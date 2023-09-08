@@ -3,12 +3,12 @@ const {id} = Astro.props;
 ---
 <style>
     .banner{
-        border: black;
         border-style: ridge;
         border-width: thin;
-        background-color: var(--primary-dark);
     }
 </style>
-<div id={id} class="breadcrumb banner font-weight-bold">
-    <slot/>
+<div id={id} class="banner font-weight-bold alert alert-info" role="alert">
+    <h5 class="center">
+        <slot/>
+    </h5>
 </div>
