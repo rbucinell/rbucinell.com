@@ -1,6 +1,7 @@
 ---
 const {title, company, daterange, img, ...etc} = Astro.props;
 const descriptions = etc.descriptions;
+const tags = etc.tags;
 ---
 <style>
     .companylogo {
@@ -20,22 +21,15 @@ const descriptions = etc.descriptions;
                 <p class="card-text"><small class="text-muted">{daterange}</small></p>
                 <ul>{descriptions.map( d => <li>{d}</li>)}</ul>
             </div>
+            <div class="tags">
+                {
+                    tags?.map( t => <span class="badge badge-pill badge-secondary mx-1">{t}</span> )
+                }
+            </div>
         </div>
         <div class="col-md-4 d-none d-md-block">
             <img src={img} class="img-fluid rounded-start pull-right m-3" alt="...">
         </div>
+        
     </div>
 </div>
-<!-- <div class="col-12 my-2">
-    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-        <div class="flex-grow-1">
-            <h4 class="mb-0">{title}</h4>
-            <div class="lead text-secondary mb-3">{company}</div>
-            <ul>{descriptions.map( d => <li>{d}</li>)}</ul>
-        </div>
-        <div class="flex-shrink-0">
-            
-            <div class="companylogo" style={`background-image:url(${img})`}></div>
-        </div>
-    </div>
-</div> -->
