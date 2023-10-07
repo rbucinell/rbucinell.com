@@ -1,6 +1,13 @@
 [
    {
-      "@id": "superbowl _squares",
+      "@id": "arctivius_automaton",
+      "name": "Arctivius's Automaton",
+      "icon": "https://raw.githubusercontent.com/rbucinell/arctivius_automaton/master/assets/arctivius_automaton.png",
+      "hostedUrl" : "https://github.com/rbucinell/arctivius_automaton",
+      "description": "Discord Bot. Handles administrative tools for guild leaders in the game Guild Wars 2. Integrations with GuildWars 2 API, Google Sheets API, Discord API, Teamspeak Client Query Telent. Handles scheduled, event driven, and /command tasks."
+   },
+   {
+      "@id": "superbowl_squares",
       "name": "Superbowl Squares",
       "icon": "img/squares/helmet.svg",
       "hostedUrl": "misc/squares.html",
@@ -16,9 +23,9 @@
    {
       "@id": "nacka_app",
       "name": "NACKA Kickball App",
-      "icon": "https://lh6.ggpht.com/Gp0w42XVPMkfrxRYD2o_ZrAJaY5tDWC4AsA53Jwtt8xTw1f-o1ydH-M2HvYQ5CH61nY=w300",
-      "hostedUrl": "https://play.google.com/store/apps/details?id=com.nacka_kickball",
-      "description": "Playing in Rochester's NACKA Kickball League? Need to check on your teams latest game information, then this the app for you. This app will pull relevant information for the NACKA website and compile it to a mobile friendly version for your phone."
+      "icon": "img/code/nacka_icon.png",
+      "hostedUrl": "https://github.com/rbucinell/NACKA",
+      "description": "Android App that scraped the NACKA Kickball leagues website and team schedlue and presented the relevant information for the NACKA website in convienent and mobile friendly version. Most importantly dynamically updating competing teams to show t-shrit color and field maps."
    },
    {
       "@id": "bpms",

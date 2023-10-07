@@ -42,7 +42,7 @@
     },
     {
         "title": "Software Engineer - Contractor",
-        "company": "Harris",
+        "company": "L3Harris",
         "daterange": "May 2014 - November 2016",
         "img": "img/resume/harris.png",
         "descriptions": [
@@ -128,7 +128,7 @@
         "descriptions": [
             "Created a virtual tour of the Mechanical Engineering Dept at Union College (Schenectady, NY).",
             "This tour includes 6 buildings that the user can navigate through or use a search engine. Programming was done using Flash ActionScript 3.0 and XML.",
-            "Internal photography of all the locations as well"
+            "Internal photography of all the locations"
         ],
         "tags": ["Flash", "ActionScript 3.0"]
     }
