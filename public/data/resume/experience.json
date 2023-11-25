@@ -1,5 +1,15 @@
 [
     {
+        "title": "Senior Programmer Analyst",
+        "company": "CooperVision",
+        "daterange": "November 2023 - Current",
+        "img": "img/resume/coopervision.png",
+        "descriptions": [
+            "TBD"
+        ],
+        "tags": ["C#", ".NET Core", "Typescript", "Angular" ]
+    },
+    {
         "title": "Senior Software Engineer",
         "company": "Draft Kings",
         "daterange": "September 2022 - September 2023",
