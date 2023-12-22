@@ -1,0 +1,66 @@
+---
+import '../../../styles/squares.css';
+import Square from "./square.astro";
+import {State} from "./square.astro";
+
+
+const ROWS = 'ABCDEFGHIJ'.split('');
+const COLS = [...Array(10).keys()];
+const Qs = [1,2,3,4];
+---
+<div class="board-grid center"> 
+
+    <div id="logo">
+        <img class="max-h-full max-w-full justify-center" src="../img/squares/nfl-shield.svg" alt="nfl shield" />
+        <span id="squaresleft" class="text-sm" >X squares left.</span>
+    </div>
+   
+    <!--Main Grid -->
+    <div id="gridsquares" >
+        <table>
+            <tbody>
+                {ROWS.map( row => {
+                    return <tr>
+                      {COLS.map( col => {
+                        return <td class="p-0 border border-dark bg-light font-weight-bold">
+                            <Square row={row} col={col} state={State.OPEN} />
+                        </td>
+                      })}
+                    </tr>
+                  })}
+            </tbody>
+        </table>
+    </div>
+
+     
+    <!--Corners -->
+    {Qs.map( q => <div class:list={["qFont",`q${q}`,"header","cornerheader"]} id={`chq${q}`}>Q{q}</div> )}
+    
+    <!-- NFC Headers -->
+    <div id="champNFC"><img class="mw-100 mh-100 center" src="../img/squares/nfc-logo.svg" alt="nfc team logo" /></div>
+    {Qs.map( q => { 
+    return <div class:list={["header",`q${q}`]} id={`nfchq${q}`}>
+        <table>
+        <tbody>
+            <tr id={`nfchq${q}-numbers`}>{COLS.map( c=> <td id={`nfchq${q}-${c}`}>#</td>)}</tr>
+        </tbody>
+        </table>
+    </div>
+    })}
+    
+    
+    <!-- AFC Headers -->
+    <div class="header" id="champAFC">
+        <div id="afcBanner"><img src="../img/squares/afc-logo.svg" alt="afc team logo" /></div>
+    </div>
+    {Qs.map( q => { 
+    return <div class:list={["column", "header",`q${q}`]} id={`afchq${q}`}>
+        <table>
+            <tbody>
+                {ROWS.map( r => <tr><td id={`afchq${q}-${r}`}>#</td></tr> )}
+            </tbody>
+        </table>
+    </div>
+    })}
+    
+</div>
