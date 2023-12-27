@@ -1,12 +1,16 @@
 ---
-const {id,title} = Astro.props;
+const {id,title,open} = Astro.props;
+const isOpen = open === 'true';
+const initShown = isOpen ? 'show': '';
 const dataTarget = `${id}Section`
 ---
 <div class="my-1">
-  <h3 class="collapse-icon">
-    <a data-toggle="collapse" data-target={"#"+dataTarget} aria-expanded="true">{title}</a>
+  <h3>
+    <a data-toggle="collapse" data-target={"#"+dataTarget} aria-expanded={isOpen}>
+     <i class="d-inline" data-feather="maximize-2" />{title}
+    </a>
   </h3>
-  <div id={dataTarget} class="collapse show border-left">
+  <div id={dataTarget} class:list={["collapse","border-left", {"show" : isOpen}]}>
     <slot/>
   </div>
 </div>

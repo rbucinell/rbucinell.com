@@ -39,13 +39,13 @@ const json = JSON.parse(JSON.stringify(response[0]));
         <a href="data/resume/Resume for Ryan Michael Bucinell - Open Resume.pdf" class="alert-link btn btn-outline-secondary"><i class="font-weight-bold d-inline text-secondary" data-feather="file-text"/>&nbsp;Open Resume</a>
     </BannerComponent>
 
-    <CollapsibleSection id="experience" title="Experience">
+    <CollapsibleSection id="experience" title="Experience" open="true">
     {
         json.default.map( exp => <ExperienceComponent title={exp.title} company={exp.company} daterange={exp.daterange} img={exp.img} descriptions={exp.descriptions} tags={exp.tags} /> )
     }
     </CollapsibleSection>
 
-    <CollapsibleSection id="education" title="Education">
+    <CollapsibleSection id="education" title="Education" open="true">
         <ExperienceComponent title="Bachelors of Science, Computer Science" company="Rochester Institute of Technology" daterange="Sept. 2006 - May 2011" img="img/resume/rit.png"
         descriptions={['Minor in Game Design & Development, Concentration in Advanced Computer Graphics']}/>
     </CollapsibleSection>
