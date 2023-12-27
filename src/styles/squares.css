@@ -171,10 +171,11 @@ table {
 @media (max-width: 575.98px) { 
     #logo{
         grid-area: 1 / 1 / 2 / 6;
+        display: none;
     }
     .board-grid {
-        grid-template-columns: 20px repeat(4,1.5em) repeat(10, 1fr);
-        grid-template-rows: 20px repeat(4,1.5em) repeat(10, 1fr);
+        grid-template-columns: 20px repeat(4,1em) repeat(10, 1fr);
+        grid-template-rows: 20px repeat(4,1em) repeat(10, 1fr);
     }
 
     .square{
@@ -184,5 +185,14 @@ table {
     #gridsquares {
         font-size: 14px;
         font-weight: 500px;
+    }
+
+    .cornerheader {
+        padding: 0;
+    }
+
+    .header {
+        font-size: x-small;
+        line-height: normal;
     }
 }

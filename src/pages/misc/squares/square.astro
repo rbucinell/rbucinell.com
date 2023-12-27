@@ -12,5 +12,6 @@ interface Props {
 const { row, col, state=State.OPEN } = Astro.props;
 ---
 <div id={`${row}${col}`} class="square center">
-    {row}{col}<span class="text-secondary">{state}</span>
+    {row}{col}
 </div>
+<!-- <span class="text-secondary">{state}</span> -->
