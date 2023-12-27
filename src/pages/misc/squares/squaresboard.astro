@@ -2,6 +2,7 @@
 import '../../../styles/squares.css';
 import Square from "./square.astro";
 import {State} from "./square.astro";
+import ScoreBoard from './scoreboard.astro';
 
 
 const ROWS = 'ABCDEFGHIJ'.split('');
@@ -64,3 +65,5 @@ const Qs = [1,2,3,4];
     })}
     
 </div>
+
+<ScoreBoard />
