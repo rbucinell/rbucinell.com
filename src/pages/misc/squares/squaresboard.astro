@@ -1,14 +1,21 @@
 ---
 import '../../../styles/squares.css';
+import Rules from "./rules.astro";
 import Square from "./square.astro";
 import {State} from "./square.astro";
 import ScoreBoard from './scoreboard.astro';
 
-
 const ROWS = 'ABCDEFGHIJ'.split('');
 const COLS = [...Array(10).keys()];
 const Qs = [1,2,3,4];
+let CSS_COLOR_NAMES = ["Indigo", "DarkOrange", "AntiqueWhite", "Ivory", "DarkRed", "Aqua", "RoyalBlue", "DarkSalmon", "SaddleBrown", "LawnGreen", "Salmon", "MidnightBlue", "Black", "LightBlue", "SeaGreen", "DeepPink", "Silver", "DodgerBlue", "Olive", "FireBrick", "Orange", "OrangeRed", "Tan", "Crimson", "GhostWhite", "Gold", "Tomato", "DarkBlue", "Magenta", "Maroon", "MediumAquaMarine", "PeachPuff", "Wheat", "WhiteSmoke", "DarkKhaki", "Yellow", "PowderBlue", "MediumBlue", "PapayaWhip", "Gainsboro", "Lime", "Gray", "PaleVioletRed", "Teal", "Coral", "White", "Blue", "MistyRose", "Black"];
+const EAGLES_MIDNIGHT_GREEN = "#004C54";
+let i = 0;
+const { price, payoutPercentages } = Astro.props;
+
 ---
+<p>Squares are <strong id="squareCost">${price}</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a></p>
+<Rules payouts={payoutPercentages}/>
 <div class="board-grid center"> 
 
     <div id="logo">
@@ -24,7 +31,7 @@ const Qs = [1,2,3,4];
                     return <tr>
                       {COLS.map( col => {
                         return <td class="p-0 border border-dark bg-light font-weight-bold">
-                            <Square row={row} col={col} state={State.OPEN} />
+                            <Square row={row} col={col} state={State.OPEN} color={ CSS_COLOR_NAMES[(i++) % CSS_COLOR_NAMES.length] }/>
                         </td>
                       })}
                     </tr>
@@ -32,8 +39,7 @@ const Qs = [1,2,3,4];
             </tbody>
         </table>
     </div>
-
-     
+ 
     <!--Corners -->
     {Qs.map( q => <div class:list={["qFont",`q${q}`,"header","cornerheader"]} id={`chq${q}`}>Q{q}</div> )}
     
@@ -48,7 +54,6 @@ const Qs = [1,2,3,4];
         </table>
     </div>
     })}
-    
     
     <!-- AFC Headers -->
     <div class="header" id="champAFC">
@@ -66,4 +71,4 @@ const Qs = [1,2,3,4];
     
 </div>
 
-<ScoreBoard />
+<ScoreBoard payouts={payoutPercentages.map( p => p * price  * ROWS.length * COLS.length)} scores={[]}/>

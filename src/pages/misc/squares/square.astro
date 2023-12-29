@@ -1,17 +1,16 @@
 ---
-export enum State {
-    OPEN, RESERVED, BOOKED
-}
+import Helmet from './helmet.astro';
 
-interface Props {
-  row: string,
-  col: number,
-  state?: State
-}
+export enum State { OPEN, RESERVED, BOOKED }
+interface Props { row: string, col: number, state?: State, color?:string, fName?:string, lName?:string }
+const { row, col, state=State.OPEN, color, fName, lName } = Astro.props;
 
-const { row, col, state=State.OPEN } = Astro.props;
 ---
-<div id={`${row}${col}`} class="square center">
-    {row}{col}
+<div id={`${row}${col}`} data-toggle="button" class="square card btn btn-light p-0 center w-100" data-state={state} data-fName={fName} data-lName={lName}>
+    <Helmet id={`${row}${col}`} opacity={2} color={color} faceMask="gray"></Helmet>
+    <div class="card-img-overlay">
+      <div class="text-overlay mx-auto text-center">
+        <span>{row}{col}</span>
+      </div>
+  </div>
 </div>
-<!-- <span class="text-secondary">{state}</span> -->

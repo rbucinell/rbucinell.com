@@ -159,8 +159,11 @@ table {
 }
 
 .square {
-    /* content: url('../img/helmet.svg'); */
     height: 50px;
+}
+
+.square:hover {
+    border: 1px solid var(--nfl-red);
 }
 
 .qpayout {
