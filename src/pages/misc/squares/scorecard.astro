@@ -10,14 +10,13 @@ interface Props {
 ---
 <div id={`q${q}scoreCard`} class="flex-fill my-1 mx-0 mx-md-1 p-1 mx-lg-3 border border-secondary">
     <div class="d-flex flex-column">
-
         <h5 class="d-flex justify-content-between flex-wrap">
             <span class="font-weight-bold text-lg"><span class="d-none d-md-inline">End of </span>{ display || `Q${q}`}</span>
             <span id={`q${q}payout`} class="badge badge-success align-self-center h-100">${payout || '--'}</span>
         </h5>
         <div class="d-flex justify-content-around">
-            <div id={`q${q}afc`} class="afcChampions scorecard alert mb-0 rounded-0 w-100 h-100 text-center align-self-middle">{afc || '--'}</div>
-            <div id={`q${q}nfc`} class="nfcChampions scorecard alert mb-0 rounded-0 w-100 h-100 text-center align-self-middle">{nfc || '--'}</div>
+            <div id={`q${q}afc`} class="afcChampions scorecard alert mb-0 rounded-0 w-100 h-100 text-center align-self-middle">{afc !== undefined ? afc:'--'}</div>
+            <div id={`q${q}nfc`} class="nfcChampions scorecard alert mb-0 rounded-0 w-100 h-100 text-center align-self-middle">{nfc !== undefined ? nfc:'--'}</div>
         </div>
     </div>
 </div>
