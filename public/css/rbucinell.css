@@ -182,3 +182,22 @@ body.landingpage h1, h2, h3, h4, h5, h6 {
 	box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
 	border: 1px #e1e4e8 solid;
 }
+
+.opacity-0 {
+	opacity:0!important;
+}
+.opacity-1 {
+opacity:0.2!important;
+}
+.opacity-2 {
+opacity:0.4!important;
+}
+.opacity-3 {
+opacity:0.6!important;
+}
+.opacity-4 {
+opacity:.8!important;
+}
+.opacity-5 {
+opacity:1!important;
+}
