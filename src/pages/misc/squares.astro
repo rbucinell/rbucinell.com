@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Rules from "./squares/rules.astro";
-import SquaresBoard from "./squares/squaresboard.astro";
+import SquaresBoard from "./squares/SquaresBoard.astro";
 
 const config = {
   title: "Bucinell Superbowl Squares - Super Bowl 57 (2023)",
@@ -18,13 +17,8 @@ const config = {
 <meta property="og:image" content="../img/squares/board.jpg">
 
 <BaseLayout config={config}>
-
   <div class="container-fluid">
-
     <p>It's that time of year again. Superbowl, baby! There are new rules this year, and a new table. Good Luck.</p>    
-  
-    <Rules />
-
     <div class="center mb-4">
       <div class="d-flex justify-content-center align-items-end flex-wrap">
         <a  id="submitSquaresButton" 
@@ -40,6 +34,5 @@ const config = {
       </div>
     </div>
     
-    <SquaresBoard />
-
+    <SquaresBoard price={20} payoutPercentages={[0.1, 0.2, 0.3, 0.4]} />
 </BaseLayout>

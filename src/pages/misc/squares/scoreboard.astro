@@ -1,9 +1,30 @@
 ---
 import ScoreCard from "./scorecard.astro";
+
+interface Scores{
+  afc:number;
+  nfc:number;
+}
+
+interface Props {
+  payouts:number[],
+  scores:Scores[]
+}
+
+let { payouts, scores } = Astro.props;
 ---
 <div class="container d-flex justify-content-center mw-100 flex-wrap">
-  <ScoreCard q={1}/>
-  <ScoreCard q={2}/>
-  <ScoreCard q={3}/>
-  <ScoreCard q={4}display="Final" />
+
+  <!--A -->
+  <ScoreCard q={1} afc={scores[0]?.afc} nfc={scores[0]?.nfc} payout={payouts[0]} />
+  <ScoreCard q={2} afc={scores[1]?.afc} nfc={scores[1]?.nfc} payout={payouts[1]} />
+  <ScoreCard q={3} afc={scores[2]?.afc} nfc={scores[2]?.nfc} payout={payouts[2]} />
+  <ScoreCard q={4} afc={scores[3]?.afc} nfc={scores[3]?.nfc} payout={payouts[3]} display="Final" />
+  
+  <!--B -->
+  <!-- {
+    [1,2,3,4].map( (q:number,i:number) =>{
+      return <ScoreCard afc={ scores[i]?.afc} nfc={ scores[i]?.nfc} q={q} payout={payouts[i]} display={ q === 4 ? "Final": undefined}/>
+    })
+  } -->
 </div>
