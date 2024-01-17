@@ -55,6 +55,7 @@ const config = {
 		</div>
 	</div>
 </BaseLayout>
+
 <script is:inline>
 	//GLOBAL VARIABLES
 	const AREA_POWER = 0.25;
@@ -86,15 +87,16 @@ const config = {
 	{
 		this.parent = parent;
 		this.image = image;
-		this.x = x;
-		this.y = y;
-		this.w = w;
-		this.h = h;
+		this.x = Math.floor(x);
+		this.y = Math.floor(y);
+		this.w = Math.floor(w);
+		this.h = Math.floor(h);
 		this.depth = depth;
 		this.MAX_DEPTH = MAX_DEPTH;
 		this.hatchWidth =  Math.tan( Math.atan( MAX_LINE_WIDTH / MAX_DEPTH ) )* ( MAX_DEPTH - this.depth);
 		this.children = [];
-		this.hist = new Histogram( this.image, x, y, w, h );
+		
+		this.hist = new Histogram( this.image, this.x, this.y, this.w, this.h );
 		this.setColor( this.hist.averageColor() );
 		this.score = -this.error * Math.pow( this.area(), AREA_POWER );
 		this.mode = DrawMode.BOX;
@@ -166,7 +168,6 @@ const config = {
 	draw( ctx )
 	{
 		ctx.fillStyle = this.color;
-
 		switch( this.mode )
 		{
 			case DrawMode.BOXBORDER:
@@ -177,7 +178,12 @@ const config = {
 				ctx.stroke();
 			/* falls through */
 			case DrawMode.BOX:
-				ctx.fillRect( this.x, this.y, this.w, this.h );
+				//ctx.fillRect( this.x, this.y, this.w, this.h );
+				ctx.beginPath();
+				ctx.lineWidth="0.1";
+				ctx.strokeStyle= 'red';//this.color;
+				ctx.strokeRect( this.x, this.y, this.w, this.h );
+				ctx.stroke();
 				break;
 			case DrawMode.HATCHSHADE:
 				ctx.globalAlpha = 0.2;
@@ -268,7 +274,7 @@ class Histogram
 		this.b = new Array(Histogram.COLOR_RANGE).fill(0);
 
 		////Fill buffer, and get image data from it
-		this.buffer.drawImage( this.image, this.x, this.y, this.w, this.h, this.x, this.y, this.w, this.h);
+		this.buffer.drawImage( this.image, this.x, this.y, this.w, this.h);
 		this.imgData = this.buffer.getImageData( this.x, this.y, this.w, this.h );
 
 		//fill them with data
@@ -320,7 +326,7 @@ class Histogram
 		let bColor = this.weightedAverage( this.b );
 
 		//standard NTSC conversion formula
-		let error = rColor.error * Histogram.RED_ERROR_WEIGHT +
+		let error = rColor.error * Histogram.RED_ERROR_WEIGHT   +
 					gColor.error * Histogram.GREEN_ERROR_WEIGHT +
 					bColor.error * Histogram.BLUE_ERROR_WEIGHT;
 
@@ -341,7 +347,6 @@ Histogram.BLUE_ERROR_WEIGHT  = 0.1140;//GLOBAL VARIABLES
 
 //Class public vars
 const ERROR_RATE = 0.5;
-const DEBUG_MODE = false;
 
 class Quadrants
 {
@@ -368,21 +373,37 @@ class Quadrants
 		this.MAX_DEPTH = 8;
 	}
 
+	imagedata_to_image(imagedata) {
+		let cnvs = document.createElement('canvas');
+		let ctx = cnvs.getContext('2d');
+		cnvs.width = imagedata.width;
+		cnvs.height = imagedata.height;
+		ctx.putImageData(imagedata, 0, 0);
+
+		let image = new Image();
+		image.src = canvas.toDataURL();
+		return image;
+	}
+
 	initialize( img )
 	{
+		let cnvsRect = this.canvas.getBoundingClientRect();
+		this.canvas.width = cnvsRect.width;
+		this.canvas.height = cnvsRect.height;
+
 		//Draw original image to get image data
-		this.ctx.drawImage( img, 0, 0, img.naturalWidth, img.natualHeight, 0, 0, this.canvas.width, this.canvas.height);
-		//g_imageData = this.ctx.getImageData(0,0, this.canvas.width, this.canvas.height);
-		this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height);
+		this.ctx.drawImage( img, 0, 0, cnvsRect.width, cnvsRect.height );
+		let imgData = this.ctx.getImageData(0, 0, cnvsRect.width, cnvsRect.height );
 
 		//Create the starting root node
-		this.root = new Box( img, {},  0, 0, this.canvas.width, this.canvas.height, 0, this.MAX_DEPTH );
+		this.root = new Box( img, {}, 0, 0, cnvsRect.width, cnvsRect.height, 0, this.MAX_DEPTH );
 		this.errorSum = this.root.error * this.root.area();
 
 		//Initial Draw
 		this.drawNode = this.root;
 		this.boxes.push( this.root );
-		this.draw();
+		//this.ctx.clearRect( 0, 0, cnvsRect.width, cnvsRect.height);
+		this.step();
 	}
 
 	get IsRunning()
@@ -403,12 +424,8 @@ class Quadrants
 
 	step()
 	{
-		this.isRunning = true;
-		if ( this.ITERATIONS <= 0  )
-		{
-			this.ITERATIONS = 1;
-		}
-		this.running();
+		this.update();
+		this.draw();
 	}
 
 	stop()
@@ -421,8 +438,7 @@ class Quadrants
 	{
 		if( this.IsRunning && this.ITERATIONS > 0 )
 		{
-			this.update();
-			this.draw();
+			this.step();
 		}
 	}
 
@@ -451,8 +467,8 @@ class Quadrants
 
 		if( this.previousError == -1 || this.previousError - this.error > ERROR_RATE )
 			this.previousError = this.error;
-
 		let leaves = this.root.getAllLeafNodes( [], this.MAX_DEPTH );
+		debugger;
 		leaves.sort( this.errorCompareTo );
 		let last = leaves[0];// leaves[leaves.length-1];
 		if( last.error > 0 )
@@ -499,7 +515,7 @@ class Quadrants
 	**/
 	draw()
 	{
-		this.drawNode.draw( this.ctx);
+		this.drawNode.draw( this.ctx );
 		for( let i = 0; i < this.drawNode.children.length; i++ )
 		{
 			this.drawNode.children[i].draw(this.ctx);
@@ -537,65 +553,68 @@ class Quadrants
 }
 </script>
 <script is:inline type="text/javascript">
-const canvas = document.getElementById("canvas");
-const refpix = document.querySelector('#refpix');
-refpix.addEventListener('load', refpixLoaded );
-canvas.oncontextmenu = (e) => e.preventDefault();
-let halfwidth = canvas.getBoundingClientRect().width;
-let quads = new Quadrants( canvas );
+	const canvas = document.getElementById("canvas");
+	const refpix = document.querySelector('#refpix');
+	refpix.addEventListener('load', refpixLoaded );
+	canvas.oncontextmenu = (e) => e.preventDefault();
+	let halfwidth = canvas.getBoundingClientRect().width;
+	let quads = new Quadrants( canvas );
 
-function loadAll()
-{
-	if( quads )
-		quads.stop();
-	const filePicker = document.querySelector('input[type=file]');
-	const reader = new FileReader();
-	const file = filePicker.files[0];
-	reader.addEventListener('load', ( e )=> refpix.src= e.target.result );
-	if (file) {
-		reader.readAsDataURL(file);
-	}
-}
-
-function refpixLoaded()
-{
-	console.log( 'refpixLoaded');
-	console.log( `canvas (${canvas.getBoundingClientRect().width}, ${canvas.getBoundingClientRect().height})`);
-	console.log( `refpix (${refpix.naturalWidth}, ${refpix.naturalHeight})`);
-	quads.initialize( refpix );
-}
-
-function play()
-{
-	console.log( "Program Started");
-	if( quads.ITERATIONS == 0 )
+	function loadAll()
 	{
-		quds.ITERATIONS += 1000;
+		if( quads )
+			quads.stop();
+		const filePicker = document.querySelector('input[type=file]');
+		const reader = new FileReader();
+		const file = filePicker.files[0];
+		reader.addEventListener('load', ( e )=> refpix.src= e.target.result );
+		if (file) {
+			reader.readAsDataURL(file);
+		}
 	}
-	quads.play();
-};
-function stop()
-{
-	quads.stop();
-	console.log( "Program Halted");
-};
-function step()
-{
-	quads.step();
-	console.log( "Program Stepped");
-};
-function create()
-{
-	quads.stop();
-	playButton.style.display   = 'none';
-	stopButton.style.display   = 'none';
-	pauseButton.style.display  = 'none';
-	createButton.style.display = 'none';
-	var dataUrl = canvas.toDataURL();
-	var img = document.getElementById('refpix');
-	img.src = dataUrl;
-	canvas.style.display = 'none';
-	saveMe.style.display = "block";
-	img.style.display = "block";
-};
-</script>
+
+	function refpixLoaded()
+	{
+		console.log( 'refpixLoaded');
+		console.log( `canvas (${canvas.getBoundingClientRect().width}, ${canvas.getBoundingClientRect().height})`);
+		console.log( `refpix (${refpix.naturalWidth}, ${refpix.naturalHeight})`);
+		quads.initialize( refpix );
+	}
+
+	function play()
+	{
+		console.log( "Program Started");
+		if( quads.ITERATIONS == 0 )
+		{
+			quads.ITERATIONS += 1000;
+		}
+		quads.play();
+	};
+
+	function stop()
+	{
+		quads.stop();
+		console.log( "Program Halted");
+	};
+
+	function step()
+	{
+		quads.step();
+		console.log( "Program Stepped");
+	};
+
+	function create()
+	{
+		quads.stop();
+		playButton.style.display   = 'none';
+		stopButton.style.display   = 'none';
+		pauseButton.style.display  = 'none';
+		createButton.style.display = 'none';
+		var dataUrl = canvas.toDataURL();
+		var img = document.getElementById('refpix');
+		img.src = dataUrl;
+		canvas.style.display = 'none';
+		saveMe.style.display = "block";
+		img.style.display = "block";
+	};
+</script> 

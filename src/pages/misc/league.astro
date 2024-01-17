@@ -32,6 +32,11 @@ const getChampionMasteryURL = `${lolAPI}/champion-mastery/v4/champion-masteries/
 const getChampionMasteryResposne = await fetch(getChampionMasteryURL);
 const championmastery = await getChampionMasteryResposne.json();
 
+const getMasteryPercentage = ( id ) =>{
+	let mastery = championmastery.find( e => e.championId === id );
+	return 100 * mastery.championPointsSinceLastLevel / ( mastery.championPointsSinceLastLevel + mastery.championPointsUntilNextLevel)
+
+}
 
 
 ---
@@ -53,11 +58,9 @@ const championmastery = await getChampionMasteryResposne.json();
 						<h5 class="mt-0 mb-1">{champ['name']}<small>&nbsp;{champ['title']}</small></h5>
 						<p class="blurb">{champ['blurb']}</p>
 						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 10%"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar" role="progressbar" style="width: 10%"  aria-valuenow={getMasteryPercentage(champ['id'])} aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
-					
-
 				</li>
 				);})}
 		</ul>

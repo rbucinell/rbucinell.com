@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryItemComponent from '../../components/GalleryItemComponent.astro';
+
+const config = {
+    title: "Ryan Bucinell - Flash",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"play-circle", text:"Games", url:"/games"},
+        {fa:"", text:"Flood It!"}
+    ],
+    page: {
+        title: 'Flood It!',
+        small: ''
+    }
+};
+---
+<style>
+    .grid-container {
+        wdith: 100%;
+        max-width: 700px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+            "grid-canvas grid-canvas grid-canvas grid-canvas grid-canvas grid-canvas";
+    }
+    .grid-canvas { grid-area: grid-canvas; }
+
+    #canvas {
+        width: fit-content;
+        aspect-ratio: 1;
+    }
+</style>
+<BaseLayout config={config}>
+    <div>Change colors here</div>
+    <div class="grid-container">
+        
+        <div id="picker0"class="colorpicker"></div>
+        <div id="picker1"class="colorpicker"></div>
+        <div id="picker2"class="colorpicker"></div>
+        <div id="picker3"class="colorpicker"></div>
+        <div id="picker4"class="colorpicker"></div>
+        <div id="picker5"class="colorpicker"></div>
+        <div id="canvas-container" class="grid-canvas"></div>
+    </div>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
+    <script is:inline>
+        let cnvsContainer = document.querySelector('#canvas-container');
+        let cnvs;
+        let BOX_COUNT = 5;
+        let BOX_SIZE = 1;
+        let OFFSET = 100;
+        let colors = new Array(5).fill('#FFFFFF');
+        let boxes =[];
+        
+        async function setup() {
+            cnvsS = cnvsContainer.getBoundingClientRect().width;
+            BOX_SIZE = cnvsS / BOX_COUNT;
+            cnvs = createCanvas(cnvsS,cnvsS+OFFSET);
+            for( let i = 0; i <= 5; i++ )
+            {
+                let c = color(random(0, 255), random(0, 255), random(0, 255));
+                console.log( c );
+                let x = createColorPicker(color(random(0, 255), random(0, 255), random(0, 255)));
+                let b = createButton('test');
+                b.parent(`picker${i}`)
+                x.parent(`picker${i}`);
+                // document.querySelector('#canvas-container > input:nth-child(2)').value 
+            }
+            //colorPicker.position(0, height + 5);
+            cnvs.parent('canvas-container');
+
+            let response = await fetch(`https://www.random.org/integers/?num=${BOX_COUNT * BOX_COUNT}&min=0&max=${colors.length-1}&col=${BOX_COUNT * BOX_COUNT}&base=10&format=plain&rnd=new`);
+            let data = await response.text();
+            boxes = data.split('\t').map( s => parseInt(s));
+            console.log( boxes)
+        }
+
+        function updateColors(){
+            colors = [...document.querySelectorAll('.colorpicker')].map( c => c.firstChild.value );
+            console.log( colors );
+        }
+
+        async function draw() {
+            strokeWeight(1);
+            rect(0,0,cnvs.width,cnvs.height);
+            strokeWeight(3);
+            line(0,OFFSET, cnvs.width,OFFSET)
+            strokeWeight(1);
+            fill('#000');
+            noStroke();
+            text("Select Next Color to flood fill from top-left corner", 5, 15);
+
+            
+
+            strokeWeight(1);
+            for( let r = 0; r < BOX_COUNT; r++)
+            {
+                for( let c = 0; c < BOX_COUNT; c++ )
+                {
+                    let curColor = 1;// color('red');//let curColor = boxes[r*BOX_COUNT + c];
+                    fill(colors[curColor]);
+                    stroke('#000')
+                    rect( r*BOX_SIZE, c*BOX_SIZE+OFFSET, BOX_SIZE, BOX_SIZE);
+                    fill('#000')
+                    text( `(${r},${c})`, r*BOX_SIZE+BOX_SIZE/2, c*BOX_SIZE+BOX_SIZE/2+OFFSET)
+                }
+            }
+            fill('white')
+            ellipse(mouseX, mouseY, 10, 10);
+        }
+    </script>
+</BaseLayout>

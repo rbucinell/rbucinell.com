@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import SquaresBoard from "./squares/SquaresBoard.astro";
+import PurchaseSquaresBtn from "./squares/PurchaseSquaresBtn.astro";
+import Rules from "./squares/rules.astro";
+import SquaresBoard from "./squares/squaresboard.astro";
 
 const config = {
   title: "Bucinell Superbowl Squares - Super Bowl 57 (2023)",
@@ -13,26 +15,23 @@ const config = {
       small: 'Super Bowl LVII (2023)'
   }
 }
+
+const price = 20;
+const payouts = [0.1, 0.2, 0.3, 0.4];
 ---
 <meta property="og:image" content="../img/squares/board.jpg">
 
 <BaseLayout config={config}>
   <div class="container-fluid">
     <p>It's that time of year again. Superbowl, baby! There are new rules this year, and a new table. Good Luck.</p>    
+    <p>Squares are <strong id="squareCost">${price}</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a></p>
+    <Rules payouts={payouts}/> 
     <div class="center mb-4">
-      <div class="d-flex justify-content-center align-items-end flex-wrap">
-        <a  id="submitSquaresButton" 
-            class="btn btn-large text-white text-uppercase" 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfrTBaUguSjK2tWqHCuoFN2zNfJxzyFOzxxfEDPyPOfXtSdsw/viewform" 
-            rel="noopener" 
-            target="_blank">
-            <img src="https://1.bp.blogspot.com/-vRa8j_5n27A/WgMKyC9lq0I/AAAAAAAADjo/WBzlPGYj6hI9b6406BddXOeLcdeHBDt9wCLcBGAs/s1600/forms-icon.png" 
-              alt="Google Forms Icon" 
-              style="max-height:30px;">
-            Purchase squares here!
-        </a>
-      </div>
+      <PurchaseSquaresBtn />
     </div>
-    
-    <SquaresBoard price={20} payoutPercentages={[0.1, 0.2, 0.3, 0.4]} />
+
+    <div class="center mb-4">
+    <iframe id='iframeBoard' height="900px" class="w-75 mw-100 mx-auto border-0" src="https://bucinell-squares.vercel.app/"/>
+    <!-- <SquaresBoard price={price} payoutPercentages={payouts} /> -->
+  </div> 
 </BaseLayout>
