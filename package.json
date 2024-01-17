@@ -35,6 +35,9 @@
   },
   "homepage": "https://rbucinell.com",
   "dependencies": {
+    "@astrojs/alpinejs": "^0.3.2",
+    "@types/alpinejs": "^3.13.5",
+    "alpinejs": "^3.13.3",
     "bootstrap": "^4.4.1",
     "feather-icons": "^4.29.0"
   }

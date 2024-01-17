@@ -1,16 +1,41 @@
 ---
 import Helmet from './helmet.astro';
-
 export enum State { OPEN, RESERVED, BOOKED }
 interface Props { row: string, col: number, state?: State, color?:string, fName?:string, lName?:string }
 const { row, col, state=State.OPEN, color, fName, lName } = Astro.props;
-
+const id= `${row}${col}`;
 ---
-<div id={`${row}${col}`} data-toggle="button" class="square card btn btn-light p-0 center w-100" data-state={state} data-fName={fName} data-lName={lName}>
-    <Helmet id={`${row}${col}`} opacity={2} color={color} faceMask="gray"></Helmet>
-    <div class="card-img-overlay">
-      <div class="text-overlay mx-auto text-center">
-        <span>{row}{col}</span>
+<style>
+  @media (max-width: 991px) {  
+    .text-responsive { font-size: 1.5vw; }
+  }
+  @media (max-width: 768px) {  
+    .text-responsive { font-size: 1.5vw; }
+  }
+  @media (max-width: 544px) {  
+    .text-responsive { font-size: 2vw; }
+  }
+  
+  
+</style>
+<div x-data=`{hover:false,state:${state},selected:false}` >
+  <div 
+    id={id}  
+    @mouseenter=`hover = true; state = ${ State.RESERVED}` 
+    @mouseleave=`hover = false; state = ${ State.OPEN}` data-toggle="button"
+    @mouseclick=`console.log('hi')`
+    data-state={state} data-fName={fName} data-lName={lName} 
+    class:list={["square card p-0 center w-100",{ 'btn btn-light': state === State.OPEN} ]}>
+
+    <div class="display">
+      { state !== State.OPEN && <Helmet id={id} opacity={2} color={color} faceMask="gray" /> }      
+      <div class="square-text-box py-1 text-responsive text-sm onsoverflow-hidden">
+        { state === State.OPEN     && <span>{row}{col}</span> }
+        { state === State.RESERVED && <span class="text-danger font-weight-normal">RESERVED</span> }
+        { state === State.BOOKED   && <span class="text-uppercase">{fName?.substring(0,1)} {lName?.substring(0,1)}</span> }
       </div>
+    </div>
   </div>
 </div>
+
+<!-- <script defer is:inline>document.querySelectorAll('.square.active').forEach( sq => console.log( sq.getAttribute('id') ) )</script> -->

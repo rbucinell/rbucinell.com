@@ -12,10 +12,23 @@ let CSS_COLOR_NAMES = ["Indigo", "DarkOrange", "AntiqueWhite", "Ivory", "DarkRed
 const EAGLES_MIDNIGHT_GREEN = "#004C54";
 let i = 0;
 const { price, payoutPercentages } = Astro.props;
+const { initialCount = 0 } = price;
 
+const prepopURL = 'https://docs.google.com/forms/d/e/1FAIpQLSeUETaEKl1XJnxdJD7efxM0EmOvregKJpszHaMPEdyRZIUJ0Q/viewform?usp=pp_url';
+//&entry.162182405=first_name
+const queryparamkeys = { 
+    fName: 162182405,
+    lName: 2503150,
+    A:129532414, B:965582730, C:255358047, D:1445828233, E:1483535175, F:1462965448, G:2020935596, H:1923048447, I:2051356615, J:180197898 }
+
+https://docs.google.com/forms/d/e/1FAIpQLSeUETaEKl1XJnxdJD7efxM0EmOvregKJpszHaMPEdyRZIUJ0Q/viewform?usp=pp_url&entry.162182405=first_name&entry.2503150=last_name&entry.129532414=1&entry.965582730=0&entry.965582730=1&entry.180197898=9
 ---
-<p>Squares are <strong id="squareCost">${price}</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a></p>
-<Rules payouts={payoutPercentages}/>
+<div x-data="{ clickedSquares: [] }">
+    <!-- <span x-text="clickedSquares.length"></span> -->
+<!-- <div   
+    x-data="{ posts: [] }"
+    x-init="posts = await (await fetch('/posts')).json()"
+>...</div> -->
 <div class="board-grid center"> 
 
     <div id="logo">
@@ -31,13 +44,13 @@ const { price, payoutPercentages } = Astro.props;
                     return <tr>
                       {COLS.map( col => {
                         return <td class="p-0 border border-dark bg-light font-weight-bold">
-                            <Square row={row} col={col} state={State.OPEN} color={ CSS_COLOR_NAMES[(i++) % CSS_COLOR_NAMES.length] }/>
+                            <Square row={row} col={col} fName="Ryan" lName='Bucinell' state={State.OPEN} color={ CSS_COLOR_NAMES[(i++) % CSS_COLOR_NAMES.length] }/>
                         </td>
                       })}
                     </tr>
                   })}
             </tbody>
-        </table>
+        </table> 
     </div>
  
     <!--Corners -->
@@ -70,5 +83,7 @@ const { price, payoutPercentages } = Astro.props;
     })}
     
 </div>
-
 <ScoreBoard payouts={payoutPercentages.map( p => p * price  * ROWS.length * COLS.length)} scores={[]}/>
+</div>
+
+<script src="./squares.js" />

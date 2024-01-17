@@ -1,7 +1,7 @@
 ---
-import helmet from '../../../../public/img/squares/helmet.svg?raw'
-const {opacity, id = Math.floor(Math.random()*1_000), faceMask, color} = Astro.props;
-console.log(color)
+import helmet from '../../../../public/img/squares/helmet.svg?raw';
+
+const {id = Math.floor(Math.random()*1_000), opacity, faceMask, color} = Astro.props;
 
 const st0 = faceMask ?? '#C4F7F7';
 const st1 = color ?? '#999999';
@@ -13,5 +13,4 @@ let coloredSVG = id ? helmet
     .replaceAll('st1', `st1-${id}`)
 :helmet;
 ---
-
-<div id={`helmet-${id}`} set:html={coloredSVG} class={`opacity-${opacity}`}>
+<div id={`helmet-${id}`} set:html={coloredSVG} class={`opacity-${opacity}`} />
