@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 // import {recurse,readdir} from 'file-system';
 import { Debug } from 'astro/components';
-import NewsItemComponent from '../components/NewsItemComponent.astro';
+import NewsItem from '../components/NewsItem.astro';
 
 const config = {
     title: "Ryan Bucinell - Projects",
@@ -35,10 +35,10 @@ const json = JSON.parse(JSON.stringify(response[0]));
 ---
 <BaseLayout config={config}>
     <p class="lead center"><span style="color:orange">⚠</span> Just some projects I'm working on or technical tests. <span style="color:orange">⚠</span></p>
-    <NewsItemComponent>
+    <NewsItem>
         When I build my website, this page is dynamically generated based on the content that is in my (web)projects directory. If there is an index.html in the project's root then you can click on it to see the project. 
         No guarantee these pages are working or intersting as they are all in some form of work-in-progress
-    </NewsItemComponent>
+    </NewsItem>
     
     <table id="projTable" class="table table-condensed table-hover table-striped">
         <thead class="thead-dark">
