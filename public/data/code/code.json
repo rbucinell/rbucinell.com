@@ -10,7 +10,7 @@
       "@id": "superbowl_squares",
       "name": "Superbowl Squares",
       "icon": "img/squares/helmet.svg",
-      "hostedUrl": "misc/squares.html",
+      "hostedUrl": "/squares",
       "description": "Last couple of years I've run a superbowl squares board. In order to faciilate family and friends out of town I wrote a web page to host the board. The site is static, so I utilized google forms and google sheets as backend."
    },
    {
