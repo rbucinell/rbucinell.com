@@ -33,9 +33,9 @@ const getChampionMasteryResposne = await fetch(getChampionMasteryURL);
 const championmastery = await getChampionMasteryResposne.json();
 
 const getMasteryPercentage = ( id ) =>{
-	let mastery = championmastery.find( e => e.championId === id );
-	return 100 * mastery.championPointsSinceLastLevel / ( mastery.championPointsSinceLastLevel + mastery.championPointsUntilNextLevel)
-
+	//let mastery = championmastery.find( e => e.championId === id );
+	//return 100 * mastery.championPointsSinceLastLevel / ( mastery.championPointsSinceLastLevel + mastery.championPointsUntilNextLevel)
+	return 0;
 }
 
 
