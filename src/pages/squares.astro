@@ -1,8 +1,6 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import PurchaseSquaresBtn from "./squares/PurchaseSquaresBtn.astro";
-import Rules from "./squares/rules.astro";
-import SquaresBoard from "./squares/squaresboard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Rules from "../components/squares/rules.astro";
 
 const config = {
   title: "Bucinell Superbowl Squares - Super Bowl 57 (2023)",
@@ -16,22 +14,17 @@ const config = {
   }
 }
 
-const price = 20;
+const price = 10;
 const payouts = [0.1, 0.2, 0.3, 0.4];
 ---
 <meta property="og:image" content="../img/squares/board.jpg">
 
 <BaseLayout config={config}>
   <div class="container-fluid">
-    <p>It's that time of year again. Superbowl, baby! There are new rules this year, and a new table. Good Luck.</p>    
+    <p>It's that time of year again. Superbowl, baby! There are new rules this year, and a new table. Good Luck. Click all the squares that you want to purchase. Then click the 'purchase' button to finalize your reservation.</p>    
     <p>Squares are <strong id="squareCost">${price}</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a></p>
     <Rules payouts={payouts}/> 
     <div class="center mb-4">
-      <PurchaseSquaresBtn />
-    </div>
-
-    <div class="center mb-4">
-    <iframe id='iframeBoard' height="900px" class="w-75 mw-100 mx-auto border-0" src="https://bucinell-squares.vercel.app/"/>
-    <!-- <SquaresBoard price={price} payoutPercentages={payouts} /> -->
+    <iframe id='iframeBoard' height="910px" class="border-0 mx-auto w-100" src="https://bucinell-squares.vercel.app/"/>
   </div> 
 </BaseLayout>
