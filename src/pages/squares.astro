@@ -23,8 +23,8 @@ const payouts = [0.1, 0.2, 0.3, 0.4];
   <div class="container-fluid">
     <p>It's that time of year again. Superbowl, baby! There are new rules this year, and a new table. Good Luck. Click all the squares that you want to purchase. Then click the 'purchase' button to finalize your reservation.</p>    
     <p>Squares are <strong id="squareCost">${price}</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a></p>
-    <Rules payouts={payouts}/> 
     <div class="center mb-4">
-    <iframe id='iframeBoard' height="910px" class="border-0 mx-auto w-100" src="https://bucinell-squares.vercel.app/"/>
-  </div> 
+      <iframe id='iframeBoard' height="910px" class="border-0 mx-auto w-100" src="https://bucinell-squares.vercel.app/"/>
+    </div> 
+    <Rules payouts={payouts}/> 
 </BaseLayout>

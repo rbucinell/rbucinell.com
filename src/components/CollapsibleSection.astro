@@ -10,8 +10,8 @@ const dataTarget = `${id}Section`
      {title}
      {!isOpen && <span class="font-italic font-weight-light text-muted" style="font-size:0.8rem"><i class="d-inline" data-feather="maximize-2" />click to toggle expand</span>}
     </a>
-    </h3>
-    <div id={dataTarget} class:list={["collapse","border-left", {"show" : isOpen}]}>
-      <slot/>
-    </div>
+  </h3>
+  <div id={dataTarget} class:list={["collapse","border-left", {"show" : isOpen}]}>
+    <slot/>
   </div>
+</div>
