@@ -26,7 +26,7 @@ const json = JSON.parse(JSON.stringify(response[0])).default;
     <ul id="codeList">
         {json.map( obj =>{
             return(
-            <li id={obj['@id']} class="media">
+            <li id={obj['@id']} class="cell locked">
                 <img src={obj.icon} width="64" height="64">
                 <div class="media-body mx-2">
                     <h5 class="m-1"><a href={obj.hostedUrl}>{obj.name}</a></h5>

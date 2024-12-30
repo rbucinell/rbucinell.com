@@ -4,37 +4,38 @@ import NewsItem from '../components/NewsItem.astro';
 import NewsHeader from '../components/NewsHeader.astro';
 
 const config = {
-    title: "Ryan Bucinell - Homepage",
+    title: "Ryan Bucinell - Home",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"layout", text:"News", url:"#"}
+        {fa:"home", text:"Home", url:"index.html"}
     ],
     page: {
-        title: 'News',
-        small: 'latest news and updates'
+        title: 'Ryan Bucinell',
+        small: 'Software Engineer at your Service'
     }
 };
 ---
 <BaseLayout config={config}>
-    <div class=" mx-2 row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4">
+    <div class="grid gap-4 grid-cols-2 md:grid-cols-4">
         <NewsHeader opacity="0.10" title="My Résumé" img="img/index/resume-icon.svg" url="/resume" />
         <NewsHeader opacity="0.20" title="Super Bowl Squares" img="img/index/grid-icon.svg" url="/squares" />
         <NewsHeader opacity="0.10" title="My Software" img="img/index/code-svgrepo-com.svg" url="/code" />
         <NewsHeader opacity="0.10" title="Freelance Work" img="img/index/websites-icon.svg"url="/websites" />
     </div>
 
-    <NewsItem icon="sun"          date="2022-07-21">A few photos from my trip to Canún where we <a class="underline font-bold" href="/misc/mexico">toured Tulum, swam with sea turtles, and dove in a closed cenote.</a></NewsItem>
-    <NewsItem icon="check-square" date="2022-02-01">We are doing Super Bowl squares again! New rules, more money, fancier grid! See <a class="underline font-bold" href="/squares">the board here.</a></NewsItem>
-    <NewsItem icon="user-plus"    date="2021-04-17">Ryder Jack arrived healthy, and more importantly didn't make mom miss the cheerleading performance</NewsItem>
-    <NewsItem icon="check-square" date="2021-01-23">For Ryder's <i>baby sprinkle</i> we are doing Super Bowl squares. See <a href="/misc/sprinkle">the board here.</a></NewsItem>
-    <NewsItem icon="users"        date="2019-12-05">I am now the proud father of b/g twins, Brandon and Baiely</NewsItem>
-    <NewsItem icon="home"         date="2018-11-03">New house! Moving is less and less fun the more stuff you have.</NewsItem>
-    <NewsItem icon="user-plus"    date="2018-05-12">Married my beautiful wife, Jess. You're stuck with me now, babe.</NewsItem>
-    <NewsItem icon="code"         date="2017-08-22">Myriad of projects that have gone unlinked but will soon be ready. For now, site is now built with pug!</NewsItem>
-    <NewsItem icon="image"        date="2015-07-13">Website revamp v4! It's about time to make my site mobile friendly</NewsItem>
-    <NewsItem icon="globe"        date="2015-01-07">Beginning a new side business, tentatively named SwiftSoft LLC. Getting the first <a href="websites.html">website</a> on-line for <a href="http://www.nocoastsandc.fitness">No Coast Strength and Conditioning</a></NewsItem>
-    <NewsItem icon="code"         date="2104-10-18">Expanding upon javascript, so I created <a href="projects/life/index.html">Conway\'s Game of Life!</a></NewsItem>
-    <NewsItem icon="code"         date="2014-06-19">Started learning some javascript by creating a Grease Monkey  <a href="code.html">on my code page.</a></NewsItem>
-    <NewsItem icon="code"         date="2014-04-08">Published my first android app for my kickball league.<a href="https://play.google.com/store/apps/details?id=com.nacka_kickball"> <img src="https://img.icons8.com/color/48/000000/google-play.png" alt="Google Play Icon" height="20px" /> NACKA Kickball App</a></NewsItem>
-    <NewsItem icon="image"        date="2013-02-20">Brand new site redesign! v3!</NewsItem>
+    <div class="flex flex-col cell locked gap-0 p-0 [&>*:nth-child(even)]:bg-gray-200">
+        <NewsItem icon="sun"          date="2022-07-21">A few photos from my trip to Canún where we <a class="underline" href="/misc/mexico">toured Tulum, swam with sea turtles, and dove in a closed cenote.</a></NewsItem>
+        <NewsItem icon="check-square" date="2022-02-01">We are doing Super Bowl squares again! New rules, more money, fancier grid! See <a class="underline" href="/squares">the board here.</a></NewsItem>
+        <NewsItem icon="user-plus"    date="2021-04-17">Ryder Jack arrived healthy, and more importantly didn't make mom miss the cheerleading performance</NewsItem>
+        <NewsItem icon="check-square" date="2021-01-23">For Ryder's <i>baby sprinkle</i> we are doing Super Bowl squares. See <a href="/misc/sprinkle">the board here.</a></NewsItem>
+        <NewsItem icon="users"        date="2019-12-05">I am now the proud father of b/g twins, Brandon and Baiely</NewsItem>
+        <NewsItem icon="home"         date="2018-11-03">New house! Moving is less and less fun the more stuff you have.</NewsItem>
+        <NewsItem icon="user-plus"    date="2018-05-12">Married my beautiful wife, Jess. You're stuck with me now, babe.</NewsItem>
+        <NewsItem icon="code"         date="2017-08-22">Myriad of projects that have gone unlinked but will soon be ready. For now, site is now built with pug!</NewsItem>
+        <NewsItem icon="image"        date="2015-07-13">Website revamp v4! It's about time to make my site mobile friendly</NewsItem>
+        <NewsItem icon="globe"        date="2015-01-07">Beginning a new side business, tentatively named SwiftSoft LLC. Getting the first <a href="websites.html">website</a> on-line for <a href="http://www.nocoastsandc.fitness">No Coast Strength and Conditioning</a></NewsItem>
+        <NewsItem icon="code"         date="2104-10-18">Expanding upon javascript, so I created <a href="projects/life/index.html">Conway\'s Game of Life!</a></NewsItem>
+        <NewsItem icon="code"         date="2014-06-19">Started learning some javascript by creating a Grease Monkey  <a href="code.html">on my code page.</a></NewsItem>
+        <NewsItem icon="code"         date="2014-04-08">Published my first android app for my kickball league.<a href="https://play.google.com/store/apps/details?id=com.nacka_kickball"> <img src="https://img.icons8.com/color/48/000000/google-play.png" alt="Google Play Icon" height="20px" /> NACKA Kickball App</a></NewsItem>
+        <NewsItem icon="image"        date="2013-02-20">Brand new site redesign! v3!</NewsItem>
+    </div>
 </BaseLayout>

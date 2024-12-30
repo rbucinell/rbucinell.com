@@ -2,7 +2,7 @@
 let {id, rootdir, count, title, date} = Astro.props;
 ---
 <div class="col-x12 col-sm-6 col-lg-4 mb-4">
-    <div class="card bg-light border-secondary">
+    <div class="cell locked">
         <div id={id} class="gallery">
             <a href={`${rootdir}${id}/thumb.png`} data-caption={`${title} - Preview`}>
                 <img class="card-img-top" src={`${rootdir}${id}/thumb.png`} alt={`Screenshot of ${title}`}>

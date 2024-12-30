@@ -9,12 +9,10 @@ const config = {
     title: "Ryan Bucinell - Résumé",
     breadcrumbs: [
         {fa:"home", text:"Home", url:"index.html"},
-        {fa:"info",text:"Personal Info"},
         {fa:"file-text",text:"Resume", url:"#"}
     ],
     page: {
-        title: 'Ryan Bucinell',
-        small: 'A Curriculum Vitae'
+        title: 'Curriculum Vitae'
     }
 };
 const fdir = "img/websites/";
@@ -32,7 +30,10 @@ const json = JSON.parse(JSON.stringify(response[0]));
     }
 </style>
 <BaseLayout config={config}>
-
+<!--
+    https://astro-resume06.vercel.app/experiences/#
+    try to mimic this
+-->
     <BannerComponent id="downloadpdf">
         <strong>&nbsp;</strong>Download PDF versions:
         <a href="data/resume/Resume for Ryan Michael Bucinell.pdf" class="alert-link btn btn-outline-primary mx-3"><i class="font-weight-bold d-inline text-primary" data-feather="file-text"/>Standard PDF version</a>

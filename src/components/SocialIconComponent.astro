@@ -1,0 +1,15 @@
+---
+const { id, url, color} = Astro.props;
+const cssColor = `${color}`;
+console.log(cssColor);
+---
+<style define:vars={{cssColor}}>
+    .cell {
+        --cell-background-color: var(--cssColor);
+    }
+</style>
+<li id={id} class=`cell`>
+    <a href={url} class:list={["text-white hover:text-gray-700"]}>
+        <slot />
+    </a>
+</li>

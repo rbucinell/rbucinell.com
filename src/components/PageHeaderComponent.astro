@@ -1,8 +1,33 @@
 ---
+import SocialIconsComponent from "./SocialIconsComponent.astro";
+
 let {page,breadcrumbs} = Astro.props.config;
 let smalltitle = page.small || '';
 let hasURL = (url: String) => (typeof url === 'undefined');
 ---
+<nav aria-label="breadcrumb" class="w-full flex border-b-4 border-black pt-2 px-2 justify-between items-center flex-wrap">
+    <div class="flex-col justify-between items-center flex-wrap">
+        <h1 class="text-3xl">{Astro.props.config.page.title}&nbsp;<small class="text-slate-800">{smalltitle}</small></h1>
+        <ol class="flex flex-wrap items-center justify-start rounded-m py-2">
+            {breadcrumbs.map((crumb: { fa?: any; text: any; url?: any; },i: number)=>{
+                if( i != breadcrumbs.length - 1 ){
+                    let {text,url} = crumb;
+                    return <li class="flex cursor-pointer items-center text-sm text-slate-600 transition-colors duration-300 hover:text-slate-800">
+                        <i class="" data-feather={crumb.fa}></i>
+                        <span>{ hasURL(url) ? text : <a href={url}>{text}</a> }</span>
+                        <span>&nbsp;/&nbsp;</span>
+                    </li>
+                }else
+                    return <li class="font-bold flex cursor-pointer items-center text-sm text-slate-700 transition-colors duration-300 hover:text-slate-800">
+                        <i class="" data-feather={crumb.fa}></i>
+                        <span>{crumb.text}</span>
+                    </li>
+            })}
+        </ol>
+    </div>
+    <SocialIconsComponent />
+</nav>
+<!--   
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
@@ -25,4 +50,4 @@ let hasURL = (url: String) => (typeof url === 'undefined');
             })}
         </ol>
     </div>
-</div>
+</div> -->
