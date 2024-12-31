@@ -3,14 +3,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Rules from "../components/squares/rules.astro";
 
 const config = {
-  title: "Bucinell Superbowl Squares - 2024 Super Bowl LVIII",
+  title: "Bucinell Superbowl Squares - 2025 Super Bowl LVIV",
   breadcrumbs: [
       {fa:"home", text:"Home", url:"index.html"},
       {fa:"check-square", text:"Super Bowl Squares", url:"squares.html"}
   ],
   page: {
       title: 'Bucinell Superbowl Squares',
-      small: 'Super Bowl LVIII (2024)'
+      small: 'Super Bowl LVIIV (2025)'
   }
 }
 
@@ -24,7 +24,7 @@ const payouts = [0.1, 0.2, 0.3, 0.4];
     <p>It's that time of year again. Superbowl, baby! There are new rules this year, and a new table. Good Luck. Click all the squares that you want to purchase. Then click the 'purchase' button to finalize your reservation.</p>    
     <p>Squares are <strong id="squareCost">${price}</strong>. Please <a rel="noopener" href="https://paypal.me/rbucinell">Paypal</a> or venmo me at <a rel="noopener" href="https://account.venmo.com/u/rbucinell">@rbucinell</a></p>
     <div class="center mb-4">
-      <iframe id='iframeBoard' height="910px" class="border-0 mx-auto w-100" src="https://bucinell-squares.vercel.app/"/>
+      <iframe id='iframeBoard' height="950px" class="border-0 mx-auto w-full" src="https://bucinell-squares.vercel.app/"/>
     </div> 
     <Rules payouts={payouts}/> 
 </BaseLayout>
