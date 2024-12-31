@@ -5,9 +5,18 @@ let {page,breadcrumbs} = Astro.props.config;
 let smalltitle = page.small || '';
 let hasURL = (url: String) => (typeof url === 'undefined');
 ---
-<nav aria-label="breadcrumb" class="w-full flex border-b-4 border-black pt-2 px-2 justify-between items-center flex-wrap">
+<nav aria-label="breadcrumb" class="w-full flex border-b-4 border-black pt-2 px-2 justify-between items-start flex-wrap">
     <div class="flex-col justify-between items-center flex-wrap">
-        <h1 class="text-3xl">{Astro.props.config.page.title}&nbsp;<small class="text-slate-800">{smalltitle}</small></h1>
+        <div class="flex flex-row gap-2">
+            <div class="h-20 w-24 wrapper cell locked object-fill">
+                <img class="h-full" src="img/me/dark_image_wood.jpg" alt="Picutre of Ryan">
+            </div>
+            <span class="text-3xl">
+                <h1>{Astro.props.config.page.title}&nbsp;</h1>
+                <small class="text-slate-800 text-lg lg:text-xl">{smalltitle}</small>
+                <div class="border md:hidden"><SocialIconsComponent /></div>
+            </span>
+        </div>
         <ol class="flex flex-wrap items-center justify-start rounded-m py-2">
             {breadcrumbs.map((crumb: { fa?: any; text: any; url?: any; },i: number)=>{
                 if( i != breadcrumbs.length - 1 ){
@@ -23,9 +32,11 @@ let hasURL = (url: String) => (typeof url === 'undefined');
                         <span>{crumb.text}</span>
                     </li>
             })}
+            <!-- <div class="hidden md:flex lg:hidden justify-self-end"><SocialIconsComponent /></div> -->
         </ol>
+        
     </div>
-    <SocialIconsComponent />
+    <div class="hidden md:flex"><SocialIconsComponent /></div>
 </nav>
 <!--   
 <div class="row">

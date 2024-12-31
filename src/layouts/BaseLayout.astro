@@ -5,7 +5,7 @@ import WrapperComponent from "../components/WrapperComponent.astro";
 const { config } = Astro.props;
 let title = config.title || 'Ryan Bucinell\'s Personal Site';
 ---
-<html lang="en">
+<html lang="en" class="bg-gray-200">
   <HeadComponent title={title}></HeadComponent>
   <body>
     <WrapperComponent config={config}>
