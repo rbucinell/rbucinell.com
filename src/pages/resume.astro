@@ -4,6 +4,8 @@ import TechIconComponent from '../components/TechIconComponent.astro';
 import ExperienceComponent from '../components/ExperienceComponent.astro';
 import CollapsibleSection from  '../components/CollapsibleSection.astro';
 import BannerComponent from '../components/BannerComponent.astro';
+import NewsItem from '../components/NewsItem.astro';
+import ResumeSectionComponent from '../components/resume/ResumeSectionComponent.astro';
 
 const config = {
     title: "Ryan Bucinell - Résumé",
@@ -34,44 +36,73 @@ const json = JSON.parse(JSON.stringify(response[0]));
     https://astro-resume06.vercel.app/experiences/#
     try to mimic this
 -->
-    <BannerComponent id="downloadpdf">
-        <strong>&nbsp;</strong>Download PDF versions:
-        <a href="data/resume/Resume for Ryan Michael Bucinell.pdf" class="alert-link btn btn-outline-primary mx-3"><i class="font-weight-bold d-inline text-primary" data-feather="file-text"/>Standard PDF version</a>
-        <a href="data/resume/Resume for Ryan Michael Bucinell - Open Resume.pdf" class="alert-link btn btn-outline-secondary"><i class="font-weight-bold d-inline text-secondary" data-feather="file-text"/>&nbsp;Open Resume</a>
+    <BannerComponent id="downloadpdf" title="Download PDF versions" alert="info">
+            <div class="flex justify-around">
+                <a class="cell inline accent" href="data/resume/Resume for Ryan Michael Bucinell.pdf" target="_blank">
+                    <NewsItem icon="file-text">Standard PDF version</NewsItem>
+                </a>
+                <a class="cell inline" href="data/resume/Resume for Ryan Michael Bucinell - Open Resume.pdf" target="_blank">
+                    <NewsItem icon="file-text">Open Resume</NewsItem>
+                </a>
+            </div>
+        <!-- <a href="data/resume/Resume for Ryan Michael Bucinell.pdf"               class="alert-link btn btn-outline-primary mx-3"><i class="font-weight-bold d-inline text-primary" data-feather="file-text"/>Standard PDF version</a>
+        <a href="data/resume/Resume for Ryan Michael Bucinell - Open Resume.pdf" class="alert-link btn btn-outline-secondary">   <i class="font-weight-bold d-inline text-secondary" data-feather="file-text"/>&nbsp;Open Resume</a> -->
     </BannerComponent>
 
-    <CollapsibleSection id="experience" title="Experience" open="true">
+    <!-- <CollapsibleSection id="experience" title="Experience" open="true">
     {
         json.default.map( exp => <ExperienceComponent title={exp.title} company={exp.company} daterange={exp.daterange} img={exp.img} descriptions={exp.descriptions} tags={exp.tags} /> )
     }
-    </CollapsibleSection>
+    </CollapsibleSection> -->
 
-    <CollapsibleSection id="education" title="Education" open="true">
-        <ExperienceComponent title="Bachelors of Science, Computer Science" company="Rochester Institute of Technology" daterange="Sept. 2006 - May 2011" img="img/resume/rit.png"
-        descriptions={['Minor in Game Design & Development, Concentration in Advanced Computer Graphics']}/>
-    </CollapsibleSection>
-    
+    <ResumeSectionComponent title="Experience">
+        {
+            json.default.map( exp => <ExperienceComponent title={exp.title} company={exp.company} daterange={exp.daterange} img={exp.img} descriptions={exp.descriptions} tags={exp.tags} /> )
+        }
+    </ResumeSectionComponent>
 
-    <CollapsibleSection id="languages" title="Languages">
-        <div class="collapse show border-left container" id="langSection">
+    <ResumeSectionComponent title="Education">
+        <ExperienceComponent 
+            title="Bachelors of Science, Computer Science" 
+            company="Rochester Institute of Technology" 
+            daterange="Sept. 2006 - May 2011" img="img/resume/rit.png"
+            descriptions={['Minor in Game Design & Development, Concentration in Advanced Computer Graphics']}
+        />
+        <ExperienceComponent
+        title = "Visual Studio Student Insider"
+        company = "Microsoft"
+        daterange = "Feburary 2020 - November 2011"
+        img = "img/resume/microsoft.webp"
+        descriptions = {[
+            "Hybrid program at Microsoft that focused on digital community and student outreach.",
+            "Interviewed Microsoft professionals (developers, technical evangelists, and MVP)",
+            "Worked with new technologies to bring back news, demos, and other information for the communities/students."
+        ]}
+        />
+    </ResumeSectionComponent>
+
+
+    <ResumeSectionComponent title="Languages">
+        <ul class="list-none flex flex-wrap gap-4 justify-evenly">
             {
                 ['python', 'csharp', 'cplusplus', 'java', 'scala', 'html5', 'microsoftsqlserver', 'mysql','css3', 'javascript', 'typesecript']
-                    .map( i => <TechIconComponent icon={i} word="false" colored="false"/>) 
+                    .map( i => <li><TechIconComponent icon={i} word="false" colored="true"/></li>) 
             }
-        </div>
-    </CollapsibleSection>
+        </ul>
+    </ResumeSectionComponent>
 
-    <CollapsibleSection id="technologies" title="Technologies">
-        <div class="collapse show border-left container" id="langSection">
+    <ResumeSectionComponent title="Technologies">
+        <ul class="list-none flex flex-wrap gap-4 justify-evenly">
             {
                 ['vscode', 'visualstudio', 'intellij', 
                 'dot-net', 'dotnetcore', 'docker', 'kubernetes',
                 'npm', 'nodejs', 'angularjs', 'vuejs', 'react', 'bootstrap', 'oracle','git', 'gulp', 'webpack','mongodb',
                 'flask', 'selenium','express' ]
-                    .map( i => <TechIconComponent icon={i} word="false" colored="false"/>)
+                    .map( i => <li><TechIconComponent icon={i} word="false" colored="true"/></li>) 
             }
-        </div>
-    </CollapsibleSection>
+        </ul>
+    </ResumeSectionComponent>
+
 </BaseLayout>
 <script src="https://code.highcharts.com/highcharts.js" />
 <script src="https://code.highcharts.com/highcharts-3d.js" />

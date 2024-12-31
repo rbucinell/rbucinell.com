@@ -1,14 +1,27 @@
 ---
-const {id} = Astro.props;
+const {id, title, alert} = Astro.props;
+let alertClasses = '';
+switch( alert?.toLowerCase() ){
+    case "info": 
+        alertClasses = "bg-blue-200 border-blue-600 text-blue-700";
+        break;
+    case "warn": 
+        alertClasses = "bg-orange-200 border-orange-600 text-orange-700";
+        break;
+    case "danger": 
+        alertClasses = "bg-red-200 border-red-600 text-red-700";
+        break;
+    case "success": 
+        alertClasses = "bg-green-200 border-green-600 text-green-700";
+        break;
+    default:
+        alertClasses = "bg-gray-300 border-gray-500 text-gray-700"
+        break;
+}
 ---
-<style>
-    .banner{
-        border-style: ridge;
-        border-width: thin;
-    }
-</style>
-<div id={id} class="banner font-weight-bold alert alert-info" role="alert">
-    <h5 class="center">
+<div id={id} class:list={["border my-2 p-4 border-l-4", alertClasses]} role="alert">
+    <div class="center">
+        <p class="font-bold">{title}</p>
         <slot/>
-    </h5>
+    </div>
 </div>
