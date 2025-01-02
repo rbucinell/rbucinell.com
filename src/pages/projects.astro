@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 // import {recurse,readdir} from 'file-system';
-import { Debug } from 'astro/components';
-import NewsItem from '../components/NewsItem.astro';
+import BannerComponent from '../components/BannerComponent.astro';
+import NewsHeader from '../components/NewsHeader.astro';
+import BasicTable from '../components/BasicTable.astro';
+import projects from '../projects.json';
 
 const config = {
     title: "Ryan Bucinell - Projects",
@@ -12,13 +14,19 @@ const config = {
         {fa:"alert-triangle",   text:"Active",      url:"#"}
     ],
     page: {
-        title: 'Active Projects',
+        title: 'Scratchpad Projects',
         small: 'Work In Progress...'
     }
 };
 
-const response = await Astro.glob('../../public/projects/projects.json');
-const json = JSON.parse(JSON.stringify(response[0]));
+// const response = import.meta.glob('/projects/projects.json');
+// console.log(response);
+// const json = JSON.parse(JSON.stringify(response[0]));
+// console.log( json );
+const tableData = Object.values(projects).filter( p => typeof p !== 'string' ).map( p => {
+    return [ p.name, p.path, (p.hasIndex ? `<a class="underline" href="../${p.path}index.html">LINK<a/>`: '') ]
+})
+
 
 // let files = readdir('public/projects/', {withFileTypes: false}, (error,fileDirent) =>{ 
 //     console.log( fileDirent );
@@ -34,31 +42,17 @@ const json = JSON.parse(JSON.stringify(response[0]));
 
 ---
 <BaseLayout config={config}>
-    <p class="lead center"><span style="color:orange">⚠</span> Just some projects I'm working on or technical tests. <span style="color:orange">⚠</span></p>
-    <NewsItem>
-        When I build my website, this page is dynamically generated based on the content that is in my (web)projects directory. If there is an index.html in the project's root then you can click on it to see the project. 
-        No guarantee these pages are working or intersting as they are all in some form of work-in-progress
-    </NewsItem>
-    
-    <table id="projTable" class="table table-condensed table-hover table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Project Name</th>
-            <th>Project Index / Link</th>
-        </tr>
-        </thead>
-        <tbody>
-            { Object.keys(json).slice(1).map( key =>{
-                return (<tr>
-                    <td>{key}</td>
-                    <td>
-                        {json[key].hasIndex ? 
-                            <a href={`${json[key].path}index.html`}>{json[key].path}</a> : 
-                            <span>{json[key].path}</span>
-                        }
-                    </td>
-                </tr>)
-            })}
-        </tbody>
-    </table>
+    <BannerComponent id="testing" alert="warn">
+        <span>⚠</span>
+        <span class="font-bold mx-2">Just some projects I'm working on or technical tests. They may not work</span>
+        <span>⚠</span>
+    </BannerComponent>
+    <NewsHeader>
+        <p class="font-normal">This is a dynamically build web page based on a config file which in itself was 
+            generated on a gulp (now Astro) build based on the content that is in my (web)projects directory. 
+            If there is an index.html in the project's root then you can click on it to see the project. 
+            No guarantee these pages are working or intersting as they are all in some form of work-in-progress
+        </p>
+    </NewsHeader>
+    <BasicTable headers={["Project Name", "Project Location", "Site Link", "GitHub Link", "Description"]}, rows={tableData} />    
 </BaseLayout>
