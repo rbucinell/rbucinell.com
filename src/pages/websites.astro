@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GalleryItemComponent from '../components/GalleryItemComponent.astro';
+import TextButton from '../components/TextButton.astro';
 
 const config = {
     title: "Ryan Bucinell - Website Development",
@@ -29,42 +30,39 @@ const fdir = "img/websites/";
     }
 </style>
 <BaseLayout config={config}>
-    <div class="container-fluid">
-        <div class="row">
-            <GalleryItemComponent id="whyilift" rootdir={fdir} count="4" title="Why I Lift" date="2019">
-                A site deisgned to look up other competetive lifter's profiles and records. I was contracted to improve the front-end codespace and add a mobile friendly view.
-                <p><a class="btn btn-sm btn-outline-dark" role="button" target="_blank">Visit</a></p>
-            </GalleryItemComponent>
+    <div class="flex-col md:grid grid-cols-2">
+        <GalleryItemComponent id="whyilift" rootdir={fdir} count="4" title="Why I Lift" date="2019">
+            A site deisgned to look up other competetive lifter's profiles and records. I was contracted to improve the front-end codespace and add a mobile friendly view.
+        </GalleryItemComponent>
 
-            <GalleryItemComponent id="revivomedical" rootdir={fdir} count="5" title="ReVivo Medical" date="2016">
-                Revivio Medical a startup of doctors with a leading edge spinal fusion procedure. Since doctors were maintaining the site, I needed to build the site with tools that they wouldn't need any technilogical skills to update
-                <p><a class="btn btn-sm btn-outline-dark" href="http://www.revivomedical.com/" role="button" target="_blank"> Visit </a></p>
-            </GalleryItemComponent>
-            
-            <GalleryItemComponent id="nocoast" rootdir={fdir} count="5" title="No Coast Strength and Conditioning" date="2014">
-                No Coast Strength and Conditioning is a personal training site for Rob Saeva in Rochester, NY
-            </GalleryItemComponent>
-            
-            <GalleryItemComponent id="hike4heroes" rootdir={fdir} count="4" title="Way of Ninja" date="2013">
-                My little brother created a charity event to raise money for the Wounded Warrior Project and Navy SEALs Foundation. I volunteered to build, and maintain the sites (as well as social media) as he hiked all 46 Adirondack High Peaks.
-            </GalleryItemComponent>
-            
-            <GalleryItemComponent id="rbb" rootdir={fdir} count="3" title="Ronald Bucinell's Personal Site" date="2010-2018">
-                <p class="card-text">A rework of his professional site to bring site up to standards and to make content easier to find and read.</p>
-                <p><a class="btn btn-sm btn-outline-dark" href="http://rbb.union.edu/" role="button" target="_blank">Visit - rbb.union.edu</a></p>
-            </GalleryItemComponent>
+        <GalleryItemComponent id="revivomedical" rootdir={fdir} count="5" title="ReVivo Medical" date="2016">
+            Revivio Medical a startup of doctors with a leading edge spinal fusion procedure. Since doctors were maintaining the site, I needed to build the site with tools that they wouldn't need any technilogical skills to update
+            <TextButton text="Visit" inline={true} href="http://www.revivomedical.com/"/>
+        </GalleryItemComponent>
+        
+        <GalleryItemComponent id="nocoast" rootdir={fdir} count="5" title="No Coast Strength and Conditioning" date="2014">
+            No Coast Strength and Conditioning is a personal training site for Rob Saeva in Rochester, NY
+        </GalleryItemComponent>
+        
+        <GalleryItemComponent id="hike4heroes" rootdir={fdir} count="4" title="Way of Ninja" date="2013">
+            My little brother created a charity event to raise money for the Wounded Warrior Project and Navy SEALs Foundation. I volunteered to build, and maintain the sites (as well as social media) as he hiked all 46 Adirondack High Peaks.
+        </GalleryItemComponent>
+        
+        <GalleryItemComponent id="rbb" rootdir={fdir} count="3" title="Ronald Bucinell's Personal Site" date="2010-2018">
+            <p class="card-text">A rework of his professional site to bring site up to standards and to make content easier to find and read.</p>
+            <TextButton text="Visit - rbb.union.edu" inline={true} href="http://rbb.union.edu/"/>
+        </GalleryItemComponent>
 
-            <GalleryItemComponent id="innotech" rootdir={fdir} count="3" title="Innotech International" date="2014">
-                <p class="card-text">
-                    Innotech International - Ronald Bucinell's Engineering consultant company <a href="http://innotech-international.com/">http://innotech-international.com/</a>
-                </p>
-                <a class="btn btn-sm btn-outline-dark" href="projects/innotech/index.html" role="button" target="_blank">Innotech Design PoC</a>
-            </GalleryItemComponent>
-            
-            <GalleryItemComponent id="personal" rootdir={fdir} count="1" title="My Personal Site" date="2006-Current">
-                <p class="card-text">First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="retro.html">Retro</a> page.</p>
-            </GalleryItemComponent>
-        </div>
+        <GalleryItemComponent id="innotech" rootdir={fdir} count="3" title="Innotech International" date="2014">
+            <p class="card-text">
+                Innotech International - Ronald Bucinell's Engineering consultant company <a href="http://innotech-international.com/">http://innotech-international.com/</a>
+            </p>
+            <TextButton text="Innotech Design PoC" inline={true} href="projects/innotech/index.html"/>
+        </GalleryItemComponent>
+        
+        <GalleryItemComponent id="personal" rootdir={fdir} count="1" title="My Personal Site" date="2006-Current">
+            <p class="card-text">First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="retro.html">Retro</a> page.</p>
+        </GalleryItemComponent>
     </div>
 </BaseLayout>
 

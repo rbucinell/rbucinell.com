@@ -1,0 +1,7 @@
+---
+const { text, href ="#", inline = false, target = "_blank" } = Astro.props;
+const isInline = inline ? "inline" : "";
+---
+<div class="wrapper">
+    <a class:list={["cell", isInline ]} role="button" href={href} target={target}>{text}</a>
+</div>
