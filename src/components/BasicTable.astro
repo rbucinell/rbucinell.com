@@ -1,0 +1,28 @@
+---
+const { headers, rows } = Astro.props;
+---
+<div class="cell locked">
+<table class="table table-auto">
+    <thead class=" bg-gray-200">
+        <tr class="">
+            { headers.map( header => {
+                return <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    {header}
+                </th>
+            })}
+        </tr>
+    </thead>
+
+    <tbody class="">
+        {rows.map( tr =>{
+            return <tr>
+                {tr.map( td =>{
+                return <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div set:html={td}/>
+                </td>
+            })}
+            </tr>
+        })}
+    </tbody>
+</table>
+</div>

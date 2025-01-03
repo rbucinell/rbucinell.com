@@ -3,33 +3,18 @@ const {title, company, daterange, img, ...etc} = Astro.props;
 const descriptions = etc.descriptions;
 const tags = etc.tags;
 ---
-<style>
-    .companylogo {
-        width: 200px;
-        height:100px;
-        background-position: right;
-        background-repeat:no-repeat;
-        opacity:0.5;
-        min-height:100px;
-    }
-</style>
-<div class="card mb-3 bg-transparent border-0">
-    <h5 class="card-header card-title p-2">{company}<small class="mx-2 text-info">{title}</small></h5>
-    <div class="row g-0">
-        <div class="col-12 col-md-8">
-            <div class="card-body p-1">
-                <p class="card-text"><small class="text-muted">{daterange}</small></p>
-                <ul>{descriptions.map( d => <li>{d}</li>)}</ul>
-            </div>
-            <div class="tags">
-                {
-                    tags?.map( t => <span class="badge badge-pill badge-secondary mx-1">{t}</span> )
-                }
-            </div>
-        </div>
-        <div class="col-md-4 d-none d-md-block">
-            <img src={img} class="img-fluid rounded-start pull-right m-3" alt="...">
-        </div>
-        
+<div class="flex flex-col gap-1 pl-1 py-2 mb-4">
+    <div class="hidden absolute right-0 md:block md:w-32 z-0 opacity-60">
+        <img src={img} class="rounded-md float-right m-3" alt="...">
     </div>
+    <h2 class="text-2xl lg:text-3xl font-semibold z-10">{company}<small class="mx-2 text-green-700">{title}</small></h2>
+    <h3 class="text-base text-gray-500">{daterange}</h3>
+    <ul class="text-sm list-disc list-inside">
+        {descriptions.map(d => <li>{d}</li>)}
+    </ul>
+    <div class="flex flex-wrap gap-2 text-base">
+        {
+            tags?.map(t => <span class="bg-gray-200 text-gray-600 cell inline locked round">{t}</span>)
+        }
+    </div>    
 </div>

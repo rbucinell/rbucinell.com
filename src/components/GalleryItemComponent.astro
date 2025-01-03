@@ -2,8 +2,8 @@
 let {id, rootdir, count, title, date} = Astro.props;
 ---
 <div class="col-x12 col-sm-6 col-lg-4 mb-4">
-    <div class="card bg-light border-secondary">
-        <div id={id} class="gallery">
+    <div class="m-2">
+        <div id={id} class="cell">
             <a href={`${rootdir}${id}/thumb.png`} data-caption={`${title} - Preview`}>
                 <img class="card-img-top" src={`${rootdir}${id}/thumb.png`} alt={`Screenshot of ${title}`}>
             </a>
@@ -11,14 +11,15 @@ let {id, rootdir, count, title, date} = Astro.props;
                 { Array.from({length: count}).map( (u,i) => (<a href={`${rootdir}${id}/gallery/${i+1}.png`} data-caption={`${title} - ${i+1} of ${count}`}></a>) ) }
             </div>
         </div>
-        <div class="card-body">
-            <h5 class="card-title">{title}</h5>
-            <p class="card-text">
+        <div class="flex flex-col mx-2">
+            <h5 class=" flex flex-row justify-between">
+                <span class="font-bold text-xl">{title}</span>
+                <span class="font-normal text-base">{date}</span>
+            </h5>
+            <div class="text-base font-normal">
                 <slot/>
-            </p>
-            <div class="d-flex justify-content-end">
-                <small class="text-muted">{date}</small>
             </div>
+            
         </div>
     </div>
 </div>

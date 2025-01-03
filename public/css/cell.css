@@ -1,0 +1,156 @@
+/* DEFAULT VARIABLES */
+body {
+	--cell-text-color: #222;
+	--cell-background-color: #fff;
+	--cell-accent-color: #00ae86;
+	--cell-shadow-color: #444;
+  }
+  
+  /* BASIC cell STYLES */
+  .cell {
+	display: block;
+	color: var(--cell-text-color);
+	border: 3px solid var(--cell-text-color);
+	border-radius: 3px;
+	padding: 4px 8px;
+	background: var(--cell-background-color);
+	font-weight: bold;
+	cursor: pointer;
+	box-sizing: border-box;
+  
+	position: relative;
+	top: -2px;
+	left: -2px;
+	transition: transform 0.2s;
+	margin: 8px 6px 10px 6px;
+	z-index: 1;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+  }
+  
+  .cell.wrapper,
+  .cell.wrapper.inline {
+	display: inline-cell;
+	padding: 0;
+  }
+  
+  .cell.wrapper > * {
+	margin: 0;
+  }
+  
+  /* INTERACTIVE cell STYLES */
+  .cell::before {
+	content: "";
+	background: var(--cell-background-color);
+	border: 3px solid var(--cell-text-color);
+	border-radius: 3px;
+	box-sizing: border-box;
+	position: absolute;
+	top: -3px;
+	left: -3px;
+	height: calc(100% + 6px);
+	width: calc(100% + 6px);
+	z-index: -1;
+  }
+  
+  .cell:hover,
+  .cell:focus {
+	transform: translate(2px, 2px);
+  }
+  
+  .cell::after {
+	content: "";
+	display: cell;
+	box-sizing: border-box;
+	background: var(--cell-shadow-color);
+	border: 3px solid var(--cell-text-color);
+	border-radius: 3px;
+	height: calc(100% + 6px);
+	width: calc(100% + 6px);
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	right: 0;
+	z-index: -2;
+	transition: transform 0.2s;
+  }
+  
+  .cell:hover::after,
+  .cell:focus::after {
+	transform: translate(-2px, -3px);
+  }
+  
+  .cell:active {
+	color: var(--cell-text-color);
+	transform: translate(3px, 3px);
+  }
+  
+  .cell:active::after {
+	transform: translate(-4px, -4px);
+  }
+  
+  .cell:focus {
+	outline: none;
+  }
+  
+  .cell.locked {
+	cursor: initial !important;
+  }
+  
+  /* locked STYLES */
+  .cell.locked:hover,
+  .cell.locked:hover::before,
+  .cell.locked:hover::after,
+  .cell.locked:active,
+  .cell.locked:active::before,
+  .cell.locked:active::after,
+  .cell.locked:focus,
+  .cell.locked:focus::before,
+  .cell.locked:focus::after {
+	transform: none !important;
+  }
+  
+  /* ACCENT STYLES */
+  .cell.accent {
+	color: var(--cell-background-color);
+	background: var(--cell-accent-color);
+  }
+  
+  .cell.accent::before {
+	background: var(--cell-accent-color);
+  }
+  
+  /* INLINE STYLES */
+  .cell.inline {
+	display: inline-cell;
+	font-size: 0.75em;
+	padding: 0 6px;
+	margin: 3px 2px 1px 4px;
+  }
+  .cell.inline::after {
+	top: -1px;
+	left: -1px;
+  }
+  .cell.inline:hover,
+  .cell.inline:focus {
+	transform: translate(1px, 1px);
+  }
+  .cell.inline:hover::after,
+  .cell.inline:focus::after {
+	transform: translate(-1px, -1px);
+  }
+  .cell.inline:active {
+	transform: translate(2px, 2px);
+  }
+  
+  /* ROUND STYLES */
+  .cell.round,
+  .cell.round::before,
+  .cell.round::after {
+	border-radius: 30px;
+  }
+  
+  .cell.round::after {
+	left: 1px;
+  }

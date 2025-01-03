@@ -26,15 +26,15 @@ const json = JSON.parse(JSON.stringify(response[0])).default;
     <ul id="codeList">
         {json.map( obj =>{
             return(
-            <li id={obj['@id']} class="media">
-                <img src={obj.icon} width="64" height="64">
-                <div class="media-body mx-2">
-                    <h5 class="m-1"><a href={obj.hostedUrl}>{obj.name}</a></h5>
-                    <p>{obj.description}</p>
+            <li id={obj['@id']} class="cell locked flex flex-row">
+                <div class="wrapper cell locked  min-w-16 w-16 min-h-16 h-16">
+                    <img class="mx-auto w-16 h-16" src={obj.icon}>
                 </div>
-            </li>
-
-            );
+                <div class="mx-2 flex flex-col flex-shrink">
+                    <h5 class="m-1"><a href={obj.hostedUrl}>{obj.name}</a></h5>
+                    <p class="text-base font-normal">{obj.description}</p>
+                </div>
+            </li>);
         })}
     </ul>
 </BaseLayout>

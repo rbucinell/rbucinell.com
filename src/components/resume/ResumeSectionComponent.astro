@@ -1,0 +1,7 @@
+---
+const { title } = Astro.props;
+---
+<div class="cell locked space-y-2 [&>*:nth-child(even)]:bg-gray-100 p-0">
+    <h1 class="center text-4xl bg-slate-900 text-white">{title}</h1>
+    <slot />
+</div>

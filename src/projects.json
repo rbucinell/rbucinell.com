@@ -1,7 +1,7 @@
 {
     "_comments": "DO NOT Modify, this file is dynamically generated",
     "pong": {
-        "name": "3js",
+        "name": "pong",
         "path": "misc/pong/",
         "hasIndex": true
     },
@@ -86,7 +86,7 @@
         "hasIndex": false
     },
     "whyilift": {
-        "name": "whyilift",
+        "name": "strength and power",
         "path": "projects/whyilift/",
         "hasIndex": true
     },

@@ -7,7 +7,7 @@
         "descriptions": [
             "TBD"
         ],
-        "tags": ["C#", ".NET Core", "Typescript", "Angular" ]
+        "tags": ["C#", ".NET Core", "Typescript", "Oracle Database", "Entity Framework", "ASP.NET", "Node", "Angular", "Bamboo API", "Python", "Powershell" ]
     },
     {
         "title": "Senior Software Engineer",
@@ -85,18 +85,6 @@
             "Analyze, Debug, and Report code performance, utilizing PAL, ANTS Profiler, and other performance tools"
         ],
         "tags": ["C#", "Winforms", "SCP", "MSSQL", "LoadTest"]
-    },
-    {
-        "title": "Visual Studio Student Insider",
-        "company": "Microsoft",
-        "daterange": "Feburary 2020 - November 2011",
-        "img": "img/resume/microsoft.webp",
-        "descriptions": [
-            "Hybrid program at Microsoft that focused on digital community and student outreach.",
-            "Interviewed Microsoft professionals (developers, technical evangelists, and MVP)",
-            "Worked with new technologies to bring back news, demos, and other information for the communities/students."
-        ],
-        "tags": []
     },
     {
         "title": "Software Engineer Co-Op",

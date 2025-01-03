@@ -3,11 +3,13 @@ import PageHeaderComponent from "./PageHeaderComponent.astro";
 import NavComponent from "./NavComponent.astro";
 import ScriptsComponent from "./ScriptsComponent.astro";
 ---
+<div class="h-screen flex bg-gray-200">
 <NavComponent />
-<div id="page-wrapper" class="container">
+<div id="page-wrapper" class="container mx-auto">
     <PageHeaderComponent config={Astro.props.config} />
         <article>
             <slot />
         </article>
     <ScriptsComponent />
+</div>
 </div>

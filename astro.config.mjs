@@ -8,7 +8,5 @@ export default defineConfig({
     // Example: Generate `page.html` instead of `page/index.html` during build.
     format: 'file'
   },
-  integrations: [alpine()],  
-  //TODO: After tech update, remove bootstrap and re-enable tailwind
-  //integrations: [tailwind()]
+  integrations: [alpine(), tailwind()]
 });
