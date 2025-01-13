@@ -7,13 +7,14 @@ const { payouts } = Astro.props;
         <li>The Pot will consist of the sum of the paid squares</li>
         <li>The numbers will be randomized 30mins prior to the game start or once the board is fill. Which ever is fisrt</li>
         <li>All numbers will be rolled by <a href="https://www.random.org/">RANDOM.ORG</a></li>
+        <li class="italic text-blue-600">Why different numbers each quater? If the score doesn't change this means someone else will win. This will keep low score games more interesting and have more winners  </li>
         <li>Payouts willl ramp up each quarter. Here are the pertentage payouts for each quarter:</li>
         <li style="list-style:none">
-            <div class="flex flex-row justify-evenly">
-                <span class="cell inline locked accent">End of Q1:  <strong>{payouts[0]*100}%</strong></span>
-                <span class="cell inline locked accent">Halftime:   <strong>{payouts[1]*100}%</strong></span>
-                <span class="cell inline locked accent">End of Q3:  <strong>{payouts[2]*100}%</strong></span>
-                <span class="cell inline locked accent">Final:      <strong>{payouts[3]*100}%</strong></span>
+            <div class="flex flex-row justify-start gap-4">
+                <span class="cell inline locked accent">End of Q1:  <strong class="px-2">{payouts[0]*100}%</strong></span>
+                <span class="cell inline locked accent">Halftime:   <strong class="px-2">{payouts[1]*100}%</strong></span>
+                <span class="cell inline locked accent">End of Q3:  <strong class="px-2">{payouts[2]*100}%</strong></span>
+                <span class="cell inline locked accent">Final:      <strong class="px-2">{payouts[3]*100}%</strong></span>
             </div>
         </li>
         <li>The winning square for a given quarter will be determined by the <span class="underline">last digit of the sum of the digits of the teams' score</span>.
@@ -26,6 +27,8 @@ const { payouts } = Astro.props;
                 </li>
             </ul>
         </li>
+        <li class="italic text-blue-600"><span class="font-bold">Why so complicated?</span> 
+            There is a statistical advantage to some numbers in the traditional scoring system. I am using a variance of the <a class="underline" href="https://2.bp.blogspot.com/_fM0L9abY3bo/SZ0SfyPTF3I/AAAAAAAAAMw/1BU-JhoGR9o/s1600-h/graph.jpg">digital root</a> in order to create a more balance statistical distribution of a digit winning. In short, nobody should have "bad numbers" and its more fun for all.</li>
         <li>I reserve the right to remove unpaid square requests at any point before numbers are picked.</li>
         <li> Unclaimed/unpaid squares that win, will splash the payout </a>to the cardinal 4 directions in an equal payout (recursively until all money has been distributed)
             <div class="ml-6 w-fit wrapper cell locked object-fill">
