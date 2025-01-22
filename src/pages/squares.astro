@@ -11,11 +11,21 @@ const config = {
   page: {
       title: 'Bucinell Superbowl Squares',
       small: 'Super Bowl LIX (2025)'
-  }
+  },
+  description: "Its time for the big game. Want a chance to make a few bucks? Try my interactive Superbowl squares board. It will automatically show the winners so you don't even have to worry!"
 }
 const price = 10;
 const payouts = [0.1, 0.2, 0.3, 0.4];
 ---
+<meta property="og:title" content={config.title}>
+<meta property="og:site_name" content="rbucinell.com">
+<meta property="og:url" content="https://rbucinell.com/squares">
+
+<meta property="og:description" content={config.description}>
+<meta name="description" content={config.description}>
+
+<meta property="og:type" content="website">
+<meta property="og:image" content="/img/squares/og-image-board.png">
 <meta property="og:image" content="/img/squares/board.png">
 
 <BaseLayout config={config}>
