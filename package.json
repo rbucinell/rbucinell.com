@@ -16,8 +16,8 @@
   "author": "Ryan Bucinell",
   "license": "ISC",
   "devDependencies": {
-    "@astrojs/tailwind": "^5.1.4",
-    "astro": "^5.1.1",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.6.1",
     "tailwindcss": "^3.4.17"
   },
   "repository": {
@@ -35,7 +35,7 @@
   },
   "homepage": "https://rbucinell.com",
   "dependencies": {
-    "@astrojs/alpinejs": "^0.4.1",
+    "@astrojs/alpinejs": "^0.4.5",
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.14.8",
     "feather-icons": "^4.29.0"
