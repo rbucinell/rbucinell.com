@@ -26,7 +26,7 @@ const gifts =[
     {title:'Custom Amount',desc:'If you wish to enter a custom amount, please enter it below', price:100, img:'/img/wedding/bermuda-triangle.jpg'}
 ];
 ---
-<style>
+<!-- <style>
     #page-wrapper > .container-fluid
     {
         background: #3d187c url(/img/wedding/purple_bg.jpg);
@@ -37,8 +37,6 @@ const gifts =[
         background: #000 url(/img/wedding/bermuda_mod.jpg) top right;
         background-size: cover;
         background-position-y: 35%;
-        width: 100%;
-        height: 100%;
     }
     .jumbotron .container
     {
@@ -80,22 +78,19 @@ const gifts =[
         border-color: #160714;
     }
 
-    .input-group-btn label {
-        display: inline !important;
-    }
-
     .gift-btn
     {
         cursor: pointer;
     }
-</style>
+</style> -->
 <BaseLayout config={config}>
     <div class="wedding">
         <div class="jumbotron" id="jumbo">
-          <div class="container">
-            <h1>Our Dream Honeymoon</h1>
-            <p>We would like to thank you for helping us go on the trip of lifetime. After all the stress and planning for the wedding this will be the perfect way to relax and start our marriage.</p><a class="btn btn-primary btn-lg" id="backtoweddingbtn" href="http://rbucinell.com/wedding" role="button">Back to Wedding 💍</a>
-          </div>
+            <div class="container">
+                <h1 class="text-4xl font-bold">Our Dream Honeymoon</h1>
+                <p class="mt-4">We would like to thank you for helping us go on the trip of lifetime. After all the stress and planning for the wedding this will be the perfect way to relax and start our marriage.</p>
+                <div><a class="btn btn-primary btn-lg mt-4 text-white px-6 py-3 rounded" id="backtoweddingbtn" href="http://rbucinell.com/wedding" role="button">Back to Wedding 💍</a></div>
+            </div>
         </div>
         <form class="form-inline" id="mainForm" target="_self" action="https://www.paypal.com/yt/cgi-bing/webscr" method="post" name="weddingGift">
             <input type="hidden" name="cmd" value="_cart"/>
@@ -104,8 +99,8 @@ const gifts =[
             <input type="hidden" name="business" value="swiftstriker00@gmail.com"/>
             <input type="hidden" name="currency_code" value="USD"/>
             <input type="hidden" name="shipping" value="0"/>
-            <input type="hidden" name="return" value="http://rbucinell.com/wedding"/>
-            <input type="hidden" name="cancel_return" value="http://rbucinell.com/honeyfund.html"/>
+            <input type="hidden" name="return" value="http://rbucinell.com/misc/honeyfund"/>
+            <input type="hidden" name="cancel_return" value="http://rbucinell.com/misc/honeyfund"/>
             <input type="hidden" name="item_number_100" value="100"/>
             <input type="hidden" name="quantity_100" value="1"/>
             <input type="hidden" name="item_name_100" value="PayPal 2.9% fee"/>
@@ -114,12 +109,19 @@ const gifts =[
                 <input class="form-control" id="checkout-total" type="number" placeholder="0.00" min="0" readonly="readonly"/><span class="input-group-btn">
                 <button class="btn btn-primary disabled" id="modalLoad" type="button" data-toggle="modal" data-target="#thanksModal">Checkout</button></span>
             </div>
-            <div class="row" id="items">{gifts.map((gift,index)=>{
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {gifts.map((gift,index)=>{
+                    return <GiftComponent index={index+1} title={gift.title} desc={gift.desc} price={gift.price} imgsrc={gift.img} />
+                })}
+            </div>
+
+            <!-- <div class="row" id="items">{gifts.map((gift,index)=>{
                 return index !== gifts.length -1 ? 
                     (<GiftComponent index={index+1} title={gift.title} desc={gift.desc} price={gift.price} imgsrc={gift.img} />): 
                     (<CustomGiftComponent index={index+1} title={gift.title} desc={gift.desc} price={gift.price} imgsrc={gift.img}/>)
                 })}
-            </div>
+            </div> -->
             <div class="modal fade" id="thanksModal" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
