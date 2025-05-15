@@ -3,7 +3,7 @@ var blue  = "#00F";
 var red   = "#F00";
 var white = "#FFF";
 
-function Circle(x,y,r)
+function Circle(x,y,r, drawBB = false)
 {
 	this.x = x;
 	this.y = y;
@@ -14,9 +14,9 @@ function Circle(x,y,r)
 	this.Ay = 0;
 	this.g = -0.5;
 	this.color = blue;
+	this.drawBB = drawBB;
 	
 	var bb = new BoundingBox( this.x, this.y, this.x+this.r*2, this.y+this.r*2 );
-	var drawBB = true;
 	
 	this.getBoundingBox = function()
 	{
@@ -31,7 +31,7 @@ function Circle(x,y,r)
 		g.closePath();
 		g.fill();
 		
-		if( drawBB )
+		if( this.drawBB )
 		{
 			g.strokeStyle = red;
 			bb.draw( g );

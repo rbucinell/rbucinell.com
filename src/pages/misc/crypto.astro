@@ -14,26 +14,31 @@ const config = {
 };
 
 ---
-<BaseLayout config={config}>
-    <div class="container">
-        <div class="row col">
-            <h3>The Ceaser Cipher (rot13)</h3>
-            <p>Simple encryption where the value of the input is shifted by a number to create the output. Common example is Rot13, where the shift number is 13. A -&gt; M, B -&gt; N, etc...</p>
-            <form class="row">
-                <div class="col">
-                    <label>Clear Text</label>
+<BaseLayout config={config}>    
+    <div id="rot13" class="m-2">
+        <h3 class="text-3xl">The Ceaser Cipher (rot13)</h3>
+        <p>Simple encryption where the value of the input is shifted by a number to create the output. Common example is Rot13, where the shift number is 13. A -&gt; M, B -&gt; N, etc...</p>
+        
+        <div class="flex flex-row gap-1 border border-red-950">
+            <div class="col">
+                <label>
+                    <span class="text-lg mr-2">Clear Text</span>
                     <input class="form-control" name="ceaserin" type="text" onkeyup="updateCeaserCipher()">
-                </div>
-                <div class="col">
-                    <label>Shift</label>
+                </label>
+            </div>
+            <div class="col">
+                <label>
+                    <span class="text-lg mr-2">Shift</span>
                     <input class="form-control" name="ceasershift" type="number" value="1" maxlength="2" min="0" max="26" onchange="updateCeaserCipher()">
-                </div>
-                <div class="col">
-                    <label>Output</label>
+                </label>
+            </div>
+            <div> => </div>
+            <div class="col">
+                <label>
+                    <span class="text-lg mr-2">Output</span>
                     <input class="form-control" name="ceaserout" type="text" readonly>
-                </div>
-            </form>
-        </div>
+                </label>
+            </div>
     </div>
 </BaseLayout>
 <script is:inline>
