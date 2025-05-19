@@ -1,6 +1,11 @@
 ---
 const opacityStyle = `opacity: ${Astro.props.opacity || 0.33};`
 ---
+<style define:vars={{hover:Astro.props.hover}}>
+    .cell:hover {
+        --cell-background-color: var(--hover);
+    }
+</style>
 <div class:list={["cell", !Astro.props.url ? "locked": "" ]} >    
     <a href={Astro.props.url}>
         {Astro.props.img && <img src={Astro.props.img} alt={`${Astro.props.title} icon`} class="h-100 img-fluid card-img" style={opacityStyle}>}

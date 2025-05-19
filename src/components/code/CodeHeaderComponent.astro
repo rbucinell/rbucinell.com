@@ -1,0 +1,19 @@
+---
+const {url, img, title, opacity = 0.33, target, hover } = Astro.props;
+const opacityStyle = `opacity: ${Astro.props.opacity};`
+const hoverColor = hover ?? "#FFF";
+---
+<style define:vars={{ hoverColor}}>
+    .cell:hover {
+        --cell-background-color: var(--hoverColor);
+    }
+</style>
+<div class:list={["cell", !url ? "locked": "" ]} >
+    <a href={url} target={target}>
+        {img && <img src={img} alt={`${title} icon`} class="h-32 img-fluid card-img" style={opacityStyle}>}
+        <div class="card-img-overlay">
+            <span class="font-weight-bold newsheadertitle">{title}</span>
+            <slot/>
+        </div>
+    </a>
+</div>

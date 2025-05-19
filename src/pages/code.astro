@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BannerComponent from '../components/BannerComponent.astro';
+import CodeHeaderComponent from "../components/code/CodeHeaderComponent.astro";
 
 const config = {
     title: "Ryan Bucinell - Code",
@@ -18,11 +18,16 @@ const response = await Astro.glob('../../public/data/code/code.json');
 const json = JSON.parse(JSON.stringify(response[0])).default;
 ---
 <BaseLayout config={config}>
-    <BannerComponent id="github">
-        <a class="flex-fill list-group-action text-dark" href="http://github.com/rbucinell/" target="_blank" rel="noopener">
-            <i class="devicon-github-original display-5"/>&nbsp;<span class="">Check out my Github for my latest code!</span>
-        </a>
-    </BannerComponent>
+    <!--<BannerComponent id="github">-->
+    <!--    <a class="flex-fill list-group-action text-dark" href="http://github.com/rbucinell/" target="_blank" rel="noopener">-->
+    <!--        <i class="devicon-github-original display-5"/>&nbsp;<span class="">Check out my Github for my latest code!</span>-->
+    <!--    </a>-->
+    <!--</BannerComponent>-->
+    <div class="flex flex-row justify-evenly items-center">
+        <CodeHeaderComponent opacity="0.10" hover="#62DE6D" title="Games" img="img/code/invader.svg" url="/games" />
+        <CodeHeaderComponent opacity="0.10" hover="#666666" title="Github" img="img/code/github.svg" url="http://github.com/rbucinell/" target="_blank" />
+        <CodeHeaderComponent opacity="0.20" hover="#F83B3A" title="Projects" img="img/code/software.svg" url="/projects" />
+    </div>
     <ul id="codeList">
         {json.map( obj =>{
             return(
