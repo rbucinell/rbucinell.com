@@ -1,32 +1,29 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
 // import {recurse,readdir} from 'file-system';
-import BannerComponent from '../components/BannerComponent.astro';
-import NewsHeader from '../components/NewsHeader.astro';
-import BasicTable from '../components/BasicTable.astro';
-import projects from '../projects.json';
+import BannerComponent from '@components/BannerComponent.astro';
+import NewsHeader from '@components/NewsHeader.astro';
+import BasicTable from '@components/BasicTable.astro';
+import projects from './projects.json';
 
 const config = {
     title: "Ryan Bucinell - Projects",
     breadcrumbs: [
         {fa:"home",             text:"Home",        url:"index.html"},
-        {fa:"settings",         text:"Projects",    url:"#"},
-        {fa:"alert-triangle",   text:"Active",      url:"#"}
+        {fa:"code",             text:"Code",        url:"/code"},
+        {fa:"settings",         text:"Projects" }
     ],
     page: {
         title: 'Scratchpad Projects',
         small: 'Work In Progress...'
     }
 };
+const response = await Astro.glob('./projects.json');
+const projects = response ? JSON.parse(JSON.stringify(response[0])).default : [];
 
-// const response = import.meta.glob('/projects/projects.json');
-// console.log(response);
-// const json = JSON.parse(JSON.stringify(response[0]));
-// console.log( json );
 const tableData = Object.values(projects).filter( p => typeof p !== 'string' ).map( p => {
-    return [ p.name, p.path, (p.hasIndex ? `<a class="underline" href="../${p.path}index.html">LINK<a/>`: '') ]
+    return [ p.name, p.path, (p.hasIndex ? `<a class="underline" href="@${p.path}index.html">LINK<a/>`: '') ]
 })
-
 
 // let files = readdir('public/projects/', {withFileTypes: false}, (error,fileDirent) =>{ 
 //     console.log( fileDirent );

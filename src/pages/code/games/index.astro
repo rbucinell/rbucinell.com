@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CodeHeaderComponent from "@components/code/CodeHeaderComponent.astro";
+import MediaListItem from "@components/MediaListItem.astro";
+
+const config = {
+    title: "Ryan Bucinell - Games",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"index.html"},
+        {fa:"code", text:"Code", url: "/code" },
+        {fa:"headphones", text:"Games", url:"#"}
+    ],
+    page: {
+        title: 'Games',
+        small: 'Small games or game concepts'
+    }
+};
+const response = await Astro.glob('./games.json');
+const json = response ? JSON.parse(JSON.stringify(response[0])).default : [];
+---
+<BaseLayout config={config}>
+    <ul id="codeList">
+        {json.map( obj => <MediaListItem id={obj.id} name={obj.name} icon={obj.icon} url={obj.url} description={obj.description} /> ) }
+    </ul>
+</BaseLayout>

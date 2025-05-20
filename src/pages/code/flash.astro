@@ -1,27 +1,40 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import GalleryItemComponent from '../components/GalleryItemComponent.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GalleryItemComponent from '@components/GalleryItemComponent.astro';
+import BannerComponent from "../../components/BannerComponent.astro";
 
 const config = {
     title: "Ryan Bucinell - Flash",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"settings", text:"Projects" },
-        {fa:"zap", text:"Flash", url:"#"}
+        {fa:"home", text:"Home", url:"./index.html"},
+        {fa:"code", text:"Code", url:"/code" },
+        {fa:"zap", text:"Flash"}
     ],
     page: {
         title: 'Flash Projects',
         small: 'R.I.P. Flash'
     }
 };
-const fdir = "img/flash/";
+const fdir = "/img/code/flash/";
 ---
+<style>
+    .media div a img {
+        width: 175px;
+        height: 128px;
+    }
+    .portfolio-item {
+        margin-bottom: 25px;
+    }
+    .img-responsive{
+        min-height: 400px;
+    }
+</style>
 <BaseLayout config={config}>
     <div class="container-fluid">
-        <p class="col-12 lead">
+        <BannerComponent>
             With the death of flash, you can no longer interact with these projects, however I have included image galleries below
-        </p>
-        <div class="row">
+        </BannerComponent>
+        <div class="flex-col md:grid grid-cols-2">
             <GalleryItemComponent id="SAM" rootdir={fdir} count="5" title="Way of Ninja" date="2008">This was the final group project in my Game Design and Development II course, I was the Design lead and did some programming</GalleryItemComponent>
             <GalleryItemComponent id="CylinderTessellation" rootdir={fdir} count="1" title="Cylinder Tessellation" date="2009">This was a 3D point to 2D projection (no 3d libraries) demonstartion of tessellation. You could modify the triangle coutns with the different buttons</GalleryItemComponent>
             <GalleryItemComponent id="WayOfNinja" rootdir={fdir} count="6" title="The Adventures of S.A.M." date="2011">My final project in Interactive Media course was a platform game that included art, music, and sprite animations. Collect items quickly to beat each level</GalleryItemComponent>

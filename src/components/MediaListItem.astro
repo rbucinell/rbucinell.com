@@ -1,0 +1,12 @@
+---
+const { id, name, icon, description, url  } = Astro.props;
+---
+<li id={id} class="cell locked flex flex-row">
+    <div class="wrapper cell locked  min-w-16 w-16 min-h-16 h-16">
+        <img class="mx-auto w-16 h-16" src={icon} alt={`Icon for ${name}`}>
+    </div>
+    <div class="mx-2 flex flex-col flex-shrink">
+        <h5 class="m-1"><a href={url}>{name}</a></h5>
+        <p class="text-base font-normal">{description}</p>
+    </div>
+</li>

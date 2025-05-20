@@ -1,12 +1,13 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 const config = {
     title: "Ryan Bucinell - Projects",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"settings", text:"Projects", url:"#" },
-        {fa:"alert-triangle", text:"Active", url:"#"}
+        {fa:"home", text:"Home", url:"./index.html"},
+        {fa:"code", text:"Code", url:"/code" },
+        {fa:"headphones", text:"Games", url:"/code/games" },
+        {fa:"smile", text:"Life"}
     ],
     page: {
         title: 'Active Projects',

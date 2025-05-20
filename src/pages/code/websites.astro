@@ -1,13 +1,13 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import GalleryItemComponent from '../components/GalleryItemComponent.astro';
-import TextButton from '../components/TextButton.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GalleryItemComponent from '@components/GalleryItemComponent.astro';
+import TextButton from '@components/TextButton.astro';
 
 const config = {
     title: "Ryan Bucinell - Website Development",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"settings", text:"Projects" },
+        {fa:"home", text:"Home", url:"./index.html"},
+        {fa:"code", text:"Code" },
         {fa:"globe", text:"Websites", url:"#"}
     ],
     page: {
@@ -15,7 +15,7 @@ const config = {
         small: 'Personal and professional projects'
     }
 };
-const fdir = "img/websites/";
+const fdir = "/img/code/websites/";
 ---
 <style>
     .media div a img {
@@ -61,7 +61,7 @@ const fdir = "img/websites/";
         </GalleryItemComponent>
         
         <GalleryItemComponent id="personal" rootdir={fdir} count="1" title="My Personal Site" date="2006-Current">
-            <p class="card-text">First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="retro.html">Retro</a> page.</p>
+            <p class="card-text">First you can see my current work by browsing around, or take a look at my older sites by going to the <a href="/retro">Retro</a> page.</p>
         </GalleryItemComponent>
     </div>
 </BaseLayout>

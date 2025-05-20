@@ -1,13 +1,14 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import GalleryItemComponent from '../../components/GalleryItemComponent.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GalleryItemComponent from '@components/GalleryItemComponent.astro';
 
 const config = {
     title: "Ryan Bucinell - Flash",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"play-circle", text:"Games", url:"/games"},
-        {fa:"", text:"Flood It!"}
+        {fa:"home", text:"Home", url:"./index.html"},
+        {fa:"code", text:"Code", url:"/code" },
+        {fa:"headphones", text:"Games", url:"/code/games" },
+        {fa:"smile", text:"Flood It!"}
     ],
     page: {
         title: 'Flood It!',
