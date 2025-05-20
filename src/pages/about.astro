@@ -1,12 +1,11 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
 
 const config = {
     title: "Ryan Bucinell - About Me",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"info",text:"Personal Info"},
-        {fa:"user",text:"About Me", url:"#"}
+        {fa:"home", text:"Home", url:"/"},
+        {fa:"user",text:"About Me"}
     ],
     page: {
         title: 'C\'est moi',
@@ -18,8 +17,8 @@ const config = {
 
     <div class="row">
         <div class="col-12">
-            <p>I am a Software Engineer and a father of twins. Currently living in Rochester, NY however I'm native to the area, however after getting my bachelors in Computer Science I decided to stick around for the for the Garbage Plates. I am currently employed by Paychex working on business automation, web services, and full-stack development. Most of my tools are internal or back end systems. Outside of my 9-5 I occasionally contract website development or script work.</p>
-            <p>For recreation I enjoy plyaing in local sports leagues such as kickball, and softball even moonlighting as a referee for one of the leagues as well. I love doing mud-runs such as Tough Mudder, Warrior Dash (pictured to right), Spartan Sprint, and Hero Rush and the perpetual fear that I will be too out of shape to complete one keeps me going. Lastly I'm a huge movie buff and gamer, I'll happily discuss latest of either of these until long after the sun goes down.</p>
+            <p class="mb-1">I am a Software Engineer and a father of three. Currently living in Rochester, NY. I'm not native to the area, however after getting my bachelors in Computer Science I decided to stick around for the for the Garbage Plates. I am currently a Senior Software Analyst at Coopervision working on full-stack development and Backend architecture. Most of my tools are internal or back end systems. Outside of my 9-5 I occasionally contract website development or script work, including a discord bot that handles automation for more than 800 people.</p>
+            <p class="mb-1">Assuming there is any time outside of my fatherly duties, I enjoy writing code, programming challenges, gaming, watching movies, collecting whiskey, and working out to hopefully compete in another mud-run (Spartan Sprint, Tough Mudder, Hero Rush, etc...). 
         </div>
     </div>
 
@@ -56,10 +55,10 @@ const config = {
 
     <hr />
 
-    <div class="row mr-auto">
-        <div class="col span thumbnail"><img style="max-height:300px" src="img/me/aboutme.png"></div>
-        <div class="col span thumbnail"><img style="max-height:300px" src="img/me/crop.jpg"></div>
-        <div class="col span thumbnail"><img style="max-height:300px" src="img/me/mykids.jpg"></div>
+    <div class="flex justify-between flex-wrap">
+        <div class="col span thumbnail"><img class="max-h-80" src="/img/me/aboutme.png"></div>
+        <div class="col span thumbnail"><img class="max-h-80" src="/img/me/crop.jpg"></div>
+        <div class="col span thumbnail"><img class="max-h-80" src="/img/me/mykids.jpg"></div>
     </div>
 
     <hr />

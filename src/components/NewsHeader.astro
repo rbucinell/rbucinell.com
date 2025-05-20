@@ -7,8 +7,8 @@ const opacityStyle = `opacity: ${Astro.props.opacity || 0.33};`
     }
 </style>
 <div class:list={["cell", !Astro.props.url ? "locked": "" ]} >    
-    <a href={Astro.props.url}>
-        {Astro.props.img && <img src={Astro.props.img} alt={`${Astro.props.title} icon`} class="h-100 img-fluid card-img" style={opacityStyle}>}
+    <a href={Astro.props.url} class="flex flex-col">
+        {Astro.props.img && <img src={Astro.props.img} alt={`${Astro.props.title} icon`} class="h-48 img-fluid card-img" style={opacityStyle}>}
         <div class="card-img-overlay">
             <span class="font-weight-bold newsheadertitle">{Astro.props.title}</span>
             <slot/>

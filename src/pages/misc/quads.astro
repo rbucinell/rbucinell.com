@@ -1,14 +1,14 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import BannerComponent from "../../components/BannerComponent.astro";
-import NewsItem from "../../components/NewsItem.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BannerComponent from "@components/BannerComponent.astro";
+import NewsItem from "@components/NewsItem.astro";
 
 const config = {
     title: "Ryan Bucinell - Javascript Quads",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"settings", text:"Projects", url:"#" },
-        {fa:"code", text:"Javascript Quads"}
+        {fa:"home", text:"Home", url:"/"},
+        {fa:"code", text:"code", url:"/code" },
+        {fa:"settings", text:"Javascript Quads"}
     ],
     page: {
         title: 'Javascript Quads',
@@ -25,52 +25,46 @@ const config = {
         <a href="data/resume/Resume for Ryan Michael Bucinell - Open Resume.pdf" class="alert-link btn btn-outline-secondary">   <i class="font-weight-bold d-inline text-secondary" data-feather="file-text"/>&nbsp;Open Resume</a> -->
 	</BannerComponent>
 	
-		<div class="flex flex-col" id="buttons">
-			<div class="mx-1">
-				<div class="custom-file cell">
-					<input class="custom-file-input" type="file" accept="image/*" onchange="loadAll()">
-				</div>
-			</div>
-			
-			<div class="flex flex-row gap-2">
-				<button class="cell btn-primary" id="playButton" onclick="play()">Play</button>
-				<button class="cell btn-secondary" id="pauseButton" onclick="step()">Step</button>
-				<button class="cell btn-secondary" id="stopButton" onclick="stop()">Stop</button>
-				<button class="cell btn-secondary" id="createButton" onclick="create()">Convert to Picture</button>
-				<p class="lead" id="saveMe" style="display:none;">Right click to save me! </p>
-			</div>
+	<div class="flex flex-col" id="buttons">
+		<div class="flex flex-row gap-2">
+			<input  class="cell" id="fileInput" type="file" accept="image/*" onchange="loadAll()">
+			<button class="cell" id="playButton" 	onclick="play()">Play</button>
+			<button class="cell" id="pauseButton" 	onclick="step()">Step</button>
+			<button class="cell" id="stopButton" 	onclick="stop()">Stop</button>
+			<button class="cell" id="createButton" 	onclick="create()">Convert to Picture</button>
+			<p class="lead" id="saveMe" style="display:none;">Right click to save me! </p>
 		</div>
+	</div>
+	
+	<div id="cellStyleButtons" class="flex flex-row justify-evenly cell locked ">
+		<label for="defaultInline1">
+			<input class="custom-control-input" id="defaultInline1" type="radio" name="shadingRadios" checked="checked">
+			<span>Box Shade</span>
+		</label>
+
+		<label for="defaultInline2">
+			<input class="custom-control-input" id="defaultInline2" type="radio" name="shadingRadios">
+			<span>Box Border</span>
+		</label>
+
+		<label for="defaultInline3">
+			<input class="custom-control-input" id="defaultInline3" type="radio" name="shadingRadios">
+			<span>Hatch</span>
+		</label>
+
+		<label for="defaultInline4">
+			<input class="custom-control-input" id="defaultInline4" type="radio" name="shadingRadios">
+			<span>Hatch Shaded</span>
+		</label>
 		
-		<div id="cellStyleButtons" class="flex flex-row justify-evenly cell locked ">
-			<label for="defaultInline1">
-				<input class="custom-control-input" id="defaultInline1" type="radio" name="shadingRadios" checked="checked">
-				<span>Box Shade</span>
-			</label>
-
-			<label for="defaultInline2">
-				<input class="custom-control-input" id="defaultInline2" type="radio" name="shadingRadios">
-				<span>Box Border</span>
-			</label>
-
-			<label for="defaultInline3">
-				<input class="custom-control-input" id="defaultInline3" type="radio" name="shadingRadios">
-				<span>Hatch</span>
-			</label>
-
-			<label for="defaultInline4">
-				<input class="custom-control-input" id="defaultInline4" type="radio" name="shadingRadios">
-				<span>Hatch Shaded</span>
-			</label>
-			
-			
-		</div>
 		
-		<div class="flex flex-row">
-			<img class="hidden border border-black m-1.5" id="refpix" src="">
-			<canvas id="canvas" class="border border-black m-1.5">
-				<p>Your browser doesn&apos;t support canvas.</p>
-			</canvas>
-		</div>
+	</div>
+	
+	<div class="flex flex-row">
+		<img class="hidden border border-black m-1.5" id="refpix" src="" alt="original image loaded">
+		<canvas id="canvas" class="border border-black m-1.5">
+			<p>Your browser doesn&apos;t support canvas.</p>
+		</canvas>
 	</div>
 </BaseLayout>
 
@@ -128,11 +122,6 @@ const config = {
 		return this.children.length === 0;
 	};
 
-	getLeafNodes()
-	{
-		return this.children === [] ? [this] : this.children;
-	};
-
 	getAllLeafNodes( currentlist, maxdepth )
 	{
 
@@ -156,20 +145,9 @@ const config = {
 
 	getLeafNodes( depth )
 	{
-		if( this.depth >= depth )
-		{
-			return [ this ];
-		}
-		else if( this.children === [])
-		{
-			return [ this ];
-		}
-		else
-		{
-			return this.children;
-		}
+		return this.depth >= depth || this.children.length === 0 ? [this] : this.children;
 	};
-
+	
 	divide()
 	{
 		let w2 = this.w / 2;
@@ -486,7 +464,7 @@ class Quadrants
 		if( this.previousError == -1 || this.previousError - this.error > ERROR_RATE )
 			this.previousError = this.error;
 		let leaves = this.root.getAllLeafNodes( [], this.MAX_DEPTH );
-		debugger;
+		//debugger;
 		leaves.sort( this.errorCompareTo );
 		let last = leaves[0];// leaves[leaves.length-1];
 		if( last.error > 0 )
@@ -569,8 +547,7 @@ class Quadrants
 		};
 	}
 }
-</script>
-<script is:inline type="text/javascript">
+
 	const canvas = document.getElementById("canvas");
 	const refpix = document.querySelector('#refpix');
 	refpix.addEventListener('load', refpixLoaded );
@@ -607,19 +584,19 @@ class Quadrants
 			quads.ITERATIONS += 1000;
 		}
 		quads.play();
-	};
+	}
 
 	function stop()
 	{
 		quads.stop();
 		console.log( "Program Halted");
-	};
+	}
 
 	function step()
 	{
 		quads.step();
 		console.log( "Program Stepped");
-	};
+	}
 
 	function create()
 	{
@@ -634,5 +611,5 @@ class Quadrants
 		canvas.style.display = 'none';
 		saveMe.style.display = "block";
 		img.style.display = "block";
-	};
+	}
 </script> 

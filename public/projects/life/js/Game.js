@@ -163,8 +163,6 @@ function Game(w,h,g)
 	
 }
 
-
-
 function gameMouseDown( e )
 {
 	var mouseX, mouseY;

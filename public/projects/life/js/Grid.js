@@ -56,11 +56,11 @@ class Grid
 		return sqr;
 	}
 
-	draw()
+	draw( context )
 	{
-		stroke('#000000');		
+		context.strokeStyle ='#000000';		
 		this.squares.forEach( r => r.forEach( s =>  s.draw()));
-		noFill();
-		rect( this.x, this.y, this.width, this.height);
+		//context.noFill();
+		context.rect( this.x, this.y, this.width, this.height);
 	}
 }

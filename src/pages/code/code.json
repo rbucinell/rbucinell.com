@@ -9,28 +9,28 @@
    {
       "id": "superbowl_squares",
       "name": "Superbowl Squares",
-      "icon": "img/squares/helmet.svg",
+      "icon": "/img/squares/helmet.svg",
       "url": "/squares",
       "description": "Last couple of years I've run a superbowl squares board. In order to faciilate family and friends out of town I wrote a web page to host the board. The site is static, so I utilized google forms and google sheets as backend."
    },
    {
       "id": "javascript_quads",
       "name": "Javascript Quads",
-      "icon": "img/icons/js.png",
+      "icon": "/img/icons/js.png",
       "url": "misc/quad.html",
       "description": "A Javacscript program that takes an image and segments it into 4 quadrants and then draws the average color for that segment. Then it determines the average error of color for each of the segments and then segments that quadrant again. This will ultimately leave the less detailed areas with larger squares while it continues to refine more detailed areas."
    },
    {
       "id": "nacka_app",
       "name": "NACKA Kickball App",
-      "icon": "img/code/nacka_icon.png",
+      "icon": "/img/code/nacka_icon.png",
       "url": "https://github.com/rbucinell/NACKA",
       "description": "Android App that scraped the NACKA Kickball leagues website and team schedlue and presented the relevant information for the NACKA website in convienent and mobile friendly version. Most importantly dynamically updating competing teams to show t-shrit color and field maps."
    },
    {
       "id": "bpms",
       "name": "Beer Pong Management System v1.8",
-      "icon": "img/icons/bpms/v2_upgrade.ico",
+      "icon": "/img/icons/bpms/v2_upgrade.ico",
       "url": "data/code/BPMS_1.8.zip",
       "description": "This is a .Net 3.5 Windows forms project that is designed to maintain a few aspects of a beer pong table during a party. At the moment this will allow people to queue up (and give themselves a team name), getting in line again with the same team later, removal from the line. There is also admin password that can be used to modify different features and lock the average user from changing it, it also keeps track of basic stats, like longest win streak."
    },
@@ -44,21 +44,21 @@
    {
       "id": "JungleTimer",
       "name": "Jungle Timer",
-      "icon": "img/icons/jungleTimer.ico",
+      "icon": "/img/icons/jungleTimer.ico",
       "url": "data/code/JungleTimer_0.6.zip",
       "description": "JungleTimer is an auxiliary tool for the game League of Legends. It allows the user to track the \"jungle creeps.\" This tool will hopefully help newer junglers and experience ones as well. The only requirement to run this is to have .NET 4.0 Framework."
    },
    {
       "id": "EFSHunter",
       "name": "EFS Hunter",
-      "icon": "img/icons/efshunter.ico",
+      "icon": "/img/icons/efshunter.ico",
       "url": "data/code/EFS_Hunter.zip",
       "description": "After re-installing my OS, I didn't realize that half my files were encrypted. I lost a lot of data, so I created this tool to help prevent that in the future. This is a small utility tool to look for encrypted files. It will export a list to your desktop. To use, just put the .exe in the root directory of where you want to start you search."
    },
    {
       "id": "mp3renamer",
       "name": "MP3 Renamer",
-      "icon": "img/icons/file_mp3.png",
+      "icon": "/img/icons/file_mp3.png",
       "url": "data/code/MP3Renamer.zip",
       "description": "This is one of the first programs I wrote. It goes through the directory its run in and renames all the music files\n\t\t\t\tbased on their ID3 tags."
    }
