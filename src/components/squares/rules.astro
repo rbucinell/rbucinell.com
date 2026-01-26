@@ -17,18 +17,18 @@ const { payouts } = Astro.props;
                 <span class="cell inline locked accent">Final:      <strong class="px-2">{payouts[3]*100}%</strong></span>
             </div>
         </li>
-        <li>The winning square for a given quarter will be determined by the <span class="underline">last digit of the sum of the digits of the teams' score</span>.
+        <li>The winning square for a given quarter will be determined by the <span class="underline">last digit of each of the teams' score</span>.
             <ul class="ml-6 cell locked p-0">
                 <li class="pl-1">
-                    <span class="underline italic">example</span>: NFC Champion has 17 at the end of the first. Sum the digits: <code>1+7=8</code>. The winning number will be <span class="">8</span></i> 
+                    <span class="underline italic">example</span>: NFC Champion has 17 at the end of the first. The winning number will be <span class="">7</span></i> 
                 </li>
                 <li class="pl-1 bg-slate-300">
-                    <span class="underline italic">example</span>: AFC Champion has 56 at the end of the game. Sum the digits: <code>5+6=11</code>. Take the last digit in <code>11</code><i class="inline" data-feather="arrow-right"></i> <code>1</code>. The winning number will be <span class="">1</span>
+                    <span class="underline italic">example</span>: AFC Champion has 6 at the end of the game. The winning number will be <code>6</code>
                 </li>
             </ul>
         </li>
-        <li class="italic text-blue-600"><span class="font-bold">Why so complicated?</span> 
-            There is a statistical advantage to some numbers in the traditional scoring system. I am using a variance of the <a class="underline" href="https://2.bp.blogspot.com/_fM0L9abY3bo/SZ0SfyPTF3I/AAAAAAAAAMw/1BU-JhoGR9o/s1600-h/graph.jpg">digital root</a> in order to create a more balance statistical distribution of a digit winning. In short, nobody should have "bad numbers" and its more fun for all.</li>
+        <li class="italic text-blue-600"><span class="font-bold">This simplified scoring is new for this year</span> 
+        </li>
         <li>I reserve the right to remove unpaid square requests at any point before numbers are picked.</li>
         <li> Unclaimed/unpaid squares that win, will splash the payout </a>to the cardinal 4 directions in an equal payout (recursively until all money has been distributed)
             <div class="ml-6 w-fit wrapper cell locked object-fill">
