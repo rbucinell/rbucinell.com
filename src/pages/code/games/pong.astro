@@ -1,0 +1,35 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const config = {
+    title: "Ryan Bucinell - Projects",
+    breadcrumbs: [
+        {fa:"home", text:"Home", url:"/l"},
+		{fa:"code", text:"Code", url:"/code" },
+		{fa:"headphones", text:"Games", url:"/code/games" },
+        {fa:"smile", text:"Pong!"}
+    ],
+    page: {
+        title: 'Pong',
+        small: 'Work In Progress...'
+    }
+}
+---
+<BaseLayout config={config}>
+    <canvas id="canvas" width="770px" height="500px" class="border border-black my-2 rounded mx-auto" >
+		<p>Your browser doesn't support canvas.</p>
+	</canvas>
+	<script is:inline type="text/javascript" src="/projects/shared/util/BoundingBox.js" />
+	<script is:inline type="text/javascript" src="/projects/shared/util/Shape.js"/>
+	<script is:inline type="text/javascript" src="/projects/shared/util/Circle.js"/>
+	<script is:inline type="text/javascript" src="/projects/shared/util/Rect.js"/>
+	<script is:inline type="text/javascript" src="/projects/pong/js/Pong.js"/>
+	<script is:inline>
+		let canvas = document.getElementById("canvas");
+		let game = new Pong(canvas.width, canvas.height, canvas);
+		canvas.oncontextmenu = function (e) {
+			e.preventDefault();
+		};
+		game.run();
+	</script>
+</BaseLayout>

@@ -1,11 +1,12 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 const config = {
     title: "Ryan Bucinell - Escape the Trolls",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"settings", text:"Projects", url:"#" },
+		{fa:"home", text:"Home", url:"/"},
+		{fa:"code", text:"Code", url:"/code" },
+		{fa:"headphones", text:"Games", url:"/code/games" },
         {fa:"code", text:"Escape the Trolls"}
     ],
     page: {
@@ -86,8 +87,8 @@ const config = {
 		</div>
 	</div>
 </BaseLayout>
-<script is:inline src="/projects/js/Vector2D.js"></script>
-<script is:inline src="/projects/js/EscapeTheTroll.js"></script>
+<script is:inline src="/projects/shared/Vector2D.js"></script>
+<script is:inline src="/projects/shared/EscapeTheTroll.js"></script>
 <script is:inline>
 	let boardW = 20, boardH = 20;//var boardW = 40, boardH = 20;
 	let container = document.getElementById("svgcontainer");

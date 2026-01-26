@@ -1,17 +1,15 @@
 ---
-const {id,title,open} = Astro.props;
-const isOpen = open === 'true';
-const initShown = isOpen ? 'show': '';
+const {id,title,open = true} = Astro.props;
 const dataTarget = `${id}Section`
 ---
 <div class="breadcrumb my-1">
   <h3 class="">
-      <a data-toggle="collapse" data-target={"#"+dataTarget} aria-expanded={isOpen}>
-     {title}
-     {!isOpen && <span class="font-italic font-weight-light text-muted" style="font-size:0.8rem"><i class="d-inline" data-feather="maximize-2" />click to toggle expand</span>}
+      <a data-toggle="collapse" class="flex flex-row justify-between" data-target={"#"+dataTarget} aria-expanded={open}>
+        <p>{title}</p>
+        <span class="font-italic font-weight-light text-muted flex flex-row" style="font-size:0.8rem"><i class="d-inline" data-feather="maximize-2" />click to toggle expand</span>
     </a>
   </h3>
-  <div id={dataTarget} class:list={["collapse","border-left", {"show" : isOpen}]}>
+  <div id={dataTarget} class:list={["w-full border-left", {"show" : open ? "show" : "collapse"}]}>
     <slot/>
   </div>
 </div>

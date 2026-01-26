@@ -1,12 +1,14 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BannerComponent from "@components/BannerComponent.astro";
+import NewsItem from "@components/NewsItem.astro";
 
 const config = {
     title: "Ryan Bucinell - Javascript Quads",
     breadcrumbs: [
-        {fa:"home", text:"Home", url:"index.html"},
-        {fa:"settings", text:"Projects", url:"#" },
-        {fa:"code", text:"Javascript Quads"}
+        {fa:"home", text:"Home", url:"/"},
+        {fa:"code", text:"code", url:"/code" },
+        {fa:"settings", text:"Javascript Quads"}
     ],
     page: {
         title: 'Javascript Quads',
@@ -15,44 +17,54 @@ const config = {
 }
 ---
 <BaseLayout config={config}>
-	<div class="alert alert-warning"><a class="p-3" href="/misc/quad.html">Quad Page</a> works better, introduced bug in conversion. TODO</div>
-	<div class="container-fluid">
-		<div class="row" id="buttons">
-			<button class="m-1 btn btn-primary" id="playButton" onclick="play()">Play</button>
-			<div class="mx-1">
-				<div class="custom-file">
-					<input class="custom-file-input" type="file" accept="image/*" onchange="loadAll()">
-					<label class="custom-file-label">Choose File</label>
-				</div>
-			</div>
-			<button class="m-1 btn btn-secondary" id="pauseButton" onclick="step()">Step</button>
-			<button class="m-1 btn btn-secondary" id="stopButton" onclick="stop()">Stop</button>
-			<button class="m-1 btn btn-secondary" id="createButton" onclick="create()">Convert to Picture</button>
+	<BannerComponent id="downloadpdf" title="Tool Broken" alert="warn">
+			<a class="cell inline" href="/misc/quad.html" target="_blank">
+				Quad Page
+			</a>works better, introduced bug in conversion. TODO
+		<!-- <a href="data/resume/Resume for Ryan Michael Bucinell.pdf"               class="alert-link btn btn-outline-primary mx-3"><i class="font-weight-bold d-inline text-primary" data-feather="file-text"/>Standard PDF version</a>
+        <a href="data/resume/Resume for Ryan Michael Bucinell - Open Resume.pdf" class="alert-link btn btn-outline-secondary">   <i class="font-weight-bold d-inline text-secondary" data-feather="file-text"/>&nbsp;Open Resume</a> -->
+	</BannerComponent>
+	
+	<div class="flex flex-col" id="buttons">
+		<div class="flex flex-row gap-2">
+			<input  class="cell" id="fileInput" type="file" accept="image/*" onchange="loadAll()">
+			<button class="cell" id="playButton" 	onclick="play()">Play</button>
+			<button class="cell" id="pauseButton" 	onclick="step()">Step</button>
+			<button class="cell" id="stopButton" 	onclick="stop()">Stop</button>
+			<button class="cell" id="createButton" 	onclick="create()">Convert to Picture</button>
 			<p class="lead" id="saveMe" style="display:none;">Right click to save me! </p>
 		</div>
-		<div class="row custom-control custom-radio" id="cellStyleButtons">
-			<div class="custom-control custom-radio custom-control-inline">
-				<input class="custom-control-input" id="defaultInline1" type="radio" name="shadingRadios" checked="checked">
-				<label class="custom-control-label" for="defaultInline1">Box Shade</label>
-			</div>
-			<div class="custom-control custom-radio custom-control-inline">
-				<input class="custom-control-input" id="defaultInline2" type="radio" name="shadingRadios">
-				<label class="custom-control-label" for="defaultInline2">Box Bodrder</label>
-			</div>
-			<div class="custom-control custom-radio custom-control-inline">
-				<input class="custom-control-input" id="defaultInline3" type="radio" name="shadingRadios">
-				<label class="custom-control-label" for="defaultInline3">Hatch</label>
-			</div>
-			<div class="custom-control custom-radio custom-control-inline">
-				<input class="custom-control-input" id="defaultInline4" type="radio" name="shadingRadios">
-				<label class="custom-control-label" for="defaultInline4">HatchShaded</label>
-			</div>
-		</div>
-		<div class="row"><img class="col" id="refpix" style="border:1px solid #000000;margin: 5px;" src="">
-			<canvas class="col" id="canvas" style="border:1px solid #000000;margin: 5px;">
-				<p>Your browser doesn&apos;t support canvas.</p>
-			</canvas>
-		</div>
+	</div>
+	
+	<div id="cellStyleButtons" class="flex flex-row justify-evenly cell locked ">
+		<label for="defaultInline1">
+			<input class="custom-control-input" id="defaultInline1" type="radio" name="shadingRadios" checked="checked">
+			<span>Box Shade</span>
+		</label>
+
+		<label for="defaultInline2">
+			<input class="custom-control-input" id="defaultInline2" type="radio" name="shadingRadios">
+			<span>Box Border</span>
+		</label>
+
+		<label for="defaultInline3">
+			<input class="custom-control-input" id="defaultInline3" type="radio" name="shadingRadios">
+			<span>Hatch</span>
+		</label>
+
+		<label for="defaultInline4">
+			<input class="custom-control-input" id="defaultInline4" type="radio" name="shadingRadios">
+			<span>Hatch Shaded</span>
+		</label>
+		
+		
+	</div>
+	
+	<div class="flex flex-row">
+		<img class="hidden border border-black m-1.5" id="refpix" src="" alt="original image loaded">
+		<canvas id="canvas" class="border border-black m-1.5">
+			<p>Your browser doesn&apos;t support canvas.</p>
+		</canvas>
 	</div>
 </BaseLayout>
 
@@ -110,11 +122,6 @@ const config = {
 		return this.children.length === 0;
 	};
 
-	getLeafNodes()
-	{
-		return this.children === [] ? [this] : this.children;
-	};
-
 	getAllLeafNodes( currentlist, maxdepth )
 	{
 
@@ -138,20 +145,9 @@ const config = {
 
 	getLeafNodes( depth )
 	{
-		if( this.depth >= depth )
-		{
-			return [ this ];
-		}
-		else if( this.children === [])
-		{
-			return [ this ];
-		}
-		else
-		{
-			return this.children;
-		}
+		return this.depth >= depth || this.children.length === 0 ? [this] : this.children;
 	};
-
+	
 	divide()
 	{
 		let w2 = this.w / 2;
@@ -468,7 +464,7 @@ class Quadrants
 		if( this.previousError == -1 || this.previousError - this.error > ERROR_RATE )
 			this.previousError = this.error;
 		let leaves = this.root.getAllLeafNodes( [], this.MAX_DEPTH );
-		debugger;
+		//debugger;
 		leaves.sort( this.errorCompareTo );
 		let last = leaves[0];// leaves[leaves.length-1];
 		if( last.error > 0 )
@@ -551,8 +547,7 @@ class Quadrants
 		};
 	}
 }
-</script>
-<script is:inline type="text/javascript">
+
 	const canvas = document.getElementById("canvas");
 	const refpix = document.querySelector('#refpix');
 	refpix.addEventListener('load', refpixLoaded );
@@ -589,19 +584,19 @@ class Quadrants
 			quads.ITERATIONS += 1000;
 		}
 		quads.play();
-	};
+	}
 
 	function stop()
 	{
 		quads.stop();
 		console.log( "Program Halted");
-	};
+	}
 
 	function step()
 	{
 		quads.step();
 		console.log( "Program Stepped");
-	};
+	}
 
 	function create()
 	{
@@ -616,5 +611,5 @@ class Quadrants
 		canvas.style.display = 'none';
 		saveMe.style.display = "block";
 		img.style.display = "block";
-	};
+	}
 </script> 

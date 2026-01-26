@@ -2,6 +2,7 @@ var intervalID	= -1;
 var framerate 	= 4;
 var isRunning 	= false;
 var canvas = document.getElementById('canvas');
+
 function Game(w,h,g)
 {	
 	//public variables
@@ -161,8 +162,6 @@ function Game(w,h,g)
 	}
 	
 }
-
-
 
 function gameMouseDown( e )
 {
