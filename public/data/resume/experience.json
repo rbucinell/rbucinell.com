@@ -5,7 +5,10 @@
         "daterange": "November 2023 - Current",
         "img": "img/resume/coopervision.png",
         "descriptions": [
-            "TBD"
+            "Developed global distribution and packaging management software. Designing and writing ASP.NET Restful API’s sourced with an Oracle database, and an Angular Front-End Framework. ",
+            "Designed and developed an internal testing suite integrated with ConnectShip leveraging Astro, HTMX, and NodeJS tech stack.",
+            "Built automation tooling with PowerShell and standardized SDLC process around CI/CD pipeline utilizing git best practices and Atlassian Bamboo deployment software.",
+            "Guided and trained new developers on software best practices, concepts, performance optimizations, and new tools. "
         ],
         "tags": ["C#", ".NET Core", "Typescript", "Oracle Database", "Entity Framework", "ASP.NET", "Node", "Angular", "Bamboo API", "Python", "Powershell" ]
     },
